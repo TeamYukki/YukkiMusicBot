@@ -33,7 +33,7 @@ Disk: {disk}%"""
 async def ping(_, message):
     start = datetime.now()
     response = await message.reply_photo(
-        photo="https://telegra.ph/file/676cc67c8acd8e35954b1.jpg",
+        photo="Utils/Query.jpg",
         caption=">> Pong!",
     )
     uptime = await bot_sys_stats()
