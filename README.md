@@ -132,7 +132,7 @@ Distributed under the [GNU General Public License v3.0 License.](https://github.
 
 ## Acknowledgements
 
-Special thanks to these amazing projects which help power Yukki Music Bot:
+Special thanks to these amazing projects/people which/who help power Yukki Music Bot:
 
 - [Pyrogram](https://github.com/pyrogram/pyrogram)
 - [Py-Tgcalls](https://github.com/pytgcalls/pytgcalls)
