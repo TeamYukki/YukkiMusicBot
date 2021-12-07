@@ -1,0 +1,102 @@
+{
+  "name": "Yukki Music Bot",
+  "description": "A Telegram Music Bot with proper functions written in Python with Pyrogram and Py-Tgcalls.",
+  "repository": "https://github.com/NotReallyShikhar/YukkiMusicBot",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
+  "keywords": [
+  "python3",
+  "telegram",
+  "bot",
+  "Yukki",
+  "YukkiMusicBot",
+  "telegram-bot",
+  "pyrogram"
+  ],
+  "repository": "https://github.com/notreallyshikhar/YukkiMusicBot",
+  "stack": "container",
+  "env": {
+    "API_ID": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": "",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": "",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "A Bot's token from Botfather",
+      "value": "",
+      "required": true
+    },
+    "DURATION_LIMIT_MIN": {
+      "description": "Duration Limit for Playout (In Mins).. Example: 60",
+      "value": "60",
+      "required": true
+    },
+    "ASSISTANT_PREFIX": {
+      "description": "Prefix for Assistant Commands.",
+      "value": ".",
+      "required": true
+    },
+    "MONGO_DB_URI": {
+      "description": "Mongo DB URL",
+      "value": "",
+      "required": true
+    },
+    "MUSIC_BOT_NAME": {
+      "description": "A name for your Music Bot.",
+      "value": "",
+      "required": true
+    },
+    "SUPPORT_CHANNEL": {
+      "description": "Support Channel Link if you have any, Leave blank if no support.",
+      "value": "",
+      "required": false
+    },
+    "SUPPORT_GROUP": {
+      "description": "Support Group Link if you have any, Leave blank if no support",
+      "value": "",
+      "required": false
+    },
+    "OWNER_ID": {
+      "description": "The user id(s) of user(s) whom you would like to add as a OWNER. Multiple values shall be seperated with a space.",
+      "value": "",
+      "required": true
+    },
+    "STRING_SESSION": {
+      "description": "A Pyrogram String Session.",
+      "value": "",
+      "required": true
+    },
+    "LOG_GROUP_ID": {
+      "description": "Your Log Channel ID, add your bot and promote as an admin with full rights!",
+      "value": "",
+      "required": true
+    },
+    "SUDO_USERS": {
+      "description": "The user id(s) of user(s) whom you would like to add as a SUDO. Multiple values shall be seperated with a space.",
+      "value": "",
+      "required": true
+    }
+  },
+  "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "heroku/nodejs"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    },
+    "stack": "container"
+}
