@@ -137,4 +137,4 @@ Special thanks to these amazing projects which help power Yukki Music Bot:
 - [Pyrogram](https://github.com/pyrogram/pyrogram)
 - [Py-Tgcalls](https://github.com/pytgcalls/pytgcalls)
 - [CallsMusic Team](https://github.com/Callsmusic)
-- [WilliamButcherBot](https://github.com/TheHamkerCat/WilliamButcherBot)
+- [TheHamkerCat](https://github.com/TheHamkerCat)
