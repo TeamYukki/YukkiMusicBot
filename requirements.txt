@@ -17,6 +17,6 @@ psutil
 requests
 youtube-search-python
 rich
-yt-dlp==2021.11.10.1 
+git+https://github.com/ChankitSaini/ytdlpfork
 pymongo[srv]
 TgCrypto
