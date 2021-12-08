@@ -70,7 +70,7 @@ shikhar@MacBook~ $ bash start
 </h2>
 
 <p align="center">
-<a href="https://railway.app/new/template?template=https://github.com/notreallyshikhar/YukkiMusicBot&envs=BOT_TOKEN%2CAPI_ID%2CAPI_HASH%2CSESSION_STRING%2CSUDO_USERS%2COWNER_ID%2CDURATION_LIMIT%2CSUPPORT_CHANNEL%2CMONGO_DB_URI%2CLOG_GROUP_ID%2CASSISTANT_PREFIX%2CMUSIC_BOT_NAME%2CSUPPORT_GROUP&optionalEnvs=SUPPORT_CHANNEL%2CSUPPORT_GROUP"><img src="https://img.shields.io/badge/Deploy%20To%20Railway-blueviolet?style=for-the-badge&logo=railway" width="252""/</a>
+<a href="https://railway.app/new/template?template=https://github.com/notreallyshikhar/YukkiMusicBot&envs=BOT_TOKEN%2CAPI_ID%2CAPI_HASH%2CSTRING_SESSION%2CSUDO_USERS%2COWNER_ID%2CDURATION_LIMIT%2CSUPPORT_CHANNEL%2CMONGO_DB_URI%2CLOG_GROUP_ID%2CASSISTANT_PREFIX%2CMUSIC_BOT_NAME%2CSUPPORT_GROUP&optionalEnvs=SUPPORT_CHANNEL%2CSUPPORT_GROUP"><img src="https://img.shields.io/badge/Deploy%20To%20Railway-blueviolet?style=for-the-badge&logo=railway" width="252""/</a>
 <a href="https://dashboard.heroku.com/new?template=https://github.com/NotReallyShikhar/YukkiMusicBot"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="250""/</a>  
 
 </p>
@@ -105,7 +105,7 @@ shikhar@MacBook~ $ python3 gen_session.py
 4. `SESSION_STRING` : Pyrogram Session String of Assistant Account.
 5. `MUSIC_BOT_NAME` : A name for your Music bot.
 6. `MONGO_DB_URI` : MongoDB Database URL.
-7. `LOG_GROUP_ID` : Chat ID where bot will log everything
+7. `LOG_GROUP_ID` : Chat ID where bot will log everything. Use Group Chats Only.
 8. `DURATION_LIMIT` : Duration Limit for Music (Mins)
 9. `SUDO_USERS` : Sudo Users for Bot. (For multiple users seperate IDs with space)
 10. `OWNER_ID`: Owner ID of Bot
