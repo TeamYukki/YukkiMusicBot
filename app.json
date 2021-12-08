@@ -30,7 +30,7 @@
       "value": "",
       "required": true
     },
-    "DURATION_LIMIT_MIN": {
+    "DURATION_LIMIT": {
       "description": "Duration Limit for Playout (In Mins).. Example: 60",
       "value": "60",
       "required": true
