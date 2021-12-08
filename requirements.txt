@@ -15,8 +15,8 @@ speedtest-cli
 motor
 psutil
 requests
-youtube-search-python
 rich
-yt-dlp==2021.11.10.1 
+dnspython
+git+https://github.com/Sorrybabe/downloader
 pymongo[srv]
 TgCrypto

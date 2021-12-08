@@ -30,7 +30,7 @@
       "value": "",
       "required": true
     },
-    "DURATION_LIMIT_MIN": {
+    "DURATION_LIMIT": {
       "description": "Duration Limit for Playout (In Mins).. Example: 60",
       "value": "60",
       "required": true
@@ -51,12 +51,12 @@
       "required": true
     },
     "SUPPORT_CHANNEL": {
-      "description": "Support Channel Link if you have any, Leave blank if no support.",
+      "description": "Support Channel Link if you have any, Leave blank if no support. Your link must start with https://t.me/",
       "value": "",
       "required": false
     },
     "SUPPORT_GROUP": {
-      "description": "Support Group Link if you have any, Leave blank if no support",
+      "description": "Support Group Link if you have any, Leave blank if no support. Your link must start with https://t.me/",
       "value": "",
       "required": false
     },
@@ -71,7 +71,7 @@
       "required": true
     },
     "LOG_GROUP_ID": {
-      "description": "Your Log Channel ID, add your bot and promote as an admin with full rights!",
+      "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Use only Group. Please don't use Channel ID.",
       "value": "",
       "required": true
     },
