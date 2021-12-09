@@ -88,7 +88,10 @@ async def play(_, message: Message):
         )
     elif url:
         mystic = await message.reply_text("🔄 Processing URL... Please Wait!")
-        query = message.text.split(None, 1)[1]
+        if message.reply_to_message:
+            query = message.reply_to_message.text
+        else:
+            query = message.text.split(None, 1)[1]
         (
             title,
             duration_min,
