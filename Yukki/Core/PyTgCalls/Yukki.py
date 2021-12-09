@@ -30,7 +30,7 @@ pytgcalls = PyTgCalls(userbot)
 
 
 @pytgcalls.on_kicked()
-async def kicked_handler(client: PyTgCalls, chat_id: int):
+async def kicked_handler(_, chat_id: int):
     try:
         Queues.clear(chat_id)
     except QueueEmpty:
@@ -39,7 +39,16 @@ async def kicked_handler(client: PyTgCalls, chat_id: int):
 
 
 @pytgcalls.on_closed_voice_chat()
-async def kicked_handler(client: PyTgCalls, chat_id: int):
+async def closed_voice_chat_handler(_, chat_id: int):
+    try:
+        Queues.clear(chat_id)
+    except QueueEmpty:
+        pass
+    await remove_active_chat(chat_id)
+
+
+@pytgcalls.on_left()
+async def left_handler(_, chat_id: int):
     try:
         Queues.clear(chat_id)
     except QueueEmpty:
@@ -48,7 +57,7 @@ async def kicked_handler(client: PyTgCalls, chat_id: int):
 
 
 @pytgcalls.on_stream_end()
-async def on_stream_end(client: PyTgCalls, update: Update) -> None:
+async def stream_end_handler(_, update: Update):
     chat_id = update.chat_id
     try:
         Queues.task_done(chat_id)
