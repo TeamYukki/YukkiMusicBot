@@ -74,7 +74,6 @@ async def welcome(_, message: Message):
 
 
 @app.on_message(filters.command(["help", "start"]) & filters.group)
-@PermissionCheck
 async def useradd(_, message: Message):
     out = start_pannel()
     await asyncio.gather(
