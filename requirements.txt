@@ -17,5 +17,5 @@ psutil
 requests
 rich
 dnspython
-yt-dlp
+yt-dlp==2021.11.10.1
 tgcrypto
