@@ -8,8 +8,6 @@ from config import ASSISTANT_PREFIX, DURATION_LIMIT_MIN, LOG_GROUP_ID
 from config import MONGO_DB_URI as mango
 from config import MUSIC_BOT_NAME, OWNER_ID, SUDO_USERS, get_queue
 from motor.motor_asyncio import AsyncIOMotorClient as Bot
-from pymongo import MongoClient
-from pymongo.errors import ConnectionFailure
 from rich.console import Console
 from rich.table import Table
 
@@ -28,7 +26,6 @@ MOD_NOLOAD = []
 ### Mongo DB
 MONGODB_CLI = Bot(mango)
 db = MONGODB_CLI.Yukki
-pymongodb = ""
 
 ### Boot Time
 boottime = time.time()
@@ -59,7 +56,7 @@ ASSMENTION = ""
 
 
 async def initiate_bot():
-    global pymongodb, SUDOERS, Imp_Modules, OWNER_ID
+    global SUDOERS, Imp_Modules, OWNER_ID
     global BOT_ID, BOT_NAME, BOT_USERNAME
     global ASSID, ASSNAME, ASSMENTION, ASSUSERNAME
     os.system("clear")
@@ -90,49 +87,8 @@ async def initiate_bot():
         if "search" not in listdir():
             mkdir("search")
         console.print("└ [green]Directories Updated!")
-        okbhai = await startup_edit_last(all_over, "Checking Database...")
-        await asyncio.sleep(2)
-        console.print("\n┌ [red]Checking the existence of Database...")
-        if mango == "":
-            status.update(status="[bold red] Failed to boot Yukki Music Bot!")
-            console.print(
-                "[bold yellow]\nWARNING! DATABASE URL NOT FOUND!!\n\nExiting all processes with SIGTERM..."
-            )
-            return
-        console.print("├ [green]Database found!")
-        __ = await startup_edit_last(okbhai, "Validating Database...")
-        await asyncio.sleep(0.7)
-        console.print("├ [yellow]Validating Database...")
-        if not mango.endswith("=majority"):
-            status.update(status="[bold red] Failed to boot Yukki Music Bot!")
-            console.print(
-                "[bold yellow]\nWARNING! INVALID DATABASE URL! USE ONLY MONGO DB URL!!\n\nExiting all processes with SIGTERM..."
-            )
-            return
-        try:
-            smex = MongoClient(mango, port=27017)
-        except:
-            status.update(status="[bold red] Failed to boot Yukki Music Bot!")
-            console.print(
-                "[bold yellow] I hate it to say but something is wrong with your database url :(\ntry rechecking it or replace it with a new one.\n\nExiting all processes with SIGTERM..."
-            )
-            return
-        pymongodb = smex.Yukki
-        await asyncio.sleep(2)
-        try:
-            pymongodb.command("serverStatus")
-            server_status = "200"
-        except ConnectionFailure:
-            server_status = "404"
-        if not server_status == "200":
-            status.update(status="[bold red] Failed to boot Yukki Music Bot!")
-            console.print(
-                "[bold yellow] I hate it to say but something is wrong with your database url :(\ntry rechecking it or replace it with a new one.\n\nExiting all processes with SIGTERM..."
-            )
-            return
-        console.print("└ [green]Database Validation Successful!")
         await asyncio.sleep(0.9)
-        ___ = await startup_edit_last(__, "Refurbishing Necessary Data...")
+        ___ = await startup_edit_last(all_over, "Refurbishing Necessary Data...")
         console.print("\n┌ [red]Refurbishing Necessities...")
         getme = await app.get_me()
         getme1 = await userbot.get_me()
@@ -154,16 +110,14 @@ async def initiate_bot():
         await asyncio.sleep(0.9)
         ____ok = await startup_edit_last(___, "Loading Sudo Users...")
         console.print("\n┌ [red]Loading Sudo Users...")
-        sudoersdb = pymongodb.sudoers
-        sudoers = sudoersdb.find_one({"sudo": "sudo"})
+        sudoersdb = db.sudoers
+        sudoers = await sudoersdb.find_one({"sudo": "sudo"})
         sudoers = [] if not sudoers else sudoers["sudoers"]
         for user_id in SUDOERS:
             if user_id not in sudoers:
                 sudoers.append(user_id)
-                sudoersdb.update_one(
-                    {"sudo": "sudo"},
-                    {"$set": {"sudoers": sudoers}},
-                    upsert=True,
+                await sudoersdb.update_one(
+                    {"sudo": "sudo"}, {"$set": {"sudoers": sudoers}}, upsert=True
                 )
         SUDOERS = (SUDOERS + sudoers + OWNER_ID) if sudoers else SUDOERS
         await asyncio.sleep(1)

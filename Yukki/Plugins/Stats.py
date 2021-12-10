@@ -14,8 +14,9 @@ from pyrogram import Client
 from pyrogram import __version__ as pyrover
 from pyrogram import filters
 from pyrogram.types import Message
-
-from Yukki import (BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime, pymongodb,
+from pymongo import MongoClient
+from config import MONGO_DB_URI
+from Yukki import (BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime,
                    userbot)
 from Yukki.Database import get_gbans_count, get_served_chats, get_sudoers
 from Yukki.Inline import (stats1, stats2, stats3, stats4, stats5, stats6,
@@ -27,7 +28,7 @@ __MODULE__ = "Stats"
 __HELP__ = """
 
 
-/stats 
+/stats
 - Check the Stats of Bot.
 - Gets the stat of MongoDb , Assistant, System etc
 """
@@ -61,7 +62,7 @@ async def gstats(_, message):
     resp = (end - start).microseconds / 1000
     smex = f"""
 [•]<u>**General Stats**</u>
-    
+
 Ping: `⚡{resp} ms`
 {uptime}
     """
@@ -110,7 +111,7 @@ async def stats_markup(_, CallbackQuery):
         smex = f"""
 [•]<u>**Storage Stats**</u>
 
-**Storage Avail:** {total[:4]} GiB 
+**Storage Avail:** {total[:4]} GiB
 **Storage Used:** {used[:4]} GiB
 **Storage Left:** {free[:4]} GiB"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats3)
@@ -142,7 +143,16 @@ async def stats_markup(_, CallbackQuery):
         await CallbackQuery.answer(
             "Getting MongoDB Stats...", show_alert=True
         )
-        db = pymongodb
+        try:
+            pymongo = MongoClient(MONGO_DB_URI)
+        except Exception as e:
+            print(e)
+            return await CallbackQuery.edit_message_text("Failed to get Mongo DB stats", reply_markup=stats5)
+        try:
+            db = pymongo.Yukki
+        except Exception as e:
+            print(e)
+            return await CallbackQuery.edit_message_text("Failed to get Mongo DB stats", reply_markup=stats5)
         call = db.command("dbstats")
         database = call["db"]
         datasize = call["dataSize"] / 1024
@@ -193,8 +203,8 @@ async def stats_markup(_, CallbackQuery):
 [•]<u>Assistant Stats</u>
 
 **Dialogs:** {total_ub}
-**Groups:** {groups_ub} 
-**Channels:** {channels_ub} 
+**Groups:** {groups_ub}
+**Channels:** {channels_ub}
 **Bots:** {bots_ub}
 **Users:** {privates_ub}"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats6)
