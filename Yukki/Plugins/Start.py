@@ -19,7 +19,7 @@ from Yukki.Database import (add_nonadmin_chat, add_served_chat,
                             remove_nonadmin_chat, save_assistant)
 from Yukki.Decorators.admins import ActualAdminCB
 from Yukki.Decorators.permission import PermissionCheck
-from Yukki.Inline import (custommarkup, dashmarkup, setting_markup,
+from Yukki.Inline import (custommarkup, dashmarkup, setting_markup, setting_markup2,
                           start_pannel, usermarkup, volmarkup)
 from Yukki.Utilities.ping import get_readable_time
 
@@ -29,12 +29,14 @@ __MODULE__ = "Essentials"
 __HELP__ = """
 
 
-/start 
+/start
 - Start the Bot.
 
-/help 
+/help
 - Get Commands Helper Menu.
 
+/settings
+- Get Settings DashBoard.
 """
 
 
@@ -83,6 +85,26 @@ async def useradd(_, message: Message):
             f"Thanks for having me in {message.chat.title}.\n{MUSIC_BOT_NAME} is alive.\n\nFor any assistance or help, checkout our support group and channel.",
             reply_markup=InlineKeyboardMarkup(out[1]),
         ),
+    )
+
+
+@app.on_message(filters.command("settings") & filters.group)
+@PermissionCheck
+async def settings(_, message: Message):
+    c_id = message.chat.id
+    _check = await get_assistant(c_id, "assistant")
+    if not _check:
+        assis = {
+            "volume": 100,
+        }
+        await save_assistant(c_id, "assistant", assis)
+        volume = 100
+    else:
+        volume = _check["volume"]
+    text, buttons = setting_markup2()
+    await asyncio.gather(
+        message.delete(),
+        message.reply_text(f"{text}\n\n**Group:** {message.chat.title}\n**Group ID:** {message.chat.id}\n**Volume Level:** {volume}%", reply_markup=InlineKeyboardMarkup(buttons)),
     )
 
 
