@@ -152,7 +152,7 @@ options = [
 ]
 
 options_Genre = [
-    "Rock",
+    "Weeb",
     "Sad",
     "Party",
     "Lofi",
