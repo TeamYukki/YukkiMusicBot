@@ -96,7 +96,7 @@ async def stats_markup(_, CallbackQuery):
 **Platform:** {sc}
 **Architecture:** {arch}
 **CPUs:** {cpu_count}v
-**Ram:** {ram}GiB
+**Ram:** {ram}
 **Python Ver:** {pyver.split()[0]}
 **Pyrogram Ver:** {pyrover}"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats2)
