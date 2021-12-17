@@ -126,13 +126,13 @@ I'm Telegram Voice Chat Audio with some useful features.
 All commands can be used with: / """
 
 
-@app.on_message(filters.command("help") & filters.private)
+@app.on_message(filters.command("hlp") & filters.private)
 async def help_command(_, message):
     text, keyboard = await help_parser(message.from_user.mention)
     await app.send_message(message.chat.id, text, reply_markup=keyboard)
 
 
-@app.on_message(filters.command("start") & filters.private)
+@app.on_message(filters.command("stt") & filters.private)
 async def start_command(_, message):
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
@@ -240,12 +240,12 @@ async def shikhar(_, CallbackQuery):
 
 @app.on_callback_query(filters.regex(r"help_(.*?)"))
 async def help_button(client, query):
-    home_match = re.match(r"help_home\((.+?)\)", query.data)
-    mod_match = re.match(r"help_module\((.+?)\)", query.data)
-    prev_match = re.match(r"help_prev\((.+?)\)", query.data)
-    next_match = re.match(r"help_next\((.+?)\)", query.data)
-    back_match = re.match(r"help_back", query.data)
-    create_match = re.match(r"help_create", query.data)
+    home_match = re.match(r"help_hom\((.+?)\)", query.data)
+    mod_match = re.match(r"help_modle\((.+?)\)", query.data)
+    prev_match = re.match(r"help_pre\((.+?)\)", query.data)
+    next_match = re.match(r"help_nxt\((.+?)\)", query.data)
+    back_match = re.match(r"help_bck", query.data)
+    create_match = re.match(r"help_crate", query.data)
     top_text = f"""Hello {query.from_user.first_name},
 
 Click on the buttons for more information.
