@@ -230,7 +230,7 @@ async def playout_end(pytgclients, chat_id):
         Queues.task_done(chat_id)
         if Queues.is_empty(chat_id):
             await remove_active_chat(chat_id)
-            await pytgcalls1.leave_group_call(chat_id)
+            await pytgclients.leave_group_call(chat_id)
         else:
             afk = Queues.get(chat_id)["file"]
             finxx = f"{afk[0]}{afk[1]}{afk[2]}"
