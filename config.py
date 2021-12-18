@@ -7,7 +7,11 @@ load_dotenv()
 # VARS
 
 get_queue = {}
-STRING = getenv("STRING_SESSION", "session")
+STRING1 = getenv("STRING_SESSION1", "session")
+STRING2 = getenv("STRING_SESSION2", "session")
+STRING3 = getenv("STRING_SESSION3", "session")
+STRING4 = getenv("STRING_SESSION4", "session")
+STRING5 = getenv("STRING_SESSION5", "session")
 BOT_TOKEN = getenv("BOT_TOKEN")
 API_ID = int(getenv("API_ID", ""))
 API_HASH = getenv("API_HASH")

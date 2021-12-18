@@ -1,29 +1,8 @@
-from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
+from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
 from Yukki import BOT_USERNAME
-
-def setting_markup2():
-    buttons = [
-        [
-            InlineKeyboardButton(text="🔈 Audio Quality", callback_data="AQ"),
-            InlineKeyboardButton(text="🎚 Audio Volume", callback_data="AV"),
-        ],
-        [
-            InlineKeyboardButton(
-                text="👥 Authorized Users", callback_data="AU"
-            ),
-            InlineKeyboardButton(
-                text="💻 Dashboard", callback_data="Dashboard"
-            ),
-        ],
-        [
-            InlineKeyboardButton(text="✖️ Close", callback_data="close"),
-        ],
-    ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
-
 
 
 def start_pannel():
@@ -201,6 +180,27 @@ def setting_markup():
         [
             InlineKeyboardButton(text="✖️ Close", callback_data="close"),
             InlineKeyboardButton(text="🔙 Go Back", callback_data="okaybhai"),
+        ],
+    ]
+    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+
+
+def setting_markup2():
+    buttons = [
+        [
+            InlineKeyboardButton(text="🔈 Audio Quality", callback_data="AQ"),
+            InlineKeyboardButton(text="🎚 Audio Volume", callback_data="AV"),
+        ],
+        [
+            InlineKeyboardButton(
+                text="👥 Authorized Users", callback_data="AU"
+            ),
+            InlineKeyboardButton(
+                text="💻 Dashboard", callback_data="Dashboard"
+            ),
+        ],
+        [
+            InlineKeyboardButton(text="✖️ Close", callback_data="close"),
         ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons

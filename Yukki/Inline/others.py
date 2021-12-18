@@ -39,7 +39,7 @@ def others_markup(videoid, user_id):
             InlineKeyboardButton(
                 text="🗑 Close Menu",
                 callback_data=f"close",
-            )
+            ),
         ],
     ]
     return buttons

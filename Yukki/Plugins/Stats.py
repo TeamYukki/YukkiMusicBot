@@ -11,14 +11,15 @@ from sys import version as pyver
 import multiprocessing
 
 import psutil
+from pymongo import MongoClient
 from pyrogram import Client
 from pyrogram import __version__ as pyrover
 from pyrogram import filters
 from pyrogram.types import Message
-from pymongo import MongoClient
+
 from config import MONGO_DB_URI
-from Yukki import (BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime,
-                   userbot)
+from Yukki import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
+                   BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime)
 from Yukki.Database import get_gbans_count, get_served_chats, get_sudoers
 from Yukki.Inline import (stats1, stats2, stats3, stats4, stats5, stats6,
                           stats7)
@@ -150,12 +151,16 @@ async def stats_markup(_, CallbackQuery):
             pymongo = MongoClient(MONGO_DB_URI)
         except Exception as e:
             print(e)
-            return await CallbackQuery.edit_message_text("Failed to get Mongo DB stats", reply_markup=stats5)
+            return await CallbackQuery.edit_message_text(
+                "Failed to get Mongo DB stats", reply_markup=stats5
+            )
         try:
             db = pymongo.Yukki
         except Exception as e:
             print(e)
-            return await CallbackQuery.edit_message_text("Failed to get Mongo DB stats", reply_markup=stats5)
+            return await CallbackQuery.edit_message_text(
+                "Failed to get Mongo DB stats", reply_markup=stats5
+            )
         call = db.command("dbstats")
         database = call["db"]
         datasize = call["dataSize"] / 1024
@@ -190,7 +195,11 @@ async def stats_markup(_, CallbackQuery):
             "Getting Assistant Stats.. Please Wait...", reply_markup=stats7
         )
         groups_ub = channels_ub = bots_ub = privates_ub = total_ub = 0
-        async for i in userbot.iter_dialogs():
+        groups_ub2 = channels_ub2 = bots_ub2 = privates_ub2 = total_ub2 = 0
+        groups_ub3 = channels_ub3 = bots_ub3 = privates_ub3 = total_ub3 = 0
+        groups_ub4 = channels_ub4 = bots_ub4 = privates_ub4 = total_ub4 = 0
+        groups_ub5 = channels_ub5 = bots_ub5 = privates_ub5 = total_ub5 = 0
+        async for i in ASS_CLI_1.iter_dialogs():
             t = i.chat.type
             total_ub += 1
             if t in ["supergroup", "group"]:
@@ -202,14 +211,91 @@ async def stats_markup(_, CallbackQuery):
             elif t == "private":
                 privates_ub += 1
 
+        async for i in ASS_CLI_2.iter_dialogs():
+            t = i.chat.type
+            total_ub2 += 1
+            if t in ["supergroup", "group"]:
+                groups_ub2 += 1
+            elif t == "channel":
+                channels_ub2 += 1
+            elif t == "bot":
+                bots_ub2 += 1
+            elif t == "private":
+                privates_ub2 += 1
+
+        async for i in ASS_CLI_3.iter_dialogs():
+            t = i.chat.type
+            total_ub3 += 1
+            if t in ["supergroup", "group"]:
+                groups_ub3 += 1
+            elif t == "channel":
+                channels_ub3 += 1
+            elif t == "bot":
+                bots_ub3 += 1
+            elif t == "private":
+                privates_ub3 += 1
+
+        async for i in ASS_CLI_4.iter_dialogs():
+            t = i.chat.type
+            total_ub4 += 1
+            if t in ["supergroup", "group"]:
+                groups_ub4 += 1
+            elif t == "channel":
+                channels_ub4 += 1
+            elif t == "bot":
+                bots_ub4 += 1
+            elif t == "private":
+                privates_ub4 += 1
+
+        async for i in ASS_CLI_5.iter_dialogs():
+            t = i.chat.type
+            total_ub5 += 1
+            if t in ["supergroup", "group"]:
+                groups_ub5 += 1
+            elif t == "channel":
+                channels_ub5 += 1
+            elif t == "bot":
+                bots_ub5 += 1
+            elif t == "private":
+                privates_ub5 += 1
+
         smex = f"""
 [•]<u>Assistant Stats</u>
 
+<u>Assistant One:</u>
 **Dialogs:** {total_ub}
 **Groups:** {groups_ub}
 **Channels:** {channels_ub}
 **Bots:** {bots_ub}
-**Users:** {privates_ub}"""
+**Users:** {privates_ub}
+
+<u>Assistant Two:</u>
+**Dialogs:** {total_ub2}
+**Groups:** {groups_ub2}
+**Channels:** {channels_ub2}
+**Bots:** {bots_ub2}
+**Users:** {privates_ub2}
+
+<u>Assistant Three:</u>
+**Dialogs:** {total_ub3}
+**Groups:** {groups_ub3}
+**Channels:** {channels_ub3}
+**Bots:** {bots_ub3}
+**Users:** {privates_ub3}
+
+<u>Assistant Four:</u>
+**Dialogs:** {total_ub4}
+**Groups:** {groups_ub4}
+**Channels:** {channels_ub4}
+**Bots:** {bots_ub4}
+**Users:** {privates_ub4}
+
+<u>Assistant Five:</u>
+**Dialogs:** {total_ub5}
+**Groups:** {groups_ub5}
+**Channels:** {channels_ub5}
+**Bots:** {bots_ub5}
+**Users:** {privates_ub5}"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats6)
     if command == "gen_stats":
         start = datetime.now()

@@ -2,13 +2,12 @@ import asyncio
 import os
 import shutil
 
-from config import get_queue
 from pyrogram.types import InlineKeyboardMarkup
-from pytgcalls import StreamType
-from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
+from config import get_queue
 from Yukki import BOT_USERNAME, db_mem
-from Yukki.Core.PyTgCalls import Queues, Yukki
+from Yukki.Core.PyTgCalls import Queues
+from Yukki.Core.PyTgCalls.Yukki import join_stream
 from Yukki.Database import (add_active_chat, is_active_chat, music_off,
                             music_on)
 from Yukki.Inline import (audio_markup, audio_markup2, primary_markup,
@@ -65,17 +64,7 @@ async def start_stream(
         os.remove(thumb)
         return
     else:
-        try:
-            await Yukki.pytgcalls.join_group_call(
-                CallbackQuery.message.chat.id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
-            )
-        except Exception as e:
+        if not await join_stream(CallbackQuery.message.chat.id, file):
             return await mystic.edit(
                 "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
             )
@@ -144,21 +133,10 @@ async def start_stream_audio(
         await mystic.delete()
         return
     else:
-        try:
-            await Yukki.pytgcalls.join_group_call(
-                message.chat.id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
-            )
-        except Exception as e:
-            await mystic.edit(
+        if not await join_stream(message.chat.id, file):
+            return await mystic.edit(
                 "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
             )
-            return
         get_queue[message.chat.id] = []
         got_queue = get_queue.get(message.chat.id)
         title = title

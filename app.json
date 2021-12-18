@@ -65,8 +65,28 @@
       "value": "",
       "required": true
     },
-    "STRING_SESSION": {
-      "description": "A Pyrogram String Session.",
+    "STRING_SESSION1": {
+      "description": "A Pyrogram String Session of Assistant Account.",
+      "value": "",
+      "required": true
+    },
+    "STRING_SESSION2": {
+      "description": "A Pyrogram String Session of Assistant Account.",
+      "value": "",
+      "required": true
+    },
+    "STRING_SESSION3": {
+      "description": "A Pyrogram String Session of Assistant Account.",
+      "value": "",
+      "required": true
+    },
+    "STRING_SESSION4": {
+      "description": "A Pyrogram String Session of Assistant Account.",
+      "value": "",
+      "required": true
+    },
+    "STRING_SESSION5": {
+      "description": "A Pyrogram String Session of Assistant Account.",
       "value": "",
       "required": true
     },

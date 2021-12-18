@@ -3,16 +3,17 @@ import os
 import random
 from asyncio import QueueEmpty
 
-from config import get_queue
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup
-from pytgcalls import StreamType
-from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
+from config import get_queue
 from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
-from Yukki.Core.PyTgCalls import Queues, Yukki
+from Yukki.Core.PyTgCalls import Queues
 from Yukki.Core.PyTgCalls.Converter import convert
 from Yukki.Core.PyTgCalls.Downloader import download
+from Yukki.Core.PyTgCalls.Yukki import (join_stream, pause_stream,
+                                        resume_stream, skip_stream,
+                                        stop_stream)
 from Yukki.Database import (_get_playlists, delete_playlist, get_playlist,
                             get_playlist_names, is_active_chat, save_playlist)
 from Yukki.Database.queue import (add_active_chat, is_active_chat,
@@ -65,7 +66,7 @@ async def admin_risghts(_, CallbackQuery):
                 "Music is already Paused", show_alert=True
             )
         await music_off(chat_id)
-        await Yukki.pytgcalls.pause_stream(chat_id)
+        await pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
             f"🎧 Voicechat Paused by {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
@@ -78,7 +79,7 @@ async def admin_risghts(_, CallbackQuery):
                 "Music is already Resumed.", show_alert=True
             )
         await music_on(chat_id)
-        await Yukki.pytgcalls.resume_stream(chat_id)
+        await resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
             f"🎧 Voicechat Resumed by {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
@@ -91,7 +92,7 @@ async def admin_risghts(_, CallbackQuery):
         except QueueEmpty:
             pass
         await remove_active_chat(chat_id)
-        await Yukki.pytgcalls.leave_group_call(chat_id)
+        await stop_stream(chat_id)
         await CallbackQuery.message.reply_text(
             f"🎧 Voicechat End/Stopped by {CallbackQuery.from_user.mention}!",
             reply_markup=audio_markup2,
@@ -105,7 +106,7 @@ async def admin_risghts(_, CallbackQuery):
             await CallbackQuery.message.reply_text(
                 f"No more music in __Queue__ \n\nLeaving Voice Chat..Button Used By :- {CallbackQuery.from_user.mention}"
             )
-            await Yukki.pytgcalls.leave_group_call(chat_id)
+            await stop_stream(chat_id)
             await CallbackQuery.message.delete()
             await CallbackQuery.answer(
                 "Skipped. No more music in Queue", show_alert=True
@@ -139,14 +140,7 @@ async def admin_risghts(_, CallbackQuery):
                     None, download, videoid, mystic, title
                 )
                 raw_path = await convert(downloaded_file)
-                await Yukki.pytgcalls.change_stream(
-                    chat_id,
-                    InputStream(
-                        InputAudioStream(
-                            raw_path,
-                        ),
-                    ),
-                )
+                await skip_stream(chat_id, raw_path)
                 theme = await check_theme(chat_id)
                 chat_title = await specialfont_to_normal(
                     CallbackQuery.message.chat.title
@@ -178,14 +172,7 @@ async def admin_risghts(_, CallbackQuery):
             else:
                 await CallbackQuery.message.delete()
                 await CallbackQuery.answer("Skipped!", show_alert=True)
-                await Yukki.pytgcalls.change_stream(
-                    chat_id,
-                    InputStream(
-                        InputAudioStream(
-                            videoid,
-                        ),
-                    ),
-                )
+                await skip_stream(chat_id, videoid)
                 afk = videoid
                 title = db_mem[videoid]["title"]
                 duration_min = db_mem[videoid]["duration"]
@@ -318,17 +305,7 @@ async def play_playlist(_, CallbackQuery):
                     None, download, videoid, mystic, title
                 )
                 raw_path = await convert(downloaded_file)
-                try:
-                    await Yukki.pytgcalls.join_group_call(
-                        chat_id,
-                        InputStream(
-                            InputAudioStream(
-                                raw_path,
-                            ),
-                        ),
-                        stream_type=StreamType().local_stream,
-                    )
-                except Exception as e:
+                if not await join_stream(chat_id, raw_path):
                     return await mystic.edit(
                         "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
                     )
