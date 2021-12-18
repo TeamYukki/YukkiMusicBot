@@ -101,7 +101,7 @@ shikhar@MacBook~ $ python3 gen_session.py
 1. `API_ID` : Assistant Account Telegram API_ID, get it from my.telegram.org
 2. `API_HASH` : Assistant Account Telegram API_HASH, get it from my.telegram.org
 3. `BOT_TOKEN` : Your Telegram Bot Token, get it from @Botfather (Make sure Inline is turned On)
-4. `SESSION_STRING1` - `SESSION_STRING5`  : Pyrogram Session String of Assistant Accounts.
+4. `STRING_SESSION1` - `STRING_SESSION5`  : Pyrogram Session String of Assistant Accounts.[ look at sample.env]
 5. `MUSIC_BOT_NAME` : A name for your Music bot.
 6. `MONGO_DB_URI` : MongoDB Database URL.
 7. `LOG_GROUP_ID` : Chat ID where bot will log everything. Use Group Chats Only.
