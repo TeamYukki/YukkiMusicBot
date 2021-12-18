@@ -22,11 +22,11 @@ __MODULE__ = "Broadcast"
 __HELP__ = """
 **Note:**
 Only for Sudo Users.
-/broadcast [Message or Reply to a Message] 
+/broadcast [Message or Reply to a Message]
 - Broadcast any message to Bot's Served Chats.
-/broadcast_pin [Message or Reply to a Message] 
+/broadcast_pin [Message or Reply to a Message]
 - Broadcast any message to Bot's Served Chats with message getting Pinned in chat [Disabled Notifications].
-/broadcast_pin_loud [Message or Reply to a Message] 
+/broadcast_pin_loud [Message or Reply to a Message]
 - Broadcast any message to Bot's Served Chats with message getting Pinned in chat [Enabled Notifications].
 """
 
@@ -116,7 +116,7 @@ async def executor(client, message):
                         callback_data=f"runtime {round(t2-t1, 3)} Seconds",
                     ),
                     InlineKeyboardButton(
-                        text="Delete Output",
+                        text="🗑",
                         callback_data=f"forceclose abc|{message.from_user.id}",
                     ),
                 ]
