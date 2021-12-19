@@ -16,7 +16,7 @@ from pyrogram import __version__ as pyrover
 from pyrogram import filters
 from pyrogram.types import Message
 from pymongo import MongoClient
-from config import MONGO_DB_URI
+from config import MONGO_DB_URI, MUSIC_BOT_NAME
 from Yukki import (BOT_ID, MUSIC_BOT_NAME, SUDOERS, app, boottime,
                    userbot)
 from Yukki.Database import get_gbans_count, get_served_chats, get_sudoers
@@ -91,7 +91,7 @@ async def stats_markup(_, CallbackQuery):
         smex = f"""
 [•]<u>**System Stats**</u>
 
-**Yukki Uptime:** {uptime}
+**{MUSIC_BOT_NAME} Uptime:** {uptime}
 **System Proc:** Online
 **Platform:** {sc}
 **Architecture:** {arch}
