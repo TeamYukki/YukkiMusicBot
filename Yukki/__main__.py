@@ -78,12 +78,18 @@ async def initiate_bot():
         await asyncio.sleep(2.4)
         await startup_delete_last(_____)
     console.print(
-        "[bold green]Congrats!! Yukki Music Bot has started successfully!\n"
+        "[bold green]Congrats!! Max Robot Music has started successfully!\n"
     )
     try:
         await app.send_message(
             LOG_GROUP_ID,
-            "<b>Congrats!! Music Bot has started successfully!</b>",
+            "<b>
+┏━━━┳┓╋╋┏━━┳┓╋╋┏┳━━━┓
+┃┏━┓┃┃╋╋┗┫┣┫┗┓┏┛┃┏━━┛
+┃┃╋┃┃┃╋╋╋┃┃┗┓┃┃┏┫┗━━┓
+┃┗━┛┃┃╋┏┓┃┃╋┃┗┛┃┃┏━━┛
+┃┏━┓┃┗━┛┣┫┣┓┗┓┏┛┃┗━━┓
+┗┛╋┗┻━━━┻━━┛╋┗┛╋┗━━━┛</b>",
         )
     except Exception as e:
         print(
@@ -232,13 +238,13 @@ All commands can be used with: /
     )
 
 
-@app.on_callback_query(filters.regex("shikhar"))
+@app.on_callback_query(filters.regex("shihar"))
 async def shikhar(_, CallbackQuery):
     text, keyboard = await help_parser(CallbackQuery.from_user.mention)
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
 
 
-@app.on_callback_query(filters.regex(r"help_(.*?)"))
+@app.on_callback_query(filters.regex(r"hep_(.*?)"))
 async def help_button(client, query):
     home_match = re.match(r"help_hom\((.+?)\)", query.data)
     mod_match = re.match(r"help_modle\((.+?)\)", query.data)
