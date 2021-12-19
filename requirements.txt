@@ -3,7 +3,7 @@ aiofiles
 asyncio
 ffmpeg-python
 pillow
-pyrogram
+git+https://github.com/Makoto-XD/pyrogram.git@session
 hachoir
 lyricsgenius
 py-tgcalls==0.8.1
