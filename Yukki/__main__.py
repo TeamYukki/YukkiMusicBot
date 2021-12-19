@@ -78,17 +78,12 @@ async def initiate_bot():
         await asyncio.sleep(2.4)
         await startup_delete_last(_____)
     console.print(
-        "[bold green]Congrats!! Max Robot Music has started successfully!\n"
+        "[bold green]Max Robot Music Alive Now!\n"
     )
     try:
         await app.send_message(
             LOG_GROUP_ID,
-            "
-┏━━┳┓┏━━┳┓╋┏┳━┓
-┃┏┓┃┃┗┃┃┫┗┳┛┃┳┛
-┃┣┫┃┗┳┃┃╋┓┃┏┫┻┓
-┗┛┗┻━┻━━┛┗━┛┗━┛
-          ",
+            "Alive",
         )
     except Exception as e:
         print(
