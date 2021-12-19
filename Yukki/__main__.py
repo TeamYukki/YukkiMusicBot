@@ -27,7 +27,7 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Booting up The Yukki Music Bot...",
+        "[magenta] Max Robot Music is starting...",
     ) as status:
         console.print("┌ [red]Clearing MongoDB cache...")
         try:
@@ -99,7 +99,7 @@ async def initiate_bot():
     try:
         await userbot.send_message(
             LOG_GROUP_ID,
-            "<b>Congrats!! Assistant has started successfully!</b>",
+            "<b>Max Robot Music Assistant Alive Now!</b>",
         )
     except Exception as e:
         print(
