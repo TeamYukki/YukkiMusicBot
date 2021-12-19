@@ -1,4 +1,4 @@
-from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
+from config import MUSIC_BOT_NAME
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
