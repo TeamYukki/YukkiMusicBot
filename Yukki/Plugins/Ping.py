@@ -15,6 +15,23 @@ __HELP__ = """
 /ping - Check if Bot is alive or not.
 """
 
+# ===============================================
+normaltext = "1234567890."
+pingfont = [
+    "𝟭",
+    "𝟮",
+    "𝟯",
+    "𝟰",
+    "𝟱",
+    "𝟲",
+    "𝟳",
+    "𝟴",
+    "𝟵",
+    "𝟬",
+    "•",
+]
+
+# ===============================================
 
 async def bot_sys_stats():
     bot_uptime = int(time.time() - boottime)
@@ -38,7 +55,11 @@ async def ping(_, message):
     )
     uptime = await bot_sys_stats()
     end = datetime.now()
-    resp = (end - start).microseconds / 1000
+    resp = str((end - start).microseconds / 1000)
+    for normal in resp:
+        if normal in normaltext:
+            pingchars = pingfont[normaltext.index(normal)]
+            resp = resp.replace(normal, pingchars)    
     await response.edit_text(
         f"**Pong!**\n`⚡{resp} ms`\n\n<b><u>{MUSIC_BOT_NAME} System Stats:</u></b>{uptime}"
     )
