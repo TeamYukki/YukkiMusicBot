@@ -3,10 +3,10 @@ aiofiles
 asyncio
 ffmpeg-python
 pillow
-git+https://github.com/Makoto-XD/pyrogram.git@session
+pyrogram==1.2.20
 hachoir
 lyricsgenius
-py-tgcalls==0.8.1
+py-tgcalls==0.8.2
 wget
 python-dotenv
 youtube-search-python
