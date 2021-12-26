@@ -81,6 +81,15 @@
       "required": true
     }
   },
+  "PING_IMG": {
+
+      "description": "For custom ping image, use telegra.ph link",
+
+      "value": "",
+
+      "required": false
+
+    },
   "buildpacks": [
         {
             "url": "heroku/python"
