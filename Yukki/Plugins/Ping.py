@@ -6,7 +6,7 @@ import psutil
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, PING_IMG app, boottime
+from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, PING_IMG,app, boottime
 from Yukki.Utilities.ping import get_readable_time
 
 __MODULE__ = "Ping"
