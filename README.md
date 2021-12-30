@@ -24,6 +24,15 @@
     <a href="https://t.me/OfficialYukkiSupport"> YukkiSupport </a>
 </p>
 
+
+<h2 align="center">
+   Other Branches
+</h2>
+
+<p align="center">
+<a href="https://github.com/NotReallyShikhar/YukkiMusicBot/tree/Multi-Assistant"><img src="https://img.shields.io/badge/MULTI%20ASSISTANT%20MODE-blueviolet?style=for-the-badge" width="250""/</a>
+</p>
+    
 <h2 align="center">
    Requirements
 </h2>
@@ -49,6 +58,12 @@
 
 
 ```console
+shikhar@MacBook~ $ sudo apt-get update && sudo apt-get upgrade -y
+shikhar@MacBook~ $ sudo apt-get install python3-pip ffmpeg -y
+shikhar@MacBook~ $ sudo pip3 install -U pip
+shikhar@MacBook~ $ curl -fssL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+shikhar@MacBook~ $ sudo apt-get install nodejs -y
+shikhar@MacBook~ $ npm i -g npm
 shikhar@MacBook~ $ git clone https://github.com/notreallyshikhar/YukkiMusicBot
 shikhar@MacBook~ $ cd YukkiMusicBot
 shikhar@MacBook~ $ pip3 install -U -r requirements.txt
