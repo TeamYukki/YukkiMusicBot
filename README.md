@@ -58,16 +58,16 @@
 
 
 ```console
-shikhar@MacBook~ $ sudo apt-get update && sudo apt-get upgrade -y
-shikhar@MacBook~ $ sudo apt-get install python3-pip ffmpeg -y
-shikhar@MacBook~ $ sudo pip3 install -U pip
-shikhar@MacBook~ $ curl -fssL https://deb.nodesource.com/setup_17.x | sudo -E bash -
-shikhar@MacBook~ $ sudo apt-get install nodejs -y
-shikhar@MacBook~ $ npm i -g npm
-shikhar@MacBook~ $ git clone https://github.com/notreallyshikhar/YukkiMusicBot
-shikhar@MacBook~ $ cd YukkiMusicBot
-shikhar@MacBook~ $ pip3 install -U -r requirements.txt
-shikhar@MacBook~ $ cp sample.env .env
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install python3-pip ffmpeg -y
+sudo pip3 install -U pip
+curl -fssL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+sudo apt-get install nodejs -y
+npm i -g npm
+git clone https://github.com/notreallyshikhar/YukkiMusicBot
+cd YukkiMusicBot
+pip3 install -U -r requirements.txt
+cp sample.env .env
 ```
 
 <h3 align="center">
@@ -75,7 +75,7 @@ shikhar@MacBook~ $ cp sample.env .env
 </h3>
 
 ```console
-shikhar@MacBook~ $ bash start
+bash start
 ```
 ![alt text](https://github.com/notreallyshikhar/YukkiMusicBot/blob/main/Utils/screen.png)
 
@@ -102,10 +102,10 @@ shikhar@MacBook~ $ bash start
 </h3>
 
 ```console
-shikhar@MacBook~ $ git clone https://github.com/notreallyshikhar/YukkiMusicBot
-shikhar@MacBook~ $ cd YukkiMusicBot
-shikhar@MacBook~ $ pip3 install pyrogram TgCrypto
-shikhar@MacBook~ $ python3 gen_session.py
+git clone https://github.com/notreallyshikhar/YukkiMusicBot
+cd YukkiMusicBot
+pip3 install pyrogram TgCrypto
+python3 gen_session.py
 ```
 
 
