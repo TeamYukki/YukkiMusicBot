@@ -102,10 +102,7 @@ bash start
 </h3>
 
 ```console
-git clone https://github.com/notreallyshikhar/YukkiMusicBot
-cd YukkiMusicBot
-pip3 install pyrogram TgCrypto
-python3 gen_session.py
+wget https://raw.githubusercontent.com/NotReallyShikhar/YukkiMusicBot/main/gen_session.py && pip3 install pyrogram TgCrypto && python3 gen_session.py
 ```
 
 
