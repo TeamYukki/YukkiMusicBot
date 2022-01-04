@@ -53,7 +53,7 @@
 
 
 <h2 align="center">
-   Install Locally Or On A VPS
+   Install Locally or On a VPS(Debian based)
 </h2>
 
 
