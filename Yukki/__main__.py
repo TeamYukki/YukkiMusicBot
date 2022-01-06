@@ -177,18 +177,18 @@ async def start_command(_, message):
                 link = result["link"]
                 published = result["publishedTime"]
             searched_text = f"""
-🔍__**Video Track Information**__
+🔍__Video Track Information__
 
 ❇️**Title:** {title}
 
-⏳**Duration:** {duration} Mins
-👀**Views:** `{views}`
-⏰**Published Time:** {published}
-🎥**Channel Name:** {channel}
-📎**Channel Link:** [Visit From Here]({channellink})
-🔗**Video Link:** [Link]({link})
+⏳Duration: {duration} Mins
+👀Views: `{views}`
+⏰Published Time: {published}
+🎥Channel Name: {channel}
+📎Channel Link: [Visit From Here]({channellink})
+🔗Video Link: [Link]({link})
 
-⚡️ __Searched Powered By {BOT_NAME}t__"""
+🎶__Searched Powered By {BOT_NAME}t__"""
             key = InlineKeyboardMarkup(
                 [
                     [
