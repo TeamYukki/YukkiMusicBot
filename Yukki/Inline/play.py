@@ -127,25 +127,25 @@ def search_markup2(
         [
             InlineKeyboardButton(
                 text="6️⃣",
-                callback_data=f"yukki2 {ID6}|{duration6}|{user_id}",
+                callback_data=f"Yukki {ID6}|{duration6}|{user_id}",
             ),
             InlineKeyboardButton(
                 text="7️⃣",
-                callback_data=f"yukki2 {ID7}|{duration7}|{user_id}",
+                callback_data=f"Yukki {ID7}|{duration7}|{user_id}",
             ),
             InlineKeyboardButton(
                 text="8️⃣",
-                callback_data=f"yukki2 {ID8}|{duration8}|{user_id}",
+                callback_data=f"Yukki {ID8}|{duration8}|{user_id}",
             ),
         ],
         [
             InlineKeyboardButton(
                 text="9️⃣",
-                callback_data=f"yukki2 {ID9}|{duration9}|{user_id}",
+                callback_data=f"Yukki {ID9}|{duration9}|{user_id}",
             ),
             InlineKeyboardButton(
                 text="🔟",
-                callback_data=f"yukki2 {ID10}|{duration10}|{user_id}",
+                callback_data=f"Yukki {ID10}|{duration10}|{user_id}",
             ),
         ],
         [
