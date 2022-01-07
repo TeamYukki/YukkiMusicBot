@@ -2,20 +2,25 @@ import asyncio
 import importlib
 import os
 import re
+from Yukki.Core.Clients.cli import LOG_CLIENT
 
 from config import LOG_GROUP_ID
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pytgcalls import idle
 from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
-from Yukki import (ASSID, ASSMENTION, ASSNAME, ASSUSERNAME, BOT_ID, BOT_NAME,
-                   BOT_USERNAME, SUDOERS, app, db, userbot)
-from Yukki.Core.Logger.Log import (startup_delete_last, startup_edit_last,
-                                   startup_send_new)
-from Yukki.Core.PyTgCalls.Yukki import run
-from Yukki.Database import get_active_chats, get_sudoers, remove_active_chat
+from config import LOG_GROUP_ID, STRING5, STRING4, STRING3, STRING2, STRING1, LOG_SESSION
+from Yukki import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5, LOG_CLIENT,
+                   ASSID1, ASSID2, ASSID3, ASSID4, ASSID5, ASSNAME1, ASSNAME2, OWNER_ID,
+                   ASSNAME3, ASSNAME4, ASSNAME5, BOT_ID, BOT_NAME, app)
+
+
+from Yukki.Core.PyTgCalls.Yukki import (pytgcalls1, pytgcalls2, pytgcalls3,
+                                        pytgcalls4, pytgcalls5)
+from Yukki.Database import get_active_chats, get_sudoers, remove_active_chat, get_active_video_chats, remove_active_video_chat, is_on_off
 from Yukki.Inline import private_panel
 from Yukki.Plugins import ALL_MODULES
 from Yukki.Utilities.inline import paginate_modules
@@ -27,29 +32,31 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Booting up The Yukki Music Bot...",
+        "[magenta] Finalizing Booting...",
     ) as status:
-        console.print("┌ [red]Clearing MongoDB cache...")
+        try:
+            chats = await get_active_video_chats()
+            for chat in chats:
+                chat_id = int(chat["chat_id"])
+                await remove_active_video_chat(chat_id)
+        except Exception as e:
+            pass
         try:
             chats = await get_active_chats()
             for chat in chats:
                 chat_id = int(chat["chat_id"])
                 await remove_active_chat(chat_id)
         except Exception as e:
-            console.print("[red] Error while clearing Mongo DB.")
-        console.print("└ [green]MongoDB Cleared Successfully!\n\n")
-        ____ = await startup_send_new("Importing All Plugins...")
+            pass
         status.update(
             status="[bold blue]Scanning for Plugins", spinner="earth"
         )
-        await asyncio.sleep(1.7)
         console.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
         status.update(
             status="[bold red]Importing Plugins...",
             spinner="bouncingBall",
             spinner_style="yellow",
         )
-        await asyncio.sleep(1.2)
         for all_module in ALL_MODULES:
             imported_module = importlib.import_module(
                 "Yukki.Plugins." + all_module
@@ -69,26 +76,15 @@ async def initiate_bot():
             console.print(
                 f">> [bold cyan]Successfully imported: [green]{all_module}.py"
             )
-            await asyncio.sleep(0.2)
         console.print("")
-        _____ = await startup_edit_last(____, "Finalizing...")
-        status.update(
-            status="[bold blue]Importation Completed!",
-        )
-        await asyncio.sleep(2.4)
-        await startup_delete_last(_____)
+        status.update(status="[bold blue]Importation Completed!",)
     console.print(
         "[bold green]Congrats!! Yukki Music Bot has started successfully!\n"
     )
     try:
-        await app.send_message(
-            LOG_GROUP_ID,
-            "<b>Congrats!! Music Bot has started successfully!</b>",
-        )
+        await app.send_message(LOG_GROUP_ID,"<b>Congrats!! Music Bot has started successfully!</b>",)
     except Exception as e:
-        print(
-            "Bot has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!"
-        )
+        print("\nBot has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!")
         console.print(f"\n[red]Stopping Bot")
         return
     a = await app.get_chat_member(LOG_GROUP_ID, BOT_ID)
@@ -96,26 +92,127 @@ async def initiate_bot():
         print("Promote Bot as Admin in Logger Channel")
         console.print(f"\n[red]Stopping Bot")
         return
-    try:
-        await userbot.send_message(
-            LOG_GROUP_ID,
-            "<b>Congrats!! Assistant has started successfully!</b>",
-        )
-    except Exception as e:
-        print(
-            "Assistant Account has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!"
-        )
-        console.print(f"\n[red]Stopping Bot")
-        return
-    try:
-        await userbot.join_chat("OfficialYukki")
-    except:
-        pass
     console.print(f"\n┌[red] Bot Started as {BOT_NAME}!")
     console.print(f"├[green] ID :- {BOT_ID}!")
-    console.print(f"├[red] Assistant Started as {ASSNAME}!")
-    console.print(f"└[green] ID :- {ASSID}!")
-    await run()
+    if STRING1 != "None":
+        try:
+            await ASS_CLI_1.send_message(LOG_GROUP_ID,"<b>Congrats!! Assistant Client 1  has started successfully!</b>",)
+        except Exception as e:
+            print("\nAssistant Account 1 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!")
+            console.print(f"\n[red]Stopping Bot")
+            return
+        try:  
+            await ASS_CLI_1.join_chat("OfficialYukki")
+            await ASS_CLI_1.join_chat("YukkiSupport")
+        except:
+            pass
+        console.print(f"├[red] Assistant 1 Started as {ASSNAME1}!")
+        console.print(f"├[green] ID :- {ASSID1}!")
+    if STRING2 != "None":
+        try:
+            await ASS_CLI_2.send_message(
+                LOG_GROUP_ID,
+                "<b>Congrats!! Assistant Client 2 has started successfully!</b>",
+            )
+        except Exception as e:
+            print(
+                "\nAssistant Account 2 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+            )
+            console.print(f"\n[red]Stopping Bot")
+            return
+        try:
+            await ASS_CLI_2.join_chat("OfficialYukki")
+            await ASS_CLI_2.join_chat("YukkiSupport")
+        except:
+            pass
+        console.print(f"├[red] Assistant 2 Started as {ASSNAME2}!")
+        console.print(f"├[green] ID :- {ASSID2}!")
+    if STRING3 != "None":    
+        try:
+            await ASS_CLI_3.send_message(
+                LOG_GROUP_ID,
+                "<b>Congrats!! Assistant Client 3 has started successfully!</b>",
+            )
+        except Exception as e:
+            print(
+                "\nAssistant Account 3 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+            )
+            console.print(f"\n[red]Stopping Bot")
+            return
+        try:
+            await ASS_CLI_3.join_chat("OfficialYukki")
+            await ASS_CLI_3.join_chat("YukkiSupport")
+        except:
+            pass
+        console.print(f"├[red] Assistant 3 Started as {ASSNAME3}!")
+        console.print(f"├[green] ID :- {ASSID3}!")
+    if STRING4 != "None":
+        try:
+            await ASS_CLI_4.send_message(
+                LOG_GROUP_ID,
+                "<b>Congrats!! Assistant Client 4 has started successfully!</b>",
+            )
+        except Exception as e:
+            print(
+                "\nAssistant Account 4 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+            )
+            console.print(f"\n[red]Stopping Bot")
+            return
+        try:
+            await ASS_CLI_4.join_chat("OfficialYukki")
+            await ASS_CLI_4.join_chat("YukkiSupport")
+        except:
+            pass
+        console.print(f"├[red] Assistant 4 Started as {ASSNAME4}!")
+        console.print(f"├[green] ID :- {ASSID4}!")
+    if STRING5 != "None":    
+        try:
+            await ASS_CLI_5.send_message(
+                LOG_GROUP_ID,
+                "<b>Congrats!! Assistant Client 5 has started successfully!</b>",
+            )
+        except Exception as e:
+            print(
+                "\nAssistant Account 5 has failed to access the log Channel. Make sure that you have added your Assistant to your log channel and promoted as admin!"
+            )
+            console.print(f"\n[red]Stopping Bot")
+            return
+        try:
+            await ASS_CLI_5.join_chat("OfficialYukki")
+            await ASS_CLI_5.join_chat("YukkiSupport")
+        except:
+            pass
+        console.print(f"├[red] Assistant 5 Started as {ASSNAME5}!")
+        console.print(f"├[green] ID :- {ASSID5}!")
+    if LOG_SESSION != "None":
+        try:
+            await LOG_CLIENT.send_message(
+                LOG_GROUP_ID,
+                "<b>Congrats!! Logger Client has started successfully!</b>",
+            )
+        except Exception as e:
+            print(
+                "\nLogger Client has failed to access the log Channel. Make sure that you have added your Logger Account to your log channel and promoted as admin!"
+            )
+            console.print(f"\n[red]Stopping Bot")
+            return
+        try:
+            await LOG_CLIENT.join_chat("OfficialYukki")
+            await LOG_CLIENT.join_chat("YukkiSupport")
+        except:
+            pass
+    console.print(f"└[red] Yukki Music Bot Boot Completed.")
+    if STRING1 != "None":
+        await pytgcalls1.start()
+    if STRING2 != "None":
+        await pytgcalls2.start()
+    if STRING3 != "None":
+        await pytgcalls3.start()
+    if STRING4 != "None":
+        await pytgcalls4.start()
+    if STRING5 != "None":
+        await pytgcalls5.start()
+    await idle()
     console.print(f"\n[red]Stopping Bot")
 
 
@@ -138,22 +235,38 @@ async def start_command(_, message):
         name = (message.text.split(None, 1)[1]).lower()
         if name[0] == "s":
             sudoers = await get_sudoers()
-            text = "**__Sudo Users List of Bot:-__**\n\n"
-            j = 0
-            for count, user_id in enumerate(sudoers, 1):
+            text = "⭐️<u> **Owners:**</u>\n"
+            sex = 0
+            for x in OWNER_ID:
                 try:
-                    user = await app.get_users(user_id)
-                    user = (
-                        user.first_name if not user.mention else user.mention
-                    )
+                    user = await app.get_users(x)
+                    user = user.first_name if not user.mention else user.mention
+                    sex += 1
                 except Exception:
                     continue
-                text += f"➤ {user}\n"
-                j += 1
-            if j == 0:
+                text += f"{sex}➤ {user}\n"
+            smex = 0
+            for count, user_id in enumerate(sudoers, 1):
+                if user_id not in OWNER_ID:
+                    try:
+                        user = await app.get_users(user_id)
+                        user = user.first_name if not user.mention else user.mention
+                        if smex == 0:
+                            smex += 1
+                            text += "\n⭐️<u> **Sudo Users:**</u>\n"
+                        sex += 1
+                        text += f"{sex}➤ {user}\n"
+                    except Exception:
+                        continue
+            if not text:
                 await message.reply_text("No Sudo Users")
             else:
                 await message.reply_text(text)
+            if await is_on_off(5):
+                sender_id = message.from_user.id
+                sender_name = message.from_user.first_name
+                umention = f"[{sender_name}](tg://user?id={int(sender_id)})"
+                return await LOG_CLIENT.send_message(LOG_GROUP_ID, f"{message.from_user.mention} has just started bot to check <code>SUDOLIST</code>\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}")
         if name == "help":
             text, keyboard = await help_parser(message.from_user.mention)
             await message.delete()
@@ -188,7 +301,7 @@ async def start_command(_, message):
 📎**Channel Link:** [Visit From Here]({channellink})
 🔗**Video Link:** [Link]({link})
 
-⚡️ __Searched Powered By {BOT_NAME}t__"""
+⚡️ __Searched Powered By {BOT_NAME}__"""
             key = InlineKeyboardMarkup(
                 [
                     [
@@ -202,19 +315,32 @@ async def start_command(_, message):
                 ]
             )
             await m.delete()
-            return await app.send_photo(
+            await app.send_photo(
                 message.chat.id,
                 photo=thumbnail,
                 caption=searched_text,
                 parse_mode="markdown",
                 reply_markup=key,
             )
+            if await is_on_off(5):
+                sender_id = message.from_user.id
+                sender_name = message.from_user.first_name
+                umention = f"[{sender_name}](tg://user?id={int(sender_id)})"
+                return await LOG_CLIENT.send_message(LOG_GROUP_ID, f"{message.from_user.mention} has just started bot to check <code>VIDEO INFORMATION</code>\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}")
+            return
     out = private_panel()
-    return await message.reply_text(
+    await message.reply_text(
         home_text_pm,
         reply_markup=InlineKeyboardMarkup(out[1]),
     )
+    if await is_on_off(5):
+        sender_id = message.from_user.id
+        sender_name = message.from_user.first_name
+        umention = f"[{sender_name}](tg://user?id={int(sender_id)})"
+        return await LOG_CLIENT.send_message(LOG_GROUP_ID, f"{message.from_user.mention} has just started Bot.\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}")
+    return
 
+    
 
 async def help_parser(name, keyboard=None):
     if not keyboard:

@@ -65,10 +65,45 @@
       "value": "",
       "required": true
     },
-    "STRING_SESSION": {
-      "description": "A Pyrogram String Session.",
+    "STRING_SESSION1": {
+      "description": "A Pyrogram String Session. One Assistant is Compulsory.",
       "value": "",
       "required": true
+    },
+    "STRING_SESSION2": {
+      "description": "A Pyrogram String Session. Leave blank if you dont want Multi-Assistant",
+      "value": "",
+      "required": false
+    },
+    "STRING_SESSION3": {
+      "description": "A Pyrogram String Session. Leave blank if you dont want Multi-Assistant",
+      "value": "",
+      "required": false
+    },
+    "STRING_SESSION4": {
+      "description": "A Pyrogram String Session. Leave blank if you dont want Multi-Assistant",
+      "value": "",
+      "required": false
+    },
+    "STRING_SESSION5": {
+      "description": "A Pyrogram String Session. Leave blank if you dont want Multi-Assistant",
+      "value": "",
+      "required": false
+    },
+    "LOG_SESSION": {
+      "description": "A Pyrogram String Session for LOGGING. Leave blank if you dont want to LOG",
+      "value": "",
+      "required": false
+    },
+    "HEROKU_API_KEY": {
+      "description": "Your Heroku account's API key",
+      "value": "",
+      "required": false
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Your heroku app/bot's name",
+      "value": "",
+      "required": false
     },
     "LOG_GROUP_ID": {
       "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Use only Group. Please don't use Channel ID.",
@@ -78,6 +113,16 @@
     "SUDO_USERS": {
       "description": "The user id(s) of user(s) whom you would like to add as a SUDO. Multiple values shall be seperated with a space.",
       "value": "",
+      "required": true
+    },
+    "UPSTREAM_REPO": {
+      "description": "If you dont know this, Leave as it is",
+      "value": "https://github.com/NotReallyShikhar/YukkiMusicBot",
+      "required": true
+    },
+    "UPSTREAM_BRANCH": {
+      "description": "Repo's Branch Name",
+      "value": "master",
       "required": true
     }
   },

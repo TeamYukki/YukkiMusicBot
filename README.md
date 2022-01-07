@@ -1,5 +1,5 @@
 <h1 align= center><b>⭐️ Yukki Music Bot ⭐️</b></h1>
-<h3 align = center> A Telegram Music Bot written in Python using Pyrogram and Py-Tgcalls </h3>
+<h3 align = center> Multi-Assistant | Video Calls | Voice Calls | Heroku Supported</h3>
 
 <p align="center">
 <a href="https://python.org"><img src="http://forthebadge.com/images/badges/made-with-python.svg" alt="made-with-python"></a>
@@ -23,39 +23,20 @@
     <a href="https://t.me/YukkiRobot"> YukkiMusicBot </a> |
     <a href="https://t.me/OfficialYukkiSupport"> YukkiSupport </a>
 </p>
-
-
-<h2 align="center">
-   Other Branches
-</h2>
-
-<p align="center">
-<a href="https://github.com/NotReallyShikhar/YukkiMusicBot/tree/Multi-Assistant"><img src="https://img.shields.io/badge/MULTI%20ASSISTANT%20MODE-blueviolet?style=for-the-badge" width="250""/</a>
-</p>
     
-<h2 align="center">
-   Requirements
-</h2>
+<h1 align="center">
+   Deployment
+</h1>
 
-<p align="center">
-    <a href="https://www.python.org/downloads/release/python-390/"> Python3.9 </a> |
-    <a href="https://docs.pyrogram.org/intro/setup#api-keys"> Telegram API Key </a> |
-    <a href="https://t.me/botfather"> Telegram Bot Token </a> |
-    <a href="https://telegra.ph/How-To-get-Mongodb-URI-04-06"> MongoDB URI </a>
-</p>
+## 🔗 Requirements
 
-<h2 align="center">
-   Stay Up-to-Date
-</h2>
-
-<p align="center"><img src="https://github.com/notreallyshikhar/YukkiMusicBot/blob/main/Utils/star.gif" alt="NotReallyShikhar Github" width="1000px" /></p>
+- [Python3.9](https://www.python.org/downloads/release/python-390/)
+- [Telegram API Key](https://docs.pyrogram.org/intro/setup#api-keys)
+- [Telegram Bot Token](https://t.me/botfather)
+- [MongoDB URI](https://telegra.ph/How-To-get-Mongodb-URI-04-06)
 
 
-
-<h2 align="center">
-   Install Locally or On a VPS(Debian based)
-</h2>
-
+## 🔗 Install Locally or On a VPS(Debian based)
 
 ```console
 sudo apt-get update && sudo apt-get upgrade -y
@@ -70,72 +51,37 @@ pip3 install -U -r requirements.txt
 cp sample.env .env
 ```
 
-<h3 align="center">
-    Edit <b>.env</b> with your own values and Run Bot
-</h3>
+- Edit <b>.env</b> with your own values and Run Bot
 
 ```console
 bash start
 ```
-![alt text](https://github.com/notreallyshikhar/YukkiMusicBot/blob/main/Utils/screen.png)
 
+## 🔗 Deploy on Heroku
+<p>
+<a href="https://dashboard.heroku.com/new?template=https://github.com/NotReallyShikhar/YukkiMusicBot/"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="250""/</a>  </p>
 
-<h2 align="center">
-   Other Deployment Methods
-</h2>
-
-<p align="center">
-<a href="https://dashboard.heroku.com/new?template=https://github.com/NotReallyShikhar/YukkiMusicBot"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="250""/</a>  
-
-</p>
-
-<h2 align="center">
-   Generating Pyrogram Session
-</h2>
-
-<p align="center">
+## 🔗 Generating Pyrogram Session
+<p>
 <a href="https://replit.com/@AaravxD/PyroStringSession#main.py"><img src="https://img.shields.io/badge/Generate%20On%20Repl-blueviolet?style=for-the-badge&logo=appveyor" width="245""/></a>
- </p>  
+<a href="https://t.me/YukkiStringBot"><img src="https://img.shields.io/badge/TG%20String%20Gen%20Bot-blueviolet?style=for-the-badge&logo=appveyor" width="245""/></a></p>
 
-<h3 align="center">
-    OR
-</h3>
-
-```console
-wget https://raw.githubusercontent.com/NotReallyShikhar/YukkiMusicBot/main/gen_session.py && pip3 install pyrogram TgCrypto && python3 gen_session.py
-```
+## Contact & Support
 
 
-<h2 align="center">
-   Config Vars
-</h2>
+- [Telegram Channel](https://t.me/OfficialYukki")
+- [Telegram Support Group](https://t.me/OfficialYukkiSupport)
+- [Contact Owner](https://t.me/NotReallyShikhar)
 
-1. `API_ID` : Assistant Account Telegram API_ID, get it from my.telegram.org
-2. `API_HASH` : Assistant Account Telegram API_HASH, get it from my.telegram.org
-3. `BOT_TOKEN` : Your Telegram Bot Token, get it from @Botfather (Make sure Inline is turned On)
-4. `SESSION_STRING` : Pyrogram Session String of Assistant Account.
-5. `MUSIC_BOT_NAME` : A name for your Music bot.
-6. `MONGO_DB_URI` : MongoDB Database URL.
-7. `LOG_GROUP_ID` : Chat ID where bot will log everything. Use Group Chats Only.
-8. `DURATION_LIMIT` : Duration Limit for Music (Mins)
-9. `SUDO_USERS` : Sudo Users for Bot. (For multiple users seperate IDs with space)
-10. `OWNER_ID`: Owner ID of Bot
-11. `SUPPORT_GROUP` : Support Group Link (Leave blank if you don't have one)
-12. `SUPPORT_CHANNEL` : Support Channel Link ( Leave blank if you don't have one)
-13. `ASSISTANT_PREFIX` : Prefix for Assistant Commands
-
-
-<h2 align="center">
-   Contact
-</h2>
-
-<p align="center">
-<a href="https://t.me/OfficialYukki"><img src="https://img.shields.io/badge/Yukki%20Channel-blueviolet?style=for-the-badge&logo=telegram" width="200""/</a>
-<a href="https://t.me/NotReallyShikhar"><img src="https://img.shields.io/badge/Contact%20Owner-blueviolet?style=for-the-badge&logo=telegram" width="202""/</a>  
-<a href="https://t.me/OfficialYukkiSupport"><img src="https://img.shields.io/badge/Yukki%20Support-blueviolet?style=for-the-badge&logo=telegram" width="195""/></a>
-</p>
-
-
+## Why Yukki?
+    
+- Light and Fast Responsive
+- Includes Multi-Assistant Mode where you can use 5 Assistant Accounts for large number of chats.
+- Mongo DB based Queues, Playlists, Chats.
+- Video Calls and Voice Calls Merged with a single command.
+- Live Timer Progress Bar for playouts in a interactive inline mode.
+- Heroku-Supported Added including vars addition, deletion, getting logs etc.
+- Interactive UI, fonts and thumbnails.
 
 ## License
 

@@ -2,14 +2,13 @@ import asyncio
 import os
 import shutil
 
-from config import get_queue
 from pyrogram.types import InlineKeyboardMarkup
-from pytgcalls import StreamType
-from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
+from config import get_queue
 from Yukki import BOT_USERNAME, db_mem
-from Yukki.Core.PyTgCalls import Queues, Yukki
-from Yukki.Database import (add_active_chat, is_active_chat, music_off,
+from Yukki.Core.PyTgCalls import Queues
+from Yukki.Core.PyTgCalls.Yukki import join_stream
+from Yukki.Database import (add_active_chat, is_active_chat, music_off, add_active_video_chat,
                             music_on)
 from Yukki.Inline import (audio_markup, audio_markup2, primary_markup,
                           secondary_markup)
@@ -29,6 +28,10 @@ async def start_stream(
     mystic,
 ):
     global get_queue
+    if CallbackQuery.message.chat.id not in db_mem:
+        db_mem[CallbackQuery.message.chat.id] = {}
+    wtfbro = db_mem[CallbackQuery.message.chat.id]
+    wtfbro["live_check"] = False
     if await is_active_chat(CallbackQuery.message.chat.id):
         position = await Queues.put(CallbackQuery.message.chat.id, file=file)
         _path_ = (
@@ -65,19 +68,9 @@ async def start_stream(
         os.remove(thumb)
         return
     else:
-        try:
-            await Yukki.pytgcalls.join_group_call(
-                CallbackQuery.message.chat.id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
-            )
-        except Exception as e:
+        if not await join_stream(CallbackQuery.message.chat.id, file):
             return await mystic.edit(
-                "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
+                "Error Joining Voice Chat."
             )
         get_queue[CallbackQuery.message.chat.id] = []
         got_queue = get_queue.get(CallbackQuery.message.chat.id)
@@ -115,6 +108,10 @@ async def start_stream_audio(
     message, file, videoid, title, duration_min, duration_sec, mystic
 ):
     global get_queue
+    if message.chat.id not in db_mem:
+        db_mem[message.chat.id] = {}
+    wtfbro = db_mem[message.chat.id]
+    wtfbro["live_check"] = False
     if message.chat.username:
         link = f"https://t.me/{message.chat.username}/{message.reply_to_message.message_id}"
     else:
@@ -144,21 +141,10 @@ async def start_stream_audio(
         await mystic.delete()
         return
     else:
-        try:
-            await Yukki.pytgcalls.join_group_call(
-                message.chat.id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-                stream_type=StreamType().local_stream,
-            )
-        except Exception as e:
-            await mystic.edit(
+        if not await join_stream(message.chat.id, file):
+            return await mystic.edit(
                 "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
             )
-            return
         get_queue[message.chat.id] = []
         got_queue = get_queue.get(message.chat.id)
         title = title

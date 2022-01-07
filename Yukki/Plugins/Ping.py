@@ -6,7 +6,7 @@ import psutil
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, PING_IMG, app, boottime
+from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, boottime
 from Yukki.Utilities.ping import get_readable_time
 
 __MODULE__ = "Ping"
@@ -33,7 +33,7 @@ Disk: {disk}%"""
 async def ping(_, message):
     start = datetime.now()
     response = await message.reply_photo(
-        photo= PING_IMG or "Utils/Query.jpg",
+        photo= "Utils/Query.jpg",
         caption=">> Pong!",
     )
     uptime = await bot_sys_stats()

@@ -4,17 +4,17 @@ import shutil
 import subprocess
 from sys import version as pyver
 
-from config import get_queue
 from pyrogram import Client, filters
-from pyrogram.types import Message
-
-from Yukki import SUDOERS, app, db_mem, userbot
-from Yukki.Database import get_active_chats, is_active_chat
-from Yukki.Decorators.checker import checker, checkerCB
-from Yukki.Inline import primary_markup
-
 from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
                             Voice)
+
+from config import get_queue
+from Yukki import SUDOERS, app, db_mem, random_assistant
+from Yukki.Database import (get_active_chats, get_assistant, is_active_chat,
+                            save_assistant)
+from Yukki.Decorators.checker import checker, checkerCB
+from Yukki.Inline import primary_markup
+from Yukki.Utilities.assistant import get_assistant_details
 
 loop = asyncio.get_event_loop()
 
@@ -28,14 +28,14 @@ Only for Sudo Users
 /joinassistant [Chat Username or Chat ID]
 - Join assistant to a group.
 
+
 /leaveassistant [Chat Username or Chat ID]
 - Assistant will leave the particular group.
 
+
 /leavebot [Chat Username or Chat ID]
 - Bot will leave the particular chat.
-
 """
-
 
 
 @app.on_callback_query(filters.regex("pr_go_back_timer"))
@@ -49,10 +49,10 @@ async def pr_go_back_timer(_, CallbackQuery):
             dur_left = db_mem[CallbackQuery.message.chat.id]["left"]
             duration_min = db_mem[CallbackQuery.message.chat.id]["total"]
             buttons = primary_markup(videoid, user_id, dur_left, duration_min)
-            await CallbackQuery.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
-             
-    
-    
+            await CallbackQuery.edit_message_reply_markup(
+                reply_markup=InlineKeyboardMarkup(buttons)
+            )
+
 
 @app.on_callback_query(filters.regex("timer_checkup_markup"))
 async def timer_checkup_markup(_, CallbackQuery):
@@ -167,7 +167,23 @@ async def basffy(_, message):
         return
     chat = message.text.split(None, 2)[1]
     try:
-        await userbot.join_chat(chat)
+        chat_id = (await app.get_chat(chat)).id
+    except:
+        return await message.reply_text(
+            "Add Bot to this Chat First.. Unknown Chat for the bot"
+        )
+    _assistant = await get_assistant(chat_id, "assistant")
+    if not _assistant:
+        return await message.reply_text(
+            "No Pre-Saved Assistant Found.\n\nYou can set Assistant Via /play inside {Chat}'s Group"
+        )
+    else:
+        ran_ass = _assistant["saveassistant"]
+    ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(
+        ran_ass
+    )
+    try:
+        await ASS_ACC.join_chat(chat_id)
     except Exception as e:
         await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
         return
@@ -200,7 +216,23 @@ async def baujaf(_, message):
         return
     chat = message.text.split(None, 2)[1]
     try:
-        await userbot.leave_chat(chat)
+        chat_id = (await app.get_chat(chat)).id
+    except:
+        return await message.reply_text(
+            "Add Bot to this Chat First.. Unknown Chat for the bot"
+        )
+    _assistant = await get_assistant(chat, "assistant")
+    if not _assistant:
+        return await message.reply_text(
+            "No Pre-Saved Assistant Found.\n\nYou can set Assistant Via /play inside {Chat}'s Group"
+        )
+    else:
+        ran_ass = _assistant["saveassistant"]
+    ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(
+        ran_ass
+    )
+    try:
+        await ASS_ACC.leave_chat(chat_id)
     except Exception as e:
         await message.reply_text(f"Failed\n**Possible reason could be**:{e}")
         return

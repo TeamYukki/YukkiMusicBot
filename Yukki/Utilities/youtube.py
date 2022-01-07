@@ -1,5 +1,5 @@
 from youtubesearchpython import VideosSearch
-
+import asyncio
 from Yukki.Utilities.changers import time_to_seconds
 
 
@@ -43,3 +43,21 @@ def get_yt_info_query_slider(query: str, query_type: int):
     else:
         duration_sec = int(time_to_seconds(duration_min))
     return title, duration_min, duration_sec, thumbnail, videoid
+
+
+async def get_m3u8(videoid):
+    link = f"https://www.youtube.com/watch?v={videoid}"
+    proc = await asyncio.create_subprocess_exec(
+        "yt-dlp",
+        "-g",
+        "-f",
+        "best[height<=?720][width<=?1280]",
+        f"{link}",
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    stdout, stderr = await proc.communicate()
+    if stdout:
+        return 1, stdout.decode().split("\n")[0]
+    else:
+        return 0, stderr.decode()

@@ -7,7 +7,9 @@ from Yukki import BOT_ID, BOT_USERNAME, MUSIC_BOT_NAME, SUDOERS, app, db_mem
 from Yukki.Database import (_get_playlists, delete_playlist, get_playlist,
                             get_playlist_names, save_playlist)
 from Yukki.Decorators.admins import AdminRightsCheck
+from Yukki.Decorators.assistant import AssistantAdd
 from Yukki.Decorators.checker import checker, checkerCB
+from Yukki.Decorators.permission import PermissionCheck
 from Yukki.Inline import (add_genre_markup, check_genre_markup, check_markup,
                           delete_playlist_markuup, download_markup,
                           others_markup, play_genre_playlist, playlist_markup,
@@ -16,23 +18,28 @@ from Yukki.Inline import (add_genre_markup, check_genre_markup, check_markup,
 __MODULE__ = "Playlist"
 __HELP__ = """
 
+
 /playplaylist 
 - Start playing Your Saved Playlist.
+
 
 /playlist 
 - Check Your Saved Playlist On Servers.
 
+
 /delmyplaylist
 - Delete any saved music in your playlist
 
+
 /delgroupplaylist
 - Delete any saved music in your group's playlist [Requires Admin Rights.]
-
 """
 
 
-@app.on_message(filters.command("playplaylist"))
+@app.on_message(filters.command("playplaylist") & filters.group)
 @checker
+@PermissionCheck
+@AssistantAdd
 async def play_playlist_cmd(_, message):
     thumb = "Utils/Playlist.jpg"
     await message.delete()
@@ -100,8 +107,10 @@ async def play_playlist_cmd(_, message):
         return
 
 
-@app.on_message(filters.command("playlist"))
+@app.on_message(filters.command("playlist") & filters.group)
 @checker
+@PermissionCheck
+@AssistantAdd
 async def playlist(_, message):
     thumb = "Utils/Playlist.jpg"
     user_id = message.from_user.id
@@ -152,7 +161,7 @@ options = [
 ]
 
 options_Genre = [
-    "Weeb",
+    "Rock",
     "Sad",
     "Party",
     "Lofi",
@@ -163,7 +172,7 @@ options_Genre = [
 ]
 
 
-@app.on_message(filters.command("delmyplaylist"))
+@app.on_message(filters.command("delmyplaylist") & filters.group)
 async def del_cmd(_, message):
     usage = f"Usage:\n\n/delmyplaylist [Genre] [Numbers between 1-30] ( to delete a particular music in playlist )\n\nor\n\n/delmyplaylist [Genre] all ( to delete whole playlist )\n\n**Genres:-**\n{' | '.join(options_Genre)}"
     if len(message.command) < 3:
@@ -210,7 +219,7 @@ async def del_cmd(_, message):
         await message.reply_text("You have no such music in Playlist.")
 
 
-@app.on_message(filters.command("delgroupplaylist"))
+@app.on_message(filters.command("delgroupplaylist") & filters.group)
 @AdminRightsCheck
 async def delgroupplaylist(_, message):
     usage = f"Usage:\n\n/delgroupplaylist [Genre] [Numbers between 1-30] ( to delete a particular music in playlist )\n\nor\n\n /delgroupplaylist [Genre] all ( to delete whole playlist )\n\n**Genres:-**\n{' | '.join(options_Genre)}"
