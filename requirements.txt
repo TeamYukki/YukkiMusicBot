@@ -3,10 +3,10 @@ aiofiles
 asyncio
 ffmpeg-python
 pillow
-git+https://github.com/pyrogram/pyrogram@master
+pyrogram
 hachoir
 lyricsgenius
-py-tgcalls==0.8.1
+py-tgcalls
 wget
 python-dotenv
 youtube-search-python
