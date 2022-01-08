@@ -85,11 +85,14 @@ async def stats_markup(_, CallbackQuery):
         arch = platform.machine()
         p_core = psutil.cpu_count(logical=False)
         t_core = psutil.cpu_count(logical=True)
-        cpu_freq = psutil.cpu_freq().current
-        if cpu_freq >= 1000:
-            cpu_freq = f"{round(cpu_freq / 1000, 2)}GHz"
-        else:
-            cpu_freq = f"{round(cpu_freq, 2)}MHz"
+        try:
+            cpu_freq = psutil.cpu_freq().current
+            if cpu_freq >= 1000:
+                cpu_freq = f"{round(cpu_freq / 1000, 2)}GHz"
+            else:
+                cpu_freq = f"{round(cpu_freq, 2)}MHz"
+        except:
+            cpu_freq = "Unable to Fetch"
         cupc = "**CPU Usage Per Core:**\n"
         for i, percentage in enumerate(psutil.cpu_percent(percpu=True)):
             cupc += f"Core {i}  : {percentage}%\n"
