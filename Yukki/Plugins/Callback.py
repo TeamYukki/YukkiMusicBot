@@ -14,7 +14,7 @@ from Yukki.Core.PyTgCalls.Downloader import download
 from Yukki.Core.PyTgCalls.Yukki import (join_stream, pause_stream,
                                         resume_stream, skip_stream,
                                         skip_video_stream, stop_stream)
-from Yukki.Database import (_get_playlists, delete_playlist, get_playlist,
+from Yukki.Database import (_get_playlists, delete_playlist, get_playlist, remove_active_video_chat,
                             get_playlist_names, is_active_chat, save_playlist)
 from Yukki.Database.queue import (add_active_chat, is_active_chat,
                                   is_music_playing, music_off, music_on,
