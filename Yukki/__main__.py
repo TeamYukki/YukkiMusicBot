@@ -231,7 +231,7 @@ async def initiate_bot():
 
 home_text_pm = f"""Hello ,
 My name is {BOT_NAME}.
-I'm Telegram Voice Chat Audio with some useful features.
+A Telegram Music+Video Streaming bot with some useful features.
 
 All commands can be used with: / """
 

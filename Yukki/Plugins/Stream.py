@@ -66,14 +66,12 @@ async def choose_playmode(_, CallbackQuery):
 @app.on_callback_query(filters.regex(pattern=r"Choose"))
 async def quality_markup(_, CallbackQuery):
     limit = await get_video_limit(141414)
-    print(limit)
     if not limit:
         await CallbackQuery.message.delete()
         return await CallbackQuery.message.reply_text(
             "**No Limit Defined for Video Calls**\n\nSet a Limit for Number of Maximum Video Calls allowed on Bot by /set_video_limit [Sudo Users Only]"
         )
     count = len(await get_active_video_chats())
-    print(count)
     if int(count) == int(limit):
         if await is_active_video_chat(CallbackQuery.message.chat.id):
             pass

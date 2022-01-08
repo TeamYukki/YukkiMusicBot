@@ -50,7 +50,10 @@ async def getspy(_, CallbackQuery):
     callback_request = callback_data.split(None, 1)[1]
     type, videoid, user_id = callback_request.split("|")
     key = await get_formats(CallbackQuery, videoid, user_id, type)
-    await CallbackQuery.edit_message_reply_markup(reply_markup=key)
+    try:
+        await CallbackQuery.edit_message_reply_markup(reply_markup=key)
+    except:
+        pass
 
 
 @app.on_callback_query(filters.regex(pattern=r"ytdata"))
@@ -61,7 +64,10 @@ async def ytdata(_, CallbackQuery):
     type, format, videoid = callback_request.split("||")
     user_id = CallbackQuery.from_user.id
     key = get_type(type, format, videoid, user_id)
-    await CallbackQuery.edit_message_reply_markup(reply_markup=key)
+    try:
+        await CallbackQuery.edit_message_reply_markup(reply_markup=key)
+    except:
+        pass
 
 
 inl = InlineKeyboardMarkup(

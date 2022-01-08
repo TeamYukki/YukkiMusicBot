@@ -83,7 +83,18 @@ async def stats_markup(_, CallbackQuery):
         await CallbackQuery.answer("Getting System Stats...", show_alert=True)
         sc = platform.system()
         arch = platform.machine()
-        cpu_count = multiprocessing.cpu_count()
+        p_core = psutil.cpu_count(logical=False)
+        t_core = psutil.cpu_count(logical=True)
+        cpu_freq = psutil.cpu_freq().current
+        if cpu_freq >= 1000:
+            cpu_freq = f"{round(cpu_freq / 1000, 2)}GHz"
+        else:
+            cpu_freq = f"{round(cpu_freq, 2)}MHz"
+        cupc = "**CPU Usage Per Core:**\n"
+        for i, percentage in enumerate(psutil.cpu_percent(percpu=True)):
+            cupc += f"Core {i}  : {percentage}%\n"
+        cupc += "**Total CPU Usage:**\n"
+        cupc += f"All Cores Usage: {psutil.cpu_percent()}%\n"
         ram = (
             str(round(psutil.virtual_memory().total / (1024.0 ** 3))) + " GB"
         )
@@ -96,10 +107,18 @@ async def stats_markup(_, CallbackQuery):
 **System Proc:** Online
 **Platform:** {sc}
 **Architecture:** {arch}
-**CPUs:** {cpu_count}v
 **Ram:** {ram}
 **Python Ver:** {pyver.split()[0]}
-**Pyrogram Ver:** {pyrover}"""
+**Pyrogram Ver:** {pyrover}
+
+[•]<u>**CPU Stats**</u>
+
+**Physical Cores:** {p_core}
+**Total Cores:** {t_core}
+**Cpu Frequency:** {cpu_freq}
+
+{cupc}
+"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats2)
     if command == "sto_stats":
         await CallbackQuery.answer(

@@ -43,7 +43,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
         formats = YT_info(url)
     except Exception:
         return await CallbackQuery.message.reply_text(
-            "Failed To Fetch Data..."
+            "Failed To Fetch Data from YT...Could be YTDL issue."
         )
     j = 0
     for x in formats:
@@ -120,11 +120,11 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                 )
         else:
             return await CallbackQuery.message.reply_text(
-                "Video Format Not Found."
+                "Video Formats Not Found. Try Searching Other Music"
             )
     if j == 0:
         return await CallbackQuery.message.reply_text(
-            "Video Format Not Found.."
+            "Video Formats Not Found. Try Searching Other Music"
         )
     elif j == 1:
         key = InlineKeyboardMarkup(
@@ -257,7 +257,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
         )
     else:
         return await CallbackQuery.message.reply_text(
-            "Video Format Not Found...."
+            "Video Formats Not Found. Try Searching Other Music"
         )
     return key
 
