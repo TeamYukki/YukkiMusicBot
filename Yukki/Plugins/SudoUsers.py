@@ -320,7 +320,7 @@ __**New Global Ban on {MUSIC_BOT_NAME}**__
             number_of_chats = 0
             for sex in served_chats:
                 try:
-                    await app.kick_chat_member(sex, user_id)
+                    await app.ban_chat_member(sex, user_id)
                     number_of_chats += 1
                     await asyncio.sleep(1)
                 except FloodWait as e:
