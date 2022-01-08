@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/notreallyshikhar/YukkiMusicBot/blob/main/Utils/icon.gif" alt="ICON" width="250" height="250"/></p>
+<p align="center"><img src="https://github.com/notreallyshikhar/YukkiMusicBot/blob/master/Utils/icon.gif" alt="ICON" width="250" height="250"/></p>
 
 <h4 align="center">
     A Telegram Music+Video Bot written in Python using Pyrogram and Py-Tgcalls 
