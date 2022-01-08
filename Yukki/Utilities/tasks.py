@@ -1,3 +1,4 @@
+import asyncio
 from asyncio import Lock, create_task
 from time import time
 
@@ -7,6 +8,23 @@ from pyrogram.types import Message
 tasks = {}
 TASKS_LOCK = Lock()
 arrow = lambda x: (x.text if x else "") + "\n`→`"
+
+import shlex
+from typing import Tuple
+
+
+async def install_requirements(cmd: str) -> Tuple[str, str, int, int]:
+    args = shlex.split(cmd)
+    process = await asyncio.create_subprocess_exec(
+        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
+    stdout, stderr = await process.communicate()
+    return (
+        stdout.decode("utf-8", "replace").strip(),
+        stderr.decode("utf-8", "replace").strip(),
+        process.returncode,
+        process.pid,
+    )
 
 
 def all_tasks():

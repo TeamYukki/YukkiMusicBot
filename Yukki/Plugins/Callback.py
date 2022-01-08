@@ -11,9 +11,9 @@ from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
 from Yukki.Core.PyTgCalls import Queues
 from Yukki.Core.PyTgCalls.Converter import convert
 from Yukki.Core.PyTgCalls.Downloader import download
-from Yukki.Core.PyTgCalls.Yukki import (join_stream, pause_stream, skip_video_stream,
+from Yukki.Core.PyTgCalls.Yukki import (join_stream, pause_stream,
                                         resume_stream, skip_stream,
-                                        stop_stream)
+                                        skip_video_stream, stop_stream)
 from Yukki.Database import (_get_playlists, delete_playlist, get_playlist,
                             get_playlist_names, is_active_chat, save_playlist)
 from Yukki.Database.queue import (add_active_chat, is_active_chat,
@@ -21,15 +21,16 @@ from Yukki.Database.queue import (add_active_chat, is_active_chat,
                                   remove_active_chat)
 from Yukki.Decorators.admins import AdminRightsCheckCB
 from Yukki.Decorators.checker import checkerCB
-from Yukki.Inline import (audio_markup, audio_markup2, download_markup, secondary_markup2,
-                          fetch_playlist, paste_queue_markup, primary_markup)
+from Yukki.Inline import (audio_markup, audio_markup2, download_markup,
+                          fetch_playlist, paste_queue_markup, primary_markup,
+                          secondary_markup2)
 from Yukki.Utilities.changers import time_to_seconds
 from Yukki.Utilities.chat import specialfont_to_normal
 from Yukki.Utilities.paste import isPreviewUp, paste_queue
 from Yukki.Utilities.theme import check_theme
 from Yukki.Utilities.thumbnails import gen_thumb
 from Yukki.Utilities.timer import start_timer
-from Yukki.Utilities.youtube import get_yt_info_id, get_m3u8
+from Yukki.Utilities.youtube import get_m3u8, get_yt_info_id
 
 loop = asyncio.get_event_loop()
 
@@ -179,17 +180,23 @@ async def admin_risghts(_, CallbackQuery):
             if str(finxx) == "s1s":
                 afk = videoid
                 await CallbackQuery.answer()
-                mystic = await CallbackQuery.message.reply_text("Skipped! Please Wait Changing Video Stream....")
+                mystic = await CallbackQuery.message.reply_text(
+                    "Skipped! Please Wait Changing Video Stream...."
+                )
                 read = (str(videoid)).replace("s1s_", "", 1)
-                s = read.split('_+_')
+                s = read.split("_+_")
                 quality = s[0]
                 videoid = s[1]
                 if int(quality) == 1080:
                     try:
                         await skip_video_stream(chat_id, videoid, 720, mystic)
                     except Exception as e:
-                        return await mystic.edit(f"Error while changing video stream.\n\nPossible Reason:- {e}")
-                    buttons = secondary_markup2("Smex1", CallbackQuery.from_user.id)
+                        return await mystic.edit(
+                            f"Error while changing video stream.\n\nPossible Reason:- {e}"
+                        )
+                    buttons = secondary_markup2(
+                        "Smex1", CallbackQuery.from_user.id
+                    )
                     mention = db_mem[afk]["username"]
                     await mystic.delete()
                     final_output = await CallbackQuery.message.reply_photo(
@@ -199,8 +206,8 @@ async def admin_risghts(_, CallbackQuery):
                             f"<b>__Skipped Video Chat__</b>\n\n👤**__Requested by:__** {mention}"
                         ),
                     )
-                    await mystic.delete()           
-                else:  
+                    await mystic.delete()
+                else:
                     (
                         title,
                         duration_min,
@@ -209,11 +216,17 @@ async def admin_risghts(_, CallbackQuery):
                     ) = get_yt_info_id(videoid)
                     nrs, ytlink = await get_m3u8(videoid)
                     if nrs == 0:
-                        return await mystic.edit("Failed to fetch Video Formats.",)
+                        return await mystic.edit(
+                            "Failed to fetch Video Formats.",
+                        )
                     try:
-                        await skip_video_stream(chat_id, ytlink, quality, mystic)
+                        await skip_video_stream(
+                            chat_id, ytlink, quality, mystic
+                        )
                     except Exception as e:
-                        return await mystic.edit(f"Error while changing video stream.\n\nPossible Reason:- {e}")
+                        return await mystic.edit(
+                            f"Error while changing video stream.\n\nPossible Reason:- {e}"
+                        )
                     theme = await check_theme(chat_id)
                     c_title = CallbackQuery.message.chat.title
                     user_id = db_mem[afk]["user_id"]
@@ -303,12 +316,6 @@ async def admin_risghts(_, CallbackQuery):
                 )
 
 
-
-
-
-                
-
-
 @app.on_callback_query(filters.regex("play_playlist"))
 async def play_playlist(_, CallbackQuery):
     global get_queue
@@ -348,7 +355,10 @@ async def play_playlist(_, CallbackQuery):
     try:
         read1 = db_mem[CallbackQuery.message.chat.id]["live_check"]
         if read1:
-            return await CallbackQuery.answer("Live Streaming Playing...Stop it to play playlist", show_alert=True)
+            return await CallbackQuery.answer(
+                "Live Streaming Playing...Stop it to play playlist",
+                show_alert=True,
+            )
         else:
             pass
     except:

@@ -1,5 +1,6 @@
 from pyrogram import filters
-from Yukki import app, LOG_GROUP_ID, SUDOERS, OWNER_ID
+
+from Yukki import LOG_GROUP_ID, OWNER_ID, SUDOERS, app
 from Yukki.Database import is_on_off
 
 
@@ -10,9 +11,9 @@ async def bot_forward(client, message):
             return
         try:
             await app.forward_messages(
-                chat_id = LOG_GROUP_ID,
-                from_chat_id = message.from_user.id,
-                message_ids = message.message_id
+                chat_id=LOG_GROUP_ID,
+                from_chat_id=message.from_user.id,
+                message_ids=message.message_id,
             )
         except Exception as err:
             print(err)

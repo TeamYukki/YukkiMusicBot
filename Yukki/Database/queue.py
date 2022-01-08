@@ -8,6 +8,7 @@ admindb = db.admin
 
 ## Queue Chats Audio
 
+
 async def get_active_chats() -> list:
     chats = pytgdb.find({"chat_id": {"$lt": 0}})
     if not chats:
@@ -37,7 +38,6 @@ async def remove_active_chat(chat_id: int):
     if not is_served:
         return
     return await pytgdb.delete_one({"chat_id": chat_id})
-
 
 
 ## Music Playing or Paused

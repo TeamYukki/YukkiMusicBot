@@ -8,8 +8,8 @@ from config import get_queue
 from Yukki import BOT_USERNAME, db_mem
 from Yukki.Core.PyTgCalls import Queues
 from Yukki.Core.PyTgCalls.Yukki import join_stream
-from Yukki.Database import (add_active_chat, is_active_chat, music_off, add_active_video_chat,
-                            music_on)
+from Yukki.Database import (add_active_chat, add_active_video_chat,
+                            is_active_chat, music_off, music_on)
 from Yukki.Inline import (audio_markup, audio_markup2, primary_markup,
                           secondary_markup)
 from Yukki.Utilities.timer import start_timer
@@ -69,9 +69,7 @@ async def start_stream(
         return
     else:
         if not await join_stream(CallbackQuery.message.chat.id, file):
-            return await mystic.edit(
-                "Error Joining Voice Chat."
-            )
+            return await mystic.edit("Error Joining Voice Chat.")
         get_queue[CallbackQuery.message.chat.id] = []
         got_queue = get_queue.get(CallbackQuery.message.chat.id)
         title = title

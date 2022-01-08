@@ -7,10 +7,9 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineQueryResultPhoto, InputTextMessageContent,
                             Message)
 
-from Yukki import SUDOERS, app, ASSISTANT_PREFIX, random_assistant
+from Yukki import ASSISTANT_PREFIX, SUDOERS, app, random_assistant
 from Yukki.Database import get_assistant, save_assistant
 from Yukki.Utilities.assistant import get_assistant_details
-
 
 __MODULE__ = "Assistant"
 __HELP__ = f"""
@@ -47,7 +46,6 @@ __HELP__ = f"""
 /setassistant [ASS NUMBER or Random]
 - Set a assistant account for chat. 
 """
-
 
 
 ass_num_list = ["1", "2", "3", "4", "5"]

@@ -1,6 +1,7 @@
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
+
 def choose_markup(videoid, duration, user_id):
     buttons = [
         [
@@ -11,7 +12,7 @@ def choose_markup(videoid, duration, user_id):
             InlineKeyboardButton(
                 text="🎥 Play Video",
                 callback_data=f"Choose {videoid}|{duration}|{user_id}",
-            )
+            ),
         ],
         [
             InlineKeyboardButton(
@@ -21,6 +22,7 @@ def choose_markup(videoid, duration, user_id):
         ],
     ]
     return buttons
+
 
 def livestream_markup(quality, videoid, duration, user_id):
     buttons = [
@@ -32,10 +34,11 @@ def livestream_markup(quality, videoid, duration, user_id):
             InlineKeyboardButton(
                 text="🗑 Close",
                 callback_data=f"forceclose {videoid}|{user_id}",
-            )
+            ),
         ],
     ]
     return buttons
+
 
 def stream_quality_markup(videoid, duration, user_id):
     buttons = [

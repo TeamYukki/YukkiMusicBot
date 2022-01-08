@@ -3,20 +3,22 @@ import os
 import random
 from asyncio import QueueEmpty
 
-from config import get_queue
 from pyrogram import filters
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, KeyboardButton, Message,
                             ReplyKeyboardMarkup, ReplyKeyboardRemove)
 
+from config import get_queue
 from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
 from Yukki.Core.PyTgCalls import Queues
 from Yukki.Core.PyTgCalls.Converter import convert
 from Yukki.Core.PyTgCalls.Downloader import download
-from Yukki.Core.PyTgCalls.Yukki import (pause_stream, resume_stream, skip_video_stream,
-                                        skip_stream, stop_stream)
-from Yukki.Database import (is_active_chat, is_music_playing, music_off, remove_active_video_chat,
-                            music_on, remove_active_chat)
+from Yukki.Core.PyTgCalls.Yukki import (pause_stream, resume_stream,
+                                        skip_stream, skip_video_stream,
+                                        stop_stream)
+from Yukki.Database import (is_active_chat, is_music_playing, music_off,
+                            music_on, remove_active_chat,
+                            remove_active_video_chat)
 from Yukki.Decorators.admins import AdminRightsCheck
 from Yukki.Decorators.checker import checker, checkerCB
 from Yukki.Inline import audio_markup, primary_markup, secondary_markup2
@@ -25,10 +27,7 @@ from Yukki.Utilities.chat import specialfont_to_normal
 from Yukki.Utilities.theme import check_theme
 from Yukki.Utilities.thumbnails import gen_thumb
 from Yukki.Utilities.timer import start_timer
-from Yukki.Utilities.youtube import get_yt_info_id
-
-
-from Yukki.Utilities.youtube import get_m3u8
+from Yukki.Utilities.youtube import get_m3u8, get_yt_info_id
 
 loop = asyncio.get_event_loop()
 
@@ -171,19 +170,23 @@ async def admins(_, message: Message):
                     message.chat.id,
                     message.from_user.id,
                     aud,
-                ) 
-            elif str(finxx) == "s1s": 
-                mystic = await message.reply_text("Skipped.. Changing to next Video Stream.")
+                )
+            elif str(finxx) == "s1s":
+                mystic = await message.reply_text(
+                    "Skipped.. Changing to next Video Stream."
+                )
                 afk = videoid
                 read = (str(videoid)).replace("s1s_", "", 1)
-                s = read.split('_+_')
+                s = read.split("_+_")
                 quality = s[0]
                 videoid = s[1]
                 if int(quality) == 1080:
                     try:
                         await skip_video_stream(chat_id, videoid, 720, mystic)
                     except Exception as e:
-                        return await mystic.edit(f"Error while changing video stream.\n\nPossible Reason:- {e}")
+                        return await mystic.edit(
+                            f"Error while changing video stream.\n\nPossible Reason:- {e}"
+                        )
                     buttons = secondary_markup2("Smex1", message.from_user.id)
                     mention = db_mem[afk]["username"]
                     await mystic.delete()
@@ -194,8 +197,8 @@ async def admins(_, message: Message):
                             f"<b>__Skipped Video Chat__</b>\n\n👤**__Requested by:__** {mention}"
                         ),
                     )
-                    await mystic.delete()           
-                else:  
+                    await mystic.delete()
+                else:
                     (
                         title,
                         duration_min,
@@ -204,11 +207,17 @@ async def admins(_, message: Message):
                     ) = get_yt_info_id(videoid)
                     nrs, ytlink = await get_m3u8(videoid)
                     if nrs == 0:
-                        return await mystic.edit("Failed to fetch Video Formats.",)
+                        return await mystic.edit(
+                            "Failed to fetch Video Formats.",
+                        )
                     try:
-                        await skip_video_stream(chat_id, ytlink, quality, mystic)
+                        await skip_video_stream(
+                            chat_id, ytlink, quality, mystic
+                        )
                     except Exception as e:
-                        return await mystic.edit(f"Error while changing video stream.\n\nPossible Reason:- {e}")
+                        return await mystic.edit(
+                            f"Error while changing video stream.\n\nPossible Reason:- {e}"
+                        )
                     theme = await check_theme(chat_id)
                     c_title = message.chat.title
                     user_id = db_mem[afk]["user_id"]
@@ -217,7 +226,7 @@ async def admins(_, message: Message):
                         thumbnail, title, user_id, theme, chat_title
                     )
                     buttons = primary_markup(
-                    videoid, user_id, duration_min, duration_min
+                        videoid, user_id, duration_min, duration_min
                     )
                     mention = db_mem[afk]["username"]
                     await mystic.delete()
@@ -238,7 +247,7 @@ async def admins(_, message: Message):
                         message.chat.id,
                         message.from_user.id,
                         aud,
-                    ) 
+                    )
             else:
                 mystic = await message.reply_text(
                     f"**{MUSIC_BOT_NAME} Playlist Function**\n\n__Downloading Next Music From Playlist....__"
@@ -283,7 +292,4 @@ async def admins(_, message: Message):
                     message.chat.id,
                     message.from_user.id,
                     aud,
-                ) 
-
-
-                
+                )

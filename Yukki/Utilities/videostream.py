@@ -3,19 +3,19 @@ import os
 import shutil
 from asyncio import QueueEmpty
 
+from pyrogram.types import InlineKeyboardMarkup
 from pyrogram.types.messages_and_media import message
 
 from config import get_queue
-from pyrogram.types import InlineKeyboardMarkup
-
-
 from Yukki import BOT_USERNAME, db_mem
 from Yukki.Core.PyTgCalls import Queues
-from Yukki.Core.PyTgCalls.Yukki import join_live_stream, join_video_stream, stop_stream
-from Yukki.Database import (add_active_chat, is_active_chat, music_off, remove_active_chat, add_active_video_chat,
-                            music_on)
-from Yukki.Inline import (audio_markup, audio_markup2, primary_markup, secondary_markup2,
-                          secondary_markup)
+from Yukki.Core.PyTgCalls.Yukki import (join_live_stream, join_video_stream,
+                                        stop_stream)
+from Yukki.Database import (add_active_chat, add_active_video_chat,
+                            is_active_chat, music_off, music_on,
+                            remove_active_chat)
+from Yukki.Inline import (audio_markup, audio_markup2, primary_markup,
+                          secondary_markup, secondary_markup2)
 from Yukki.Utilities.timer import start_timer
 
 loop = asyncio.get_event_loop()
@@ -60,7 +60,9 @@ async def start_stream_video(message, file, title, mystic):
         return
     else:
         if not await join_video_stream(message.chat.id, file, 720):
-            return await mystic.edit("Error Joining Voice Chat. Make sure Voice Chat is Enabled.")
+            return await mystic.edit(
+                "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
+            )
         get_queue[message.chat.id] = []
         got_queue = get_queue.get(message.chat.id)
         title = title
@@ -89,7 +91,7 @@ async def start_live_stream(
     title,
     duration_min,
     duration_sec,
-    videoid
+    videoid,
 ):
     global get_queue
     if CallbackQuery.message.chat.id not in db_mem:
@@ -103,11 +105,15 @@ async def start_live_stream(
             pass
         await remove_active_chat(CallbackQuery.message.chat.id)
         try:
-            await stop_stream(CallbackQuery.message.chat.id)   
+            await stop_stream(CallbackQuery.message.chat.id)
         except:
             pass
-    if not await join_live_stream(CallbackQuery.message.chat.id, link, quality):
-        return await CallbackQuery.message.reply_text(f"Error Joining Voice Chat.")
+    if not await join_live_stream(
+        CallbackQuery.message.chat.id, link, quality
+    ):
+        return await CallbackQuery.message.reply_text(
+            f"Error Joining Voice Chat."
+        )
     await music_on(CallbackQuery.message.chat.id)
     await add_active_chat(CallbackQuery.message.chat.id)
     await add_active_video_chat(CallbackQuery.message.chat.id)
@@ -120,8 +126,6 @@ async def start_live_stream(
     )
     os.remove(thumb)
     await CallbackQuery.message.delete()
-    
-
 
 
 async def start_video_stream(
@@ -132,7 +136,7 @@ async def start_video_stream(
     title,
     duration_min,
     duration_sec,
-    videoid
+    videoid,
 ):
     global get_queue
     if CallbackQuery.message.chat.id not in db_mem:
@@ -176,8 +180,12 @@ async def start_video_stream(
         os.remove(thumb)
         return
     else:
-        if not await join_video_stream(CallbackQuery.message.chat.id, link, quality):
-            return await CallbackQuery.message.reply_text(f"Error Joining Voice Chat.")
+        if not await join_video_stream(
+            CallbackQuery.message.chat.id, link, quality
+        ):
+            return await CallbackQuery.message.reply_text(
+                f"Error Joining Voice Chat."
+            )
         get_queue[CallbackQuery.message.chat.id] = []
         got_queue = get_queue.get(CallbackQuery.message.chat.id)
         title = title
@@ -188,7 +196,7 @@ async def start_video_stream(
         await music_on(CallbackQuery.message.chat.id)
         await add_active_video_chat(CallbackQuery.message.chat.id)
         await add_active_chat(CallbackQuery.message.chat.id)
-       
+
         buttons = primary_markup(
             videoid, CallbackQuery.from_user.id, duration_min, duration_min
         )

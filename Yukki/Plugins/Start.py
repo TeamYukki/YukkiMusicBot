@@ -9,9 +9,9 @@ from pyrogram import filters
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
-from Yukki import ASSIDS, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app, random_assistant
+from Yukki import ASSIDS, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
 from Yukki import boottime as bot_start_time
-from Yukki import db
+from Yukki import db, random_assistant
 from Yukki.Core.PyTgCalls import Yukki
 from Yukki.Database import (add_nonadmin_chat, add_served_chat,
                             blacklisted_chats, get_assistant, get_authuser,
@@ -21,8 +21,7 @@ from Yukki.Database import (add_nonadmin_chat, add_served_chat,
 from Yukki.Decorators.admins import ActualAdminCB
 from Yukki.Decorators.permission import PermissionCheck
 from Yukki.Inline import (custommarkup, dashmarkup, setting_markup,
-                          setting_markup2, start_pannel, usermarkup,
-                          volmarkup)
+                          setting_markup2, start_pannel, usermarkup, volmarkup)
 from Yukki.Utilities.assistant import get_assistant_details
 from Yukki.Utilities.ping import get_readable_time
 

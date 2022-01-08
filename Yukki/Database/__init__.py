@@ -18,4 +18,6 @@ from .queue import (add_active_chat, get_active_chats, is_active_chat,
 from .start import _get_start, get_start, get_start_names, save_start
 from .sudo import add_sudo, get_sudoers, remove_sudo
 from .theme import _get_theme, get_theme, save_theme
-from .videocalls import set_video_limit, get_video_limit, get_active_video_chats, is_active_video_chat, add_active_video_chat, remove_active_video_chat
+from .videocalls import (add_active_video_chat, get_active_video_chats,
+                         get_video_limit, is_active_video_chat,
+                         remove_active_video_chat, set_video_limit)

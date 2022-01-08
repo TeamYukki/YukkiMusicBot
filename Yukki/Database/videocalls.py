@@ -1,11 +1,11 @@
 from typing import Dict, List, Union
+
 from Yukki import db
 
 videodb = db.yukkivideocalls
 
 
-
-## limit 
+## limit
 
 
 async def get_video_limit(chat_id: int) -> str:
@@ -21,8 +21,8 @@ async def set_video_limit(chat_id: int, limit: str):
     )
 
 
-
 ## Queue Chats Video
+
 
 async def get_active_video_chats() -> list:
     chats = videodb.find({"chat_id": {"$lt": 0}})
@@ -53,4 +53,3 @@ async def remove_active_video_chat(chat_id: int):
     if not is_served:
         return
     return await videodb.delete_one({"chat_id": chat_id})
-

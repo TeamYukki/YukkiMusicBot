@@ -10,20 +10,21 @@ from Yukki import (BOT_USERNAME, DURATION_LIMIT, DURATION_LIMIT_MIN,
                    MUSIC_BOT_NAME, app, db_mem)
 from Yukki.Core.PyTgCalls.Converter import convert
 from Yukki.Core.PyTgCalls.Downloader import download
+from Yukki.Database import (get_active_video_chats, get_video_limit,
+                            is_active_video_chat)
 from Yukki.Decorators.assistant import AssistantAdd
 from Yukki.Decorators.checker import checker
 from Yukki.Decorators.logger import logging
 from Yukki.Decorators.permission import PermissionCheck
-from Yukki.Database import get_video_limit, get_active_video_chats, is_active_video_chat
-from Yukki.Inline import (playlist_markup, search_markup, search_markup2, livestream_markup,
-                          url_markup, url_markup2)
+from Yukki.Inline import (livestream_markup, playlist_markup, search_markup,
+                          search_markup2, url_markup, url_markup2)
 from Yukki.Utilities.changers import seconds_to_min, time_to_seconds
 from Yukki.Utilities.chat import specialfont_to_normal
 from Yukki.Utilities.stream import start_stream, start_stream_audio
-from Yukki.Utilities.videostream import start_stream_video
 from Yukki.Utilities.theme import check_theme
 from Yukki.Utilities.thumbnails import gen_thumb
 from Yukki.Utilities.url import get_url
+from Yukki.Utilities.videostream import start_stream_video
 from Yukki.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
                                      get_yt_info_query_slider)
 
@@ -63,11 +64,13 @@ async def play(_, message: Message):
         try:
             read = db_mem[message.chat.id]["live_check"]
             if read:
-                return await mystic.edit("Live Streaming Playing...Stop it to play music")
+                return await mystic.edit(
+                    "Live Streaming Playing...Stop it to play music"
+                )
             else:
                 pass
         except:
-            pass 
+            pass
         if audio.file_size > 1073741824:
             return await mystic.edit_text(
                 "Audio File Size Should Be Less Than 150 mb"
@@ -105,25 +108,31 @@ async def play(_, message: Message):
     elif video:
         limit = await get_video_limit(141414)
         if not limit:
-            return await message.reply_text("**No Limit Defined for Video Calls**\n\nSet a Limit for Number of Maximum Video Calls allowed on Bot by /set_video_limit [Sudo Users Only]")
+            return await message.reply_text(
+                "**No Limit Defined for Video Calls**\n\nSet a Limit for Number of Maximum Video Calls allowed on Bot by /set_video_limit [Sudo Users Only]"
+            )
         count = len(await get_active_video_chats())
         if int(count) == int(limit):
             if await is_active_video_chat(message.chat.id):
                 pass
             else:
-                return await message.reply_text("Sorry! Bot only allows limited number of video calls due to CPU overload issues. Many other chats are using video call right now. Try switching to audio or try again later")
+                return await message.reply_text(
+                    "Sorry! Bot only allows limited number of video calls due to CPU overload issues. Many other chats are using video call right now. Try switching to audio or try again later"
+                )
         mystic = await message.reply_text(
             "🔄 Processing Video... Please Wait!"
         )
         try:
             read = db_mem[message.chat.id]["live_check"]
             if read:
-                return await mystic.edit("Live Streaming Playing...Stop it to play music")
+                return await mystic.edit(
+                    "Live Streaming Playing...Stop it to play music"
+                )
             else:
                 pass
         except:
-            pass 
-        file =  await message.reply_to_message.download()
+            pass
+        file = await message.reply_to_message.download()
         return await start_stream_video(
             message,
             file,
@@ -179,6 +188,7 @@ async def play(_, message: Message):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
+
 @app.on_callback_query(filters.regex(pattern=r"MusicStream"))
 async def Music_Stream(_, CallbackQuery):
     if CallbackQuery.message.chat.id not in db_mem:
@@ -186,7 +196,10 @@ async def Music_Stream(_, CallbackQuery):
     try:
         read1 = db_mem[CallbackQuery.message.chat.id]["live_check"]
         if read1:
-            return await CallbackQuery.answer("Live Streaming Playing...Stop it to play music", show_alert=True)
+            return await CallbackQuery.answer(
+                "Live Streaming Playing...Stop it to play music",
+                show_alert=True,
+            )
         else:
             pass
     except:
@@ -198,7 +211,10 @@ async def Music_Stream(_, CallbackQuery):
     videoid, duration, user_id = callback_request.split("|")
     if str(duration) == "None":
         buttons = livestream_markup("720", videoid, duration, user_id)
-        return await CallbackQuery.edit_message_text("**Live Stream Detected**\n\nWant to play live stream? This will stop the current playing musics(if any) and will start streaming live video.", reply_markup=InlineKeyboardMarkup(buttons))
+        return await CallbackQuery.edit_message_text(
+            "**Live Stream Detected**\n\nWant to play live stream? This will stop the current playing musics(if any) and will start streaming live video.",
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
             "This is not for you! Search You Own Song.", show_alert=True
@@ -232,7 +248,6 @@ async def Music_Stream(_, CallbackQuery):
         duration_sec,
         mystic,
     )
-
 
 
 @app.on_callback_query(filters.regex(pattern=r"Search"))

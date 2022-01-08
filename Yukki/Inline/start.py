@@ -1,8 +1,9 @@
-from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto, Message)
 
+from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
 from Yukki import BOT_USERNAME
+
 
 def setting_markup2():
     buttons = [
@@ -23,7 +24,6 @@ def setting_markup2():
         ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
-
 
 
 def start_pannel():

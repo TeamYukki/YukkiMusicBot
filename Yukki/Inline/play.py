@@ -48,7 +48,7 @@ def url_markup2(videoid, duration, user_id):
             InlineKeyboardButton(
                 text="🎥 Play Video",
                 callback_data=f"Choose {videoid}|{duration}|{user_id}",
-            )
+            ),
         ],
         [
             InlineKeyboardButton(
@@ -180,6 +180,7 @@ def secondary_markup(videoid, user_id):
     ]
     return buttons
 
+
 def secondary_markup2(videoid, user_id):
     buttons = [
         [
@@ -193,7 +194,6 @@ def secondary_markup2(videoid, user_id):
         ],
     ]
     return buttons
-
 
 
 def primary_markup(videoid, user_id, current_time, total_time):
