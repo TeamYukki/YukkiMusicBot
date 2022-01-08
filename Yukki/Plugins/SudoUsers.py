@@ -269,7 +269,7 @@ async def ban_globally(_, message):
             number_of_chats = 0
             for sex in served_chats:
                 try:
-                    await app.kick_chat_member(sex, user.id)
+                    await app.ban_chat_member(sex, user.id)
                     number_of_chats += 1
                     await asyncio.sleep(1)
                 except FloodWait as e:
@@ -393,26 +393,6 @@ async def unban_globally(_, message):
         else:
             await remove_gban_user(user_id)
             await message.reply_text(f"Ungbanned!")
-
-
-chat_watcher_group = 5
-
-
-@app.on_message(group=chat_watcher_group)
-async def chat_watcher_func(_, message):
-    try:
-        userid = message.from_user.id
-    except Exception:
-        return
-    checking = f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
-    if await is_gbanned_user(userid):
-        try:
-            await message.chat.kick_member(userid)
-        except Exception:
-            return
-        await message.reply_text(
-            f"{checking} is globally banned by Sudo Users and has been kicked out of the chat.\n\n**Possible Reason:** Potential Spammer and Abuser."
-        )
 
 
 # Broadcast Message
