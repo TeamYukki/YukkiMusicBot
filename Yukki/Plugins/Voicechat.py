@@ -10,8 +10,8 @@ from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
 
 from config import get_queue
 from Yukki import SUDOERS, app, db_mem, random_assistant
-from Yukki.Database import (get_active_chats, get_assistant, is_active_chat,
-                            save_assistant)
+from Yukki.Database import (get_active_chats, get_active_video_chats,
+                            get_assistant, is_active_chat, save_assistant)
 from Yukki.Decorators.checker import checker, checkerCB
 from Yukki.Inline import primary_markup
 from Yukki.Utilities.assistant import get_assistant_details
@@ -154,6 +154,39 @@ async def activevc(_, message: Message):
     else:
         await message.reply_text(
             f"**Active Voice Chats:-**\n\n{text}",
+            disable_web_page_preview=True,
+        )
+
+
+@app.on_message(filters.command("activevideo") & filters.user(SUDOERS))
+async def activevi_(_, message: Message):
+    served_chats = []
+    try:
+        chats = await get_active_video_chats()
+        for chat in chats:
+            served_chats.append(int(chat["chat_id"]))
+    except Exception as e:
+        await message.reply_text(f"**Error:-** {e}")
+    text = ""
+    j = 0
+    for x in served_chats:
+        try:
+            title = (await app.get_chat(x)).title
+        except Exception:
+            title = "Private Group"
+        if (await app.get_chat(x)).username:
+            user = (await app.get_chat(x)).username
+            text += (
+                f"<b>{j + 1}.</b>  [{title}](https://t.me/{user})[`{x}`]\n"
+            )
+        else:
+            text += f"<b>{j + 1}. {title}</b> [`{x}`]\n"
+        j += 1
+    if not text:
+        await message.reply_text("No Active Voice Chats")
+    else:
+        await message.reply_text(
+            f"**Active Video Calls:-**\n\n{text}",
             disable_web_page_preview=True,
         )
 

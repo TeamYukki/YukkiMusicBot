@@ -58,6 +58,8 @@ Only for Sudo Users
 /activevc
 - Check active voice chats on bot.
 
+/activevideo
+- Check active video calls on bot.
 """
 
 
