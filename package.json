@@ -1,0 +1,22 @@
+{
+  "name": "YukkiMusicBot",
+  "version": "1.0.0",
+  "description": "YukkiMusicBot is a powerful music & video telegram bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmadsuherman/YukkiMusicBot.git"
+  },
+  "author": "Ahmad Suherman",
+  "license": "ISC",
+  "engines":{
+    "node":"15.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/ahmadsuherman/YukkiMusicBot/issues"
+  },
+  "homepage": "https://github.com/ahmadsuherman/YukkiMusicBot#readme"
+}
