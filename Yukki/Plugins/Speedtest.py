@@ -6,6 +6,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from Yukki import BOT_ID, SUDOERS, app
+from Yukki.Utilities.formatters import bytes
 
 __MODULE__ = "Speedtest"
 __HELP__ = """
@@ -14,19 +15,6 @@ __HELP__ = """
 - Check Server Latency and Speed.
 
 """
-
-
-def bytes(size: float) -> str:
-    """humanize size"""
-    if not size:
-        return ""
-    power = 1024
-    t_n = 0
-    power_dict = {0: " ", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
-    while size > power:
-        size /= power
-        t_n += 1
-    return "{:.2f} {}B".format(size, power_dict[t_n])
 
 
 @app.on_message(filters.command("speedtest") & ~filters.edited)

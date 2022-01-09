@@ -1,7 +1,6 @@
 {
   "name": "Yukki Music Bot",
   "description": "A Telegram Music Bot with proper functions written in Python with Pyrogram and Py-Tgcalls.",
-  "repository": "https://github.com/NotReallyShikhar/YukkiMusicBot",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
   "keywords": [
   "python3",
@@ -12,7 +11,6 @@
   "telegram-bot",
   "pyrogram"
   ],
-  "repository": "https://github.com/notreallyshikhar/YukkiMusicBot",
   "stack": "container",
   "env": {
     "API_ID": {
@@ -87,11 +85,6 @@
     },
     "STRING_SESSION5": {
       "description": "A Pyrogram String Session. Leave blank if you dont want Multi-Assistant",
-      "value": "",
-      "required": false
-    },
-    "LOG_SESSION": {
-      "description": "A Pyrogram String Session for LOGGING. Leave blank if you dont want to LOG",
       "value": "",
       "required": false
     },
