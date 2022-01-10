@@ -34,9 +34,6 @@ Only for Sudo Users.
 /delsudo [Username or Reply to a user]
 - To Remove A User from Bot's Sudo Users.
 
-/restart 
-- Restart Bot [All downloads, cache, raw files will be cleared too]. 
-
 /maintenance [enable / disable]
 - When enabled Bot goes under maintenance mode. No one can play Music now!
 
