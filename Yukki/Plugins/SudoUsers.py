@@ -140,7 +140,7 @@ async def sudoers_list(_, message: Message):
             sex += 1
         except Exception:
             continue
-        text += f"{sex}➤ {user}\n"
+        text += f"{sex}⎆ {user}\n"
     smex = 0
     for count, user_id in enumerate(sudoers, 1):
         if user_id not in OWNER_ID:
@@ -151,7 +151,7 @@ async def sudoers_list(_, message: Message):
                     smex += 1
                     text += "\n⚡<u> **Sudo Users:**</u>\n"
                 sex += 1
-                text += f"{sex}➤ {user}\n"
+                text += f"{sex}⎆ {user}\n"
             except Exception:
                 continue
     if not text:
