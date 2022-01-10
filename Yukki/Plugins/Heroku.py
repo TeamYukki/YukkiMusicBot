@@ -17,7 +17,7 @@ from pyrogram.types import Message
 from config import (HEROKU_API_KEY, HEROKU_APP_NAME, UPSTREAM_BRANCH,
                     UPSTREAM_REPO)
 from Yukki import LOG_GROUP_ID, MUSIC_BOT_NAME, SUDOERS, app
-from Yukki.Database import get_active_chats, remove_active_chat
+from Yukki.Database import get_active_chats, remove_active_chat, remove_active_video_chat
 from Yukki.Utilities.heroku import is_heroku, user_input
 from Yukki.Utilities.paste import isPreviewUp, paste_queue
 
@@ -285,21 +285,18 @@ Total Left: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]"""
 async def update_(client, message):
     if await is_heroku():
         if HEROKU_API_KEY == "" and HEROKU_APP_NAME == "":
-            await message.reply_text(
-                "<b>HEROKU APP DETECTED!</b>\n\nIn order to update your app, you need to set up the `HEROKU_API_KEY` and `HEROKU_APP_NAME` vars respectively!</code>"
+            return await message.reply_text(
+                "<b>HEROKU APP DETECTED!</b>\n\nIn order to update your app, you need to set up the `HEROKU_API_KEY` and `HEROKU_APP_NAME` vars respectively!"
             )
-            return
         elif HEROKU_API_KEY == "" or HEROKU_APP_NAME == "":
-            await message.reply_text(
+            return await message.reply_text(
                 "<b>HEROKU APP DETECTED!</b>\n\n<b>Make sure to add both</b> `HEROKU_API_KEY` **and** `HEROKU_APP_NAME` <b>vars correctly in order to be able to update remotely!</b>"
             )
-            return
     response = await message.reply_text("Checking for available updates...")
     try:
         repo = Repo()
     except GitCommandError:
-        await response.edit("Git Command Error")
-        return
+        return await response.edit("Git Command Error")
     except InvalidGitRepositoryError:
         return await response.edit("Invalid Git Repsitory")
     to_exc = f"git fetch origin {UPSTREAM_BRANCH} &> /dev/null"
@@ -310,8 +307,7 @@ async def update_(client, message):
     for checks in repo.iter_commits(f"HEAD..origin/{UPSTREAM_BRANCH}"):
         verification = str(checks.count())
     if verification == "":
-        await response.edit("Bot is up-to-date!")
-        return
+        return await response.edit("Bot is up-to-date!")
     updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
@@ -347,11 +343,10 @@ async def update_(client, message):
             await response.edit(
                 f"{nrs.text}\n\nSomething went wrong while initiating reboot! Please try again later or check logs for more info."
             )
-            await app.send_message(
+            return await app.send_message(
                 LOG_GROUP_ID,
                 f"AN EXCEPTION OCCURRED AT #UPDATER DUE TO: <code>{err}</code>",
             )
-            return
     else:
         await response.edit(
             f"{nrs.text}\n\nBot was updated successfully! Now, wait for 1 - 2 mins until the bot reboots!"
@@ -368,7 +363,7 @@ async def restart_(_, message):
     if await is_heroku():
         if HEROKU_API_KEY == "" and HEROKU_APP_NAME == "":
             await message.reply_text(
-                "<b>HEROKU APP DETECTED!</b>\n\nIn order to restart your app, you need to set up the `HEROKU_API_KEY` and `HEROKU_APP_NAME` vars respectively!</code>"
+                "<b>HEROKU APP DETECTED!</b>\n\nIn order to restart your app, you need to set up the `HEROKU_API_KEY` and `HEROKU_APP_NAME` vars respectively!"
             )
             return
         elif HEROKU_API_KEY == "" or HEROKU_APP_NAME == "":
@@ -391,6 +386,7 @@ async def restart_(_, message):
                         f"{MUSIC_BOT_NAME} has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
                     )
                     await remove_active_chat(x)
+                    await remove_active_video_chat(x)
                 except Exception:
                     pass
             heroku3.from_key(HEROKU_API_KEY).apps()[HEROKU_APP_NAME].restart()
@@ -418,15 +414,18 @@ async def restart_(_, message):
                     f"{MUSIC_BOT_NAME} has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
                 )
                 await remove_active_chat(x)
+                await remove_active_video_chat(x)
             except Exception:
                 pass
         A = "downloads"
         B = "raw_files"
         C = "cache"
+        D = "search"
         try:
             shutil.rmtree(A)
             shutil.rmtree(B)
             shutil.rmtree(C)
+            shutil.rmtree(D)
         except:
             pass
         await asyncio.sleep(2)
@@ -440,6 +439,10 @@ async def restart_(_, message):
             pass
         try:
             os.mkdir(C)
+        except:
+            pass
+        try:
+            os.mkdir(D)
         except:
             pass
         await response.edit(
