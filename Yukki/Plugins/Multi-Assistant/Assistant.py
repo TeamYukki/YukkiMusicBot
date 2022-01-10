@@ -63,6 +63,11 @@ async def awaiting_message(client, message):
     & filters.user(SUDOERS)
     & ~filters.via_bot
 )
+@Client.on_message(
+    filters.command("approve", prefixes=ASSISTANT_PREFIX)
+    & filters.user("me")
+    & ~filters.via_bot
+)
 async def pm_approve(client, message):
     if not message.reply_to_message:
         return await eor(
@@ -78,6 +83,11 @@ async def pm_approve(client, message):
 @Client.on_message(
     filters.command("disapprove", prefixes=ASSISTANT_PREFIX)
     & filters.user(SUDOERS)
+    & ~filters.via_bot
+)
+@Client.on_message(
+    filters.command("disapprove", prefixes=ASSISTANT_PREFIX)
+    & filters.user("me")
     & ~filters.via_bot
 )
 async def pm_disapprove(client, message):
@@ -104,6 +114,11 @@ async def pm_disapprove(client, message):
     & filters.user(SUDOERS)
     & ~filters.via_bot
 )
+@Client.on_message(
+    filters.command("block", prefixes=ASSISTANT_PREFIX)
+    & filters.user("me")
+    & ~filters.via_bot
+)
 async def block_user_func(client, message):
     if not message.reply_to_message:
         return await eor(message, text="Reply to a user's message to block.")
@@ -115,6 +130,11 @@ async def block_user_func(client, message):
 @Client.on_message(
     filters.command("unblock", prefixes=ASSISTANT_PREFIX)
     & filters.user(SUDOERS)
+    & ~filters.via_bot
+)
+@Client.on_message(
+    filters.command("unblock", prefixes=ASSISTANT_PREFIX)
+    & filters.user("me")
     & ~filters.via_bot
 )
 async def unblock_user_func(client, message):
@@ -132,6 +152,11 @@ async def unblock_user_func(client, message):
     & filters.user(SUDOERS)
     & ~filters.via_bot
 )
+@Client.on_message(
+    filters.command("pfp", prefixes=ASSISTANT_PREFIX)
+    & filters.user("me")
+    & ~filters.via_bot
+)
 async def set_pfp(client, message):
     if not message.reply_to_message or not message.reply_to_message.photo:
         return await eor(message, text="Reply to a photo.")
@@ -146,6 +171,11 @@ async def set_pfp(client, message):
 @Client.on_message(
     filters.command("bio", prefixes=ASSISTANT_PREFIX)
     & filters.user(SUDOERS)
+    & ~filters.via_bot
+)
+@Client.on_message(
+    filters.command("bio", prefixes=ASSISTANT_PREFIX)
+    & filters.user("me")
     & ~filters.via_bot
 )
 async def set_bio(client, message):
