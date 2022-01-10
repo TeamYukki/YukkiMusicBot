@@ -49,8 +49,8 @@ __HELP__ = f"""
 /update
 - Update Your Bot.
 
-/restart
-- Restart Your Bot.
+/restart 
+- Restart Bot [All downloads, cache, raw files will be cleared too]. 
 """
 
 
