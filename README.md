@@ -53,7 +53,7 @@ Read [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/require
 > Those two vars are not Mandatory! You can leave them blank too. 
     
 <h3 align="center">Klik Tombol di Bawah ini untuk Deploy di Heroku :</h3>
-<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/Kayzyu/Kayzu/"> <img src="https://img.shields.io/badge/Deploy%20Ke%20Heroku-aqua?style=flat&logo=heroku" width="250" height="50.00" /></a></p>
+<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/Kayzyu/KayzuMultiAssistant/"> <img src="https://img.shields.io/badge/Deploy%20Ke%20Heroku-aqua?style=flat&logo=heroku" width="250" height="50.00" /></a></p>
     
     
 </details>
