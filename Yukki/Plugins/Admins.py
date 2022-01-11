@@ -143,7 +143,7 @@ async def admins(_, message: Message):
                         duration_min,
                         duration_min,
                     )
-                    thumb = "Utils/Telegram.JPEG"
+                    thumb = "Utils/IMG_20220111_124155_786.jpg"
                     aud = 1
                 else:
                     _path_ = _path_ = (
@@ -193,7 +193,7 @@ async def admins(_, message: Message):
                     mention = db_mem[afk]["username"]
                     await mystic.delete()
                     final_output = await message.reply_photo(
-                        photo="Utils/Telegram.JPEG",
+                        photo="Utils/IMG_20220111_124155_786.jpg",
                         reply_markup=InlineKeyboardMarkup(buttons),
                         caption=(
                             f"<b>__Skipped Video Chat__</b>\n\n👤**__Requested by:__** {mention}"
