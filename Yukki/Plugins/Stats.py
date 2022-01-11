@@ -177,7 +177,7 @@ async def stats_markup(_, CallbackQuery):
                 "Failed to get Mongo DB stats", reply_markup=stats5
             )
         try:
-            db = pymongo.Yukki
+            db = pymongo.Kayzu
         except Exception as e:
             print(e)
             return await CallbackQuery.edit_message_text(
