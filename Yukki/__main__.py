@@ -82,7 +82,7 @@ async def initiate_bot():
             status="[bold blue]Importation Completed!",
         )
     console.print(
-        "[bold green]Congrats!! Yukki Music Bot has started successfully!\n"
+        "[bold green]Congrats!! Kayzu Music Bot has started successfully!\n"
     )
     try:
         await app.send_message(
@@ -115,8 +115,8 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_1.join_chat("OfficialYukki")
-            await ASS_CLI_1.join_chat("YukkiSupport")
+            await ASS_CLI_1.join_chat("kayzuchannel")
+            await ASS_CLI_1.join_chat("KayzuSupport")
         except:
             pass
         console.print(f"├[red] Assistant 1 Started as {ASSNAME1}!")
@@ -134,8 +134,8 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_2.join_chat("OfficialYukki")
-            await ASS_CLI_2.join_chat("YukkiSupport")
+            await ASS_CLI_2.join_chat("kayzuchannel")
+            await ASS_CLI_2.join_chat("KayzuSupport")
         except:
             pass
         console.print(f"├[red] Assistant 2 Started as {ASSNAME2}!")
@@ -153,8 +153,8 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_3.join_chat("OfficialYukki")
-            await ASS_CLI_3.join_chat("YukkiSupport")
+            await ASS_CLI_3.join_chat("kayzuchannel")
+            await ASS_CLI_3.join_chat("KayzuSupport")
         except:
             pass
         console.print(f"├[red] Assistant 3 Started as {ASSNAME3}!")
@@ -172,8 +172,8 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_4.join_chat("OfficialYukki")
-            await ASS_CLI_4.join_chat("YukkiSupport")
+            await ASS_CLI_4.join_chat("kayzuchannel")
+            await ASS_CLI_4.join_chat("KayzuSupport")
         except:
             pass
         console.print(f"├[red] Assistant 4 Started as {ASSNAME4}!")
@@ -191,8 +191,8 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_5.join_chat("OfficialYukki")
-            await ASS_CLI_5.join_chat("YukkiSupport")
+            await ASS_CLI_5.join_chat("kayzuchannel")
+            await ASS_CLI_5.join_chat("KayzuSupport")
         except:
             pass
         console.print(f"├[red] Assistant 5 Started as {ASSNAME5}!")
@@ -210,11 +210,11 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await LOG_CLIENT.join_chat("OfficialYukki")
-            await LOG_CLIENT.join_chat("YukkiSupport")
+            await LOG_CLIENT.join_chat("kayzuchannel")
+            await LOG_CLIENT.join_chat("KayzuSupport")
         except:
             pass
-    console.print(f"└[red] Yukki Music Bot Boot Completed.")
+    console.print(f"└[red] Kayzu Music Bot Boot Completed.")
     if STRING1 != "None":
         await pytgcalls1.start()
     if STRING2 != "None":
@@ -248,7 +248,7 @@ async def start_command(_, message):
         name = (message.text.split(None, 1)[1]).lower()
         if name[0] == "s":
             sudoers = await get_sudoers()
-            text = "⭐️<u> **Owners:**</u>\n"
+            text = "⚡<u> **Owners:**</u>\n"
             sex = 0
             for x in OWNER_ID:
                 try:
@@ -259,7 +259,7 @@ async def start_command(_, message):
                     sex += 1
                 except Exception:
                     continue
-                text += f"{sex}➤ {user}\n"
+                text += f"{sex}⎆ {user}\n"
             smex = 0
             for count, user_id in enumerate(sudoers, 1):
                 if user_id not in OWNER_ID:
@@ -272,9 +272,9 @@ async def start_command(_, message):
                         )
                         if smex == 0:
                             smex += 1
-                            text += "\n⭐️<u> **Sudo Users:**</u>\n"
+                            text += "\n⚡<u> **Sudo Users:**</u>\n"
                         sex += 1
-                        text += f"{sex}➤ {user}\n"
+                        text += f"{sex}⎆ {user}\n"
                     except Exception:
                         continue
             if not text:
