@@ -86,7 +86,7 @@ shikhar@MacBook~ $ bash start
 
 ## Contact & Support
 
-- [Telegram Channel](https://t.me/OfficialYukki")
+- [Telegram Channel](https://t.me/OfficialYukki)
 - [Telegram Support Group](https://t.me/OfficialYukkiSupport)
 - [Contact Owner](https://t.me/NotReallyShikhar)
 
