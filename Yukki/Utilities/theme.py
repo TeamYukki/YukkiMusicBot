@@ -3,14 +3,7 @@ import random
 from Yukki.Database import get_theme
 
 themes = [
-    "blue",
-    "black",
-    "red",
-    "green",
-    "grey",
-    "orange",
-    "pink",
-    "yellow",
+    "IMG_20220111_124155_786.jpg",
 ]
 
 
