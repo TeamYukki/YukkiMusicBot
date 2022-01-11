@@ -148,7 +148,7 @@ async def admin_risghts(_, CallbackQuery):
                         duration_min,
                         duration_min,
                     )
-                    thumb = "Utils/Telegram.JPEG"
+                    thumb = "Utils/IMG_20220111_124155_786.jpg"
                     aud = 1
                 else:
                     _path_ = _path_ = (
