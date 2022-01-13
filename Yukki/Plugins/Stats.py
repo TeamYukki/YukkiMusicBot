@@ -30,7 +30,7 @@ __MODULE__ = "Stats"
 __HELP__ = """
 
 
-/stats
+/mstats
 - Check the Stats of Bot.
 - Gets the stat of MongoDb , Assistant, System etc
 """
@@ -49,7 +49,7 @@ async def bot_sys_stats():
     return stats
 
 
-@app.on_message(filters.command("stats") & ~filters.edited)
+@app.on_message(filters.command("mstats") & ~filters.edited)
 async def gstats(_, message):
     start = datetime.now()
     try:
