@@ -411,7 +411,7 @@ All commands can be used with: /
             "{} **{}**:\n".format(
                 "Here is the help for", HELPABLE[module].__MODULE__
             )
-            + HELPABLE[module].__MHELP__
+            + HELPABLE[module].__HELP__
         )
         key = InlineKeyboardMarkup(
             [
@@ -454,7 +454,7 @@ All commands can be used with: /
         await query.message.edit(
             text=top_text,
             reply_markup=InlineKeyboardMarkup(
-                paginate_modules(next_page + 1, HELPABLE, "mhelp")
+                paginate_modules(next_page + 1, HELPABLE, "help")
             ),
             disable_web_page_preview=True,
         )
@@ -463,7 +463,7 @@ All commands can be used with: /
         await query.message.edit(
             text=top_text,
             reply_markup=InlineKeyboardMarkup(
-                paginate_modules(0, HELPABLE, "mhelp")
+                paginate_modules(0, HELPABLE, "help")
             ),
             disable_web_page_preview=True,
         )
