@@ -11,13 +11,13 @@ from Yukki.Utilities.formatters import bytes
 __MODULE__ = "Speedtest"
 __HELP__ = """
 
-/speedtest 
+/mspeedtest 
 - Check Server Latency and Speed.
 
 """
 
 
-@app.on_message(filters.command("speedtest") & ~filters.edited)
+@app.on_message(filters.command("mspeedtest") & ~filters.edited)
 async def statsguwid(_, message):
     m = await message.reply_text("Running Speed test")
     try:
