@@ -35,11 +35,11 @@ __HELP__ = """
 - Start the Bot.
 
 
-/help 
+/mhelp 
 - Get Commands Helper Menu.
 
 
-/settings 
+/msettings 
 - Get Settings button.
 """
 
@@ -94,7 +94,7 @@ async def welcome(_, message: Message):
             return
 
 
-@app.on_message(filters.command(["mhelp", "start"]) & filters.group)
+@app.on_message(filters.command(["mhelp"]) & filters.group)
 @PermissionCheck
 async def useradd(_, message: Message):
     out = start_pannel()
