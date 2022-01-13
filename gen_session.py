@@ -1,14 +1,7 @@
 from os import getenv
 
-from dotenv import load_dotenv
-
-x = load_dotenv()
-if x:
-    API_ID = int(getenv("API_ID", None))
-    API_HASH = getenv("API_HASH", None)
-else:
-    API_ID = input("\nEnter Your API_ID:\n > ")
-    API_HASH = input("\nEnter Your API_HASH:\n > ")
+API_ID = input("\nEnter Your API_ID:\n > ")
+API_HASH = input("\nEnter Your API_HASH:\n > ")
 
 import asyncio
 
