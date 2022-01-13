@@ -68,8 +68,8 @@ async def initiate_bot():
             ):
                 imported_module.__MODULE__ = imported_module.__MODULE__
                 if (
-                    hasattr(imported_module, "__HELP__")
-                    and imported_module.__HELP__
+                    hasattr(imported_module, "__MHELP__")
+                    and imported_module.__MHELP__
                 ):
                     HELPABLE[
                         imported_module.__MODULE__.lower()
@@ -411,7 +411,7 @@ All commands can be used with: /
             "{} **{}**:\n".format(
                 "Here is the help for", HELPABLE[module].__MODULE__
             )
-            + HELPABLE[module].__HELP__
+            + HELPABLE[module].__MHELP__
         )
         key = InlineKeyboardMarkup(
             [
@@ -454,7 +454,7 @@ All commands can be used with: /
         await query.message.edit(
             text=top_text,
             reply_markup=InlineKeyboardMarkup(
-                paginate_modules(next_page + 1, HELPABLE, "help")
+                paginate_modules(next_page + 1, HELPABLE, "mhelp")
             ),
             disable_web_page_preview=True,
         )
@@ -463,7 +463,7 @@ All commands can be used with: /
         await query.message.edit(
             text=top_text,
             reply_markup=InlineKeyboardMarkup(
-                paginate_modules(0, HELPABLE, "help")
+                paginate_modules(0, HELPABLE, "mhelp")
             ),
             disable_web_page_preview=True,
         )
