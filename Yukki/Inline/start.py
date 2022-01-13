@@ -6,80 +6,36 @@ from Yukki import BOT_USERNAME
 
 
 def start_pannel():
-    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
-                ),
-            ],
-            [
-                InlineKeyboardButton(
-                    text="🔧 Settings", callback_data="settingm"
-                )
-            ],
-        ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
-    if not SUPPORT_CHANNEL and SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
-                ),
-            ],
-            [
-                InlineKeyboardButton(
-                    text="🔧 Settings", callback_data="settingm"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text="📨Support Group", url=f"{SUPPORT_GROUP}"
-                ),
-            ],
-        ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}*", buttons
-    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
-                ),
-            ],
-            [
-                InlineKeyboardButton(
-                    text="🔧 Settings", callback_data="settingm"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
-                ),
-            ],
-        ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
-    if SUPPORT_CHANNEL and SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="🗂 Helper Commands Menu", callback_data="shikhar"
-                ),
-            ],
-            [
-                InlineKeyboardButton(
-                    text="🔧 Settings", callback_data="settingm"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
-                ),
-                InlineKeyboardButton(
-                    text="📨Support Group", url=f"{SUPPORT_GROUP}"
-                ),
-            ],
-        ]
-        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
+    buttons = [
+        [
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/{GROUP}"),
+            InlineKeyboardButton(text="ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{CHANNEL}"),
+        ],
+        [
+            InlineKeyboardButton("🌐 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 🌐", url="https://github.com/Kayzyu/KayzuMultiAssistant"),
+        ],
+    ]
+    return (
+        "🎛 **{BOT_NAME} Merupakan salah satu dari bot telegram yang bisa memutar musik di grup**",
+        buttons,
+    )
+
+
+pstart_markup = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton(
+                "➕ ᴀᴅᴅ ᴍᴇ ʏᴏᴜʀ ᴛᴏ ɢʀᴏᴜᴘ​ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
+        ],
+        [
+            InlineKeyboardButton(text="✨ sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/{GROUP}"),
+            InlineKeyboardButton("✨ ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{CHANNEL}"),
+        ],
+        [
+            InlineKeyboardButton("🌐 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 🌐", url="https://github.com/Kayzyu/KayzuMultiAssistant"),
+        ],
+    ]
+)
 
 
 def private_panel():
