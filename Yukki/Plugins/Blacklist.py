@@ -8,7 +8,7 @@ __MODULE__ = "Blacklist"
 __HELP__ = """
 
 
-/blacklistedchat 
+/mblacklistedchat 
 - Check Blacklisted Chats of Bot.
 
 
@@ -16,17 +16,17 @@ __HELP__ = """
 Only for Sudo Users.
 
 
-/blacklistchat [CHAT_ID] 
+/mblacklistchat [CHAT_ID] 
 - Blacklist any chat from using Music Bot
 
 
-/whitelistchat [CHAT_ID] 
+/mwhitelistchat [CHAT_ID] 
 - Whitelist any blacklisted chat from using Music Bot
 
 """
 
 
-@app.on_message(filters.command("blacklistchat") & filters.user(SUDOERS))
+@app.on_message(filters.command("mblacklistchat") & filters.user(SUDOERS))
 async def blacklist_chat_func(_, message: Message):
     if len(message.command) != 2:
         return await message.reply_text(
@@ -43,7 +43,7 @@ async def blacklist_chat_func(_, message: Message):
     await message.reply_text("Something wrong happened, check logs.")
 
 
-@app.on_message(filters.command("whitelistchat") & filters.user(SUDOERS))
+@app.on_message(filters.command("mwhitelistchat") & filters.user(SUDOERS))
 async def whitelist_chat_func(_, message: Message):
     if len(message.command) != 2:
         return await message.reply_text(
@@ -60,7 +60,7 @@ async def whitelist_chat_func(_, message: Message):
     await message.reply_text("Something wrong happened, check logs.")
 
 
-@app.on_message(filters.command("blacklistedchat"))
+@app.on_message(filters.command("mblacklistedchat"))
 async def blacklisted_chats_func(_, message: Message):
     text = "**Blacklisted Chats:**\n\n"
     j = 0
