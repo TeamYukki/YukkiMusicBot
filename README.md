@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/notreallyshikhar/YukkiMusicBot/blob/master/Utils/icon.gif" alt="ICON" width="250" height="250"/></p>
 
 <h4 align="center">
-    A Telegram Music+Video Bot written in Python using Pyrogram and Py-Tgcalls 
+    A Telegram Music+video Bot written in Python using Pyrogram and Py-Tgcalls 
 </h4>
 <p align="center">
     <a href="https://t.me/YukkiRobot"> Ready-To-Use Bot </a> •
@@ -87,7 +87,7 @@ shikhar@MacBook~ $ bash start
 
 ## Contact & Support
 
-- [Telegram Channel](https://t.me/OfficialYukki")
+- [Telegram Channel](https://t.me/OfficialYukki)
 - [Telegram Support Group](https://t.me/OfficialYukkiSupport)
 - [Contact Owner](https://t.me/NotReallyShikhar)
 
