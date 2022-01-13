@@ -13,7 +13,7 @@ from Yukki import SUDOERS, app, db_mem, random_assistant
 from Yukki.Database import (get_active_chats, get_active_video_chats,
                             get_assistant, is_active_chat, save_assistant)
 from Yukki.Decorators.checker import checker, checkerCB
-from Yukki.Inline import primary_markup
+from Yukki.Inline import primary_markup,choose_markup
 from Yukki.Utilities.assistant import get_assistant_details
 
 loop = asyncio.get_event_loop()
@@ -36,6 +36,21 @@ Only for Sudo Users
 /leavebot [Chat Username or Chat ID]
 - Bot will leave the particular chat.
 """
+
+@app.on_callback_query(filters.regex("gback_list_chose_stream"))
+async def gback_list_chose_stream(_, CallbackQuery):
+    await CallbackQuery.answer()
+    callback_data = CallbackQuery.data.strip()
+    callback_request = callback_data.split(None, 1)[1]
+    videoid, duration, user_id = callback_request.split("|")
+    if CallbackQuery.from_user.id != int(user_id):
+        return await CallbackQuery.answer(
+            "This is not for you! Search You Own Song.", show_alert=True
+        )
+    buttons = choose_markup(videoid, duration, user_id)
+    await CallbackQuery.edit_message_reply_markup(
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
 
 
 @app.on_callback_query(filters.regex("pr_go_back_timer"))
