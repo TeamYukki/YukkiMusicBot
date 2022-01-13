@@ -94,7 +94,7 @@ async def welcome(_, message: Message):
             return
 
 
-@app.on_message(filters.command(["help,start"]) & filters.group)
+@app.on_message(filters.command(["help", "start"]) & filters.group)
 @PermissionCheck
 async def useradd(_, message: Message):
     out = start_pannel()
@@ -105,22 +105,6 @@ async def useradd(_, message: Message):
             reply_markup=InlineKeyboardMarkup(out[1]),
         ),
     )
-
-
-@app.on_message(filters.private & filters.incoming & filters.command("start"))
-async def play(_, message: Message):
-    if len(message.command) == 1:
-        user_id = message.from_user.id
-        user_name = message.from_user.first_name
-        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-        await app.send_message(
-            message.chat.id,
-            text=f"""
-**✨ Selamat Datang {rpk}!
-
-💬 [{BOT_NAME}](tg://user?id=2129034376) memungkinkan anda untuk memutar musik pada grup melalui obrolan suara yang baru di Telegram!
-
-💡 Untuk Mengetahui Semua Perintah Bot Dan Bagaimana Cara Kerja Nya Dengan Menekan Tombol » 📚 ᴄᴏᴍᴍᴀɴᴅ​!**
 
 
 @app.on_message(filters.command("settings") & filters.group)
