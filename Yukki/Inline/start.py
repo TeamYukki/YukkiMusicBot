@@ -5,37 +5,102 @@ from config import MUSIC_BOT_NAME, SUPPORT_CHANNEL, SUPPORT_GROUP
 from Yukki import BOT_USERNAME
 
 
-def start_pannel():
+def setting_markup2():
     buttons = [
         [
-            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/{GROUP}"),
-            InlineKeyboardButton(text="ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{CHANNEL}"),
+            InlineKeyboardButton(text="🔈 Audio Quality", callback_data="AQ"),
+            InlineKeyboardButton(text="🎚 Audio Volume", callback_data="AV"),
         ],
-        [
-            InlineKeyboardButton("🌐 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 🌐", url="https://github.com/Kayzyu/KayzuMultiAssistant"),
-        ],
-    ]
-    return (
-        "🎛 **{BOT_NAME} Merupakan salah satu dari bot telegram yang bisa memutar musik di grup**",
-        buttons,
-    )
-
-
-pstart_markup = InlineKeyboardMarkup(
-    [
         [
             InlineKeyboardButton(
-                "➕ ᴀᴅᴅ ᴍᴇ ʏᴏᴜʀ ᴛᴏ ɢʀᴏᴜᴘ​ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true"),
+                text="👥 Authorized Users", callback_data="AU"
+            ),
+            InlineKeyboardButton(
+                text="💻 Dashboard", callback_data="Dashboard"
+            ),
         ],
         [
-            InlineKeyboardButton(text="✨ sᴜᴘᴘᴏʀᴛ​", url=f"https://t.me/{GROUP}"),
-            InlineKeyboardButton("✨ ᴜᴘᴅᴀᴛᴇs", url=f"https://t.me/{CHANNEL}"),
-        ],
-        [
-            InlineKeyboardButton("🌐 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 🌐", url="https://github.com/Kayzyu/KayzuMultiAssistant"),
+            InlineKeyboardButton(text="✖️ Close", callback_data="close"),
         ],
     ]
-)
+    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
+
+
+def start_pannel():
+    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🔧 Settings", callback_data="settingm"
+                )
+            ],
+        ]
+        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
+    if not SUPPORT_CHANNEL and SUPPORT_GROUP:
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🔧 Settings", callback_data="settingm"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="📨Support Group", url=f"{SUPPORT_GROUP}"
+                ),
+            ],
+        ]
+        return f"🎛  **This is {MUSIC_BOT_NAME}*", buttons
+    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🔧 Settings", callback_data="settingm"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
+                ),
+            ],
+        ]
+        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
+    if SUPPORT_CHANNEL and SUPPORT_GROUP:
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    text="🗂 Helper Commands Menu", callback_data="shikhar"
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🔧 Settings", callback_data="settingm"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="📨Official Channel", url=f"{SUPPORT_CHANNEL}"
+                ),
+                InlineKeyboardButton(
+                    text="📨Support Group", url=f"{SUPPORT_GROUP}"
+                ),
+            ],
+        ]
+        return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
 
 
 def private_panel():
@@ -136,27 +201,6 @@ def setting_markup():
         [
             InlineKeyboardButton(text="✖️ Close", callback_data="close"),
             InlineKeyboardButton(text="🔙 Go Back", callback_data="okaybhai"),
-        ],
-    ]
-    return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
-
-
-def setting_markup2():
-    buttons = [
-        [
-            InlineKeyboardButton(text="🔈 Audio Quality", callback_data="AQ"),
-            InlineKeyboardButton(text="🎚 Audio Volume", callback_data="AV"),
-        ],
-        [
-            InlineKeyboardButton(
-                text="👥 Authorized Users", callback_data="AU"
-            ),
-            InlineKeyboardButton(
-                text="💻 Dashboard", callback_data="Dashboard"
-            ),
-        ],
-        [
-            InlineKeyboardButton(text="✖️ Close", callback_data="close"),
         ],
     ]
     return f"🔧  **{MUSIC_BOT_NAME} Settings**", buttons
