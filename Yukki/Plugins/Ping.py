@@ -12,7 +12,7 @@ from Yukki.Utilities.ping import get_readable_time
 __MODULE__ = "Ping"
 __HELP__ = """
 
-/ping - Check if Bot is alive or not.
+/pong - Check if Bot is alive or not.
 """
 
 
@@ -29,7 +29,7 @@ Disk: {disk}%"""
     return stats
 
 
-@app.on_message(filters.command(["ping", f"ping@{BOT_USERNAME}"]))
+@app.on_message(filters.command(["pong", f"pong@{BOT_USERNAME}"]))
 async def ping(_, message):
     start = datetime.now()
     response = await message.reply_photo(
