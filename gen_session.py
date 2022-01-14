@@ -1,9 +1,9 @@
+import asyncio
+from pyrogram import Client as c
+
 API_ID = input("\nEnter Your API_ID:\n > ")
 API_HASH = input("\nEnter Your API_HASH:\n > ")
 
-import asyncio
-
-from pyrogram import Client as c
 print("\n\n Enter Phone number when asked.\n\n")
 
 i = c(":memory:", api_id=API_ID, api_hash=API_HASH)
