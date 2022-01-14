@@ -227,7 +227,7 @@ async def set_var(client, message):
             return await message.reply_text(f"**.env dəyişən əlavə edilməsi:**\n\n`{to_set}` has been added sucsessfully. To restart the bot touch /restart command.")
 
 
-@app.on_message(filters.command("usage") & filters.user(SUDOERS))
+@app.on_message(filters.command("musage") & filters.user(SUDOERS))
 async def usage_dynos(client, message):
     ### Credits CatUserbot
     if await is_heroku():
