@@ -34,7 +34,7 @@ async def ping(_, message):
     start = datetime.now()
     response = await message.reply_photo(
         photo="Utils/IMG_20220111_124155_786.jpg",
-        caption=">> Pong...",
+        caption=">> Pong...🏓",
     )
     uptime = await bot_sys_stats()
     end = datetime.now()
