@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/notreallyshikhar/YukkiMusicBot/blob/master/Utils/icon.gif" alt="ICON" width="250" height="250"/></p>
 
 <h4 align="center">
-    A Telegram Music+Video Bot written in Python using Pyrogram and Py-Tgcalls 
+    A Telegram Music+video Bot written in Python using Pyrogram and Py-Tgcalls 
 </h4>
 <p align="center">
     <a href="https://t.me/YukkiRobot"> Ready-To-Use Bot </a> •
@@ -11,10 +11,10 @@
 </p>
     
 # Yukki Music Bot
-A Powerful Telegram Music+Video Bot by which you can stream songs, video and even live streams in your group calls via various sources. It comes with a user friendly and easy to use yet elegant features.
+A Powerful Telegram Music+Video Bot by which you can stream songs, videos and even live streams in your group calls via various sources. It comes with  user friendly and easy to use yet elegant features.
 
 ## Deployment
-Read [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/requirements) for Detailed Description and Setup Guide on deloying Bot.
+Read [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/requirements) for Detailed Description and Setup Guide on deploying Bot.
 
 > Click on buttons to expand!
 <details>
@@ -86,7 +86,7 @@ shikhar@MacBook~ $ bash start
 
 ## Contact & Support
 
-- [Telegram Channel](https://t.me/OfficialYukki")
+- [Telegram Channel](https://t.me/OfficialYukki)
 - [Telegram Support Group](https://t.me/OfficialYukkiSupport)
 - [Contact Owner](https://t.me/NotReallyShikhar)
 

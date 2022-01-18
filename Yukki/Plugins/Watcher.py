@@ -34,7 +34,7 @@ async def chat_watcher_func(_, message):
     checking = f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
     if await is_gbanned_user(userid):
         try:
-            await message.chat.kick_member(userid)
+            await message.chat.ban_member(userid)
         except Exception:
             return
         await message.reply_text(

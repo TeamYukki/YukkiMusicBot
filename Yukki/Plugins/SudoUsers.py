@@ -34,9 +34,6 @@ Only for Sudo Users.
 /delsudo [Username or Reply to a user]
 - To Remove A User from Bot's Sudo Users.
 
-/restart 
-- Restart Bot [All downloads, cache, raw files will be cleared too]. 
-
 /maintenance [enable / disable]
 - When enabled Bot goes under maintenance mode. No one can play Music now!
 
@@ -264,7 +261,7 @@ async def ban_globally(_, message):
             for chat in chats:
                 served_chats.append(int(chat["chat_id"]))
             m = await message.reply_text(
-                f"**Initializing Gobal Ban on {user.mention}**\n\nExpected Time : {len(served_chats)}"
+                f"**Initializing Global Ban on {user.mention}**\n\nExpected Time : {len(served_chats)}"
             )
             number_of_chats = 0
             for sex in served_chats:
