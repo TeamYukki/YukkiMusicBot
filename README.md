@@ -14,7 +14,8 @@
 A Powerful Telegram Music+Video Bot by which you can stream songs, videos and even live streams in your group calls via various sources. It comes with  user friendly and easy to use yet elegant features.
 
 ## Deployment
-https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FRidwanMusicProject%2FHalbertMusicBot
+<h3 align="center">Klik Tombol di Bawah ini untuk Deploy di Heroku :</h3>
+<p align="center"><a href="https://heroku.com/deploy?template=https://https://github.com/RidwanMusicProject/MULTIASISSTANT/"> <img src="https://img.shields.io/badge/Deploy%20Ke%20Heroku-aqua?style=flat&logo=heroku" width="300" height="40.00" /></a></p>
 > Click on buttons to expand!
 <details>
 <summary><b>🔗 Requirements</b></summary>
