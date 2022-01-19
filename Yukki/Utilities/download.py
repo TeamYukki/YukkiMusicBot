@@ -41,9 +41,9 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
         formats = YT_info(url)
-    except Exception:
+    except Exception as e:
         return await CallbackQuery.message.reply_text(
-            "Failed To Fetch Data from YT...Could be YTDL issue."
+          f"Failed To Fetch Data from YT...Could be YTDL issue.\nReason: {e}"
         )
     j = 0
     for x in formats:
