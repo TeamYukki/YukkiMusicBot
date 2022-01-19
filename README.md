@@ -14,8 +14,7 @@
 A Powerful Telegram Music+Video Bot by which you can stream songs, videos and even live streams in your group calls via various sources. It comes with  user friendly and easy to use yet elegant features.
 
 ## Deployment
-Read [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/requirements) for Detailed Description and Setup Guide on deploying Bot.
-
+https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FRidwanMusicProject%2FHalbertMusicBot
 > Click on buttons to expand!
 <details>
 <summary><b>🔗 Requirements</b></summary>
