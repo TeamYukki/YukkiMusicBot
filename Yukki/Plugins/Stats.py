@@ -17,6 +17,8 @@ from pyrogram import __version__ as pyrover
 from pyrogram import filters
 from pyrogram.types import Message
 
+from pytgcalls import __version__ as pytgover
+
 from config import (MONGO_DB_URI, MUSIC_BOT_NAME, STRING1, STRING2, STRING3,
                     STRING4, STRING5)
 from Yukki import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
@@ -107,12 +109,13 @@ async def stats_markup(_, CallbackQuery):
 [•]<u>**System Stats**</u>
 
 **{MUSIC_BOT_NAME} Uptime:** {uptime}
-**System Proc:** Online
+**System Process:** Online
 **Platform:** {sc}
 **Architecture:** {arch}
 **Ram:** {ram}
-**Python Ver:** {pyver.split()[0]}
-**Pyrogram Ver:** {pyrover}
+**Python Version:** {pyver.split()[0]}
+**Pyrogram Version:** {pyrover}
+**PyTgCalls Version:** {pytgover.__version__}
 
 [•]<u>**CPU Stats**</u>
 
@@ -137,7 +140,7 @@ async def stats_markup(_, CallbackQuery):
         smex = f"""
 [•]<u>**Storage Stats**</u>
 
-**Storage Avail:** {total[:4]} GiB
+**Storage Available:** {total[:4]} GiB
 **Storage Used:** {used[:4]} GiB
 **Storage Left:** {free[:4]} GiB"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats3)
