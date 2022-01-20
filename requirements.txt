@@ -17,7 +17,7 @@ psutil
 requests
 rich
 dnspython
-git+https://github.com/yt-dlp/yt-dlp@master
+yt-dlp
 tgcrypto
 gitpython
 heroku3
