@@ -2,7 +2,6 @@
 *.log
 .git/
 .idea/
-gen_session.py
 README.md
 downloads/
 raw_files/
