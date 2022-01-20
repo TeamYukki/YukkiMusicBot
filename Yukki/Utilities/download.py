@@ -14,8 +14,9 @@ def YT_info(yturl):
             if not "dash" in str(format["format"]).lower():
                 formats_available.append(
                     {
-                        "format": format["format"],
-                        "format_id": format["format_id"],
+                        "format": format.get("format"),
+                        "filesize": format.get("filesize"),
+                        "format_id": format.get("format_id"),
                         "yturl": yturl,
                     }
                 )
@@ -23,13 +24,26 @@ def YT_info(yturl):
         return formats_available
 
 
+def humanbytes(num, suffix="B"):
+    if num is None:
+        num = 0
+    else:
+        num = int(num)
+
+    for unit in ["", "K", "M", "G", "T", "P", "E", "Z"]:
+        if abs(num) < 1024.0:
+            return "%3.1f%s%s" % (num, unit, suffix)
+        num /= 1024.0
+    return "%.1f%s%s" % (num, "Yi", suffix)
+
+
 async def get_formats(CallbackQuery, videoid, user_id, type):
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
-      formats = YT_info(url)
-    except Exception as e:
+        formats = YT_info(url)
+    except Exception:
         return await CallbackQuery.message.reply_text(
-          f"Failed To Fetch Data from YT...Could be YTDL issue.\nReason: {e}"
+            "Failed To Fetch Data from YT...Could be YTDL issue."
         )
     j = 0
     for x in formats:
@@ -39,69 +53,69 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                 j += 1
                 if j == 1:
                     a1 = InlineKeyboardButton(
-                        text=f"Audio 🎵",
+                        text=f"Audio 🎵 {humanbytes(x['filesize'])}",
                         callback_data=f"ytdata audio||{x['format_id']}||{videoid}",
                     )
                 if j == 2:
                     a2 = InlineKeyboardButton(
-                        text=f"Audio 🎵",
+                        text=f"Audio 🎵 {humanbytes(x['filesize'])}",
                         callback_data=f"ytdata audio||{x['format_id']}||{videoid}",
                     )
                 if j == 3:
                     a3 = InlineKeyboardButton(
-                        text=f"Audio 🎵",
+                        text=f"Audio 🎵 {humanbytes(x['filesize'])}",
                         callback_data=f"ytdata audio||{x['format_id']}||{videoid}",
                     )
                 if j == 4:
                     a4 = InlineKeyboardButton(
-                        text=f"Audio 🎵",
+                        text=f"Audio 🎵 {humanbytes(x['filesize'])}",
                         callback_data=f"ytdata audio||{x['format_id']}||{videoid}",
                     )
                 if j == 5:
                     a5 = InlineKeyboardButton(
-                        text=f"Audio 🎵",
+                        text=f"Audio 🎵 {humanbytes(x['filesize'])}",
                         callback_data=f"ytdata audio||{x['format_id']}||{videoid}",
                     )
                 if j == 6:
                     a6 = InlineKeyboardButton(
-                        text=f"Audio 🎵",
+                        text=f"Audio 🎵 {humanbytes(x['filesize'])}",
                         callback_data=f"ytdata audio||{x['format_id']}||{videoid}",
                     )
         elif type == "video":
             if str(133) in check:
                 j += 1
                 a1 = InlineKeyboardButton(
-                    text=f"(240)p 📹",
+                    text=f"(240)p 📹 {humanbytes(x['filesize'])}",
                     callback_data=f"ytdata video||{x['format_id']}||{videoid}",
                 )
             if str(134) in check:
                 j += 1
                 a2 = InlineKeyboardButton(
-                    text=f"(360)p 📹",
+                    text=f"(360)p 📹 {humanbytes(x['filesize'])}",
                     callback_data=f"ytdata video||{x['format_id']}||{videoid}",
                 )
             if str(135) in check:
                 j += 1
                 a3 = InlineKeyboardButton(
-                    text=f"(480)p 📹",
+                    text=f"(480)p 📹 {humanbytes(x['filesize'])}",
                     callback_data=f"ytdata video||{x['format_id']}||{videoid}",
                 )
             if str(136) in check:
                 j += 1
                 a4 = InlineKeyboardButton(
-                    text=f"(720)p 📹",
+                    text=f"(720)p 📹 {humanbytes(x['filesize'])}",
                     callback_data=f"ytdata video||{x['format_id']}||{videoid}",
                 )
             if str(137) in check:
                 j += 1
                 a5 = InlineKeyboardButton(
-                    text=f"(1080)p 📹",
+                    text=f"(1080)p 📹 {humanbytes(x['filesize'])}",
                     callback_data=f"ytdata video||{x['format_id']}||{videoid}",
                 )
             if str(313) in check:
                 j += 1
                 a6 = InlineKeyboardButton(
-                    text=f"(2160)p 📹",
+                    text=f"(2160)p 📹 {humanbytes(x['filesize'])}",
                     callback_data=f"ytdata video||{x['format_id']}||{videoid}",
                 )
         else:
