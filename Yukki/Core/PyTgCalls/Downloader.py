@@ -21,20 +21,20 @@ def download(videoid: str, mystic, title) -> str:
     url = f"https://www.youtube.com/watch?v={videoid}"
 
     def my_hook(d):
-        if d["status"] == "downloading":
-            percentage = d["_percent_str"]
+        if d.get("status") == "downloading":
+            percentage = d.get("_percent_str")
             per = (str(percentage)).replace(".", "", 1).replace("%", "", 1)
             per = int(per)
-            eta = d["eta"]
-            speed = d["_speed_str"]
-            size = d["_total_bytes_str"]
-            bytesx = d["total_bytes"]
+            eta = d.get("eta")
+            speed = d.get("_speed_str")
+            size = d.get("_total_bytes_str")
+            bytesx = d.get("total_bytes")
             if str(bytesx) in flex:
                 pass
             else:
-                flex[str(bytesx)] = 1
-            if flex[str(bytesx)] == 1:
-                flex[str(bytesx)] += 1
+                flex.get(str(bytesx)) = 1
+            if flex.get(str(bytesx)) == 1:
+                flex.get(str(bytesx)) += 1
                 try:
                     if eta > 2:
                         mystic.edit(
@@ -43,32 +43,32 @@ def download(videoid: str, mystic, title) -> str:
                 except Exception as e:
                     pass
             if per > 250:
-                if flex[str(bytesx)] == 2:
-                    flex[str(bytesx)] += 1
+                if flex.get(str(bytesx)) == 2:
+                    flex.get(str(bytesx)) += 1
                     if eta > 2:
                         mystic.edit(
                             f"**{MUSIC_BOT_NAME}Downloader**\n\n**Title:** {title[:50]}:\n**FileSize:** {size}\n\n**<u>Downloaded:</u>**\n**Speed:** {speed}\n**ETA:** {eta} Seconds\n\n\n{percentage} ███▓▓▓▓▓▓▓▓▓ 100%"
                         )
             if per > 500:
-                if flex[str(bytesx)] == 3:
-                    flex[str(bytesx)] += 1
+                if flex.get(str(bytesx)) == 3:
+                    flex.get(str(bytesx)) += 1
                     if eta > 2:
                         mystic.edit(
                             f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}:\n**FileSize:** {size}\n\n**<u>Downloaded:</u>**\n**Speed:** {speed}\n**ETA:** {eta} Seconds\n\n\n{percentage} ██████▓▓▓▓▓▓ 100%"
                         )
             if per > 800:
-                if flex[str(bytesx)] == 4:
-                    flex[str(bytesx)] += 1
+                if flex.get(str(bytesx)) == 4:
+                    flex.get(str(bytesx)) += 1
                     if eta > 2:
                         mystic.edit(
                             f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}:\n**FileSize:** {size}\n\n**<u>Downloaded:</u>**\n**Speed:** {speed}\n**ETA:** {eta} Seconds\n\n\n{percentage} ██████████▓▓ 100%"
                         )
         if d["status"] == "finished":
             try:
-                taken = d["_elapsed_str"]
+                taken = d.get("_elapsed_str")
             except Exception as e:
                 taken = "00:00"
-            size = d["_total_bytes_str"]
+            size = d.get("_total_bytes_str")
             mystic.edit(
                 f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}:\n\n100% ████████████100%\n\n**Time Taken:** {taken} Seconds\n\nConverting Audio[FFmpeg Process]"
             )
