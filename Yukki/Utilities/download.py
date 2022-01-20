@@ -9,7 +9,7 @@ def YT_info(yturl):
     with ydl:
         formats_available = []
         r = ydl.extract_info(yturl, download=False)
-        for format in r.get("formats"):
+        for format in r["formats"]:
             # Filter dash video(without audio)
             if not "dash" in str(format["format"]).lower():
                 formats_available.append(
