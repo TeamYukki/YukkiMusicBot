@@ -230,7 +230,7 @@ async def initiate_bot():
 
 
 home_text_pm = f"""Hello ,
-My name is {BOT_NAME}.
+My name is {Excalibur Vc bot}.
 A Telegram Music+Video Streaming bot with some useful features.
 
 All commands can be used with: / """
@@ -250,7 +250,7 @@ async def start_command(_, message):
             sudoers = await get_sudoers()
             text = "⭐️<u> **Owners:**</u>\n"
             sex = 0
-            for x in OWNER_ID:
+            for x in OWNER_ID:5070771367
                 try:
                     user = await app.get_users(x)
                     user = (
