@@ -560,8 +560,11 @@ async def broadcast(_, message):
 async def clean(_, message):
     dir = "downloads"
     dir1 = "cache"
+    dir2 = "raw_files"
     shutil.rmtree(dir)
     shutil.rmtree(dir1)
+    shutil.rmtree(dir2)
     os.mkdir(dir)
     os.mkdir(dir1)
+    os.mkdir(dir2)
     await message.reply_text("Successfully cleaned all **temp** dir(s)!")
