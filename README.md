@@ -3,11 +3,7 @@
 <h4 align="center">
     A Telegram Music+video Bot written in Python using Pyrogram and Py-Tgcalls 
 </h4>
-<p align="center">
-    <a href="https://t.me/YukkiRobot"> Ready-To-Use Bot </a> •
-    <a href="https://notreallyshikhar.gitbook.io/yukkimusicbot/about/getting-started"> Documentation </a> •
-    <a href="https://t.me/OfficialYukki"> Support Channel </a> •
-    <a href="https://t.me/YukkiSupport"> Support Chat </a> 
+
 </p>
     
 # Yukki Music Bot
@@ -78,17 +74,6 @@ shikhar@MacBook~ $ bash start
 > Not Getting VPS Method? [Watch Tutorial](https://t.me/OfficialYukki/2275)
 </details>
 
-## Config Vars
-
-- Checkout All [Available Vars](https://notreallyshikhar.gitbook.io/yukkimusicbot/vars/available-vars)
-- Checkout Only [Mandatory Vars](https://notreallyshikhar.gitbook.io/yukkimusicbot/vars/mandatory-vars)
-- Checkout Some [Configs](https://notreallyshikhar.gitbook.io/yukkimusicbot/setup-config/config)
-
-## Contact & Support
-
-- [Telegram Channel](https://t.me/OfficialYukki)
-- [Telegram Support Group](https://t.me/OfficialYukkiSupport)
-- [Contact Owner](https://t.me/NotReallyShikhar)
 
 
 ## License
