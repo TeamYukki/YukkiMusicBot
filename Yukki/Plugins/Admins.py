@@ -36,10 +36,10 @@ __MODULE__ = "Voice Chat"
 __HELP__ = """
 
 
-/pause
+/ps
 - Pause the playing music on voice chat.
 
-/resume
+/rs
 - Resume the paused music on voice chat.
 
 /skip
@@ -64,7 +64,7 @@ Only for Sudo Users
 
 
 @app.on_message(
-    filters.command(["pause", "skip", "resume", "stop", "end"])
+    filters.command(["ps", "skip", "rs", "stop", "end"])
     & filters.group
 )
 @AdminRightsCheck
