@@ -1,16 +1,11 @@
-<p align="center"><img src="https://github.com/notreallyshikhar/YukkiMusicBot/blob/master/Utils/icon.gif" alt="ICON" width="250" height="250"/></p>
-
 <h4 align="center">
     A Telegram Music+video Bot written in Python using Pyrogram and Py-Tgcalls 
 </h4>
 
 </p>
     
-# Yukki Music Bot
+# Sky Music Bot
 A Powerful Telegram Music+Video Bot by which you can stream songs, videos and even live streams in your group calls via various sources. It comes with  user friendly and easy to use yet elegant features.
-
-## Deployment
-Read [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/requirements) for Detailed Description and Setup Guide on deploying Bot.
 
 > Click on buttons to expand!
 <details>
@@ -41,7 +36,6 @@ Read [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/require
 </details>
 
 <details>
-<summary><b>🔗 Deploy to Heroku</b></summary>
 <br>
 
 > Heroku has two vars[ HEROKU_API_KEY & HEROKU_APP_NAME ] for Updater to work. 
@@ -57,8 +51,6 @@ Read [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/require
 <summary><b>🔗 Deploy to VPS</b></summary>
 <br>
 
-> Checkout [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/local-hosting-or-vps) for Detailed Explanation on VPS Deploy
-
 
 ```console
 shikhar@MacBook~ $ git clone https://github.com/notreallyshikhar/YukkiMusicBot
@@ -70,10 +62,6 @@ shikhar@MacBook~ $ cp sample.env .env
 ```console
 shikhar@MacBook~ $ bash start
 ```
-
-> Not Getting VPS Method? [Watch Tutorial](https://t.me/OfficialYukki/2275)
-</details>
-
 
 
 ## License
