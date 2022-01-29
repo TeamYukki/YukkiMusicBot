@@ -26,11 +26,11 @@ def url_markup(videoid, duration, user_id, query, query_type):
         ],
         [
             InlineKeyboardButton(
-                text="🔎 More Results",
+                text="🔎 Tampilkan lebih banyak",
                 callback_data=f"Search {query}|{user_id}",
             ),
             InlineKeyboardButton(
-                text="🗑 Close Search",
+                text="🗑 Tutup pencarian",
                 callback_data=f"forceclose {query}|{user_id}",
             ),
         ],
@@ -42,17 +42,17 @@ def url_markup2(videoid, duration, user_id):
     buttons = [
         [
             InlineKeyboardButton(
-                text="🎵 Play Music",
+                text="🎵 Mainkan Musik",
                 callback_data=f"MusicStream {videoid}|{duration}|{user_id}",
             ),
             InlineKeyboardButton(
-                text="🎥 Play Video",
+                text="🎥 Mainkan Video",
                 callback_data=f"Choose {videoid}|{duration}|{user_id}",
             ),
         ],
         [
             InlineKeyboardButton(
-                text="🗑 Close Search",
+                text="🗑 Tutup Pencarian",
                 callback_data=f"forceclose {videoid}|{user_id}",
             )
         ],
@@ -173,7 +173,7 @@ def secondary_markup(videoid, user_id):
         ],
         [
             InlineKeyboardButton(
-                text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"
+                text="🔗 Menu Yang Lain", callback_data=f"other {videoid}|{user_id}"
             ),
             InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close"),
         ],
@@ -215,7 +215,7 @@ def primary_markup(videoid, user_id, current_time, total_time):
         ],
         [
             InlineKeyboardButton(
-                text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"
+                text="🔗 Menu Yang Lain", callback_data=f"other {videoid}|{user_id}"
             ),
             InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close"),
         ],
@@ -239,7 +239,7 @@ def timer_markup(videoid, user_id, current_time, total_time):
         ],
         [
             InlineKeyboardButton(
-                text="🔗 More Menu", callback_data=f"other {videoid}|{user_id}"
+                text="🔗 menu Yang Lain", callback_data=f"other {videoid}|{user_id}"
             ),
             InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close"),
         ],
@@ -283,7 +283,7 @@ def audio_timer_markup_start(videoid, user_id, current_time, total_time):
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
-        [InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close")],
+        [InlineKeyboardButton(text="🗑 Tutup Menu", callback_data=f"close")],
     ]
     return buttons
 
@@ -296,6 +296,6 @@ audio_markup2 = InlineKeyboardMarkup(
             InlineKeyboardButton(text="⏭️", callback_data=f"skipcb"),
             InlineKeyboardButton(text="⏹️", callback_data=f"stopcb"),
         ],
-        [InlineKeyboardButton("🗑 Close Menu", callback_data="close")],
+        [InlineKeyboardButton("🗑 Tutup Menu", callback_data="close")],
     ]
 )
