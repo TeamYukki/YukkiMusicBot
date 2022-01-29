@@ -6,8 +6,8 @@
   "python3",
   "telegram",
   "bot",
-  "Yukki",
-  "YukkiMusicBot",
+  "Sky",
+  "SkyMusicBot",
   "telegram-bot",
   "pyrogram"
   ],
@@ -120,7 +120,7 @@
     },
     "UPSTREAM_BRANCH": {
       "description": "Repo's Branch Name",
-      "value": "master",
+      "value": "main",
       "required": true
     }
   },
