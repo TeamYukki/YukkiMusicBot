@@ -1,4 +1,5 @@
-<p align="center"><img src="https://github.com/notreallyshikhar/YukkiMusicBot/blob/master/Utils/icon.gif" alt="ICON" width="250" height="250"/></p>
+<p align="center"><img src="![image](https://user-images.githubusercontent.com/96367042/151690672-9b2939ed-8bbf-4ac2-aa8a-43ddbf3f3534.png)
+" alt="ICON" width="250" height="250"/></p>
 
 <h4 align="center">
     A Telegram Music+video Bot written in Python using Pyrogram and Py-Tgcalls 
@@ -86,21 +87,7 @@ shikhar@MacBook~ $ bash start
 
 ## Contact & Support
 
-- [Telegram Channel](https://t.me/OfficialYukki)
+- [Telegram Channel](https://t.me/)
 - [Telegram Support Group](https://t.me/OfficialYukkiSupport)
 - [Contact Owner](https://t.me/NotReallyShikhar)
 
-
-## License
-
-Distributed under the [GNU General Public License v3.0 License.](https://github.com/notreallyshikhar/YukkiMusicBot/blob/main/LICENSE) See `LICENSE.md` for more information.
-
-## Acknowledgements
-
-Special thanks to these amazing projects/people which/who help power Yukki Music Bot:
-
-- [Pyrogram](https://github.com/pyrogram/pyrogram)
-- [Py-Tgcalls](https://github.com/pytgcalls/pytgcalls)
-- [CallsMusic Team](https://github.com/Callsmusic)
-- [TheHamkerCat](https://github.com/TheHamkerCat)
-- [Charon Baglari](https://github.com/XCBv021)
