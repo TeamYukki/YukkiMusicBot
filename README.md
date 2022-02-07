@@ -3,7 +3,7 @@
 <h4 align="center">
     A Telegram Music+video Bot written in Python using Pyrogram and Py-Tgcalls 
 </h4>
-<p align="center">
+<p align="center">.
     <a href="https://t.me/YukkiRobot"> Ready-To-Use Bot </a> •
     <a href="https://notreallyshikhar.gitbook.io/yukkimusicbot/about/getting-started"> Documentation </a> •
     <a href="https://t.me/OfficialYukki"> Support Channel </a> •
