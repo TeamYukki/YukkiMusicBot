@@ -31,6 +31,7 @@ MONGO_DB_URI = getenv("MONGO_DB_URI")
 
 
 ## PRIVATE START MESSAGE.. IMAGE
+# Please use telegraph link for this
 
 START_IMG_URL = getenv("START_IMG_URL", None)
 
