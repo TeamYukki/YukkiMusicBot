@@ -10,7 +10,7 @@ from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
-from config import (LOG_GROUP_ID, LOG_SESSION, START_IMG_URL, STRING1, STRING2,
+from config import (LOG_GROUP_ID, LOG_SESSION, STRING1, STRING2,
                     STRING3, STRING4, STRING5)
 from Yukki import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
                    ASSID1, ASSID2, ASSID3, ASSID4, ASSID5, ASSNAME1, ASSNAME2,
@@ -25,6 +25,11 @@ from Yukki.Database import (get_active_chats, get_active_video_chats,
 from Yukki.Inline import private_panel
 from Yukki.Plugins import ALL_MODULES
 from Yukki.Utilities.inline import paginate_modules
+
+try:
+    from config import START_IMG_URL
+except:
+    START_IMG_URL = None
 
 loop = asyncio.get_event_loop()
 console = Console()
