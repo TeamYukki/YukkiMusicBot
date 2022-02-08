@@ -13,14 +13,12 @@ async def convert(file_path: str) -> str:
     out = ".".join(out)
     out = path.basename(out)
     out = path.join("raw_files", out)
-
     if path.isfile(out):
         return out
-
     try:
         proc = await asyncio.create_subprocess_shell(
             cmd=(
-                "ffmpeg " 
+                "ffmpeg "
                 "-y -i "
                 f"{file_path} "
                 "-f s16le "
@@ -29,7 +27,7 @@ async def convert(file_path: str) -> str:
                 "-acodec "
                 "pcm_s16le "
                 f"{out}"
-            ),    
+            ),
             stdin=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )

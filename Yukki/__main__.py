@@ -10,12 +10,12 @@ from rich.console import Console
 from rich.table import Table
 from youtubesearchpython import VideosSearch
 
-from config import (LOG_GROUP_ID, LOG_SESSION, STRING1, STRING2, STRING3,
-                    STRING4, STRING5)
+from config import (LOG_GROUP_ID, LOG_SESSION, START_IMG_URL, STRING1, STRING2,
+                    STRING3, STRING4, STRING5)
 from Yukki import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
                    ASSID1, ASSID2, ASSID3, ASSID4, ASSID5, ASSNAME1, ASSNAME2,
                    ASSNAME3, ASSNAME4, ASSNAME5, BOT_ID, BOT_NAME, LOG_CLIENT,
-                   OWNER_ID, app)
+                   OWNER_ID, SUDOERS, app, random_assistant)
 from Yukki.Core.Clients.cli import LOG_CLIENT
 from Yukki.Core.PyTgCalls.Yukki import (pytgcalls1, pytgcalls2, pytgcalls3,
                                         pytgcalls4, pytgcalls5)
@@ -35,6 +35,12 @@ async def initiate_bot():
     with console.status(
         "[magenta] Finalizing Booting...",
     ) as status:
+        ass_count = len(random_assistant)
+        if ass_count == 0:
+            console.print(
+                f"\n[red] No Assistant Clients Vars Defined!.. Exiting Process"
+            )
+            return
         try:
             chats = await get_active_video_chats()
             for chat in chats:
@@ -354,10 +360,17 @@ async def start_command(_, message):
                 )
             return
     out = private_panel()
-    await message.reply_text(
-        home_text_pm,
-        reply_markup=InlineKeyboardMarkup(out[1]),
-    )
+    if START_IMG_URL is None:
+        await message.reply_text(
+            home_text_pm,
+            reply_markup=InlineKeyboardMarkup(out[1]),
+        )
+    else:
+        await message.reply_photo(
+            photo=START_IMG_URL,
+            caption=home_text_pm,
+            reply_markup=InlineKeyboardMarkup(out[1]),
+        )
     if await is_on_off(5):
         sender_id = message.from_user.id
         sender_name = message.from_user.first_name
@@ -391,6 +404,15 @@ async def shikhar(_, CallbackQuery):
     await CallbackQuery.message.edit(text, reply_markup=keyboard)
 
 
+@app.on_callback_query(filters.regex("search_helper_mess"))
+async def search_helper_mess(_, CallbackQuery):
+    await CallbackQuery.message.delete()
+    text, keyboard = await help_parser(CallbackQuery.from_user.mention)
+    await app.send_message(
+        CallbackQuery.message.chat.id, text, reply_markup=keyboard
+    )
+
+
 @app.on_callback_query(filters.regex(r"help_(.*?)"))
 async def help_button(client, query):
     home_match = re.match(r"help_home\((.+?)\)", query.data)
@@ -407,6 +429,15 @@ All commands can be used with: /
  """
     if mod_match:
         module = mod_match.group(1)
+        if str(module) == "sudousers":
+            userid = query.from_user.id
+            if userid in SUDOERS:
+                pass
+            else:
+                return await query.answer(
+                    "This Button can only be accessed by SUDO USERS",
+                    show_alert=True,
+                )
         text = (
             "{} **{}**:\n".format(
                 "Here is the help for", HELPABLE[module].__MODULE__

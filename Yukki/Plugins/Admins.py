@@ -32,34 +32,19 @@ from Yukki.Utilities.youtube import get_m3u8, get_yt_info_id
 loop = asyncio.get_event_loop()
 
 
-__MODULE__ = "Voice Chat"
+__MODULE__ = "Admin"
 __HELP__ = """
 
 
-/pause
-- Pause the playing music on voice chat.
+/pause - Pause the playing music on voice chat.
 
-/resume
-- Resume the paused music on voice chat.
+/resume - Resume the paused music on voice chat.
 
-/skip
-- Skip the current playing music on voice chat
+/skip - Skip the current playing music on voice chat
 
-/end or /stop
-- Stop the playout.
+/stop - Stop the playout.
 
-/queue
-- Check queue list.
-
-
-**Note:**
-Only for Sudo Users
-
-/activevc
-- Check active voice chats on bot.
-
-/activevideo
-- Check active video calls on bot.
+/queue - Check queue list.
 """
 
 
@@ -74,7 +59,9 @@ async def admins(_, message: Message):
     if not len(message.command) == 1:
         return await message.reply_text("Error! Wrong Usage of Command.")
     if not await is_active_chat(message.chat.id):
-        return await message.reply_text("Nothing is playing on voice chat.")
+        return await message.reply_text(
+            "Nothing is playing on voice chat. No Active Voice Chat Found"
+        )
     chat_id = message.chat.id
     if message.command[0][1] == "a":
         if not await is_music_playing(message.chat.id):

@@ -63,6 +63,11 @@
       "value": "",
       "required": true
     },
+    "START_IMG_URL": {
+      "description": "Telegraph Image Link for the Private Start Message",
+      "value": "",
+      "required": false
+    },
     "STRING_SESSION1": {
       "description": "A Pyrogram String Session. One Assistant is Compulsory.",
       "value": "",

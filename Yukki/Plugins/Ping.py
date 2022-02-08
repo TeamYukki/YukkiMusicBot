@@ -9,10 +9,16 @@ from pyrogram.types import Message
 from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, boottime
 from Yukki.Utilities.ping import get_readable_time
 
-__MODULE__ = "Ping"
+__MODULE__ = "Essentials"
 __HELP__ = """
 
 /ping - Check if Bot is alive or not.
+
+/start - Start the Bot.
+
+/help - Get Commands Helper Menu.
+
+/settings - Get Settings button.
 """
 
 
