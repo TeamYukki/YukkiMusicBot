@@ -66,7 +66,7 @@ __HELP__ = f"""
 **<u>VIDEOCALLS FUNCTION:</u>**
 /set_video_limit [Number of Chats] - Set a maximum Number of Chats allowed for Video Calls at a time.
 
-**<u>ASSISTAN FUNCTION:</u>**
+**<u>ASSISTANT FUNCTION:</u>**
 {ASSISTANT_PREFIX[0]}block [ Reply to a User Message] - Blocks the User from Assistant Account.
 {ASSISTANT_PREFIX[0]}unblock [ Reply to a User Message] - Unblocks the User from Assistant Account.
 {ASSISTANT_PREFIX[0]}approve [ Reply to a User Message] - Approves the User for DM.
