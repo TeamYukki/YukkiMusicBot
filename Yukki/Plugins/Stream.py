@@ -32,18 +32,14 @@ from Yukki.Utilities.youtube import (get_m3u8, get_yt_info_id,
 
 loop = asyncio.get_event_loop()
 
-__MODULE__ = "VideoCalls"
+__MODULE__ = "Play"
 __HELP__ = f"""
 
-/play [Reply to any Video] or [YT Link] or [Music Name]
-- Stream Video on Voice Chat
+/play [Reply to any Audio or Video] or [YT Link] or [Music Name]
+- Stream Audio + Video on Voice Chat
 
-**For Sudo User:-**
-
-/set_video_limit [Number of Chats]
-- Set a maximum Number of Chats allowed for Video Calls at a time.
-
-
+/song [Youtube URL or Search Query] 
+- Download the particular query in audio or video format.
 """
 
 

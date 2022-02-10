@@ -27,22 +27,6 @@ from Yukki.Utilities.ping import get_readable_time
 
 welcome_group = 2
 
-__MODULE__ = "Essentials"
-__HELP__ = """
-
-
-/start 
-- Start the Bot.
-
-
-/help 
-- Get Commands Helper Menu.
-
-
-/settings 
-- Get Settings button.
-"""
-
 
 @app.on_message(filters.new_chat_members, group=welcome_group)
 async def welcome(_, message: Message):

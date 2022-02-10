@@ -9,7 +9,8 @@ from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 
 from config import LOG_SESSION, OWNER_ID
-from Yukki import BOT_ID, BOT_USERNAME, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
+from Yukki import (ASSISTANT_PREFIX, BOT_ID, BOT_USERNAME, MUSIC_BOT_NAME,
+                   OWNER_ID, SUDOERS, app)
 from Yukki.Database import (add_gban_user, add_off, add_on, add_sudo,
                             get_active_chats, get_served_chats, get_sudoers,
                             is_gbanned_user, remove_active_chat,
@@ -17,31 +18,61 @@ from Yukki.Database import (add_gban_user, add_off, add_on, add_sudo,
                             set_video_limit)
 
 __MODULE__ = "SudoUsers"
-__HELP__ = """
+__HELP__ = f"""
 
-
-/sudolist 
-    Check the sudo user list of Bot. 
-
-
-**Note:**
-Only for Sudo Users. 
-
-
+**<u>ADD & REMOVE SUDO USERS :</u>**
 /addsudo [Username or Reply to a user]
-- To Add A User In Bot's Sudo Users.
-
 /delsudo [Username or Reply to a user]
-- To Remove A User from Bot's Sudo Users.
 
-/maintenance [enable / disable]
-- When enabled Bot goes under maintenance mode. No one can play Music now!
+**<u>HEROKU:</u>**
+/get_log - Log of last 100 lines from Heroku.
+/usage - Dyno Usage.
 
-/logger [enable / disable]
-- When enabled Bot logs the searched queries in logger group.
+**<u>CONFIG VARS:</u>**
+/get_var - Get a config var from Heroku or .env.
+/del_var - Delete any var on Heroku or .env.
+/set_var [Var Name] [Value] - Set a Var or Update a Var on heroku or .env. Seperate Var and its Value with a space.
 
-/clean
-- Clean Temp Files and Logs.
+**<u>BOT COMMANDS:</u>**
+/restart - Restart Bot. 
+/update - Update Bot.
+/clean - Clean Temp Files .
+/maintenance [enable / disable] 
+/logger [enable / disable] - Bot logs the searched queries in logger group.
+
+**<u>STATS COMMANDS:</u>**
+/activevc - Check active voice chats on bot.
+/activevideo - Check active video calls on bot.
+/stats - Check Bots Stats
+
+**<u>BLACKLIST CHAT FUNCTION:</u>**
+/blacklistchat [CHAT_ID] - Blacklist any chat from using Music Bot
+/whitelistchat [CHAT_ID] - Whitelist any blacklisted chat from using Music Bot
+
+**<u>BROADCAST FUNCTION:</u>**
+/broadcast [Message or Reply to a Message] - Broadcast any message to Bot's Served Chats.
+/broadcast_pin [Message or Reply to a Message] - Broadcast any message to Bot's Served Chats with message getting Pinned in chat [Disabled Notifications].
+/broadcast_pin_loud [Message or Reply to a Message] - Broadcast any message to Bot's Served Chats with message getting Pinned in chat [Enabled Notifications].
+
+**<u>GBAN FUNCTION:</u>**
+/gban [Username or Reply to a user] - Ban a user globally in Bot's Served Chats and prevents user from using bot commands.
+/ungban [Username or Reply to a user] - Remove a user from Bot's GBan List.
+
+**<u>JOIN/LEAVE FUNCTION:</u>**
+/joinassistant [Chat Username or Chat ID] - Join assistant to a group.
+/leaveassistant [Chat Username or Chat ID] - Assistant will leave the particular group.
+/leavebot [Chat Username or Chat ID] - Bot will leave the particular chat.
+
+**<u>VIDEOCALLS FUNCTION:</u>**
+/set_video_limit [Number of Chats] - Set a maximum Number of Chats allowed for Video Calls at a time.
+
+**<u>ASSISTAN FUNCTION:</u>**
+{ASSISTANT_PREFIX[0]}block [ Reply to a User Message] - Blocks the User from Assistant Account.
+{ASSISTANT_PREFIX[0]}unblock [ Reply to a User Message] - Unblocks the User from Assistant Account.
+{ASSISTANT_PREFIX[0]}approve [ Reply to a User Message] - Approves the User for DM.
+{ASSISTANT_PREFIX[0]}disapprove [ Reply to a User Message] - Disapproves the User for DM.
+{ASSISTANT_PREFIX[0]}pfp [ Reply to a Photo] - Changes Assistant account PFP.
+{ASSISTANT_PREFIX[0]}bio [Bio text] - Changes Bio of Assistant Account.
 """
 # Add Sudo Users!
 

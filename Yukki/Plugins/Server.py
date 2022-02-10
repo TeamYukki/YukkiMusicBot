@@ -1,12 +1,13 @@
 import asyncio
 import math
 import os
-import dotenv
 import random
 import shutil
+import sys
 from datetime import datetime
 from time import strftime, time
 
+import dotenv
 import heroku3
 import requests
 import urllib3
@@ -18,40 +19,12 @@ from pyrogram.types import Message
 from config import (HEROKU_API_KEY, HEROKU_APP_NAME, UPSTREAM_BRANCH,
                     UPSTREAM_REPO)
 from Yukki import LOG_GROUP_ID, MUSIC_BOT_NAME, SUDOERS, app
-from Yukki.Database import get_active_chats, remove_active_chat, remove_active_video_chat
+from Yukki.Database import (get_active_chats, remove_active_chat,
+                            remove_active_video_chat)
 from Yukki.Utilities.heroku import is_heroku, user_input
 from Yukki.Utilities.paste import isPreviewUp, paste_queue
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-
-__MODULE__ = "Server"
-__HELP__ = f"""
-
-**Note:**
-**Only for Sudo Users**
-
-/get_log
-- Get log of last 100 lines from Heroku.
-
-/get_var
-- Get a config var from Heroku or .env.
-
-/del_var
-- Delete any var on Heroku or .env.
-
-/set_var [Var Name] [Value]
-- Set a Var or Update a Var on heroku or .env. Seperate Var and its Value with a space.
-
-/usage
-- Get Dyno Usage.
-
-/update
-- Update Your Bot.
-
-/restart 
-- Restart Bot [All downloads, cache, raw files will be cleared too]. 
-"""
 
 
 XCB = [
@@ -139,7 +112,9 @@ async def varget_(client, message):
         if not output:
             return await message.reply_text("No such Var")
         else:
-            return await message.reply_text(f".env:\n\n**{check_var}:** `{str(output)}`")
+            return await message.reply_text(
+                f".env:\n\n**{check_var}:** `{str(output)}`"
+            )
 
 
 @app.on_message(filters.command("del_var") & filters.user(SUDOERS))
@@ -180,7 +155,9 @@ async def vardel_(client, message):
         if not output[0]:
             return await message.reply_text("No such Var")
         else:
-            return await message.reply_text(f".env Var Deletion:\n\n`{check_var}` has been deleted successfully. To restart the bot touch /restart command.")
+            return await message.reply_text(
+                f".env Var Deletion:\n\n`{check_var}` has been deleted successfully. To restart the bot touch /restart command."
+            )
 
 
 @app.on_message(filters.command("set_var") & filters.user(SUDOERS))
@@ -222,9 +199,13 @@ async def set_var(client, message):
             return await message.reply_text(".env not found.")
         output = dotenv.set_key(path, to_set, value)
         if dotenv.get_key(path, to_set):
-            return await message.reply_text(f"**.env Var Updation:**\n\n`{to_set}`has been updated successfully. To restart the bot touch /restart command.")
+            return await message.reply_text(
+                f"**.env Var Updation:**\n\n`{to_set}`has been updated successfully. To restart the bot touch /restart command."
+            )
         else:
-            return await message.reply_text(f"**.env dəyişən əlavə edilməsi:**\n\n`{to_set}` has been added sucsessfully. To restart the bot touch /restart command.")
+            return await message.reply_text(
+                f"**.env dəyişən əlavə edilməsi:**\n\n`{to_set}` has been added sucsessfully. To restart the bot touch /restart command."
+            )
 
 
 @app.on_message(filters.command("usage") & filters.user(SUDOERS))
@@ -367,7 +348,7 @@ async def update_(client, message):
         )
         os.system("pip3 install -r requirements.txt")
         os.system(f"kill -9 {os.getpid()} && bash start")
-        exit()
+        sys.exit()
     return
 
 

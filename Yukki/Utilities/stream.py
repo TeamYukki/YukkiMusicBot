@@ -132,7 +132,7 @@ async def start_stream_audio(
         final_output = await message.reply_photo(
             photo="Utils/Telegram.JPEG",
             caption=(
-                f"🎬<b>__Audio:__ </b> [Given Audio Via Telegram]({link})\n⏳<b>__Duration:__</b> {duration_min} \n👤<b>__Requested by:__ </b>{message.from_user.mention} \n🚧<b>__Queued at:__</b> <b>#{position}!</b>"
+                f"💡<b>Started Streaming Audio: </b> [Given Audio Via Telegram]({link})\n⏳<b>__Duration:__</b> {duration_min} \n👤<b>__Requested by:__ </b>{message.from_user.mention} \n🚧<b>__Queued at:__</b> <b>#{position}!</b>"
             ),
             reply_markup=audio_markup2,
         )

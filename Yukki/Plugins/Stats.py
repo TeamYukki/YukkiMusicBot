@@ -16,6 +16,7 @@ from pyrogram import Client
 from pyrogram import __version__ as pyrover
 from pyrogram import filters
 from pyrogram.types import Message
+from pytgcalls import __version__ as pytgover
 
 from config import (MONGO_DB_URI, MUSIC_BOT_NAME, STRING1, STRING2, STRING3,
                     STRING4, STRING5)
@@ -25,15 +26,6 @@ from Yukki.Database import get_gbans_count, get_served_chats, get_sudoers
 from Yukki.Inline import stats1, stats2, stats3, stats4, stats5, stats6, stats7
 from Yukki.Plugins import ALL_MODULES
 from Yukki.Utilities.ping import get_readable_time
-
-__MODULE__ = "Stats"
-__HELP__ = """
-
-
-/stats
-- Check the Stats of Bot.
-- Gets the stat of MongoDb , Assistant, System etc
-"""
 
 
 async def bot_sys_stats():
@@ -99,7 +91,7 @@ async def stats_markup(_, CallbackQuery):
         cupc += "**Total CPU Usage:**\n"
         cupc += f"All Cores Usage: {psutil.cpu_percent()}%\n"
         ram = (
-            str(round(psutil.virtual_memory().total / (1024.0 ** 3))) + " GB"
+            str(round(psutil.virtual_memory().total / (1024.0**3))) + " GB"
         )
         bot_uptime = int(time.time() - boottime)
         uptime = f"{get_readable_time((bot_uptime))}"
@@ -107,12 +99,13 @@ async def stats_markup(_, CallbackQuery):
 [•]<u>**System Stats**</u>
 
 **{MUSIC_BOT_NAME} Uptime:** {uptime}
-**System Proc:** Online
+**System Process:** Online
 **Platform:** {sc}
 **Architecture:** {arch}
 **Ram:** {ram}
-**Python Ver:** {pyver.split()[0]}
-**Pyrogram Ver:** {pyrover}
+**Python Version:** {pyver.split()[0]}
+**Pyrogram Version:** {pyrover}
+**PyTgCalls Version:** {pytgover.__version__}
 
 [•]<u>**CPU Stats**</u>
 
@@ -128,16 +121,16 @@ async def stats_markup(_, CallbackQuery):
             "Getting Storage Stats...", show_alert=True
         )
         hdd = psutil.disk_usage("/")
-        total = hdd.total / (1024.0 ** 3)
+        total = hdd.total / (1024.0**3)
         total = str(total)
-        used = hdd.used / (1024.0 ** 3)
+        used = hdd.used / (1024.0**3)
         used = str(used)
-        free = hdd.free / (1024.0 ** 3)
+        free = hdd.free / (1024.0**3)
         free = str(free)
         smex = f"""
 [•]<u>**Storage Stats**</u>
 
-**Storage Avail:** {total[:4]} GiB
+**Storage Available:** {total[:4]} GiB
 **Storage Used:** {used[:4]} GiB
 **Storage Left:** {free[:4]} GiB"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats3)

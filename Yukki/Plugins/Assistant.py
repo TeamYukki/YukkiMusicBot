@@ -11,43 +11,6 @@ from Yukki import ASSISTANT_PREFIX, SUDOERS, app, random_assistant
 from Yukki.Database import get_assistant, save_assistant
 from Yukki.Utilities.assistant import get_assistant_details
 
-__MODULE__ = "Assistant"
-__HELP__ = f"""
-
-
-/checkassistant
-- Check the alloted assistant of your chat
-
-
-**Note:**
-- Only for Sudo Users
-
-{ASSISTANT_PREFIX[0]}block [ Reply to a User Message] 
-- Blocks the User from Assistant Account.
-
-{ASSISTANT_PREFIX[0]}unblock [ Reply to a User Message] 
-- Unblocks the User from Assistant Account.
-
-{ASSISTANT_PREFIX[0]}approve [ Reply to a User Message] 
-- Approves the User for DM.
-
-{ASSISTANT_PREFIX[0]}disapprove [ Reply to a User Message] 
-- Disapproves the User for DM.
-
-{ASSISTANT_PREFIX[0]}pfp [ Reply to a Photo] 
-- Changes Assistant account PFP.
-
-{ASSISTANT_PREFIX[0]}bio [Bio text] 
-- Changes Bio of Assistant Account.
-
-/changeassistant [ASS NUMBER]
-- Change the previoius alloted assistant to new one.
-
-/setassistant [ASS NUMBER or Random]
-- Set a assistant account for chat. 
-"""
-
-
 ass_num_list = ["1", "2", "3", "4", "5"]
 
 

@@ -4,27 +4,6 @@ from pyrogram.types import Message
 from Yukki import SUDOERS, app
 from Yukki.Database import blacklist_chat, blacklisted_chats, whitelist_chat
 
-__MODULE__ = "Blacklist"
-__HELP__ = """
-
-
-/blacklistedchat 
-- Check Blacklisted Chats of Bot.
-
-
-**Note:**
-Only for Sudo Users.
-
-
-/blacklistchat [CHAT_ID] 
-- Blacklist any chat from using Music Bot
-
-
-/whitelistchat [CHAT_ID] 
-- Whitelist any blacklisted chat from using Music Bot
-
-"""
-
 
 @app.on_message(filters.command("blacklistchat") & filters.user(SUDOERS))
 async def blacklist_chat_func(_, message: Message):

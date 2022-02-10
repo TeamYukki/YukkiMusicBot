@@ -18,24 +18,6 @@ from Yukki.Utilities.tasks import add_task, rm_task
 
 # Eval and Sh module from WBB
 
-__MODULE__ = "Broadcast"
-__HELP__ = """
-**Note:**
-Only for Sudo Users.
-
-
-/broadcast [Message or Reply to a Message]
-- Broadcast any message to Bot's Served Chats.
-
-
-/broadcast_pin [Message or Reply to a Message]
-- Broadcast any message to Bot's Served Chats with message getting Pinned in chat [Disabled Notifications].
-
-
-/broadcast_pin_loud [Message or Reply to a Message]
-- Broadcast any message to Bot's Served Chats with message getting Pinned in chat [Enabled Notifications].
-"""
-
 
 async def aexec(code, client, message):
     exec(
