@@ -137,7 +137,7 @@
             "url": "heroku/nodejs"
         },
         {
-            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+            "url": "https://github.com/Keshavop16/heroku-buildpack-ffmpeg-latest.git"
         }
     ],
     "formation": {
