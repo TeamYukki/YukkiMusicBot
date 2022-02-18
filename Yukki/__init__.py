@@ -24,7 +24,6 @@ from config import (
     SUDO_USERS,
     UPSTREAM_BRANCH,
     UPSTREAM_REPO,
-    get_queue,
 )
 from Yukki.Core.Clients.cli import (
     ASS_CLI_1,
@@ -40,7 +39,7 @@ from Yukki.Utilities.tasks import install_requirements
 
 loop = asyncio.get_event_loop()
 console = Console()
-
+get_queue = {}
 
 ### Heroku Shit
 UPSTREAM_BRANCH = UPSTREAM_BRANCH
