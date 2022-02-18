@@ -1,41 +1,27 @@
 import asyncio
 import random
 import time
+from sys import version as pyver
+from typing import Dict, List, Union
 
 import psutil
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardMarkup, Message
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, InputMediaPhoto, Message)
 
 from Yukki import ASSIDS, BOT_ID, MUSIC_BOT_NAME, OWNER_ID, SUDOERS, app
 from Yukki import boottime as bot_start_time
-from Yukki import random_assistant
+from Yukki import db, random_assistant
 from Yukki.Core.PyTgCalls import Yukki
-from Yukki.Database import (
-    add_nonadmin_chat,
-    add_served_chat,
-    blacklisted_chats,
-    get_assistant,
-    get_authuser,
-    get_authuser_names,
-    get_start,
-    is_nonadmin_chat,
-    is_served_chat,
-    remove_active_chat,
-    remove_nonadmin_chat,
-    save_assistant,
-    save_start,
-)
+from Yukki.Database import (add_nonadmin_chat, add_served_chat,
+                            blacklisted_chats, get_assistant, get_authuser,
+                            get_authuser_names, get_start, is_nonadmin_chat,
+                            is_served_chat, remove_active_chat,
+                            remove_nonadmin_chat, save_assistant, save_start)
 from Yukki.Decorators.admins import ActualAdminCB
 from Yukki.Decorators.permission import PermissionCheck
-from Yukki.Inline import (
-    custommarkup,
-    dashmarkup,
-    setting_markup,
-    setting_markup2,
-    start_pannel,
-    usermarkup,
-    volmarkup,
-)
+from Yukki.Inline import (custommarkup, dashmarkup, setting_markup,
+                          setting_markup2, start_pannel, usermarkup, volmarkup)
 from Yukki.Utilities.assistant import get_assistant_details
 from Yukki.Utilities.ping import get_readable_time
 
@@ -144,7 +130,7 @@ async def settingm(_, CallbackQuery):
     text, buttons = setting_markup()
     c_title = CallbackQuery.message.chat.title
     c_id = CallbackQuery.message.chat.id
-    CallbackQuery.message.chat.id
+    chat_id = CallbackQuery.message.chat.id
     _check = await get_start(c_id, "assistant")
     if not _check:
         assis = {
@@ -463,9 +449,11 @@ async def start_markup_check(_, CallbackQuery):
             )
             msg = f"**Authorised Users List[AUL]:**\n\n"
             for note in _playlist:
-                _note = await get_authuser(CallbackQuery.message.chat.id, note)
+                _note = await get_authuser(
+                    CallbackQuery.message.chat.id, note
+                )
                 user_id = _note["auth_user_id"]
-                _note["auth_name"]
+                user_name = _note["auth_name"]
                 admin_id = _note["admin_id"]
                 admin_name = _note["admin_name"]
                 try:
@@ -482,13 +470,21 @@ async def start_markup_check(_, CallbackQuery):
     if command == "UPT":
         bot_uptimee = int(time.time() - bot_start_time)
         Uptimeee = f"{get_readable_time((bot_uptimee))}"
-        await CallbackQuery.answer(f"Bot's Uptime: {Uptimeee}", show_alert=True)
+        await CallbackQuery.answer(
+            f"Bot's Uptime: {Uptimeee}", show_alert=True
+        )
     if command == "CPT":
         cpue = psutil.cpu_percent(interval=0.5)
-        await CallbackQuery.answer(f"Bot's Cpu Usage: {cpue}%", show_alert=True)
+        await CallbackQuery.answer(
+            f"Bot's Cpu Usage: {cpue}%", show_alert=True
+        )
     if command == "RAT":
         meme = psutil.virtual_memory().percent
-        await CallbackQuery.answer(f"Bot's Memory Usage: {meme}%", show_alert=True)
+        await CallbackQuery.answer(
+            f"Bot's Memory Usage: {meme}%", show_alert=True
+        )
     if command == "DIT":
         diske = psutil.disk_usage("/").percent
-        await CallbackQuery.answer(f"Yukki Disk Usage: {diske}%", show_alert=True)
+        await CallbackQuery.answer(
+            f"Yukki Disk Usage: {diske}%", show_alert=True
+        )

@@ -1,8 +1,10 @@
 import asyncio
+import time
 from datetime import datetime, timedelta
 
-from pyrogram.errors import FloodWait
-from pyrogram.types import InlineKeyboardMarkup
+from pyrogram.errors import FloodWait, MessageNotModified
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, InputMediaPhoto, Message)
 
 from Yukki import db_mem
 from Yukki.Database import is_active_chat, is_music_playing
@@ -40,12 +42,16 @@ async def start_timer(
                                 try:
                                     if db_mem[videoid]["check"] == 2:
                                         await finaltext.edit_reply_markup(
-                                            reply_markup=InlineKeyboardMarkup(buttons)
+                                            reply_markup=InlineKeyboardMarkup(
+                                                buttons
+                                            )
                                         )
                                 except FloodWait as e:
                                     await asyncio.sleep(e.x)
                                     user_input_time -= e.x
-                                left_time[videoid] = datetime.now() + timedelta(
+                                left_time[
+                                    videoid
+                                ] = datetime.now() + timedelta(
                                     milliseconds=550
                                 )
                     else:
@@ -73,12 +79,16 @@ async def start_timer(
                                 try:
                                     if db_mem[videoid]["check"] == 2:
                                         await finaltext.edit_reply_markup(
-                                            reply_markup=InlineKeyboardMarkup(buttons)
+                                            reply_markup=InlineKeyboardMarkup(
+                                                buttons
+                                            )
                                         )
                                 except FloodWait as e:
                                     await asyncio.sleep(e.x)
                                     user_input_time -= e.x
-                                left_time[videoid] = datetime.now() + timedelta(
+                                left_time[
+                                    videoid
+                                ] = datetime.now() + timedelta(
                                     milliseconds=3500
                                 )
                     else:
@@ -107,12 +117,16 @@ async def start_timer(
                                 try:
                                     if db_mem[videoid]["check"] == 2:
                                         await finaltext.edit_reply_markup(
-                                            reply_markup=InlineKeyboardMarkup(buttons)
+                                            reply_markup=InlineKeyboardMarkup(
+                                                buttons
+                                            )
                                         )
                                 except FloodWait as e:
                                     await asyncio.sleep(e.x)
                                     user_input_time -= e.x
-                                left_time[videoid] = datetime.now() + timedelta(
+                                left_time[
+                                    videoid
+                                ] = datetime.now() + timedelta(
                                     milliseconds=5300
                                 )
                     else:
@@ -142,12 +156,16 @@ async def start_timer(
                                 try:
                                     if db_mem[videoid]["check"] == 2:
                                         await finaltext.edit_reply_markup(
-                                            reply_markup=InlineKeyboardMarkup(buttons)
+                                            reply_markup=InlineKeyboardMarkup(
+                                                buttons
+                                            )
                                         )
                                 except FloodWait as e:
                                     await asyncio.sleep(e.x)
                                     user_input_time -= e.x
-                                left_time[videoid] = datetime.now() + timedelta(
+                                left_time[
+                                    videoid
+                                ] = datetime.now() + timedelta(
                                     milliseconds=9100
                                 )
                     else:

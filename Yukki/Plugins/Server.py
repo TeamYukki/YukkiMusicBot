@@ -1,9 +1,11 @@
 import asyncio
 import math
 import os
+import random
 import shutil
 import sys
 from datetime import datetime
+from time import strftime, time
 
 import dotenv
 import heroku3
@@ -11,17 +13,16 @@ import requests
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
-from pyrogram import filters
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
-from config import HEROKU_API_KEY, HEROKU_APP_NAME, UPSTREAM_BRANCH
+from config import (HEROKU_API_KEY, HEROKU_APP_NAME, UPSTREAM_BRANCH,
+                    UPSTREAM_REPO)
 from Yukki import LOG_GROUP_ID, MUSIC_BOT_NAME, SUDOERS, app
-from Yukki.Database import (
-    get_active_chats,
-    remove_active_chat,
-    remove_active_video_chat,
-)
-from Yukki.Utilities.heroku import is_heroku
-from Yukki.Utilities.paste import paste_queue
+from Yukki.Database import (get_active_chats, remove_active_chat,
+                            remove_active_video_chat)
+from Yukki.Utilities.heroku import is_heroku, user_input
+from Yukki.Utilities.paste import isPreviewUp, paste_queue
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -196,7 +197,7 @@ async def set_var(client, message):
         path = dotenv.find_dotenv()
         if not path:
             return await message.reply_text(".env not found.")
-        dotenv.set_key(path, to_set, value)
+        output = dotenv.set_key(path, to_set, value)
         if dotenv.get_key(path, to_set):
             return await message.reply_text(
                 f"**.env Var Updation:**\n\n`{to_set}`has been updated successfully. To restart the bot touch /restart command."
@@ -223,7 +224,7 @@ async def usage_dynos(client, message):
         return await message.reply_text("Only for Heroku Apps")
     try:
         Heroku = heroku3.from_key(HEROKU_API_KEY)
-        Heroku.app(HEROKU_APP_NAME)
+        happ = Heroku.app(HEROKU_APP_NAME)
     except BaseException:
         return await message.reply_text(
             " Please make sure your Heroku API Key, Your App name are configured correctly in the heroku"
@@ -305,7 +306,9 @@ async def update_(client, message):
     updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
-        "tsnrhtdd"[(format // 10 % 10 != 1) * (format % 10 < 4) * format % 10 :: 4],
+        "tsnrhtdd"[
+            (format // 10 % 10 != 1) * (format % 10 < 4) * format % 10 :: 4
+        ],
     )
     for info in repo.iter_commits(f"HEAD..origin/{UPSTREAM_BRANCH}"):
         updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
@@ -318,7 +321,9 @@ async def update_(client, message):
             f"<b>A new update is available for the Bot!</b>\n\n➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n[Click Here to checkout Updates]({url})"
         )
     else:
-        nrs = await response.edit(_final_updates_, disable_web_page_preview=True)
+        nrs = await response.edit(
+            _final_updates_, disable_web_page_preview=True
+        )
     os.system("git stash &> /dev/null && git pull")
     if await is_heroku():
         try:
@@ -365,7 +370,7 @@ async def restart_(_, message):
                 chats = await get_active_chats()
                 for chat in chats:
                     served_chats.append(int(chat["chat_id"]))
-            except Exception:
+            except Exception as e:
                 pass
             for x in served_chats:
                 try:
@@ -382,7 +387,7 @@ async def restart_(_, message):
                 "**Heroku Restart**\n\nReboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
             )
             return
-        except Exception:
+        except Exception as err:
             await response.edit(
                 "Something went wrong while initiating reboot! Please try again later or check logs for more info."
             )
@@ -393,7 +398,7 @@ async def restart_(_, message):
             chats = await get_active_chats()
             for chat in chats:
                 served_chats.append(int(chat["chat_id"]))
-        except Exception:
+        except Exception as e:
             pass
         for x in served_chats:
             try:

@@ -1,31 +1,26 @@
 import asyncio
 import os
+import random
 from asyncio import QueueEmpty
 
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardMarkup, Message
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, KeyboardButton, Message,
+                            ReplyKeyboardMarkup, ReplyKeyboardRemove)
 
-from Yukki import MUSIC_BOT_NAME, app, db_mem
+from config import get_queue
+from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
 from Yukki.Core.PyTgCalls import Queues
 from Yukki.Core.PyTgCalls.Converter import convert
 from Yukki.Core.PyTgCalls.Downloader import download
-from Yukki.Core.PyTgCalls.Yukki import (
-    pause_stream,
-    resume_stream,
-    skip_stream,
-    skip_video_stream,
-    stop_stream,
-)
-from Yukki.Database import (
-    is_active_chat,
-    is_music_playing,
-    music_off,
-    music_on,
-    remove_active_chat,
-    remove_active_video_chat,
-)
+from Yukki.Core.PyTgCalls.Yukki import (pause_stream, resume_stream,
+                                        skip_stream, skip_video_stream,
+                                        stop_stream)
+from Yukki.Database import (is_active_chat, is_music_playing, music_off,
+                            music_on, remove_active_chat,
+                            remove_active_video_chat)
 from Yukki.Decorators.admins import AdminRightsCheck
-from Yukki.Decorators.checker import checker
+from Yukki.Decorators.checker import checker, checkerCB
 from Yukki.Inline import audio_markup, primary_markup, secondary_markup2
 from Yukki.Utilities.changers import time_to_seconds
 from Yukki.Utilities.chat import specialfont_to_normal
@@ -35,7 +30,7 @@ from Yukki.Utilities.timer import start_timer
 from Yukki.Utilities.youtube import get_m3u8, get_yt_info_id
 
 loop = asyncio.get_event_loop()
-get_queue = {}
+
 
 __MODULE__ = "Admin"
 __HELP__ = """
@@ -54,7 +49,8 @@ __HELP__ = """
 
 
 @app.on_message(
-    filters.command(["pause", "skip", "resume", "stop", "end"]) & filters.group
+    filters.command(["pause", "skip", "resume", "stop", "end"])
+    & filters.group
 )
 @AdminRightsCheck
 @checker
@@ -72,13 +68,17 @@ async def admins(_, message: Message):
             return await message.reply_text("Music is already Paused.")
         await music_off(chat_id)
         await pause_stream(chat_id)
-        await message.reply_text(f"🎧 Voicechat Paused by {message.from_user.mention}!")
+        await message.reply_text(
+            f"🎧 Voicechat Paused by {message.from_user.mention}!"
+        )
     if message.command[0][1] == "e":
         if await is_music_playing(message.chat.id):
             return await message.reply_text("Music is already Playing.")
         await music_on(chat_id)
         await resume_stream(chat_id)
-        await message.reply_text(f"🎧 Voicechat Resumed by {message.from_user.mention}!")
+        await message.reply_text(
+            f"🎧 Voicechat Resumed by {message.from_user.mention}!"
+        )
     if message.command[0][1] == "t" or message.command[0][1] == "n":
         if message.chat.id not in db_mem:
             db_mem[message.chat.id] = {}
@@ -200,7 +200,9 @@ async def admins(_, message: Message):
                             "Failed to fetch Video Formats.",
                         )
                     try:
-                        await skip_video_stream(chat_id, ytlink, quality, mystic)
+                        await skip_video_stream(
+                            chat_id, ytlink, quality, mystic
+                        )
                     except Exception as e:
                         return await mystic.edit(
                             f"Error while changing video stream.\n\nPossible Reason:- {e}"

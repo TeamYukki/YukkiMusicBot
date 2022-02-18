@@ -1,3 +1,5 @@
+from typing import Dict, List, Union
+
 from Yukki import db
 
 blacklist_chatdb = db.blacklistChat
@@ -5,7 +7,9 @@ blacklist_chatdb = db.blacklistChat
 
 async def blacklisted_chats() -> list:
     chats = blacklist_chatdb.find({"chat_id": {"$lt": 0}})
-    return [chat["chat_id"] for chat in await chats.to_list(length=1000000000)]
+    return [
+        chat["chat_id"] for chat in await chats.to_list(length=1000000000)
+    ]
 
 
 async def blacklist_chat(chat_id: int) -> bool:

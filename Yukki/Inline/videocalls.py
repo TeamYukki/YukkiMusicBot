@@ -1,4 +1,5 @@
-from pyrogram.types import InlineKeyboardButton
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, InputMediaPhoto, Message)
 
 
 def choose_markup(videoid, duration, user_id):

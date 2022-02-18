@@ -1,5 +1,7 @@
 import socket
 
+from config import HEROKU_API_KEY
+
 
 async def is_heroku():
     return "heroku" in socket.getfqdn()

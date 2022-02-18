@@ -1,3 +1,5 @@
+from typing import Dict, List, Union
+
 from Yukki import db
 
 pytgdb = db.pytg

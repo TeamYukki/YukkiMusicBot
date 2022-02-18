@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 from pyrogram.errors.exceptions import FloodWait
 
-from Yukki import MUSIC_BOT_NAME, app
+from Yukki import MUSIC_BOT_NAME, app, db_mem
 from Yukki.Utilities.formatters import bytes
 from Yukki.Utilities.ping import get_readable_time
 
@@ -43,7 +43,9 @@ async def telegram_download(message, mystic):
                 await mystic.edit(text)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-            left_time[message.message_id] = datetime.now() + timedelta(seconds=5)
+            left_time[message.message_id] = datetime.now() + timedelta(
+                seconds=5
+            )
 
     speed_counter[message.message_id] = time.time()
     left_time[message.message_id] = datetime.now()

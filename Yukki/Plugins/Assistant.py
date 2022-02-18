@@ -1,10 +1,15 @@
 import random
 
 from pyrogram import filters
-from pyrogram.types import Message
+from pyrogram.raw.functions.messages import DeleteHistory
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, InlineQueryResultArticle,
+                            InlineQueryResultPhoto, InputTextMessageContent,
+                            Message)
 
-from Yukki import SUDOERS, app, random_assistant
+from Yukki import ASSISTANT_PREFIX, SUDOERS, app, random_assistant
 from Yukki.Database import get_assistant, save_assistant
+from Yukki.Utilities.assistant import get_assistant_details
 
 ass_num_list = ["1", "2", "3", "4", "5"]
 

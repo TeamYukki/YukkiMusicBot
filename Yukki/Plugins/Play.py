@@ -2,50 +2,40 @@ import asyncio
 from os import path
 
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message, Voice
+from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
+                            Voice)
 from youtube_search import YoutubeSearch
 
-from Yukki import (
-    BOT_USERNAME,
-    DURATION_LIMIT,
-    DURATION_LIMIT_MIN,
-    MUSIC_BOT_NAME,
-    app,
-    db_mem,
-)
+import Yukki
+from Yukki import (BOT_USERNAME, DURATION_LIMIT, DURATION_LIMIT_MIN,
+                   MUSIC_BOT_NAME, app, db_mem)
 from Yukki.Core.PyTgCalls.Converter import convert
 from Yukki.Core.PyTgCalls.Downloader import download
 from Yukki.Core.PyTgCalls.Tgdownloader import telegram_download
-from Yukki.Database import get_active_video_chats, get_video_limit, is_active_video_chat
+from Yukki.Database import (get_active_video_chats, get_video_limit,
+                            is_active_video_chat)
 from Yukki.Decorators.assistant import AssistantAdd
 from Yukki.Decorators.checker import checker
 from Yukki.Decorators.logger import logging
 from Yukki.Decorators.permission import PermissionCheck
-from Yukki.Inline import (
-    livestream_markup,
-    playlist_markup,
-    search_markup,
-    search_markup2,
-    url_markup,
-    url_markup2,
-)
-from Yukki.Utilities.changers import seconds_to_min
+from Yukki.Inline import (livestream_markup, playlist_markup, search_markup,
+                          search_markup2, url_markup, url_markup2)
+from Yukki.Utilities.changers import seconds_to_min, time_to_seconds
 from Yukki.Utilities.chat import specialfont_to_normal
 from Yukki.Utilities.stream import start_stream, start_stream_audio
 from Yukki.Utilities.theme import check_theme
 from Yukki.Utilities.thumbnails import gen_thumb
 from Yukki.Utilities.url import get_url
 from Yukki.Utilities.videostream import start_stream_video
-from Yukki.Utilities.youtube import (
-    get_yt_info_id,
-    get_yt_info_query,
-    get_yt_info_query_slider,
-)
+from Yukki.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
+                                     get_yt_info_query_slider)
 
 loop = asyncio.get_event_loop()
 
 
-@app.on_message(filters.command(["play", f"play@{BOT_USERNAME}"]) & filters.group)
+@app.on_message(
+    filters.command(["play", f"play@{BOT_USERNAME}"]) & filters.group
+)
 @checker
 @logging
 @PermissionCheck
@@ -70,7 +60,9 @@ async def play(_, message: Message):
     )
     url = get_url(message)
     if audio:
-        mystic = await message.reply_text("🔄 Processing Audio... Please Wait!")
+        mystic = await message.reply_text(
+            "🔄 Processing Audio... Please Wait!"
+        )
         try:
             read = db_mem[message.chat.id]["live_check"]
             if read:
@@ -82,7 +74,9 @@ async def play(_, message: Message):
         except:
             pass
         if audio.file_size > 1073741824:
-            return await mystic.edit_text("Audio File Size Should Be Less Than 150 mb")
+            return await mystic.edit_text(
+                "Audio File Size Should Be Less Than 150 mb"
+            )
         duration_min = seconds_to_min(audio.duration)
         duration_sec = audio.duration
         if (audio.duration) > DURATION_LIMIT:
@@ -127,7 +121,9 @@ async def play(_, message: Message):
                 return await message.reply_text(
                     "Sorry! Bot only allows limited number of video calls due to CPU overload issues. Many other chats are using video call right now. Try switching to audio or try again later"
                 )
-        mystic = await message.reply_text("🔄 Processing Video... Please Wait!")
+        mystic = await message.reply_text(
+            "🔄 Processing Video... Please Wait!"
+        )
         try:
             read = db_mem[message.chat.id]["live_check"]
             if read:
@@ -188,7 +184,9 @@ async def play(_, message: Message):
             videoid,
         ) = get_yt_info_query(query)
         await mystic.delete()
-        buttons = url_markup(videoid, duration_min, message.from_user.id, query, 0)
+        buttons = url_markup(
+            videoid, duration_min, message.from_user.id, query, 0
+        )
         return await message.reply_photo(
             photo=thumb,
             caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
@@ -237,7 +235,9 @@ async def Music_Stream(_, CallbackQuery):
     mystic = await CallbackQuery.message.reply_text(
         f"**{MUSIC_BOT_NAME} Downloader**\n\n**Title:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
     )
-    downloaded_file = await loop.run_in_executor(None, download, videoid, mystic, title)
+    downloaded_file = await loop.run_in_executor(
+        None, download, videoid, mystic, title
+    )
     raw_path = await convert(downloaded_file)
     theme = await check_theme(chat_id)
     chat_title = await specialfont_to_normal(chat_title)
@@ -297,7 +297,7 @@ async def search_query_more(_, CallbackQuery):
 async def popat(_, CallbackQuery):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    CallbackQuery.from_user.id
+    userid = CallbackQuery.from_user.id
     i, query, user_id = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer(
@@ -323,6 +323,7 @@ async def popat(_, CallbackQuery):
             f"6️⃣<b>{results[5]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[5]['id']})__</u>\n\n7️⃣<b>{results[6]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[6]['id']})__</u>\n\n8️⃣<b>{results[7]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[7]['id']})__</u>\n\n9️⃣<b>{results[8]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[8]['id']})__</u>\n\n🔟<b>{results[9]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[9]['id']})__</u>",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
+        disable_web_page_preview = True
         return
     if int(i) == 2:
         buttons = search_markup(
@@ -343,6 +344,7 @@ async def popat(_, CallbackQuery):
             f"1️⃣<b>{results[0]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[0]['id']})__</u>\n\n2️⃣<b>{results[1]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[1]['id']})__</u>\n\n3️⃣<b>{results[2]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[2]['id']})__</u>\n\n4️⃣<b>{results[3]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[3]['id']})__</u>\n\n5️⃣<b>{results[4]['title']}</b>\n  ┗  🔗 <u>__[Get Additional Information](https://t.me/{BOT_USERNAME}?start=info_{results[4]['id']})__</u>",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
+        disable_web_page_preview = True
         return
 
 
@@ -371,7 +373,9 @@ async def slider_query_results(_, CallbackQuery):
             thumb,
             videoid,
         ) = get_yt_info_query_slider(query, query_type)
-        buttons = url_markup(videoid, duration_min, user_id, query, query_type)
+        buttons = url_markup(
+            videoid, duration_min, user_id, query, query_type
+        )
         med = InputMediaPhoto(
             media=thumb,
             caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
@@ -392,7 +396,9 @@ async def slider_query_results(_, CallbackQuery):
             thumb,
             videoid,
         ) = get_yt_info_query_slider(query, query_type)
-        buttons = url_markup(videoid, duration_min, user_id, query, query_type)
+        buttons = url_markup(
+            videoid, duration_min, user_id, query, query_type
+        )
         med = InputMediaPhoto(
             media=thumb,
             caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",

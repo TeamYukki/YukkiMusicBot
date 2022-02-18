@@ -2,6 +2,9 @@ import asyncio
 from asyncio import Lock, create_task
 from time import time
 
+from pyrogram import filters
+from pyrogram.types import Message
+
 tasks = {}
 TASKS_LOCK = Lock()
 arrow = lambda x: (x.text if x else "") + "\n`→`"

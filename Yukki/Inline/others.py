@@ -1,4 +1,5 @@
-from pyrogram.types import InlineKeyboardButton
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, InputMediaPhoto, Message)
 
 from Yukki import db_mem
 

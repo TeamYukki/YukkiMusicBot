@@ -1,33 +1,21 @@
 import asyncio
 import os
 import shutil
+import subprocess
+from sys import version as pyver
 
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 
 from config import LOG_SESSION, OWNER_ID
-from Yukki import (
-    ASSISTANT_PREFIX,
-    BOT_ID,
-    BOT_USERNAME,
-    MUSIC_BOT_NAME,
-    OWNER_ID,
-    SUDOERS,
-    app,
-)
-from Yukki.Database import (
-    add_gban_user,
-    add_off,
-    add_on,
-    add_sudo,
-    get_served_chats,
-    get_sudoers,
-    is_gbanned_user,
-    remove_gban_user,
-    remove_sudo,
-    set_video_limit,
-)
+from Yukki import (ASSISTANT_PREFIX, BOT_ID, BOT_USERNAME, MUSIC_BOT_NAME,
+                   OWNER_ID, SUDOERS, app)
+from Yukki.Database import (add_gban_user, add_off, add_on, add_sudo,
+                            get_active_chats, get_served_chats, get_sudoers,
+                            is_gbanned_user, remove_active_chat,
+                            remove_gban_user, remove_served_chat, remove_sudo,
+                            set_video_limit)
 
 __MODULE__ = "SudoUsers"
 __HELP__ = f"""
@@ -78,7 +66,7 @@ __HELP__ = f"""
 **<u>VIDEOCALLS FUNCTION:</u>**
 /set_video_limit [Number of Chats] - Set a maximum Number of Chats allowed for Video Calls at a time.
 
-**<u>ASSISTAN FUNCTION:</u>**
+**<u>ASSISTANT FUNCTION:</u>**
 {ASSISTANT_PREFIX[0]}block [ Reply to a User Message] - Blocks the User from Assistant Account.
 {ASSISTANT_PREFIX[0]}unblock [ Reply to a User Message] - Unblocks the User from Assistant Account.
 {ASSISTANT_PREFIX[0]}approve [ Reply to a User Message] - Approves the User for DM.
@@ -102,10 +90,14 @@ async def useradd(_, message: Message):
             user = user.replace("@", "")
         user = await app.get_users(user)
         if user.id in SUDOERS:
-            return await message.reply_text(f"{user.mention} is already a sudo user.")
+            return await message.reply_text(
+                f"{user.mention} is already a sudo user."
+            )
         added = await add_sudo(user.id)
         if added:
-            await message.reply_text(f"Added **{user.mention}** to Sudo Users.")
+            await message.reply_text(
+                f"Added **{user.mention}** to Sudo Users."
+            )
             os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
         else:
             await message.reply_text("Failed")
@@ -137,7 +129,7 @@ async def userdel(_, message: Message):
         if "@" in user:
             user = user.replace("@", "")
         user = await app.get_users(user)
-        message.from_user
+        from_user = message.from_user
         if user.id not in SUDOERS:
             return await message.reply_text(f"Not a part of Bot's Sudo.")
         removed = await remove_sudo(user.id)
@@ -148,14 +140,18 @@ async def userdel(_, message: Message):
             return os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
         await message.reply_text(f"Something wrong happened.")
         return
-    message.from_user.id
+    from_user_id = message.from_user.id
     user_id = message.reply_to_message.from_user.id
     mention = message.reply_to_message.from_user.mention
     if user_id not in SUDOERS:
-        return await message.reply_text(f"Not a part of {MUSIC_BOT_NAME}'s Sudo.")
+        return await message.reply_text(
+            f"Not a part of {MUSIC_BOT_NAME}'s Sudo."
+        )
     removed = await remove_sudo(user_id)
     if removed:
-        await message.reply_text(f"Removed **{mention}** from {MUSIC_BOT_NAME}'s Sudo.")
+        await message.reply_text(
+            f"Removed **{mention}** from {MUSIC_BOT_NAME}'s Sudo."
+        )
         return os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
     await message.reply_text(f"Something wrong happened.")
 
@@ -203,14 +199,18 @@ async def set_video_limit_kid(_, message: Message):
     if len(message.command) != 2:
         usage = "**Usage:**\n/set_video_limit [Number of chats allowed]"
         return await message.reply_text(usage)
-    message.chat.id
+    chat_id = message.chat.id
     state = message.text.split(None, 1)[1].strip()
     try:
         limit = int(state)
     except:
-        return await message.reply_text("Please Use Numeric Numbers for Setting Limit.")
+        return await message.reply_text(
+            "Please Use Numeric Numbers for Setting Limit."
+        )
     await set_video_limit(141414, limit)
-    await message.reply_text(f"Video Calls Maximum Limit Defined to {limit} Chats.")
+    await message.reply_text(
+        f"Video Calls Maximum Limit Defined to {limit} Chats."
+    )
 
 
 ## Maintenance Yukki
@@ -221,7 +221,7 @@ async def maintenance(_, message):
     usage = "**Usage:**\n/maintenance [enable|disable]"
     if len(message.command) != 2:
         return await message.reply_text(usage)
-    message.chat.id
+    chat_id = message.chat.id
     state = message.text.split(None, 1)[1].strip()
     state = state.lower()
     if state == "enable":
@@ -248,7 +248,7 @@ async def logger(_, message):
     usage = "**Usage:**\n/logger [enable|disable]"
     if len(message.command) != 2:
         return await message.reply_text(usage)
-    message.chat.id
+    chat_id = message.chat.id
     state = message.text.split(None, 1)[1].strip()
     state = state.lower()
     if state == "enable":
@@ -278,7 +278,9 @@ async def ban_globally(_, message):
         user = await app.get_users(user)
         from_user = message.from_user
         if user.id == from_user.id:
-            return await message.reply_text("You want to gban yourself? How Fool!")
+            return await message.reply_text(
+                "You want to gban yourself? How Fool!"
+            )
         elif user.id == BOT_ID:
             await message.reply_text("Should i block myself? Lmao Ded!")
         elif user.id in SUDOERS:
@@ -376,7 +378,9 @@ __**New Global Ban on {MUSIC_BOT_NAME}**__
 async def unban_globally(_, message):
     if not message.reply_to_message:
         if len(message.command) != 2:
-            await message.reply_text("**Usage:**\n/ungban [USERNAME | USER_ID]")
+            await message.reply_text(
+                "**Usage:**\n/ungban [USERNAME | USER_ID]"
+            )
             return
         user = message.text.split(None, 1)[1]
         if "@" in user:
@@ -400,12 +404,14 @@ async def unban_globally(_, message):
         return
     from_user_id = message.from_user.id
     user_id = message.reply_to_message.from_user.id
-    message.reply_to_message.from_user.mention
+    mention = message.reply_to_message.from_user.mention
     sudoers = await get_sudoers()
     if user_id == from_user_id:
         await message.reply_text("You want to unblock yourself?")
     elif user_id == BOT_ID:
-        await message.reply_text("Should i unblock myself? But i'm not blocked.")
+        await message.reply_text(
+            "Should i unblock myself? But i'm not blocked."
+        )
     elif user_id in sudoers:
         await message.reply_text("Sudo users can't be blocked/unblocked.")
     else:
@@ -473,7 +479,9 @@ async def broadcast_message_pin_silent(_, message):
             sent += 1
         except Exception:
             pass
-    await message.reply_text(f"**Broadcasted Message In {sent} Chats and {pin} Pins.**")
+    await message.reply_text(
+        f"**Broadcasted Message In {sent} Chats and {pin} Pins.**"
+    )
 
 
 @app.on_message(filters.command("broadcast_pin_loud") & filters.user(SUDOERS))
@@ -529,7 +537,9 @@ async def broadcast_message_pin_loud(_, message):
             sent += 1
         except Exception:
             pass
-    await message.reply_text(f"**Broadcasted Message In {sent} Chats and {pin} Pins.**")
+    await message.reply_text(
+        f"**Broadcasted Message In {sent} Chats and {pin} Pins.**"
+    )
 
 
 @app.on_message(filters.command("broadcast") & filters.user(SUDOERS))

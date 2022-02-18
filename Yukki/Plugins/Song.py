@@ -1,9 +1,13 @@
 import asyncio
+from os import path
 
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
+from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto, Message,
+                            Voice)
+from youtube_search import YoutubeSearch
 
-from Yukki import BOT_USERNAME, app
+from Yukki import (BOT_USERNAME, DURATION_LIMIT, DURATION_LIMIT_MIN,
+                   MUSIC_BOT_NAME, app, db_mem)
 from Yukki.Decorators.permission import PermissionCheck
 from Yukki.Inline import song_download_markup, song_markup
 from Yukki.Utilities.url import get_url
@@ -64,7 +68,9 @@ async def play(_, message: Message):
         if str(duration_min) == "None":
             return await mystic.edit("Sorry! Its a Live Video")
         await mystic.delete()
-        buttons = song_markup(videoid, duration_min, message.from_user.id, query, 0)
+        buttons = song_markup(
+            videoid, duration_min, message.from_user.id, query, 0
+        )
         return await message.reply_photo(
             photo=thumb,
             caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
@@ -78,7 +84,7 @@ async def qwertyuiopasdfghjkl(_, CallbackQuery):
     await CallbackQuery.answer()
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    CallbackQuery.from_user.id
+    userid = CallbackQuery.from_user.id
     videoid, user_id = callback_request.split("|")
     buttons = song_download_markup(videoid, user_id)
     await CallbackQuery.edit_message_reply_markup(
@@ -113,7 +119,9 @@ async def song_right(_, CallbackQuery):
         ) = await loop.run_in_executor(
             None, get_yt_info_query_slider, query, query_type
         )
-        buttons = song_markup(videoid, duration_min, user_id, query, query_type)
+        buttons = song_markup(
+            videoid, duration_min, user_id, query, query_type
+        )
         med = InputMediaPhoto(
             media=thumb,
             caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
@@ -136,7 +144,9 @@ async def song_right(_, CallbackQuery):
         ) = await loop.run_in_executor(
             None, get_yt_info_query_slider, query, query_type
         )
-        buttons = song_markup(videoid, duration_min, user_id, query, query_type)
+        buttons = song_markup(
+            videoid, duration_min, user_id, query, query_type
+        )
         med = InputMediaPhoto(
             media=thumb,
             caption=f"📎Title: **{title}\n\n⏳Duration:** {duration_min} Mins\n\n__[Get Additional Information About Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",

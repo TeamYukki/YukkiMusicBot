@@ -1,42 +1,38 @@
 import asyncio
 import os
+import time
 from asyncio import QueueEmpty
 
-from pyrogram.types import InlineKeyboardMarkup
+from pyrogram.errors import FloodWait, MessageNotModified
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, KeyboardButton, Message,
+                            ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types import Update
-from pytgcalls.types.input_stream import AudioVideoPiped, InputAudioStream, InputStream
-from pytgcalls.types.input_stream.quality import (
-    HighQualityAudio,
-    HighQualityVideo,
-    LowQualityVideo,
-    MediumQualityVideo,
-)
-from pytgcalls.types.stream import StreamAudioEnded
+from pytgcalls.types.input_stream import (AudioVideoPiped, InputAudioStream,
+                                          InputStream)
+from pytgcalls.types.input_stream.quality import (HighQualityAudio,
+                                                  HighQualityVideo,
+                                                  LowQualityVideo,
+                                                  MediumQualityVideo)
+from pytgcalls.types.stream import StreamAudioEnded, StreamVideoEnded
 
-from Yukki import (
-    ASS_CLI_1,
-    ASS_CLI_2,
-    ASS_CLI_3,
-    ASS_CLI_4,
-    ASS_CLI_5,
-    MUSIC_BOT_NAME,
-    app,
-    db_mem,
-)
+from config import STRING1, STRING2, STRING3, STRING4, STRING5, get_queue
+from Yukki import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
+                   MUSIC_BOT_NAME, app, db_mem)
 from Yukki.Core.PyTgCalls import Queues
 from Yukki.Core.PyTgCalls.Converter import convert
 from Yukki.Core.PyTgCalls.Downloader import download
-from Yukki.Database import get_assistant, remove_active_chat, remove_active_video_chat
-from Yukki.Inline import audio_markup, primary_markup, secondary_markup2
+from Yukki.Database import (get_assistant, remove_active_chat,
+                            remove_active_video_chat)
+from Yukki.Inline import (audio_markup, audio_timer_markup_start,
+                          primary_markup, secondary_markup2, timer_markup)
 from Yukki.Utilities.changers import time_to_seconds
 from Yukki.Utilities.chat import specialfont_to_normal
 from Yukki.Utilities.theme import check_theme
 from Yukki.Utilities.thumbnails import gen_thumb
 from Yukki.Utilities.timer import start_timer
 from Yukki.Utilities.youtube import get_m3u8, get_yt_info_id
-
-get_queue = {}
 
 ### Clients
 pytgcalls1 = PyTgCalls(ASS_CLI_1)
@@ -589,7 +585,9 @@ async def playout_end(pytgclients, chat_id):
                     try:
                         await pytgclients.change_stream(
                             chat_id,
-                            AudioVideoPiped(ytlink, HighQualityAudio(), stream_quality),
+                            AudioVideoPiped(
+                                ytlink, HighQualityAudio(), stream_quality
+                            ),
                         )
                     except:
                         return await app.send_message(
@@ -656,8 +654,12 @@ async def playout_end(pytgclients, chat_id):
                 c_title = db_mem[afk]["chat_title"]
                 user_id = db_mem[afk]["user_id"]
                 chat_title = await specialfont_to_normal(c_title)
-                thumb = await gen_thumb(thumbnail, title, user_id, theme, chat_title)
-                buttons = primary_markup(afk, user_id, duration_min, duration_min)
+                thumb = await gen_thumb(
+                    thumbnail, title, user_id, theme, chat_title
+                )
+                buttons = primary_markup(
+                    afk, user_id, duration_min, duration_min
+                )
                 await mystic.delete()
                 mention = db_mem[afk]["username"]
                 finaltext = await app.send_photo(

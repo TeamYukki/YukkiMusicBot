@@ -1,8 +1,10 @@
+import os
 import time
 from datetime import datetime
 
 import psutil
-from pyrogram import filters
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, boottime
 from Yukki.Utilities.ping import get_readable_time

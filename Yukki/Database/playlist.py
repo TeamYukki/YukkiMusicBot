@@ -42,7 +42,9 @@ async def get_playlist_names(chat_id: int, type: str) -> List[str]:
     return _notes
 
 
-async def get_playlist(chat_id: int, name: str, type: str) -> Union[bool, dict]:
+async def get_playlist(
+    chat_id: int, name: str, type: str
+) -> Union[bool, dict]:
     name = name
     _notes = await _get_playlists(chat_id, type)
     if name in _notes:
@@ -71,7 +73,9 @@ async def save_playlist(chat_id: int, name: str, note: dict, type: str):
         xd = playlistdb_punjabi
     elif type == "Others":
         xd = playlistdb_others
-    await xd.update_one({"chat_id": chat_id}, {"$set": {"notes": _notes}}, upsert=True)
+    await xd.update_one(
+        {"chat_id": chat_id}, {"$set": {"notes": _notes}}, upsert=True
+    )
 
 
 async def delete_playlist(chat_id: int, name: str, type: str) -> bool:

@@ -11,7 +11,7 @@ def logging(mystic):
             else:
                 chatusername = "Private Group"
             try:
-                message.text.split(None, 1)[1]
+                query = message.text.split(None, 1)[1]
                 what = "Query Given"
             except:
                 try:
