@@ -14,7 +14,6 @@ from pytgcalls.types.input_stream.quality import (
 )
 from pytgcalls.types.stream import StreamAudioEnded
 
-from config import get_queue
 from Yukki import (
     ASS_CLI_1,
     ASS_CLI_2,
@@ -36,6 +35,8 @@ from Yukki.Utilities.theme import check_theme
 from Yukki.Utilities.thumbnails import gen_thumb
 from Yukki.Utilities.timer import start_timer
 from Yukki.Utilities.youtube import get_m3u8, get_yt_info_id
+
+get_queue = {}
 
 ### Clients
 pytgcalls1 = PyTgCalls(ASS_CLI_1)
