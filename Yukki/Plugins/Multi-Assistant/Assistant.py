@@ -22,6 +22,7 @@ flood = {}
     & ~filters.me
     & ~filters.bot
     & ~filters.via_bot
+    & ~filters.user("me")
     & ~filters.user(SUDOERS)
 )
 async def awaiting_message(client, message):
