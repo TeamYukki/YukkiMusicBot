@@ -4,14 +4,11 @@ import shutil
 
 from pyrogram.types import InlineKeyboardMarkup
 
-from config import get_queue
 from Yukki import BOT_USERNAME, db_mem
 from Yukki.Core.PyTgCalls import Queues
 from Yukki.Core.PyTgCalls.Yukki import join_stream
-from Yukki.Database import (add_active_chat, add_active_video_chat,
-                            is_active_chat, music_off, music_on)
-from Yukki.Inline import (audio_markup, audio_markup2, primary_markup,
-                          secondary_markup)
+from Yukki.Database import add_active_chat, is_active_chat, music_on
+from Yukki.Inline import audio_markup, audio_markup2, primary_markup, secondary_markup
 from Yukki.Utilities.timer import start_timer
 
 loop = asyncio.get_event_loop()
@@ -34,12 +31,7 @@ async def start_stream(
     wtfbro["live_check"] = False
     if await is_active_chat(CallbackQuery.message.chat.id):
         position = await Queues.put(CallbackQuery.message.chat.id, file=file)
-        _path_ = (
-            (str(file))
-            .replace("_", "", 1)
-            .replace("/", "", 1)
-            .replace(".", "", 1)
-        )
+        _path_ = (str(file)).replace("_", "", 1).replace("/", "", 1).replace(".", "", 1)
         buttons = secondary_markup(videoid, CallbackQuery.from_user.id)
         if file not in db_mem:
             db_mem[file] = {}

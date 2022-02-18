@@ -1,12 +1,10 @@
 import random
-from typing import Dict, List, Union
 
 from pyrogram import filters
 from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant
-from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineKeyboardMarkup, InputMediaPhoto, Message)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from Yukki import BOT_ID, MUSIC_BOT_NAME, app, random_assistant
+from Yukki import BOT_ID, app, random_assistant
 from Yukki.Database import get_assistant, save_assistant
 from Yukki.Utilities.assistant import get_assistant_details
 
@@ -24,9 +22,7 @@ async def unban_assistant_(_, CallbackQuery):
         )
     else:
         try:
-            await app.unban_chat_member(
-                CallbackQuery.message.chat.id, user_id
-            )
+            await app.unban_chat_member(CallbackQuery.message.chat.id, user_id)
         except:
             return await CallbackQuery.answer(
                 "Failed to unban",
@@ -54,9 +50,7 @@ def AssistantAdd(mystic):
                 "saveassistant": ran_ass,
             }
             await save_assistant(message.chat.id, "assistant", assis)
-        ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(
-            ran_ass
-        )
+        ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(ran_ass)
         try:
             b = await app.get_chat_member(message.chat.id, ASS_ID)
             key = InlineKeyboardMarkup(
@@ -92,9 +86,7 @@ def AssistantAdd(mystic):
                     return
             else:
                 try:
-                    invitelink = await app.export_chat_invite_link(
-                        message.chat.id
-                    )
+                    invitelink = await app.export_chat_invite_link(message.chat.id)
                     if invitelink.startswith("https://t.me/+"):
                         invitelink = invitelink.replace(
                             "https://t.me/+", "https://t.me/joinchat/"

@@ -5,10 +5,15 @@ import wget
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from PIL import Image
-from pyrogram import Client, filters
-from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineKeyboardMarkup, InputMediaAudio,
-                            InputMediaDocument, InputMediaVideo, Message)
+from pyrogram import filters
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InputMediaAudio,
+    InputMediaDocument,
+    InputMediaVideo,
+)
 from youtubesearchpython import VideosSearch
 
 from Yukki import MUSIC_BOT_NAME, app
@@ -77,9 +82,7 @@ def inl_mark(videoid, user_id):
             InlineKeyboardButton(
                 text="⬅️  Go Back", callback_data=f"good {videoid}|{user_id}"
             ),
-            InlineKeyboardButton(
-                text="🗑 Close Menu", callback_data=f"close2"
-            ),
+            InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close2"),
         ],
     ]
     return buttons
@@ -213,9 +216,7 @@ async def boom(_, CallbackQuery):
         )
     if med:
         loop.create_task(
-            send_file(
-                CallbackQuery, med, filename, videoid, user_id, yturl, channel
-            )
+            send_file(CallbackQuery, med, filename, videoid, user_id, yturl, channel)
         )
     else:
         print("med not found")
@@ -228,9 +229,7 @@ def p_mark(link, channel):
     return buttons
 
 
-async def send_file(
-    CallbackQuery, med, filename, videoid, user_id, link, channel
-):
+async def send_file(CallbackQuery, med, filename, videoid, user_id, link, channel):
     await CallbackQuery.edit_message_text(
         "Upload Started\n\nUploading speed could be slow. Please hold on..",
         reply_markup=upl,
@@ -243,7 +242,7 @@ async def send_file(
         await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
         )
-    except Exception as e:
+    except Exception:
         buttons = inl_mark(videoid, user_id)
         await CallbackQuery.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(buttons)
@@ -302,7 +301,7 @@ async def downloadvideocli(command_to_exec):
         stderr=asyncio.subprocess.PIPE,
     )
     stdout, stderr = await process.communicate()
-    e_response = stderr.decode().strip()
+    stderr.decode().strip()
     t_response = stdout.decode().strip()
     filename = t_response.split("Merging formats into")[-1].split('"')[1]
     return filename
@@ -316,12 +315,9 @@ async def downloadaudiocli(command_to_exec):
         stderr=asyncio.subprocess.PIPE,
     )
     stdout, stderr = await process.communicate()
-    e_response = stderr.decode().strip()
+    stderr.decode().strip()
     t_response = stdout.decode().strip()
 
     return (
-        t_response.split("Destination")[-1]
-        .split("Deleting")[0]
-        .split(":")[-1]
-        .strip()
+        t_response.split("Destination")[-1].split("Deleting")[0].split(":")[-1].strip()
     )

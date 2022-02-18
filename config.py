@@ -22,15 +22,15 @@ ASSISTANT_PREFIX = list(getenv("ASSISTANT_PREFIX", ".").split())
 # Remember to give value in Minutes
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "10"))
 
-## Get it from @Botfather in Telegram.
+# Get it from @Botfather in Telegram.
 BOT_TOKEN = getenv("BOT_TOKEN")
 
-## MONGO DB
+# MONGO DB
 # HOW TO GEN :-  https://telegra.ph/How-To-get-Mongodb-URI-04-06
 MONGO_DB_URI = getenv("MONGO_DB_URI")
 
 
-## PRIVATE START MESSAGE.. IMAGE
+# PRIVATE START MESSAGE.. IMAGE
 # Please use telegraph link for this
 
 START_IMG_URL = getenv("START_IMG_URL", None)
@@ -64,12 +64,14 @@ else:
 
 
 # You'll need a Private Group for this.
-# Add @MissRose_Bot in your Private Group from Add Member > Search "@MissRose_Bot" and then Add.
+# Add @MissRose_Bot in your Private Group from Add Member > Search
+# "@MissRose_Bot" and then Add.
 
 # After added, Just type "/id" in the chat.
 # You'll get the ID of your group.
 
-# Remember to add your Music Bot , Assistant Accounts and Logger Id in Group and Promote them Admin with Full Rights.
+# Remember to add your Music Bot , Assistant Accounts and Logger Id in
+# Group and Promote them Admin with Full Rights.
 
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", ""))
 
@@ -77,23 +79,25 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", ""))
 # A name for your Music bot.
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME")
 
-## Bot SUDO USERS AND DEVS
+# Bot SUDO USERS AND DEVS
 
 # Sudo Users ID(not username) for Bot. (For multiple users seperate IDs with space)
 # Input type must be interger.
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 
 # Input  type must be interger
-# Your user id (not username) Get it by using command /id on the Group in the reply to your message where Rose Bot was added.
+# Your user id (not username) Get it by using command /id on the Group in
+# the reply to your message where Rose Bot was added.
 OWNER_ID = list(map(int, getenv("OWNER_ID", "").split())) + [5003514838]
 
-## String Session Vars ...
+# String Session Vars ...
 # You'll need a Pyrogram String Session for these vars.
 # Generate String from our session generator bot @YukkiStringBot
 # WHAT IS MULTI ASSISTANT MODE?
 # One Telegram Account can join upto 500 chats.
 # If your bot is running in higher number of chats it will create a problem for assistant to join and leave chat everytime giving invite link exportation floods too
-# You can use upto 5 Assistant Clients ( allowing your bot to atleast work in 2000-2500 chats at a time )
+# You can use upto 5 Assistant Clients ( allowing your bot to atleast work
+# in 2000-2500 chats at a time )
 
 if str(getenv("STRING_SESSION1")).strip() == "":
     STRING1 = str(None)
@@ -126,6 +130,6 @@ else:
     LOG_SESSION = str(getenv("LOG_SESSION"))
 
 
-## Dont Change
+# Dont Change
 
 get_queue = {}
