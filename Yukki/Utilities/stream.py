@@ -12,7 +12,7 @@ from Yukki.Inline import audio_markup, audio_markup2, primary_markup, secondary_
 from Yukki.Utilities.timer import start_timer
 
 loop = asyncio.get_event_loop()
-
+get_queue = {}
 
 async def start_stream(
     CallbackQuery,
