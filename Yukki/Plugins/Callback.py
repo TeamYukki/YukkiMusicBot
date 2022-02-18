@@ -1,30 +1,49 @@
 import asyncio
 import os
-import random
 from asyncio import QueueEmpty
 
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup
 
-from config import get_queue
 from Yukki import BOT_USERNAME, MUSIC_BOT_NAME, app, db_mem
 from Yukki.Core.PyTgCalls import Queues
 from Yukki.Core.PyTgCalls.Converter import convert
 from Yukki.Core.PyTgCalls.Downloader import download
-from Yukki.Core.PyTgCalls.Yukki import (join_stream, pause_stream,
-                                        resume_stream, skip_stream,
-                                        skip_video_stream, stop_stream)
-from Yukki.Database import (_get_playlists, delete_playlist, get_playlist,
-                            get_playlist_names, is_active_chat,
-                            remove_active_video_chat, save_playlist)
-from Yukki.Database.queue import (add_active_chat, is_active_chat,
-                                  is_music_playing, music_off, music_on,
-                                  remove_active_chat)
+from Yukki.Core.PyTgCalls.Yukki import (
+    join_stream,
+    pause_stream,
+    resume_stream,
+    skip_stream,
+    skip_video_stream,
+    stop_stream,
+)
+from Yukki.Database import (
+    delete_playlist,
+    get_playlist,
+    get_playlist_names,
+    is_active_chat,
+    remove_active_video_chat,
+    save_playlist,
+)
+from Yukki.Database.queue import (
+    add_active_chat,
+    is_active_chat,
+    is_music_playing,
+    music_off,
+    music_on,
+    remove_active_chat,
+)
 from Yukki.Decorators.admins import AdminRightsCheckCB
 from Yukki.Decorators.checker import checkerCB
-from Yukki.Inline import (audio_markup, audio_markup2, download_markup,
-                          fetch_playlist, paste_queue_markup, primary_markup,
-                          secondary_markup2)
+from Yukki.Inline import (
+    audio_markup,
+    audio_markup2,
+    download_markup,
+    fetch_playlist,
+    paste_queue_markup,
+    primary_markup,
+    secondary_markup2,
+)
 from Yukki.Utilities.changers import time_to_seconds
 from Yukki.Utilities.chat import specialfont_to_normal
 from Yukki.Utilities.paste import isPreviewUp, paste_queue
@@ -49,9 +68,7 @@ async def forceclose(_, CallbackQuery):
     await CallbackQuery.answer()
 
 
-@app.on_callback_query(
-    filters.regex(pattern=r"^(pausecb|skipcb|stopcb|resumecb)$")
-)
+@app.on_callback_query(filters.regex(pattern=r"^(pausecb|skipcb|stopcb|resumecb)$"))
 @AdminRightsCheckCB
 @checkerCB
 async def admin_risghts(_, CallbackQuery):
@@ -195,9 +212,7 @@ async def admin_risghts(_, CallbackQuery):
                         return await mystic.edit(
                             f"Error while changing video stream.\n\nPossible Reason:- {e}"
                         )
-                    buttons = secondary_markup2(
-                        "Smex1", CallbackQuery.from_user.id
-                    )
+                    buttons = secondary_markup2("Smex1", CallbackQuery.from_user.id)
                     mention = db_mem[afk]["username"]
                     await mystic.delete()
                     final_output = await CallbackQuery.message.reply_photo(
@@ -221,9 +236,7 @@ async def admin_risghts(_, CallbackQuery):
                             "Failed to fetch Video Formats.",
                         )
                     try:
-                        await skip_video_stream(
-                            chat_id, ytlink, quality, mystic
-                        )
+                        await skip_video_stream(chat_id, ytlink, quality, mystic)
                     except Exception as e:
                         return await mystic.edit(
                             f"Error while changing video stream.\n\nPossible Reason:- {e}"
@@ -344,9 +357,7 @@ async def play_playlist(_, CallbackQuery):
         _playlist = await get_playlist_names(user_id, type)
         third_name = CallbackQuery.from_user.first_name
     elif smex == "Group":
-        _playlist = await get_playlist_names(
-            CallbackQuery.message.chat.id, type
-        )
+        _playlist = await get_playlist_names(CallbackQuery.message.chat.id, type)
         user_id = CallbackQuery.message.chat.id
         third_name = chat_title
     else:
@@ -455,9 +466,7 @@ async def play_playlist(_, CallbackQuery):
                 os.remove(thumb)
         await mystic.delete()
         if for_p == 1:
-            m = await CallbackQuery.message.reply_text(
-                "Pasting Queued Playlist to Bin"
-            )
+            m = await CallbackQuery.message.reply_text("Pasting Queued Playlist to Bin")
             link = await paste_queue(msg)
             preview = link + "/preview.png"
             url = link + "/index.txt"
@@ -524,7 +533,7 @@ async def group_playlist(_, CallbackQuery):
             "Sorry! You can only have 50 music in a playlist.",
             show_alert=True,
         )
-    loop = asyncio.get_event_loop()
+    asyncio.get_event_loop()
     await CallbackQuery.answer()
     title, duration_min, duration_sec, thumbnail = get_yt_info_id(videoid)
     _check = await get_playlist(user_id, videoid, genre)
@@ -539,7 +548,7 @@ async def group_playlist(_, CallbackQuery):
         "duration": duration_min,
     }
     await save_playlist(user_id, videoid, assis, genre)
-    Name = CallbackQuery.from_user.first_name
+    CallbackQuery.from_user.first_name
     return await CallbackQuery.message.reply_text(
         f"Added to {type}'s {genre} Playlist by {CallbackQuery.from_user.mention}"
     )
@@ -590,9 +599,7 @@ async def check_playlist(_, CallbackQuery):
             )
             await m.delete()
         else:
-            await CallbackQuery.message.reply_text(
-                text=msg, reply_markup=audio_markup2
-            )
+            await CallbackQuery.message.reply_text(text=msg, reply_markup=audio_markup2)
             await m.delete()
 
 
@@ -603,7 +610,7 @@ async def del_playlist(_, CallbackQuery):
     type, genre = callback_request.split("|")
     if str(type) == "Personal":
         user_id = CallbackQuery.from_user.id
-        user_name = CallbackQuery.from_user.first_name
+        CallbackQuery.from_user.first_name
     elif str(type) == "Group":
         a = await app.get_chat_member(
             CallbackQuery.message.chat.id, CallbackQuery.from_user.id
@@ -614,7 +621,7 @@ async def del_playlist(_, CallbackQuery):
                 show_alert=True,
             )
         user_id = CallbackQuery.message.chat.id
-        user_name = CallbackQuery.message.chat.title
+        CallbackQuery.message.chat.title
     _playlist = await get_playlist_names(user_id, genre)
     if not _playlist:
         return await CallbackQuery.answer(
@@ -635,7 +642,7 @@ async def down_playlisyts(_, CallbackQuery):
     await CallbackQuery.answer()
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    userid = CallbackQuery.from_user.id
+    CallbackQuery.from_user.id
     videoid, user_id = callback_request.split("|")
     buttons = download_markup(videoid, user_id)
     await CallbackQuery.edit_message_reply_markup(
@@ -648,7 +655,7 @@ async def good(_, CallbackQuery):
     await CallbackQuery.answer()
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    userid = CallbackQuery.from_user.id
+    CallbackQuery.from_user.id
     videoid, user_id = callback_request.split("|")
     buttons = download_markup(videoid, user_id)
     await CallbackQuery.edit_message_reply_markup(

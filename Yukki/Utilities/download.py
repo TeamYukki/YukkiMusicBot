@@ -1,7 +1,5 @@
 import yt_dlp
-from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineKeyboardMarkup, InputMediaAudio,
-                            InputMediaDocument, InputMediaVideo, Message)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
 def YT_info(yturl):
@@ -137,9 +135,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                         text="⬅️  Go Back",
                         callback_data=f"good {videoid}|{user_id}",
                     ),
-                    InlineKeyboardButton(
-                        text="🗑 Close Menu", callback_data=f"close2"
-                    ),
+                    InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close2"),
                 ],
             ]
         )
@@ -155,9 +151,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                         text="⬅️  Go Back",
                         callback_data=f"good {videoid}|{user_id}",
                     ),
-                    InlineKeyboardButton(
-                        text="🗑 Close Menu", callback_data=f"close2"
-                    ),
+                    InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close2"),
                 ],
             ]
         )
@@ -176,9 +170,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                         text="⬅️  Go Back",
                         callback_data=f"good {videoid}|{user_id}",
                     ),
-                    InlineKeyboardButton(
-                        text="🗑 Close Menu", callback_data=f"close2"
-                    ),
+                    InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close2"),
                 ],
             ]
         )
@@ -198,9 +190,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                         text="⬅️  Go Back",
                         callback_data=f"good {videoid}|{user_id}",
                     ),
-                    InlineKeyboardButton(
-                        text="🗑 Close Menu", callback_data=f"close2"
-                    ),
+                    InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close2"),
                 ],
             ]
         )
@@ -223,9 +213,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                         text="⬅️  Go Back",
                         callback_data=f"good {videoid}|{user_id}",
                     ),
-                    InlineKeyboardButton(
-                        text="🗑 Close Menu", callback_data=f"close2"
-                    ),
+                    InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close2"),
                 ],
             ]
         )
@@ -249,9 +237,7 @@ async def get_formats(CallbackQuery, videoid, user_id, type):
                         text="⬅️  Go Back",
                         callback_data=f"good {videoid}|{user_id}",
                     ),
-                    InlineKeyboardButton(
-                        text="🗑 Close Menu", callback_data=f"close2"
-                    ),
+                    InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close2"),
                 ],
             ]
         )
@@ -292,9 +278,7 @@ def get_type(type, format, videoid, user_id):
                     text="⬅️  Go Back",
                     callback_data=f"good {videoid}|{user_id}",
                 ),
-                InlineKeyboardButton(
-                    text="🗑 Close Menu", callback_data=f"close2"
-                ),
+                InlineKeyboardButton(text="🗑 Close Menu", callback_data=f"close2"),
             ],
         ]
     )

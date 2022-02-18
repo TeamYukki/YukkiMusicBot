@@ -3,18 +3,14 @@ import re
 import subprocess
 import sys
 import traceback
-from html import escape
 from inspect import getfullargspec
 from io import StringIO
 from time import time
 
 from pyrogram import filters
-from pyrogram.errors import MessageNotModified
-from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
-                            Message, ReplyKeyboardMarkup)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from Yukki import SUDOERS, app
-from Yukki.Utilities.tasks import add_task, rm_task
 
 # Eval and Sh module from WBB
 
@@ -78,13 +74,7 @@ async def executor(client, message):
             out_file.write(str(evaluation.strip()))
         t2 = time()
         keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text="⏳", callback_data=f"runtime {t2-t1} Seconds"
-                    )
-                ]
-            ]
+            [[InlineKeyboardButton(text="⏳", callback_data=f"runtime {t2-t1} Seconds")]]
         )
         await message.reply_document(
             document=filename,

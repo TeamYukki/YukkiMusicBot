@@ -1,13 +1,15 @@
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.types import Message
 
-from Yukki import SUDOERS, app
-from Yukki.Database import (_get_authusers, delete_authuser, get_authuser,
-                            get_authuser_count, get_authuser_names,
-                            save_authuser)
+from Yukki import app
+from Yukki.Database import (
+    delete_authuser,
+    get_authuser,
+    get_authuser_names,
+    save_authuser,
+)
 from Yukki.Decorators.admins import AdminActual
-from Yukki.Utilities.changers import (alpha_to_int, int_to_alpha,
-                                      time_to_seconds)
+from Yukki.Utilities.changers import int_to_alpha
 
 __MODULE__ = "Auth Users"
 __HELP__ = """
@@ -60,9 +62,7 @@ async def auth(_, message: Message):
                 "admin_name": from_user_name,
             }
             await save_authuser(message.chat.id, token, assis)
-            await message.reply_text(
-                f"Added to Authorised Users List of this group."
-            )
+            await message.reply_text(f"Added to Authorised Users List of this group.")
             return
         else:
             await message.reply_text(f"Already in the Authorised Users List.")
@@ -88,9 +88,7 @@ async def auth(_, message: Message):
             "admin_name": from_user_name,
         }
         await save_authuser(message.chat.id, token, assis)
-        await message.reply_text(
-            f"Added to Authorised Users List of this group."
-        )
+        await message.reply_text(f"Added to Authorised Users List of this group.")
         return
     else:
         await message.reply_text(f"Already in the Authorised Users List.")
@@ -137,14 +135,12 @@ async def authusers(_, message: Message):
         )
     else:
         j = 0
-        m = await message.reply_text(
-            "Fetching Authorised Users... Please Wait"
-        )
+        m = await message.reply_text("Fetching Authorised Users... Please Wait")
         msg = f"**Authorised Users List[AUL]:**\n\n"
         for note in _playlist:
             _note = await get_authuser(message.chat.id, note)
             user_id = _note["auth_user_id"]
-            user_name = _note["auth_name"]
+            _note["auth_name"]
             admin_id = _note["admin_id"]
             admin_name = _note["admin_name"]
             try:

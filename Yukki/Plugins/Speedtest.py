@@ -2,11 +2,9 @@ import os
 
 import speedtest
 import wget
-from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram import filters
 
-from Yukki import BOT_ID, SUDOERS, app
-from Yukki.Utilities.formatters import bytes
+from Yukki import app
 
 
 @app.on_message(filters.command("speedtest") & ~filters.edited)
@@ -38,8 +36,6 @@ async def statsguwid(_, message):
 **__Sponsor:__** {result['server']['sponsor']}
 **__Latency:__** {result['server']['latency']}  
 **__Ping:__** {result['ping']}"""
-    msg = await app.send_photo(
-        chat_id=message.chat.id, photo=path, caption=output
-    )
+    msg = await app.send_photo(chat_id=message.chat.id, photo=path, caption=output)
     os.remove(path)
     await m.delete()

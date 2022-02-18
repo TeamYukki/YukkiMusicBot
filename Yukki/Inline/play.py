@@ -1,5 +1,4 @@
-from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineKeyboardMarkup, InputMediaPhoto, Message)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from Yukki import db_mem
 
@@ -95,15 +94,11 @@ def search_markup(
             ),
         ],
         [
-            InlineKeyboardButton(
-                text="<", callback_data=f"popat 1|{query}|{user_id}"
-            ),
+            InlineKeyboardButton(text="<", callback_data=f"popat 1|{query}|{user_id}"),
             InlineKeyboardButton(
                 text="🗑 Close", callback_data=f"forceclose {query}|{user_id}"
             ),
-            InlineKeyboardButton(
-                text=">", callback_data=f"popat 1|{query}|{user_id}"
-            ),
+            InlineKeyboardButton(text=">", callback_data=f"popat 1|{query}|{user_id}"),
         ],
     ]
     return buttons
@@ -149,15 +144,11 @@ def search_markup2(
             ),
         ],
         [
-            InlineKeyboardButton(
-                text="<", callback_data=f"popat 2|{query}|{user_id}"
-            ),
+            InlineKeyboardButton(text="<", callback_data=f"popat 2|{query}|{user_id}"),
             InlineKeyboardButton(
                 text="🗑 Close", callback_data=f"forceclose {query}|{user_id}"
             ),
-            InlineKeyboardButton(
-                text=">", callback_data=f"popat 2|{query}|{user_id}"
-            ),
+            InlineKeyboardButton(text=">", callback_data=f"popat 2|{query}|{user_id}"),
         ],
     ]
     return buttons
