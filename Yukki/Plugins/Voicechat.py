@@ -15,6 +15,7 @@ from Yukki.Inline import choose_markup, primary_markup
 from Yukki.Utilities.assistant import get_assistant_details
 
 loop = asyncio.get_event_loop()
+get_queue = {}
 
 
 @app.on_callback_query(filters.regex("gback_list_chose_stream"))
