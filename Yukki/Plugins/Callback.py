@@ -53,6 +53,7 @@ from Yukki.Utilities.timer import start_timer
 from Yukki.Utilities.youtube import get_m3u8, get_yt_info_id
 
 loop = asyncio.get_event_loop()
+get_queue = {}
 
 
 @app.on_callback_query(filters.regex("forceclose"))
