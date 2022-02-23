@@ -169,7 +169,7 @@ async def play(_, message: Message):
             await message.reply_photo(
                 photo="Utils/Playlist.jpg",
                 caption=(
-                    "**Usage:** /play [Music Name or Youtube Link or Reply to Audio]\n\nIf you want to play Playlists! Select the one from Below."
+                    "**Usage:** /play [Music Name or Youtube Link or Reply to Audio]\n\nIf you want to play auto play the one from Below."
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
@@ -215,7 +215,7 @@ async def Music_Stream(_, CallbackQuery):
     chat_title = CallbackQuery.message.chat.title
     videoid, duration, user_id = callback_request.split("|")
     if str(duration) == "None":
-        buttons = livestream_markup("720", videoid, duration, user_id)
+        buttons = livestream_markup("240", videoid, duration, user_id)
         return await CallbackQuery.edit_message_text(
             "**Live Stream Detected**\n\nWant to play live stream? This will stop the current playing musics(if any) and will start streaming live video.",
             reply_markup=InlineKeyboardMarkup(buttons),
