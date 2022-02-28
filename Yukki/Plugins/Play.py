@@ -17,11 +17,11 @@ from Yukki.Database import (get_active_video_chats, get_video_limit,
 from Yukki.Decorators.assistant import AssistantAdd
 from Yukki.Decorators.checker import checker
 from Yukki.Decorators.logger import logging
+from Yukki.Decorators.permission import PermissionCheck
 from Yukki.Inline import (livestream_markup, playlist_markup, search_markup,
                           search_markup2, url_markup, url_markup2)
 from Yukki.Utilities.changers import seconds_to_min, time_to_seconds
 from Yukki.Utilities.chat import specialfont_to_normal
-from Yukki.Utilities.command import commandpro
 from Yukki.Utilities.stream import start_stream, start_stream_audio
 from Yukki.Utilities.theme import check_theme
 from Yukki.Utilities.thumbnails import gen_thumb
@@ -30,7 +30,7 @@ from Yukki.Utilities.videostream import start_stream_video
 from Yukki.Utilities.youtube import (get_yt_info_id, get_yt_info_query,
                                      get_yt_info_query_slider)
 
-from Yukki.Utilities.func import mplay_stream, vplay_stream
+loop = asyncio.get_event_loop()
 
 @app.on_message(
     commandpro(["/p", "Play", "/play", "/play@{BOT_USERNAME}"]) & filters.group
