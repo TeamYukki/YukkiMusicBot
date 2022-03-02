@@ -241,7 +241,7 @@ async def baaaf(_, message):
 async def baujaf(_, message):
     if len(message.command) != 2:
         await message.reply_text(
-            "**Usage:**\n/leave [Chat Username or Chat ID]"
+            "**Usage:**\n/leaveassistant [Chat Username or Chat ID]"
         )
         return
     chat = message.text.split(None, 2)[1]
