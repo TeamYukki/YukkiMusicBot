@@ -222,7 +222,7 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await LOG_CLIENT.join_chat("OfficialYukki")
+            await LOG_CLIENT.join_chat("terayaarhoomai")
             await LOG_CLIENT.join_chat("YukkiSupport")
         except:
             pass
