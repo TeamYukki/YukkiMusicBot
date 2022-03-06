@@ -41,7 +41,9 @@ async def reload_admin_cache(client, message: Message, _):
             adminlist[chat_id].append(user_id)
         await message.reply_text(_["admin_20"])
     except:
-        await message.reply_text("Failed to reload admincache. Make sure Bot is admin in your chat.")
+        await message.reply_text(
+            "Failed to reload admincache. Make sure Bot is admin in your chat."
+        )
 
 
 @app.on_callback_query(filters.regex("close") & ~BANNED_USERS)

@@ -54,7 +54,10 @@ async def skip(cli, message: Message, _, chat_id):
                                     _["admin_16"]
                                 )
                             if popped:
-                                if config.AUTO_DOWNLOADS_CLEAR == str(True):
+                                if (
+                                    config.AUTO_DOWNLOADS_CLEAR
+                                    == str(True)
+                                ):
                                     await auto_clean(popped)
                             if not check:
                                 try:
@@ -110,7 +113,9 @@ async def skip(cli, message: Message, _, chat_id):
     if "live_" in queued:
         n, link = await YouTube.video(videoid, True)
         if n == 0:
-            return await message.reply_text(_["admin_11"].format(title))
+            return await message.reply_text(
+                _["admin_11"].format(title)
+            )
         try:
             await Yukki.skip_stream(chat_id, link, video=status)
         except Exception:

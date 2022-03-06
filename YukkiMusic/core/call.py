@@ -200,7 +200,6 @@ class Call(PyTgCalls):
                     pass
                 except Exception as e:
                     raise AssistantErr(_["call_3"].format(e))
-            
 
     async def join_call(
         self,

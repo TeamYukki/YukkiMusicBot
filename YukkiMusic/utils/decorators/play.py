@@ -88,8 +88,8 @@ def PlayWrapper(command):
             try:
                 chat = await app.get_chat(chat_id)
             except:
-                return await message.reply_text(_["cplay_4"]) 
-            channel = chat.title   
+                return await message.reply_text(_["cplay_4"])
+            channel = chat.title
         else:
             chatmode = await get_chatmode(message.chat.id)
             if chatmode == "Group":
@@ -100,8 +100,8 @@ def PlayWrapper(command):
                 try:
                     chat = await app.get_chat(chat_id)
                 except:
-                    return await message.reply_text(_["cplay_4"])  
-                channel = chat.title   
+                    return await message.reply_text(_["cplay_4"])
+                channel = chat.title
         playmode = await get_playmode(message.chat.id)
         playty = await get_playtype(message.chat.id)
         if playty != "Everyone":
