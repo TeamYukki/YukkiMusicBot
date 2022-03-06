@@ -25,13 +25,13 @@ MUTE_COMMAND = get_command("MUTE_COMMAND")
     filters.command(MUTE_COMMAND) & filters.group & ~BANNED_USERS
 )
 @AdminRightsCheck
-async def mute_admin(cli, message: Message, _, mystic, chat_id):
+async def mute_admin(cli, message: Message, _, chat_id):
     if not len(message.command) == 1:
-        return await mystic.edit_text(_["general_2"])
+        return await message.reply_text(_["general_2"])
     if await is_muted(chat_id):
-        return await mystic.edit_text(_["admin_5"])
+        return await message.reply_text(_["admin_5"])
     await mute_on(chat_id)
     await Yukki.mute_stream(chat_id)
-    await mystic.edit_text(
+    await message.reply_text(
         _["admin_6"].format(message.from_user.mention)
     )

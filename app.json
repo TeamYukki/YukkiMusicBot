@@ -28,11 +28,6 @@
         "value": "True",
         "required": true
       },
-      "PRIVATE_BOT_MODE": {
-        "description": "Set it True, If you want your bot to be private for authorized chats. Else leave it blank",
-        "value": "",
-        "required": false
-      },
       "BOT_TOKEN": {
         "description": "A Bot's token from Botfather",
         "value": "",

@@ -23,6 +23,7 @@ call_7 : "**Harmful Admin Right Given **\n\nPlease remove **BAN USERS** rights f
 call_8 : "**Harmful Admin Right Given **\n\nPlease remove **ADD NEW ADMINS** rights from the bot."
 call_9 : "**Failed to switch Stream**\nPlease use /skip to change track again."
 call_10 : "Downloading Next Track from Playlist"
+call_11 : "Please add @{0} to your channel[ ID: {1}].\n\nBot is not able to get channel details."
 
 # PLUGINS - Auth.py
 auth_1 : "You can only have 20 Users in your group's Authorised Users List (AUL)"
@@ -64,6 +65,7 @@ admin_26 : "Please use numbers between 1-10 for loop play"
 admin_27 : "Loop Play has been disabled"
 
 # Bot 
+
 # Start
 start_1 : "Thanks for having me in {0}.\n{1} is alive.\n\nFor any assistance or help, checkout our support group and channel."
 start_2 : "Hello, My name is {0}.\n\nI'm a telegram streaming bot with some useful features. Supporting platforms like Youtube, Spotify, Resso, AppleMusic , Soundcloud etc.\n\nFeel free to add me to your groups."
@@ -73,7 +75,7 @@ start_5 : "A member of {0}'s Sudo User[{1}] has just joined your chat."
 start_6 : "❗️ **Supergroup Needed** ❗️\n\nPlease convert your **group** to **supergroup** and then add me back.\n\n**How to make supergroup?**\n✅ Make your group's chat history **visible** once."
 
 # Help
-help_1 : "Click on the buttons below for more information. If you want see tutorials for the commands ( how they work and everything ):- @YukkiTutorials\n\nAll commands can be used with: /"
+help_1 : "Click on the buttons below for more information. If you're facing any problem in command you can contact my bot owner or ask in support chat.\n\nAll commands can be used with: /"
 help_2 : "Contact me in PM for help."
 
 # Settings
@@ -117,8 +119,8 @@ tops_8 : "This chat group has played **{0}** tracks till now with a whopping cou
 tops_9 : "Getting Bot's general stats and information.. This could take some time..."
 tops_10 : "**GLOBAL TOP 10 STATS OF THE BOT**\n\nSelect the buttons from below for which you want to check global stats from bot's servers."
 
-
 # Play 
+
 #Play Callback 
 playcb_1 : "This is not for you! Search You Own Song."
 playcb_2 : "Getting Next Result"
@@ -133,7 +135,7 @@ cplay_6 : "You need to be the **Owner** of the channel[{0}] to connect it with t
 
 #Play
 play_1 : "🔄 Processing Query... Please Wait!"
-play_2 : "**🏷Channel Play Mode**\n🔄 Processing Query... Please Wait!\n\n**Linked Channel:** {0}"
+play_2 : "**🏷Channel Play Mode**\n\n🔄 Processing Query... Please Wait!\n**Linked Channel:** {0}"
 play_3 : "Failed to Process Query!"
 play_4 : "🖇 **Admins Only Play**\nOnly Admins and Auth Users can play music in this group.\n\nChange mode via /playmode and if you're already admin, reload admincache via /admincache"
 play_5 : "Failed to process audio file.\n\nAudio File Size Should Be Less Than 100 mb"
@@ -148,7 +150,6 @@ play_13 : "**Apple Playlists**\n\nRequested By:- {0}"
 play_14 : "**Unable to verify the URL.**\nBot wonders if this url belongs to any of the following platforms: Youtube, AppleMusic, Spotify, Resso and Soundcloud.\n\nYou can use /stream for M3u8 or Remote Links."
 play_15 : "**Live Stream Detected**\n\nSystems have detected your track link as live stream. Want to play live stream ?"
 play_16 : "Failed to fetch track details. Try playing any other."
-
 
 #Playlist
 playlist_1 : "**Usage:** /play [Music Name or Youtube Link or Reply to Audio]\n\nIf you want to play Bot's Server Playlist! Press the button below."
@@ -170,7 +171,6 @@ playlist_16 : "Queued Playlist:"
 playlist_17 : "Queued Position-"
 playlist_18 : "[Checkout Whole Queued Playlist]({0})\n\nLast Queued Position : **{1}**"
 
-
 #Playmode
 playmode_1 : "Select the mode in which you want to play the queries inside your group[{0}]."
 playmode_2 : "Settings changed and saved successfully by {0}"
@@ -183,7 +183,6 @@ str_3 : "Unable to stream youtube live streams. No Live Format Found"
 #TopPlay
 tracks_1 : "**Processing {0} Top 10 Playlist**\n\n**👤Requested By:** {1}\n📢**Channel Play:** {2}\n\nCheck Top 10 tracks by /stats"
 tracks_2 : "**Error**\n\nThere's no **{0} Top 10 Playlist** on bot's servers. Please try any other playlist"
-
 
 # TOOLS
 
@@ -317,8 +316,6 @@ SA_B_5 : "💡 Overall Stats"
 SA_B_6 : "👤 User Stats"
 SA_B_7 : "🔢 Global Top 10 Stats"
 SA_B_8 : "🤖 Bot Stats"
-
-
 
 # Sudo Users [ If you are translating this to some other language .. you can leave all these strings in english language]
 

@@ -148,6 +148,17 @@ class Call(PyTgCalls):
         _ = get_string(language)
         userbot = await get_assistant(chat_id)
         try:
+            botstatus = await app.get_chat_member(chat_id, app.id)
+        except UserNotParticipant:
+            raise AssistantErr(_["call_11"].format(app.username, chat_id))
+        except ChatAdminRequired:
+            raise AssistantErr(_["call_1"])
+        if botstatus.status == "administrator":
+            if botstatus.can_restrict_members:
+                raise AssistantErr(_["call_7"])
+            if botstatus.can_promote_members:
+                raise AssistantErr(_["call_8"])
+        try:
             try:
                 get = await app.get_chat_member(chat_id, userbot.id)
             except ChatAdminRequired:
@@ -200,12 +211,7 @@ class Call(PyTgCalls):
                     pass
                 except Exception as e:
                     raise AssistantErr(_["call_3"].format(e))
-            botstatus = await app.get_chat_member(chat_id, app.id)
-            if botstatus.status == "administrator":
-                if botstatus.can_restrict_members:
-                    raise AssistantErr(_["call_7"])
-                if botstatus.can_promote_members:
-                    raise AssistantErr(_["call_8"])
+            
 
     async def join_call(
         self,
@@ -260,7 +266,7 @@ class Call(PyTgCalls):
                 loop = loop - 1
                 await set_loop(chat_id, loop)
             if popped:
-                if config.AUTO_DOWNLOADS_CLEAR:
+                if config.AUTO_DOWNLOADS_CLEAR == str(True):
                     await auto_clean(popped)
             if not check:
                 await _clear_(chat_id)

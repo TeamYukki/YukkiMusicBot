@@ -227,7 +227,7 @@ welcome_group = 2
 @app.on_message(filters.new_chat_members, group=welcome_group)
 async def welcome(client, message: Message):
     chat_id = message.chat.id
-    if config.PRIVATE_BOT_MODE:
+    if config.PRIVATE_BOT_MODE == str(True):
         if not await is_served_private_chat(message.chat.id):
             await message.reply_text(
                 "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."

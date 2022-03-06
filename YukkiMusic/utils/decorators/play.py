@@ -23,7 +23,7 @@ from YukkiMusic.utils.inline.playlist import botplaylist_markup
 
 def PlayWrapper(command):
     async def wrapper(client, message):
-        if PRIVATE_BOT_MODE:
+        if PRIVATE_BOT_MODE == str(True):
             if not await is_served_private_chat(message.chat.id):
                 await message.reply_text(
                     "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
@@ -81,29 +81,31 @@ def PlayWrapper(command):
             return await message.reply_text(
                 _["general_4"], reply_markup=upl
             )
-        sms = _["play_1"]
-        chatmode = await get_chatmode(message.chat.id)
-        if chatmode == "Group":
-            sms += "\n\n**▶️ Play Mode:** Group"
-            chat_id = message.chat.id
-            channel = None
-        else:
+        if "cplay" in message.command:
             chat_id = await get_cmode(message.chat.id)
+            if chat_id is None:
+                return await message.reply_text(_["setting_12"])
             try:
                 chat = await app.get_chat(chat_id)
             except:
-                return await message.reply_text(_["cplay_4"])
-            channel = chat.title
-            sms += f"\n\n**▶️ Play Mode:** Channel[{channel}]"
-        playmode = await get_playmode(message.chat.id)
-        if str(playmode) == "Direct":
-            sms += "\n**🔎 Search Mode:** Direct"
+                return await message.reply_text(_["cplay_4"]) 
+            channel = chat.title   
         else:
-            sms += "\n**🔎 Search Mode:** Inline"
+            chatmode = await get_chatmode(message.chat.id)
+            if chatmode == "Group":
+                chat_id = message.chat.id
+                channel = None
+            else:
+                chat_id = await get_cmode(message.chat.id)
+                try:
+                    chat = await app.get_chat(chat_id)
+                except:
+                    return await message.reply_text(_["cplay_4"])  
+                channel = chat.title   
+        playmode = await get_playmode(message.chat.id)
         playty = await get_playtype(message.chat.id)
         if playty != "Everyone":
             if message.from_user.id not in SUDOERS:
-                sms += "\n**🧛 Play Type:** Admins Only"
                 admins = adminlist.get(message.chat.id)
                 if not admins:
                     return await message.reply_text(_["admin_18"])
@@ -117,13 +119,6 @@ def PlayWrapper(command):
                 video = True
             else:
                 video = None
-        loop = await get_loop(chat_id)
-        if loop != 0:
-            sms += f"\n**🔄 Loop Play:** Enabled for {loop} times"
-        else:
-            sms += "\n**🔄 Loop Play:** Disabled"
-        sms += "\n\nChange modes via /playmode"
-        mystic = await message.reply_text(sms)
         return await command(
             client,
             message,
@@ -132,7 +127,6 @@ def PlayWrapper(command):
             video,
             channel,
             playmode,
-            mystic,
             url,
         )
 

@@ -31,11 +31,11 @@ SKIP_COMMAND = get_command("SKIP_COMMAND")
     filters.command(SKIP_COMMAND) & filters.group & ~BANNED_USERS
 )
 @AdminRightsCheck
-async def skip(cli, message: Message, _, mystic, chat_id):
+async def skip(cli, message: Message, _, chat_id):
     if not len(message.command) < 2:
         loop = await get_loop(chat_id)
         if loop != 0:
-            return await mystic.edit_text(_["admin_12"])
+            return await message.reply_text(_["admin_12"])
         state = message.text.split(None, 1)[1].strip()
         if state.isnumeric():
             state = int(state)
@@ -50,15 +50,15 @@ async def skip(cli, message: Message, _, mystic, chat_id):
                             try:
                                 popped = check.pop(0)
                             except:
-                                return await mystic.edit_text(
+                                return await message.reply_text(
                                     _["admin_16"]
                                 )
                             if popped:
-                                if config.AUTO_DOWNLOADS_CLEAR:
+                                if config.AUTO_DOWNLOADS_CLEAR == str(True):
                                     await auto_clean(popped)
                             if not check:
                                 try:
-                                    await mystic.edit_text(
+                                    await message.reply_text(
                                         _["admin_10"].format(
                                             message.from_user.first_name
                                         )
@@ -68,25 +68,25 @@ async def skip(cli, message: Message, _, mystic, chat_id):
                                     return
                                 break
                     else:
-                        return await mystic.edit_text(
+                        return await message.reply_text(
                             _["admin_15"].format(count)
                         )
                 else:
-                    return await mystic.edit_text(_["admin_14"])
+                    return await message.reply_text(_["admin_14"])
             else:
-                return await mystic.edit_text(_["queue_2"])
+                return await message.reply_text(_["queue_2"])
         else:
-            return await mystic.edit_text(_["admin_13"])
+            return await message.reply_text(_["admin_13"])
     else:
         check = db.get(chat_id)
         popped = None
         try:
             popped = check.pop(0)
             if popped:
-                if config.AUTO_DOWNLOADS_CLEAR:
+                if config.AUTO_DOWNLOADS_CLEAR == str(True):
                     await auto_clean(popped)
             if not check:
-                await mystic.edit_text(
+                await message.reply_text(
                     _["admin_10"].format(message.from_user.first_name)
                 )
                 try:
@@ -95,7 +95,7 @@ async def skip(cli, message: Message, _, mystic, chat_id):
                     return
         except:
             try:
-                await mystic.edit_text(
+                await message.reply_text(
                     _["admin_10"].format(message.from_user.first_name)
                 )
                 return await Yukki.stop_stream(chat_id)
@@ -110,11 +110,11 @@ async def skip(cli, message: Message, _, mystic, chat_id):
     if "live_" in queued:
         n, link = await YouTube.video(videoid, True)
         if n == 0:
-            return await mystic.edit_text(_["admin_11"].format(title))
+            return await message.reply_text(_["admin_11"].format(title))
         try:
             await Yukki.skip_stream(chat_id, link, video=status)
         except Exception:
-            return await mystic.edit_text(_["call_9"])
+            return await message.reply_text(_["call_9"])
         button = telegram_markup(_)
         img = await gen_thumb(videoid)
         await message.reply_photo(
@@ -125,9 +125,8 @@ async def skip(cli, message: Message, _, mystic, chat_id):
             ),
             reply_markup=InlineKeyboardMarkup(button),
         )
-        await mystic.delete()
     elif "vid_" in queued:
-        await mystic.edit_text(
+        mystic = await message.reply_text(
             _["call_10"], disable_web_page_preview=True
         )
         try:
@@ -158,19 +157,18 @@ async def skip(cli, message: Message, _, mystic, chat_id):
         try:
             await Yukki.skip_stream(chat_id, videoid, video=True)
         except Exception:
-            return await mystic.edit_text(_["call_9"])
+            return await message.reply_text(_["call_9"])
         button = telegram_markup(_)
         await message.reply_photo(
             photo=config.STREAM_IMG_URL,
             caption=_["stream_2"].format(user),
             reply_markup=InlineKeyboardMarkup(button),
         )
-        await mystic.delete()
     else:
         try:
             await Yukki.skip_stream(chat_id, queued, video=status)
         except Exception:
-            return await mystic.edit_text(_["call_9"])
+            return await message.reply_text(_["call_9"])
         if videoid == "telegram":
             button = telegram_markup(_)
             await message.reply_photo(
@@ -182,7 +180,6 @@ async def skip(cli, message: Message, _, mystic, chat_id):
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
-            await mystic.delete()
         elif videoid == "soundcloud":
             button = telegram_markup(_)
             await message.reply_photo(
@@ -194,7 +191,6 @@ async def skip(cli, message: Message, _, mystic, chat_id):
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
-            await mystic.delete()
         else:
             button = stream_markup(_, videoid)
             img = await gen_thumb(videoid)
@@ -206,4 +202,3 @@ async def skip(cli, message: Message, _, mystic, chat_id):
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
-            await mystic.delete()

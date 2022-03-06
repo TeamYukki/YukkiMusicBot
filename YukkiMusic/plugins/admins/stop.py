@@ -24,10 +24,10 @@ STOP_COMMAND = get_command("STOP_COMMAND")
     filters.command(STOP_COMMAND) & filters.group & ~BANNED_USERS
 )
 @AdminRightsCheck
-async def stop_music(cli, message: Message, _, mystic, chat_id):
+async def stop_music(cli, message: Message, _, chat_id):
     if not len(message.command) == 1:
-        return await mystic.edit_text(_["general_2"])
+        return await message.reply_text(_["general_2"])
     await Yukki.stop_stream(chat_id)
-    await mystic.edit_text(
+    await message.reply_text(
         _["admin_9"].format(message.from_user.mention)
     )

@@ -186,7 +186,7 @@ suggestor = {}
 async def dont_do_this():
     while not await asyncio.sleep(LEAVE_TIME):
         try:
-            if config.AUTO_LEAVING_ASSISTANT:
+            if config.AUTO_LEAVING_ASSISTANT == str(True):
                 if config.STRING1:
                     async for i in userbot.one.iter_dialogs():
                         chat_type = i.chat.type
@@ -299,7 +299,7 @@ async def dont_do_this():
         except:
             pass
         try:
-            if config.AUTO_SUGGESTION_MODE:
+            if config.AUTO_SUGGESTION_MODE == str(True):
                 chats = []
                 schats = await get_served_chats()
                 for chat in schats:

@@ -182,7 +182,7 @@ async def overall_stats(client, CallbackQuery, _):
     fetch_playlist = config.PLAYLIST_FETCH_LIMIT
     song = config.SONG_DOWNLOAD_DURATION
     play_duration = config.DURATION_LIMIT_MIN
-    if config.AUTO_LEAVING_ASSISTANT:
+    if config.AUTO_LEAVING_ASSISTANT == str(True):
         ass = "Yes"
     else:
         ass = "No"

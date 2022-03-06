@@ -29,8 +29,11 @@ def AdminRightsCheck(mystic):
                 await message.delete()
             except:
                 pass
-        language = await get_lang(message.chat.id)
-        _ = get_string(language)
+        try:
+            language = await get_lang(message.chat.id)
+            _ = get_string(language)
+        except:
+            _ = get_string("en")
         if message.sender_chat:
             upl = InlineKeyboardMarkup(
                 [
@@ -45,56 +48,27 @@ def AdminRightsCheck(mystic):
             return await message.reply_text(
                 _["general_4"], reply_markup=upl
             )
-        if "pause" in message.command:
-            s = "Pausing Stream"
-        elif "resume" in message.command:
-            s = "Resuming Stream"
-        elif "skip" in message.command:
-            s = "Skipping Stream"
-        elif "stop" in message.command:
-            s = "Stopping Stream"
-        elif "end" in message.command:
-            s = "Ending Stream"
-        elif "loop" in message.command:
-            s = "Looping Stream"
-        elif "shuffle" in message.command:
-            s = "Shuffling Stream"
-        elif "mute" in message.command:
-            s = "Muting Stream"
-        elif "unmute" in message.command:
-            s = "Unmute Stream"
-        else:
-            s = "Processing"
-        send = _["admin_17"].format(s)
         chatmode = await get_chatmode(message.chat.id)
         if chatmode == "Group":
-            send += "\n**▶️ Play Mode:** Group"
             chat_id = message.chat.id
         else:
             chat_id = await get_cmode(message.chat.id)
             try:
                 chat = await app.get_chat(chat_id)
             except:
-                return await mys.edit_text(_["cplay_4"])
-            send += f"\n**▶️ Play Mode:** Channel[{chat.title}]"
+                return await message.reply_text(_["cplay_4"])
         if not await is_active_chat(chat_id):
             return await message.reply_text(_["general_6"])
         is_non_admin = await is_nonadmin_chat(message.chat.id)
         if not is_non_admin:
             if message.from_user.id not in SUDOERS:
-                send += (
-                    "\n\n**🧛 Admin Commands:** Admins + Auth Users"
-                )
                 admins = adminlist.get(message.chat.id)
                 if not admins:
                     return await message.reply_text(_["admin_18"])
                 else:
                     if message.from_user.id not in admins:
                         return await message.reply_text(_["admin_19"])
-        else:
-            send += "\n\n**🧛 Admins Command:** Anyone"
-        mys = await message.reply_text(send)
-        return await mystic(client, message, _, mys, chat_id)
+        return await mystic(client, message, _, chat_id)
 
     return wrapper
 
@@ -106,8 +80,11 @@ def AdminActual(mystic):
                 await message.delete()
             except:
                 pass
-        language = await get_lang(message.chat.id)
-        _ = get_string(language)
+        try:
+            language = await get_lang(message.chat.id)
+            _ = get_string(language)
+        except:
+            _ = get_string("en")
         if message.sender_chat:
             upl = InlineKeyboardMarkup(
                 [
@@ -139,8 +116,11 @@ def AdminActual(mystic):
 
 def ActualAdminCB(mystic):
     async def wrapper(client, CallbackQuery):
-        language = await get_lang(CallbackQuery.message.chat.id)
-        _ = get_string(language)
+        try:
+            language = await get_lang(CallbackQuery.message.chat.id)
+            _ = get_string(language)
+        except:
+            _ = get_string("en")
         if CallbackQuery.message.chat.type == "private":
             return await mystic(client, CallbackQuery, _)
         is_non_admin = await is_nonadmin_chat(
