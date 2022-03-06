@@ -67,7 +67,7 @@ Config vars are basically the variables which configure or modify bot to functio
 - If you plan to use Yukki Music Bot with your own customized or modified code.
 
 1. `UPSTREAM_REPO` : Your Upstream Repo URL or Forked Repo.
-2. `PRIVATE_BOUPSTREAM_BRANCHT_MODE` : Default Branch of your Upstream Repo URL or Forked Repo. 
+2. `UPSTREAM_BRANCH` : Default Branch of your Upstream Repo URL or Forked Repo. 
 3. `GIT_TOKEN` : Your GIT TOKEN if your upstream repo is private
 4. `GITHUB_REPO` : Your Github Repo url, that will be shown on /start command
 
