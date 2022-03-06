@@ -148,17 +148,6 @@ class Call(PyTgCalls):
         _ = get_string(language)
         userbot = await get_assistant(chat_id)
         try:
-            botstatus = await app.get_chat_member(chat_id, app.id)
-        except UserNotParticipant:
-            raise AssistantErr(_["call_11"].format(app.username, chat_id))
-        except ChatAdminRequired:
-            raise AssistantErr(_["call_1"])
-        if botstatus.status == "administrator":
-            if botstatus.can_restrict_members:
-                raise AssistantErr(_["call_7"])
-            if botstatus.can_promote_members:
-                raise AssistantErr(_["call_8"])
-        try:
             try:
                 get = await app.get_chat_member(chat_id, userbot.id)
             except ChatAdminRequired:
