@@ -119,6 +119,6 @@
 |----|-------|-----|-----|-------|
 | 1| STRING_SESSION | True | Pyrogram Session | Generate string from [@YukkiStringBot](http://t.me/YukkiStringBot) in Telegram. | 
 | 2 | STRING_SESSION2 | False | Pyrogram Session |Generate string from [@YukkiStringBot](http://t.me/YukkiStringBot) in Telegram. | 
-| 3 | STRING_SESSION2 | False | Pyrogram Session | Generate string from [@YukkiStringBot](http://t.me/YukkiStringBot) in Telegram. | 
-| 4 | STRING_SESSION2 | False | Pyrogram Session | Generate string from [@YukkiStringBot](http://t.me/YukkiStringBot) in Telegram. | 
-| 5 | STRING_SESSION2 | False | Pyrogram Session | Generate string from [@YukkiStringBot](http://t.me/YukkiStringBot) in Telegram. | 
+| 3 | STRING_SESSION3 | False | Pyrogram Session | Generate string from [@YukkiStringBot](http://t.me/YukkiStringBot) in Telegram. | 
+| 4 | STRING_SESSION4 | False | Pyrogram Session | Generate string from [@YukkiStringBot](http://t.me/YukkiStringBot) in Telegram. | 
+| 5 | STRING_SESSION5 | False | Pyrogram Session | Generate string from [@YukkiStringBot](http://t.me/YukkiStringBot) in Telegram. | 
