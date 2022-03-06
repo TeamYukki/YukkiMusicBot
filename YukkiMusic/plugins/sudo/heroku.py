@@ -21,6 +21,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
 
+import heroku3
 import config
 from strings import get_command
 from YukkiMusic import app
@@ -174,7 +175,7 @@ async def usage_dynos(client, message, _):
     else:
         return await message.reply_text(_["heroku_11"])
     dyno = await message.reply_text(_["heroku_12"])
-    account_id = HAPP.account().id
+    account_id = heroku3.from_key(config.HEROKU_API_KEY).account().id
     useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
