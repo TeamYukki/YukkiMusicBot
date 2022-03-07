@@ -40,6 +40,7 @@ async def stream(
     original_chat_id,
     video: Union[bool, str] = None,
     streamtype: Union[bool, str] = None,
+    spotify: Union[bool, str] = None,
 ):
     if video:
         if not await is_video_allowed(chat_id):
@@ -48,7 +49,6 @@ async def stream(
         msg = f"{_['playlist_16']}\n\n"
         count = 0
         for search in result:
-            print(search)
             if int(count) == config.PLAYLIST_FETCH_LIMIT:
                 continue
             (
@@ -57,7 +57,9 @@ async def stream(
                 duration_sec,
                 thumbnail,
                 vidid,
-            ) = await YouTube.details(search, True)
+            ) = await YouTube.details(
+                search, False if spotify else True
+            )
             if str(duration_min) == "None":
                 continue
             if duration_sec > config.DURATION_LIMIT:

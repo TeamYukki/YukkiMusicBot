@@ -59,6 +59,7 @@ async def play_commnd(
     plist_id = None
     slider = None
     plist_type = None
+    spotify = None
     user_id = message.from_user.id
     user_name = message.from_user.first_name
     audio_telegram = (
@@ -196,6 +197,7 @@ async def play_commnd(
                     details["duration_min"],
                 )
         elif await Spotify.valid(url):
+            spotify = True
             if (
                 not config.SPOTIFY_CLIENT_ID
                 and not config.SPOTIFY_CLIENT_SECRET
@@ -365,6 +367,7 @@ async def play_commnd(
                 message.chat.id,
                 video=video,
                 streamtype=streamtype,
+                spotify=spotify,
             )
         except Exception as e:
             ex_type = type(e).__name__
@@ -565,7 +568,7 @@ async def play_playlists_command(client, CallbackQuery, _):
     )
     videoid = lyrical.get(videoid)
     video = True if mode == "v" else None
-    spotify = None
+    spotify = False
     if ptype == "yt":
         try:
             result = await YouTube.playlist(
@@ -577,16 +580,19 @@ async def play_playlists_command(client, CallbackQuery, _):
         except Exception:
             return await mystic.edit_text(_["play_3"])
     if ptype == "spplay":
+        spotify = True
         try:
             result, spotify_id = await Spotify.playlist(videoid)
         except Exception:
             return await mystic.edit_text(_["play_3"])
     if ptype == "spalbum":
+        spotify = True
         try:
             result, spotify_id = await Spotify.album(videoid)
         except Exception:
             return await mystic.edit_text(_["play_3"])
     if ptype == "spartist":
+        spotify = True
         try:
             result, spotify_id = await Spotify.artist(videoid)
         except Exception:
@@ -607,6 +613,7 @@ async def play_playlists_command(client, CallbackQuery, _):
             CallbackQuery.message.chat.id,
             video,
             streamtype="playlist",
+            spotify=spotify,
         )
     except Exception as e:
         ex_type = type(e).__name__
