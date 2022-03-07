@@ -19,7 +19,7 @@ from config import BANNED_USERS
 from YukkiMusic import LOGGER, app, userbot
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.plugins import ALL_MODULES
-from YukkiMusic.utils.database import get_gbanned
+from YukkiMusic.utils.database import get_banned_users, get_gbanned
 
 loop = asyncio.get_event_loop()
 
@@ -36,8 +36,18 @@ async def init():
             "No Assistant Clients Vars Defined!.. Exiting Process."
         )
         return
+    if (
+        not config.SPOTIFY_CLIENT_ID
+        and not config.SPOTIFY_CLIENT_SECRET
+    ):
+        LOGGER("YukkiMusic").warning(
+            "No Spotify Vars defined. Your bot won't be able to play spotify queries."
+        )
     try:
         users = await get_gbanned()
+        for user_id in users:
+            BANNED_USERS.add(user_id)
+        users = await get_banned_users()
         for user_id in users:
             BANNED_USERS.add(user_id)
     except:

@@ -149,7 +149,7 @@ play_13 : "**Apple प्लेलिस्ट**\n\nइनके द्वार
 play_14 : "**यूआरएल को सत्यापित करने में असमर्थ।**\nबॉट आश्चर्य करता है कि क्या यह यूआरएल निम्न में से किसी भी प्लेटफॉर्म से संबंधित है: Youtube, AppleMusic, Spotify, Resso और Soundcloud।\n\nआप M3u8 या रिमोट लिंक के लिए /स्ट्रीम का उपयोग कर सकते हैं।"
 play_15 : "**लाइव स्ट्रीम का पता चला**\n\nसिस्टम ने आपके ट्रैक लिंक को लाइव स्ट्रीम के रूप में पाया है। लाइव स्ट्रीम खेलना चाहते हैं?"
 play_16 : "ट्रैक विवरण प्राप्त करने में विफल. कोई अन्य खेलने का प्रयास करें।"
-
+play_17 : "इस प्रकार की Spotify क्वेरी चलाने में असमर्थ!\n\nमैं केवल Spotify ट्रैक, एल्बम, कलाकार और प्लेलिस्ट चला सकता हूं"
 
 #Playlist
 playlist_1 : "**उपयोग:** /प्ले [संगीत का नाम या यूट्यूब लिंक या ऑडियो का जवाब]\n\nअगर आप बॉट की सर्वर प्लेलिस्ट चलाना चाहते हैं! नीचे दिए गए बटन को दबाएं।"
@@ -250,6 +250,7 @@ H_B_2 : "प्ले कमांड"
 H_B_3 : "बॉट कमांड"
 H_B_4 : "अतिरिक्त कमांड"
 H_B_5 : "मेनू बंद करें"
+H_B_6 : "सूडो उपयोगकर्ता कमांड"
 
 #PlayMode
 PM_B_1 : "डायरेक्टप्ले"
@@ -415,3 +416,16 @@ pbot_10 : "निजी चैट"
 pbot_11 : "कोई अधिकृत चैट नहीं मिली"
 pbot_12 : "निजी बॉट मोड अक्षम है।\n\nअपने बॉट को निजी बॉट के रूप में उपयोग करने के लिए **PRIVATE_BOT_MODE** = **सही** सेट करना सुनिश्चित करें"
 pbot_13 : "\n**<b>अनफ़ेच्ड चैट:</b>**\n\n"
+
+#Gbanned
+gban_1 : "You want to gban yourself? How Fool!"
+gban_2 : "Should i block myself? Lol"
+gban_3 : "You want to block a sudo user?"
+gban_4 : "{0} is already **gbanned** from the bot."
+gban_5 : "**Initializing Gobal Ban on {0}**\n\nExpected Time : {1}."
+gban_6 : "**Gbanned Successfully**\n\nBanned **{0}** from **{1}** chats."
+gban_7 : "{0} is not **gbanned **yet from the bot."
+gban_8 : "**Ungbanning {0}**\n\nExpected Time : {1}."
+gban_9 : "**UnGbanned Successfully**\n\nUnbanned **{0}** in **{1}** chats."
+gban_10 : "No Gbanned Users Found."
+gban_11 : "Please wait a while.. Fetching Gbanned users list"

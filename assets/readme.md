@@ -50,3 +50,9 @@ Playlist.jpeg - This image is going to be used by /play command
 Global.jpeg and Stats.jpeg - This image is going to be used by /stats command
 ```
 - > If you want to change stats images, make sure your file name "Global.jpeg" or "Stats.jpeg" remains same or alternatively you can add a var <br><br> `GLOBAL_IMG_URL` - Use telegraph link<br> `STATS_IMG_URL` - Use telegraph link
+
+
+```console
+SpotifyAlbum.jpeg , SpotifyArtist.jpeg and SpotifyPlaylist.jpeg - This image is going to be used by spotify inline command
+```
+- > If you want to change stats images, make sure your file name "SpotifyAlbum.jpeg", "SpotifyPlaylist.jpeg" or "SpotifyArtist.jpeg" remains same or alternatively you can add a var <br><br> `SPOTIFY_ARTIST_IMG_URL` - Use telegraph link<br> `SPOTIFY_ALBUM_IMG_URL` - Use telegraph link<br> `SPOTIFY_PLAYLIST_IMG_URL` - Use telegraph link

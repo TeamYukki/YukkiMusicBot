@@ -53,10 +53,12 @@ def dbb():
 
 def sudo():
     global SUDOERS
+    OWNER = config.OWNER_ID
     sudoersdb = pymongodb.sudoers
     sudoers = sudoersdb.find_one({"sudo": "sudo"})
     sudoers = [] if not sudoers else sudoers["sudoers"]
-    for user_id in SUDOERS:
+    for user_id in OWNER:
+        SUDOERS.add(user_id)
         if user_id not in sudoers:
             sudoers.append(user_id)
             sudoersdb.update_one(
@@ -64,12 +66,8 @@ def sudo():
                 {"$set": {"sudoers": sudoers}},
                 upsert=True,
             )
-    OWNER = config.OWNER_ID
     if sudoers:
         for x in sudoers:
-            SUDOERS.add(x)
-    if OWNER:
-        for x in OWNER:
             SUDOERS.add(x)
     LOGGER(__name__).info(f"Sudoers Loaded.")
 

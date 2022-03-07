@@ -47,7 +47,10 @@ SETTINGS_COMMAND = get_command("SETTINGS_COMMAND")
 
 
 @app.on_message(
-    filters.command(SETTINGS_COMMAND) & filters.group & ~BANNED_USERS
+    filters.command(SETTINGS_COMMAND)
+    & filters.group
+    & ~filters.edited
+    & ~BANNED_USERS
 )
 @language
 async def settings_mar(client, message: Message, _):

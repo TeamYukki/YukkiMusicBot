@@ -150,7 +150,7 @@ play_13 : "**Apple Playlists**\n\nඉල්ලන ලද්දේ:- {0}"
 play_14 : "**URL එක සත්‍යාපනය කළ නොහැක.**\nමෙම url එක පහත සඳහන් ඕනෑම වේදිකාවකට අයත් වේද යන්න පුදුමයට කරුණකි: Youtube, AppleMusic, Spotify, Resso සහ Soundcloud.\n\nඔබට M3u8 හෝ දුරස්ථ සබැඳි සඳහා /stream භාවිතා කළ හැක."
 play_15 : "**සජීවී ප්‍රවාහය අනාවරණය කර ඇත**\nපද්ධති මඟින් ඔබේ ධාවන සබැඳිය සජීවී ප්‍රවාහයක් ලෙස හඳුනාගෙන ඇත. සජීවී ප්‍රවාහය ක්‍රීඩා කිරීමට අවශ්‍යද?"
 play_16 : "ඛණ්ඩ විස්තර ලබා ගැනීමට අසමත් විය. වෙනත් ඕනෑම සෙල්ලම් කිරීමට උත්සාහ කරන්න."
-
+play_17 : "Unable to play this type of spotify query!\n\nI can only play spotify tracks, albums, artists and playlists"
 
 #Playlist
 playlist_1 : "**භාවිතය:** /play [සංගීත නාමය හෝ Youtube සබැඳිය හෝ ශ්‍රව්‍ය වෙත පිළිතුරු දෙන්න]\nඔබට Bots Server Playlist වාදනය කිරීමට අවශ්‍ය නම්! පහත බොත්තම ඔබන්න."
@@ -252,6 +252,7 @@ H_B_2 : "වාදන විධාන"
 H_B_3 : "බොට් විධාන"
 H_B_4 : "අමතර විධාන"
 H_B_5 : "මෙනුව වසන්න"
+H_B_6 : "SudoUser Commands"
 
 #PlayMode
 PM_B_1 : "සෘජුව වාදනය"
@@ -417,3 +418,16 @@ pbot_10 : "පුද්ගලික කතාබස්"
 pbot_11 : "අවසර ලත් කතාබස් හමු නොවීය"
 pbot_12 : "පුද්ගලික බොට් ප්‍රකාරය අබල කර ඇත.\ සහ\nඔබේ බොට් පුද්ගලික බොට් ලෙස භාවිතා නොකරන්න **PRIVATE_BOT_MODE** = **True** සැකසීමට වග බලා ගන්න"
 pbot_13 : "\n**<b>ලබා නොගත් කතාබස්:</b>**\n\n"
+
+#Gbanned
+gban_1 : "You want to gban yourself? How Fool!"
+gban_2 : "Should i block myself? Lol"
+gban_3 : "You want to block a sudo user?"
+gban_4 : "{0} is already **gbanned** from the bot."
+gban_5 : "**Initializing Gobal Ban on {0}**\n\nExpected Time : {1}."
+gban_6 : "**Gbanned Successfully**\n\nBanned **{0}** from **{1}** chats."
+gban_7 : "{0} is not **gbanned **yet from the bot."
+gban_8 : "**Ungbanning {0}**\n\nExpected Time : {1}."
+gban_9 : "**UnGbanned Successfully**\n\nUnbanned **{0}** in **{1}** chats."
+gban_10 : "No Gbanned Users Found."
+gban_11 : "Please wait a while.. Fetching Gbanned users list"

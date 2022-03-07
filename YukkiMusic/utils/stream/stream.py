@@ -14,7 +14,7 @@ from typing import Union
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from YukkiMusic import Carbon, Spotify, YouTube, app
+from YukkiMusic import Carbon, YouTube, app
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.misc import db
 from YukkiMusic.utils.database import (add_active_chat,
@@ -40,7 +40,6 @@ async def stream(
     original_chat_id,
     video: Union[bool, str] = None,
     streamtype: Union[bool, str] = None,
-    spotify: Union[bool, str] = None,
 ):
     if video:
         if not await is_video_allowed(chat_id):
@@ -49,25 +48,16 @@ async def stream(
         msg = f"{_['playlist_16']}\n\n"
         count = 0
         for search in result:
+            print(search)
             if int(count) == config.PLAYLIST_FETCH_LIMIT:
                 continue
-            if spotify:
-                search = await Spotify.trackplaylist(search)
-                (
-                    title,
-                    duration_min,
-                    duration_sec,
-                    thumbnail,
-                    vidid,
-                ) = await YouTube.details(search)
-            else:
-                (
-                    title,
-                    duration_min,
-                    duration_sec,
-                    thumbnail,
-                    vidid,
-                ) = await YouTube.details(search, True)
+            (
+                title,
+                duration_min,
+                duration_sec,
+                thumbnail,
+                vidid,
+            ) = await YouTube.details(search, True)
             if str(duration_min) == "None":
                 continue
             if duration_sec > config.DURATION_LIMIT:

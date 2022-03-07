@@ -10,7 +10,7 @@ Config vars are basically the variables which configure or modify bot to functio
 1. `API_ID` : Get it from my.telegram.org 
 2. `API_HASH`  : Get it from my.telegram.org 
 3. `BOT_TOKEN` : Get it from [@Botfather](http://t.me/BotFather) in Telegram
-4. `MONGO_DB_URI` : Get mongo db [from HERE](https://telegra.ph/How-To-get-Mongodb-URI-04-06)
+4. `MONGO_DB_URI` : Get mongo db [from here.](https://telegra.ph/How-To-get-Mongodb-URI-04-06)
 5. `LOG_GROUP_ID` : You'll need a Private Group ID for this. Supergroup Needed with id starting from -100 
 6. `MUSIC_BOT_NAME` : A name for your Music bot.
 7. `OWNER_ID` : Your Owner ID for managing your bot.
@@ -88,7 +88,9 @@ Config vars are basically the variables which configure or modify bot to functio
 8. `STREAM_IMG_URL` : his image comes when someone plays m3u8 or index links.
 9. `SOUNCLOUD_IMG_URL` : This image comes when someone plays music from soundcloud. 
 10. `YOUTUBE_IMG_URL` : This image comes if thumbnail generator fails to gen thumb anyhow.
-
+11. `SPOTIFY_ARTIST_IMG_URL` : This image comes when someone plays Spotify artist via link in inline mode. 
+12. `SPOTIFY_ALBUM_IMG_URL` : This image comes when someone plays Spotify album via link in inline mode. 
+13. `SPOTIFY_PLAYLIST_IMG_URL` : This image comes when someone plays Spotify album via link in inline mode. 
 
 ## Multi Assistant Mode
 

@@ -23,7 +23,7 @@ LANGUAGE_COMMAND : ["lang", "language"]
 PLAY_COMMAND : ["play", "vplay", "cplay", "प्ले", "वीप्ले"]
 PLAYMODE_COMMAND : ["playmode", "खेल विधा"]
 CHANNELPLAY_COMMAND : ["channelplay", "चैनलप्ले"]
-STREAM_COMMAND : ["stream", "धारा"]
+STREAM_COMMAND : ["stream", "धारा", "cstream"]
 
 #Playlists Command
 PLAYLIST_COMMAND : ["playlist", "प्लेलिस्ट"]
@@ -31,7 +31,7 @@ DELETEPLAYLIST_COMMAND : ["deleteplaylist", "प्लेलिस्ट-हट�
 
 
 # Tools
-QUEUE_COMMAND : ["queue", "पंक्ति"]
+QUEUE_COMMAND : ["queue", "पंक्ति", "cqueue"]
 SONG_COMMAND : ["song", "video", "गीत", "वीडियो"]
 LYRICS_COMMAND : ["lyrics", "बोल"]
 
@@ -40,41 +40,68 @@ LYRICS_COMMAND : ["lyrics", "बोल"]
 AUTH_COMMAND : ["auth", "प्रमाणन"]
 UNAUTH_COMMAND : ["unauth", "अनधिकृत"]
 AUTHUSERS_COMMAND : ["authusers", "लेखक"]
-PAUSE_COMMAND : ["pause", "ठहराव"]
-RESUME_COMMAND : ["resume", "फिर-शुरू-करना"]
-MUTE_COMMAND : ["mute", "मूक"]
-UNMUTE_COMMAND : ["unmute", "अनम्यूट"]
-STOP_COMMAND : ["stop", "end", "विराम", "समाप्त"]
-SKIP_COMMAND : ["skip", "छोड़ें"]
-SHUFFLE_COMMAND : ["shuffle", "मिश्रण"]
-LOOP_COMMAND : ["loop", "लूप"]
+PAUSE_COMMAND : ["pause", "ठहराव", "cpause"]
+RESUME_COMMAND : ["resume", "फिर-शुरू-करना", "cresume"]
+MUTE_COMMAND : ["mute", "मूक", "cmute"]
+UNMUTE_COMMAND : ["unmute", "अनम्यूट", "cunmute"]
+STOP_COMMAND : ["stop", "end", "विराम", "समाप्त", "cstop", "cend"]
+SKIP_COMMAND : ["skip", "छोड़ें", "cskip"]
+SHUFFLE_COMMAND : ["shuffle", "मिश्रण", "cshuffle"]
+LOOP_COMMAND : ["loop", "लूप", "cloop"]
 
 
 # Sudo Users Commaands
+
+# Sudo Command
 ADDSUDO_COMMAND : ["addsudo", "अड़सुड़ो"]
 DELSUDO_COMMAND : ["delsudo", "देलसूड़ो"]
 SUDOUSERS_COMMAND : ["sudolist", "सुडोलिस्ट"]
+
+#Broadcast 
 BROADCAST_COMMAND : ["broadcast", "ब्रॉडकास्ट"]
+
+#Blacklist chat
 BLACKLISTCHAT_COMMAND : ["blacklistchat", "ब्लैकलिस्टचात"]
 WHITELISTCHAT_COMMAND : ["whitelist", "व्हिटलिस्ट"]
 BLACKLISTEDCHAT_COMMAND : ["blacklistedchat", " ब्लैकलिस्टेडट"]
+
+# Video Calls Command
 VIDEOLIMIT_COMMAND : ["set_video_limit", "सेट_वीडियो_लिमिट"]
+VIDEOMODE_COMMAND : ["videomode", "विडोमोडे"]
+
+#Mantenance
 MAINTENANCE_COMMAND : ["maintenance", "मेंटेनन्स"]
 LOGGER_COMMAND : ["logger", "लोगर"]
+
+#Heroku
 GETLOG_COMMAND : ["get_log", "गेट_लोग"]
 GETVAR_COMMAND : ["get_var", "गेट_वर"]
 DELVAR_COMMAND : ["del_var", "देल_वर"]
 SETVAR_COMMAND : ["set_var", "सेट_वर"]
 USAGE_COMMAND : ["usage", "यूसेज"]
+
+#Basic Bot Commands
 UPDATE_COMMAND : ["update", "अपडेट"]
 RESTART_COMMAND : ["restart", "रीस्टार्ट"]
+
+#Private Bot Mode
 AUTHORIZE_COMMAND : ["authorize", "ऑथॉरिजे"]
 UNAUTHORIZE_COMMAND : ["unauthorize", "ुनौतोरीज़े"]
 AUTHORIZED_COMMAND : ["authorized", "ऑथॉरिज़ेड"]
+
+#Block Users Command
 BLOCK_COMMAND : ["block", "ब्लॉक"]
 UNBLOCK_COMMAND : ["unblock", "ुंब्लॉकेड"]
 BLOCKED_COMMAND : ["blockedusers", "ब्लॉकेडूसेर्स"]
-VIDEOMODE_COMMAND : ["videomode", "विडोमोडे"]
+
+#sPEEDTEST
 SPEEDTEST_COMMAND : ["speedtest", स्पीडटेस्ट]
+
+#Voice chat commands
 ACTIVEVC_COMMAND : ["activevoice", "एक्टीवेवोईस"]
 ACTIVEVIDEO_COMMAND : ["activevideo", "एक्टीवेविडो"]
+
+#Gban Commands
+GBAN_COMMAND : ["gban"]
+UNGBAN_COMMAND : ["ungban"]
+GBANNED_COMMAND : ["gbannedusers"]

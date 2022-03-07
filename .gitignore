@@ -1,4 +1,5 @@
 .env
+.cache
 Yukkilogs.txt
 .DS_Store
 *.session

@@ -193,8 +193,9 @@ class Call(PyTgCalls):
                         invitelink = invitelink.replace(
                             "https://t.me/+", "https://t.me/joinchat/"
                         )
-                    await asyncio.sleep(5)
+                    await asyncio.sleep(3)
                     await userbot.join_chat(invitelink)
+                    await asyncio.sleep(4)
                     await m.edit(_["call_6"].format(userbot.name))
                 except UserAlreadyParticipant:
                     pass

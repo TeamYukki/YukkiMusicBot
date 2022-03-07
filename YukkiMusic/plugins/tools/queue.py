@@ -31,16 +31,28 @@ QUEUE_COMMAND = get_command("QUEUE_COMMAND")
 )
 @language
 async def ping_com(client, message: Message, _):
-    send = await message.reply_text(_["queue_1"])
-    chatmode = await get_chatmode(message.chat.id)
-    if chatmode == "Group":
-        chat_id = message.chat.id
-    else:
+    if message.command[0][0] == "c":
         chat_id = await get_cmode(message.chat.id)
+        if chat_id is None:
+            return await message.reply_text(_["setting_12"])
         try:
-            await app.get_chat(chat_id)
+            chat = await app.get_chat(chat_id)
         except:
             return await message.reply_text(_["cplay_4"])
+        channel = chat.title
+    else:
+        chatmode = await get_chatmode(message.chat.id)
+        if chatmode == "Group":
+            chat_id = message.chat.id
+            channel = None
+        else:
+            chat_id = await get_cmode(message.chat.id)
+            try:
+                chat = await app.get_chat(chat_id)
+            except:
+                return await message.reply_text(_["cplay_4"])
+            channel = chat.title
+    send = await message.reply_text(_["queue_1"])
     if await is_active_chat(chat_id):
         got = db.get(chat_id)
         if got:

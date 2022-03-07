@@ -16,6 +16,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 from config import BANNED_USERS
 from strings import get_command, get_string, helpers
 from YukkiMusic import app
+from YukkiMusic.misc import SUDOERS
 from YukkiMusic.utils import help_pannel
 from YukkiMusic.utils.database import get_lang, is_commanddelete_on
 from YukkiMusic.utils.decorators.language import language, languageCB
@@ -27,7 +28,10 @@ HELP_COMMAND = get_command("HELP_COMMAND")
 
 
 @app.on_message(
-    filters.command(HELP_COMMAND) & filters.private & ~BANNED_USERS
+    filters.command(HELP_COMMAND)
+    & filters.private
+    & ~filters.edited
+    & ~BANNED_USERS
 )
 @app.on_callback_query(
     filters.regex("settings_back_helper") & ~BANNED_USERS
@@ -68,7 +72,10 @@ async def helper_private(
 
 
 @app.on_message(
-    filters.command(HELP_COMMAND) & filters.group & ~BANNED_USERS
+    filters.command(HELP_COMMAND)
+    & filters.group
+    & ~filters.edited
+    & ~BANNED_USERS
 )
 @language
 async def help_com_group(client, message: Message, _):
@@ -83,11 +90,21 @@ async def help_com_group(client, message: Message, _):
 async def helper_cb(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     cb = callback_data.split(None, 1)[1]
+    keyboard = help_back_markup(_)
+    if cb == "hb5":
+        if CallbackQuery.from_user.id not in SUDOERS:
+            return await CallbackQuery.answer(
+                "Only for Sudo Users", show_alert=True
+            )
+        else:
+            await CallbackQuery.edit_message_text(
+                helpers.HELP_5, reply_markup=keyboard
+            )
+            return await CallbackQuery.answer()
     try:
         await CallbackQuery.answer()
     except:
         pass
-    keyboard = help_back_markup(_)
     if cb == "hb1":
         await CallbackQuery.edit_message_text(
             helpers.HELP_1, reply_markup=keyboard

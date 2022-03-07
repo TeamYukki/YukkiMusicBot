@@ -14,8 +14,8 @@ from pyrogram import filters
 from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto,
                             Message)
 
-from config import (BANNED_USERS, DURATION_LIMIT, DURATION_LIMIT_MIN,
-                    PLAYLIST_FETCH_LIMIT, PLAYLIST_IMG_URL, lyrical)
+import config
+from config import BANNED_USERS, lyrical
 from strings import get_command
 from YukkiMusic import (Apple, Resso, SoundCloud, Spotify, Telegram,
                         YouTube, app)
@@ -37,7 +37,10 @@ PLAY_COMMAND = get_command("PLAY_COMMAND")
 
 
 @app.on_message(
-    filters.command(PLAY_COMMAND) & filters.group & ~BANNED_USERS
+    filters.command(PLAY_COMMAND)
+    & filters.group
+    & ~filters.edited
+    & ~BANNED_USERS
 )
 @PlayWrapper
 async def play_commnd(
@@ -78,9 +81,11 @@ async def play_commnd(
         if audio_telegram.file_size > 104857600:
             return await mystic.edit_text(_["play_5"])
         duration_min = seconds_to_min(audio_telegram.duration)
-        if (audio_telegram.duration) > DURATION_LIMIT:
+        if (audio_telegram.duration) > config.DURATION_LIMIT:
             return await mystic.edit_text(
-                _["play_6"].format(DURATION_LIMIT_MIN, duration_min)
+                _["play_6"].format(
+                    config.DURATION_LIMIT_MIN, duration_min
+                )
             )
         file_path = await Telegram.get_filepath(audio=audio_telegram)
         if await Telegram.download(_, message, mystic, file_path):
@@ -169,7 +174,7 @@ async def play_commnd(
                 try:
                     details = await YouTube.playlist(
                         url,
-                        PLAYLIST_FETCH_LIMIT,
+                        config.PLAYLIST_FETCH_LIMIT,
                         message.from_user.id,
                     )
                 except Exception:
@@ -177,7 +182,7 @@ async def play_commnd(
                 streamtype = "playlist"
                 plist_type = "yt"
                 plist_id = url.split("=")[1]
-                img = PLAYLIST_IMG_URL
+                img = config.PLAYLIST_IMG_URL
                 cap = _["play_10"]
             else:
                 try:
@@ -191,6 +196,13 @@ async def play_commnd(
                     details["duration_min"],
                 )
         elif await Spotify.valid(url):
+            if (
+                not config.SPOTIFY_CLIENT_ID
+                and not config.SPOTIFY_CLIENT_SECRET
+            ):
+                return await mystic.edit_text(
+                    "This bot isn't able to play spotify queries. Please ask my owner to enable spotify."
+                )
             if "track" in url:
                 try:
                     details, track_id = await Spotify.track(url)
@@ -203,19 +215,39 @@ async def play_commnd(
                 )
             elif "playlist" in url:
                 try:
-                    details, plist_id, thumb = await Spotify.playlist(
-                        url
-                    )
+                    details, plist_id = await Spotify.playlist(url)
                 except Exception:
                     return await mystic.edit_text(_["play_3"])
                 streamtype = "playlist"
-                plist_type = "spotify"
-                img = thumb
+                plist_type = "spplay"
+                img = config.SPOTIFY_PLAYLIST_IMG_URL
+                cap = _["play_12"].format(
+                    message.from_user.first_name
+                )
+            elif "album" in url:
+                try:
+                    details, plist_id = await Spotify.album(url)
+                except Exception:
+                    return await mystic.edit_text(_["play_3"])
+                streamtype = "playlist"
+                plist_type = "spalbum"
+                img = config.SPOTIFY_ALBUM_IMG_URL
+                cap = _["play_12"].format(
+                    message.from_user.first_name
+                )
+            elif "artist" in url:
+                try:
+                    details, plist_id = await Spotify.artist(url)
+                except Exception:
+                    return await mystic.edit_text(_["play_3"])
+                streamtype = "playlist"
+                plist_type = "spartist"
+                img = config.SPOTIFY_ARTIST_IMG_URL
                 cap = _["play_12"].format(
                     message.from_user.first_name
                 )
             else:
-                return await mystic.edit_text(_["play_16"])
+                return await mystic.edit_text(_["play_17"])
         elif await Apple.valid(url):
             if "album" in url:
                 try:
@@ -256,10 +288,11 @@ async def play_commnd(
             except Exception:
                 return await mystic.edit_text(_["play_3"])
             duration_sec = details["duration_sec"]
-            if duration_sec > DURATION_LIMIT:
+            if duration_sec > config.DURATION_LIMIT:
                 return await mystic.edit_text(
                     _["play_6"].format(
-                        DURATION_LIMIT_MIN, details["duration_min"]
+                        config.DURATION_LIMIT_MIN,
+                        details["duration_min"],
                     )
                 )
             try:
@@ -306,10 +339,10 @@ async def play_commnd(
                 duration_sec = time_to_seconds(
                     details["duration_min"]
                 )
-                if duration_sec > DURATION_LIMIT:
+                if duration_sec > config.DURATION_LIMIT:
                     return await mystic.edit_text(
                         _["play_6"].format(
-                            DURATION_LIMIT_MIN,
+                            config.DURATION_LIMIT_MIN,
                             details["duration_min"],
                         )
                     )
@@ -332,7 +365,6 @@ async def play_commnd(
                 message.chat.id,
                 video=video,
                 streamtype=streamtype,
-                spotify=True if plist_type == "spotify" else False,
             )
         except Exception as e:
             ex_type = type(e).__name__
@@ -440,10 +472,10 @@ async def play_music(client, CallbackQuery, _):
         return await mystic.edit_text(_["play_3"])
     if details["duration_min"]:
         duration_sec = time_to_seconds(details["duration_min"])
-        if duration_sec > DURATION_LIMIT:
+        if duration_sec > config.DURATION_LIMIT:
             return await mystic.edit_text(
                 _["play_6"].format(
-                    DURATION_LIMIT_MIN, details["duration_min"]
+                    config.DURATION_LIMIT_MIN, details["duration_min"]
                 )
             )
     else:
@@ -538,20 +570,27 @@ async def play_playlists_command(client, CallbackQuery, _):
         try:
             result = await YouTube.playlist(
                 videoid,
-                PLAYLIST_FETCH_LIMIT,
+                config.PLAYLIST_FETCH_LIMIT,
                 CallbackQuery.from_user.id,
                 True,
             )
         except Exception:
             return await mystic.edit_text(_["play_3"])
-    if ptype == "spotify":
+    if ptype == "spplay":
         try:
-            result, spotify_id, thumb = await Spotify.playlist(
-                videoid
-            )
+            result, spotify_id = await Spotify.playlist(videoid)
         except Exception:
             return await mystic.edit_text(_["play_3"])
-        spotify = True
+    if ptype == "spalbum":
+        try:
+            result, spotify_id = await Spotify.album(videoid)
+        except Exception:
+            return await mystic.edit_text(_["play_3"])
+    if ptype == "spartist":
+        try:
+            result, spotify_id = await Spotify.artist(videoid)
+        except Exception:
+            return await mystic.edit_text(_["play_3"])
     if ptype == "apple":
         try:
             result, apple_id = await Apple.playlist(videoid, True)
@@ -568,7 +607,6 @@ async def play_playlists_command(client, CallbackQuery, _):
             CallbackQuery.message.chat.id,
             video,
             streamtype="playlist",
-            spotify=True if spotify else False,
         )
     except Exception as e:
         ex_type = type(e).__name__

@@ -59,7 +59,10 @@ LANGUAGE_COMMAND = get_command("LANGUAGE_COMMAND")
 
 
 @app.on_message(
-    filters.command(LANGUAGE_COMMAND) & filters.group & ~BANNED_USERS
+    filters.command(LANGUAGE_COMMAND)
+    & filters.group
+    & ~filters.edited
+    & ~BANNED_USERS
 )
 @language
 async def langs_command(client, message: Message, _):

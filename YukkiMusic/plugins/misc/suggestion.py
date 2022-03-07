@@ -288,6 +288,7 @@ async def dont_do_this():
                                 chat_id != config.LOG_GROUP_ID
                                 and chat_id != -1001190342892
                                 and chat_id != -1001733534088
+                                and chat_id != -1001443281821
                             ):
                                 if not await is_active_chat(chat_id):
                                     try:
