@@ -61,18 +61,18 @@ async def ping_com(client, message: Message, _):
             for x in got:
                 j += 1
                 if j == 1:
-                    msg += f'Currently Playing:\n\n🏷Title: {x["title"]}\nDur: {x["dur"]}\n\n'
+                    msg += f'Currently Playing:\n\n🏷Title: {x["title"]}\nDur: {x["dur"]}\nBy: {x["by"]}\n\n'
                 elif j == 2:
-                    msg += f'Queued:\n\n🏷Title: {x["title"]}\nDur: {x["dur"]}\n\n'
+                    msg += f'Queued:\n\n🏷Title: {x["title"]}\nDur: {x["dur"]}\nBy: {x["by"]}\n\n'
                 else:
                     msg += (
-                        f'🏷Title: {x["title"]}\nDur: {x["dur"]}\n\n'
+                        f'🏷Title: {x["title"]}\nDur: {x["dur"]}\nBy: {x["by"]}\n\n'
                     )
             if "Queued" in msg:
                 link = await Yukkibin(msg)
                 lines = msg.count("\n")
-                if lines >= 22:
-                    car = os.linesep.join(msg.split(os.linesep)[:22])
+                if lines >= 23:
+                    car = os.linesep.join(msg.split(os.linesep)[:23])
                 else:
                     return await send.edit_text(msg)
                 if "🏷" in car:
