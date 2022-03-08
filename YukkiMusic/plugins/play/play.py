@@ -13,6 +13,7 @@ import string
 from pyrogram import filters
 from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto,
                             Message)
+from YukkiMusic.utils.channelplay import get_channeplayCB
 
 import config
 from config import BANNED_USERS, lyrical
@@ -350,7 +351,7 @@ async def play_commnd(
                     )
             else:
                 buttons = livestream_markup(
-                    _, track_id, user_id, "v" if video else "a"
+                    _, track_id, user_id, "v" if video else "a", "c" if channel else "g"
                 )
                 return await mystic.edit_text(
                     _["play_15"],
@@ -388,7 +389,7 @@ async def play_commnd(
             )
             lyrical[ran_hash] = plist_id
             buttons = playlist_markup(
-                _, ran_hash, message.from_user.id, plist_type
+                _, ran_hash, message.from_user.id, plist_type, "c" if channel else "g"
             )
             await mystic.delete()
             await message.reply_photo(
@@ -402,7 +403,7 @@ async def play_commnd(
         else:
             if slider:
                 buttons = slider_markup(
-                    _, track_id, message.from_user.id, query, 0
+                    _, track_id, message.from_user.id, query, 0, "c" if channel else "g"
                 )
                 await mystic.delete()
                 await message.reply_photo(
@@ -418,7 +419,7 @@ async def play_commnd(
                 )
             else:
                 buttons = track_markup(
-                    _, track_id, message.from_user.id
+                    _, track_id, message.from_user.id, "c" if channel else "g"
                 )
                 await mystic.delete()
                 await message.reply_photo(
@@ -436,7 +437,7 @@ async def play_commnd(
 async def play_music(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    vidid, user_id, mode = callback_request.split("|")
+    vidid, user_id, mode, cplay = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         try:
             return await CallbackQuery.answer(
@@ -444,22 +445,10 @@ async def play_music(client, CallbackQuery, _):
             )
         except:
             return
-    chatmode = await get_chatmode(CallbackQuery.message.chat.id)
-    if chatmode == "Group":
-        chat_id = CallbackQuery.message.chat.id
-        channel = None
-    else:
-        chat_id = await get_cmode(CallbackQuery.message.chat.id)
-        try:
-            chat = await app.get_chat(chat_id)
-            channel = chat.title
-        except:
-            try:
-                return await CallbackQuery.answer(
-                    _["cplay_4"], show_alert=True
-                )
-            except:
-                return
+    try:
+        chat_id , channel = await get_channeplayCB(_, cplay, CallbackQuery)
+    except:
+        return
     user_name = CallbackQuery.from_user.first_name
     try:
         await CallbackQuery.message.delete()
@@ -483,7 +472,7 @@ async def play_music(client, CallbackQuery, _):
             )
     else:
         buttons = livestream_markup(
-            _, track_id, CallbackQuery.from_user.id, mode
+            _, track_id, CallbackQuery.from_user.id, mode, "c" if cplay == "c" else "g"
         )
         return await mystic.edit_text(
             _["play_15"],
@@ -533,7 +522,7 @@ async def anonymous_check(client, CallbackQuery):
 async def play_playlists_command(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    videoid, user_id, ptype, mode = callback_request.split("|")
+    videoid, user_id, ptype, mode, cplay = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         try:
             return await CallbackQuery.answer(
@@ -541,22 +530,10 @@ async def play_playlists_command(client, CallbackQuery, _):
             )
         except:
             return
-    chatmode = await get_chatmode(CallbackQuery.message.chat.id)
-    if chatmode == "Group":
-        chat_id = CallbackQuery.message.chat.id
-        channel = None
-    else:
-        chat_id = await get_cmode(CallbackQuery.message.chat.id)
-        try:
-            chat = await app.get_chat(chat_id)
-            channel = chat.title
-        except:
-            try:
-                return await CallbackQuery.answer(
-                    _["cplay_4"], show_alert=True
-                )
-            except:
-                return
+    try:
+        chat_id , channel = await get_channeplayCB(_, cplay, CallbackQuery)
+    except:
+        return
     user_name = CallbackQuery.from_user.first_name
     await CallbackQuery.message.delete()
     try:
@@ -631,7 +608,7 @@ async def play_playlists_command(client, CallbackQuery, _):
 async def slider_queries(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    what, rtype, query, user_id = callback_request.split("|")
+    what, rtype, query, user_id, cplay = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         try:
             return await CallbackQuery.answer(
@@ -653,7 +630,7 @@ async def slider_queries(client, CallbackQuery, _):
         title, duration_min, thumbnail, vidid = await YouTube.slider(
             query, query_type
         )
-        buttons = slider_markup(_, vidid, user_id, query, query_type)
+        buttons = slider_markup(_, vidid, user_id, query, query_type, cplay)
         med = InputMediaPhoto(
             media=thumbnail,
             caption=_["play_11"].format(
@@ -676,7 +653,7 @@ async def slider_queries(client, CallbackQuery, _):
         title, duration_min, thumbnail, vidid = await YouTube.slider(
             query, query_type
         )
-        buttons = slider_markup(_, vidid, user_id, query, query_type)
+        buttons = slider_markup(_, vidid, user_id, query, query_type, cplay)
         med = InputMediaPhoto(
             media=thumbnail,
             caption=_["play_11"].format(

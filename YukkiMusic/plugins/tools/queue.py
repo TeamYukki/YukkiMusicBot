@@ -36,26 +36,23 @@ async def ping_com(client, message: Message, _):
         if chat_id is None:
             return await message.reply_text(_["setting_12"])
         try:
-            chat = await app.get_chat(chat_id)
+            await app.get_chat(chat_id)
         except:
             return await message.reply_text(_["cplay_4"])
-        channel = chat.title
     else:
         chatmode = await get_chatmode(message.chat.id)
         if chatmode == "Group":
             chat_id = message.chat.id
-            channel = None
         else:
             chat_id = await get_cmode(message.chat.id)
             try:
-                chat = await app.get_chat(chat_id)
+                await app.get_chat(chat_id)
             except:
                 return await message.reply_text(_["cplay_4"])
-            channel = chat.title
-    send = await message.reply_text(_["queue_1"])
     if await is_active_chat(chat_id):
         got = db.get(chat_id)
         if got:
+            send = await message.reply_text(_["queue_1"])
             j = 0
             msg = ""
             for x in got:
@@ -71,7 +68,7 @@ async def ping_com(client, message: Message, _):
             if "Queued" in msg:
                 link = await Yukkibin(msg)
                 lines = msg.count("\n")
-                if lines >= 23:
+                if lines >= 55:
                     car = os.linesep.join(msg.split(os.linesep)[:23])
                 else:
                     return await send.edit_text(msg)
@@ -87,6 +84,6 @@ async def ping_com(client, message: Message, _):
             else:
                 await send.edit_text(msg)
         else:
-            await send.edit_text(_["queue_2"])
+            await message.reply_text(_["queue_2"])
     else:
-        await send.edit_text(_["queue_2"])
+        await message.reply_text(_["queue_2"])

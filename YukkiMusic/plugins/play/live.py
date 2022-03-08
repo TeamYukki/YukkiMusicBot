@@ -8,10 +8,10 @@
 # All rights reserved.
 
 from pyrogram import filters
+from YukkiMusic.utils.channelplay import get_channeplayCB
 
 from config import BANNED_USERS
 from YukkiMusic import YouTube, app
-from YukkiMusic.utils.database import get_chatmode, get_cmode
 from YukkiMusic.utils.decorators.language import languageCB
 from YukkiMusic.utils.stream.stream import stream
 
@@ -21,7 +21,7 @@ from YukkiMusic.utils.stream.stream import stream
 async def play_live_stream(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    vidid, user_id, mode = callback_request.split("|")
+    vidid, user_id, mode, cplay = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         try:
             return await CallbackQuery.answer(
@@ -29,22 +29,10 @@ async def play_live_stream(client, CallbackQuery, _):
             )
         except:
             return
-    chatmode = await get_chatmode(CallbackQuery.message.chat.id)
-    if chatmode == "Group":
-        chat_id = CallbackQuery.message.chat.id
-        channel = None
-    else:
-        chat_id = await get_cmode(CallbackQuery.message.chat.id)
-        try:
-            chat = await app.get_chat(chat_id)
-            channel = chat.title
-        except:
-            try:
-                return await CallbackQuery.answer(
-                    _["cplay_4"], show_alert=True
-                )
-            except:
-                return
+    try:
+        chat_id , channel = await get_channeplayCB(_, cplay, CallbackQuery)
+    except:
+        return
     video = True if mode == "v" else None
     user_name = CallbackQuery.from_user.first_name
     await CallbackQuery.message.delete()

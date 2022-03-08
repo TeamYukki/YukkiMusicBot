@@ -141,12 +141,15 @@ async def stats_global(
     )
     if is_callback:
         med = InputMediaPhoto(media=thumbnail, caption=final)
-        await update.edit_message_media(media=med, reply_markup=upl)
+        try:
+            await update.edit_message_media(media=med, reply_markup=upl)
+        except:
+            await update.message.reply_photo(photo=thumbnail, caption=final, reply_markup=upl)
     else:
-        await mystic.delete()
         await app.send_photo(
             chat_id, photo=thumbnail, caption=final, reply_markup=upl
         )
+        await mystic.delete()
 
 
 @app.on_callback_query(filters.regex("TOPMARKUPGET") & ~BANNED_USERS)
