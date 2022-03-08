@@ -44,7 +44,7 @@ HELP_2 = """✅<u>**Play Commands:**</u>
 
 /stream or /cstream - Stream live links on voice chats.
 
-/channelplay - Connect channel to a group and stream music on channel's voice chat from your group.
+/channelplay [Chat username or id] or [Disable] - Connect channel to a group and stream music on channel's voice chat from your group.
 
 
 ✅**<u>Bot's Server Playlists:</u>**

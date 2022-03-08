@@ -3,6 +3,7 @@
 Yukkilogs.txt
 .DS_Store
 *.session
+*.txt
 raw_files/
 cache/
 downloads/

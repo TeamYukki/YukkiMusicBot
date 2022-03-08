@@ -2,6 +2,7 @@
 .cache
 Yukkilogs.txt
 .DS_Store
+*.txt
 *.session
 raw_files/
 cache/
