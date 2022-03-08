@@ -12,8 +12,8 @@
 
 # Bot Commands
 PING_COMMAND : ["ping", "पिंग"]
-START_COMMAND : ["start", "स्टार्ट"]
-HELP_COMMAND : ["help", "हेल्प"]
+START_COMMAND : ["mstart", "स्टार्ट"]
+HELP_COMMAND : ["mhelp", "हेल्प"]
 SETTINGS_COMMAND : ["settings", "setting", "सेटिंग्स", "सेटिंग"]
 RELOAD_COMMAND : ["admincache", "reload", "व्यवस्थापक कैश", "पुनः लोड करें"]
 STATS_COMMAND : ["stats", "आँकड़े"]
