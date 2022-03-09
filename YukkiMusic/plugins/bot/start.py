@@ -10,7 +10,7 @@
 from pyrogram import filters
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup, Message)
-from youtubesearchpython import VideosSearch
+from youtubesearchpython.__future__ import VideosSearch
 
 import config
 from config import BANNED_USERS
@@ -120,7 +120,7 @@ async def start_comm(client, message: Message, _):
             query = (str(name)).replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
             results = VideosSearch(query, limit=1)
-            for result in results.result()["result"]:
+            for result in (await results.next())["result"]:
                 title = result["title"]
                 duration = result["duration"]
                 views = result["viewCount"]["short"]

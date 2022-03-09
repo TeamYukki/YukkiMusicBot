@@ -62,9 +62,7 @@ async def ping_com(client, message: Message, _):
                 elif j == 2:
                     msg += f'Queued:\n\n🏷Title: {x["title"]}\nDur: {x["dur"]}\nBy: {x["by"]}\n\n'
                 else:
-                    msg += (
-                        f'🏷Title: {x["title"]}\nDur: {x["dur"]}\nBy: {x["by"]}\n\n'
-                    )
+                    msg += f'🏷Title: {x["title"]}\nDur: {x["dur"]}\nBy: {x["by"]}\n\n'
             if "Queued" in msg:
                 link = await Yukkibin(msg)
                 lines = msg.count("\n")

@@ -12,7 +12,7 @@ from typing import Union
 
 import aiohttp
 from bs4 import BeautifulSoup
-from youtubesearchpython import VideosSearch
+from youtubesearchpython.__future__ import VideosSearch
 
 
 class AppleAPI:
@@ -42,7 +42,7 @@ class AppleAPI:
         if search is None:
             return False
         results = VideosSearch(search, limit=1)
-        for result in results.result()["result"]:
+        for result in (await results.next())["result"]:
             title = result["title"]
             ytlink = result["link"]
             vidid = result["id"]

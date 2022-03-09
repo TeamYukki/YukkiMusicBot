@@ -51,15 +51,18 @@ async def stream(
         for search in result:
             if int(count) == config.PLAYLIST_FETCH_LIMIT:
                 continue
-            (
-                title,
-                duration_min,
-                duration_sec,
-                thumbnail,
-                vidid,
-            ) = await YouTube.details(
-                search, False if spotify else True
-            )
+            try:
+                (
+                    title,
+                    duration_min,
+                    duration_sec,
+                    thumbnail,
+                    vidid,
+                ) = await YouTube.details(
+                    search, False if spotify else True
+                )
+            except:
+                continue
             if str(duration_min) == "None":
                 continue
             if duration_sec > config.DURATION_LIMIT:

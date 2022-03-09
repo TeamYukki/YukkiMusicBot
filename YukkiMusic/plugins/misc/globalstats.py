@@ -14,6 +14,7 @@ from typing import Union
 import psutil
 from pyrogram import __version__ as pyrover
 from pyrogram import filters, types
+from pyrogram.errors import MessageIdInvalid
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaPhoto)
 
@@ -142,9 +143,13 @@ async def stats_global(
     if is_callback:
         med = InputMediaPhoto(media=thumbnail, caption=final)
         try:
-            await update.edit_message_media(media=med, reply_markup=upl)
+            await update.edit_message_media(
+                media=med, reply_markup=upl
+            )
         except:
-            await update.message.reply_photo(photo=thumbnail, caption=final, reply_markup=upl)
+            await update.message.reply_photo(
+                photo=thumbnail, caption=final, reply_markup=upl
+            )
     else:
         await app.send_photo(
             chat_id, photo=thumbnail, caption=final, reply_markup=upl
@@ -164,9 +169,16 @@ async def too_ten_reply(client, CallbackQuery, _):
         media=config.GLOBAL_IMG_URL,
         caption=_["tops_10"],
     )
-    await CallbackQuery.edit_message_media(
-        media=med, reply_markup=upl
-    )
+    try:
+        await CallbackQuery.edit_message_media(
+            media=med, reply_markup=upl
+        )
+    except MessageIdInvalid:
+        await CallbackQuery.message.reply_photo(
+            photo=config.GLOBAL_IMG_URL,
+            caption=_["tops_10"],
+            reply_markup=upl,
+        )
 
 
 @app.on_callback_query(filters.regex("TopOverall") & ~BANNED_USERS)
@@ -210,9 +222,14 @@ async def overall_stats(client, CallbackQuery, _):
 **Bot's Server Playlist Limit:** {playlist_limit}
 **Playlist Play Limit:** {fetch_playlist}"""
     med = InputMediaPhoto(media=config.STATS_IMG_URL, caption=text)
-    await CallbackQuery.edit_message_media(
-        media=med, reply_markup=upl
-    )
+    try:
+        await CallbackQuery.edit_message_media(
+            media=med, reply_markup=upl
+        )
+    except MessageIdInvalid:
+        await CallbackQuery.message.reply_photo(
+            photo=config.STATS_IMG_URL, caption=text, reply_markup=upl
+        )
 
 
 @app.on_callback_query(filters.regex("TopUsers") & ~BANNED_USERS)
@@ -258,9 +275,14 @@ async def top_users_ten(client, CallbackQuery, _):
         return await mystic.edit(_["tops_2"], reply_markup=upl)
     msg = _["tops_5"].format(limit, MUSIC_BOT_NAME) + msg
     med = InputMediaPhoto(media=config.GLOBAL_IMG_URL, caption=msg)
-    await CallbackQuery.edit_message_media(
-        media=med, reply_markup=upl
-    )
+    try:
+        await CallbackQuery.edit_message_media(
+            media=med, reply_markup=upl
+        )
+    except MessageIdInvalid:
+        await CallbackQuery.message.reply_photo(
+            photo=config.GLOBAL_IMG_URL, caption=msg, reply_markup=upl
+        )
 
 
 @app.on_callback_query(filters.regex("TopChats") & ~BANNED_USERS)
@@ -308,9 +330,14 @@ async def top_ten_chats(client, CallbackQuery, _):
         limit = 10
     msg = _["tops_3"].format(limit, MUSIC_BOT_NAME) + msg
     med = InputMediaPhoto(media=config.GLOBAL_IMG_URL, caption=msg)
-    await CallbackQuery.edit_message_media(
-        media=med, reply_markup=upl
-    )
+    try:
+        await CallbackQuery.edit_message_media(
+            media=med, reply_markup=upl
+        )
+    except MessageIdInvalid:
+        await CallbackQuery.message.reply_photo(
+            photo=config.GLOBAL_IMG_URL, caption=msg, reply_markup=upl
+        )
 
 
 @app.on_callback_query(filters.regex("TopStats") & ~BANNED_USERS)
@@ -365,10 +392,16 @@ async def top_fif_stats(client, CallbackQuery, _):
         + msg
     )
     med = InputMediaPhoto(media=config.GLOBAL_IMG_URL, caption=final)
-
-    await CallbackQuery.edit_message_media(
-        media=med, reply_markup=upl
-    )
+    try:
+        await CallbackQuery.edit_message_media(
+            media=med, reply_markup=upl
+        )
+    except MessageIdInvalid:
+        await CallbackQuery.message.reply_photo(
+            photo=config.GLOBAL_IMG_URL,
+            caption=final,
+            reply_markup=upl,
+        )
 
 
 @app.on_callback_query(filters.regex("TopHere") & ~BANNED_USERS)
@@ -418,9 +451,14 @@ async def top_here(client, CallbackQuery, _):
             msg += f"🔗 [{title}](https://www.youtube.com/watch?v={vidid}) ** played {count} times**\n\n"
     msg = _["tops_8"].format(tot, total_count, tracks) + msg
     med = InputMediaPhoto(media=config.GLOBAL_IMG_URL, caption=msg)
-    await CallbackQuery.edit_message_media(
-        media=med, reply_markup=upl
-    )
+    try:
+        await CallbackQuery.edit_message_media(
+            media=med, reply_markup=upl
+        )
+    except MessageIdInvalid:
+        await CallbackQuery.message.reply_photo(
+            photo=config.GLOBAL_IMG_URL, caption=msg, reply_markup=upl
+        )
 
 
 @app.on_callback_query(filters.regex("bot_stats_sudo") & SUDOERS)
@@ -501,6 +539,11 @@ async def overall_stats(client, CallbackQuery, _):
 **Total Bot Queries:** `{total_queries} `
     """
     med = InputMediaPhoto(media=config.STATS_IMG_URL, caption=text)
-    await CallbackQuery.edit_message_media(
-        media=med, reply_markup=upl
-    )
+    try:
+        await CallbackQuery.edit_message_media(
+            media=med, reply_markup=upl
+        )
+    except MessageIdInvalid:
+        await CallbackQuery.message.reply_photo(
+            photo=config.STATS_IMG_URL, caption=text, reply_markup=upl
+        )

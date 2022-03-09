@@ -13,7 +13,6 @@ import string
 from pyrogram import filters
 from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto,
                             Message)
-from YukkiMusic.utils.channelplay import get_channeplayCB
 
 import config
 from config import BANNED_USERS, lyrical
@@ -21,6 +20,7 @@ from strings import get_command
 from YukkiMusic import (Apple, Resso, SoundCloud, Spotify, Telegram,
                         YouTube, app)
 from YukkiMusic.utils import seconds_to_min, time_to_seconds
+from YukkiMusic.utils.channelplay import get_channeplayCB
 from YukkiMusic.utils.database import (get_chatmode, get_cmode,
                                        is_video_allowed)
 from YukkiMusic.utils.decorators.language import languageCB
@@ -179,11 +179,15 @@ async def play_commnd(
                         config.PLAYLIST_FETCH_LIMIT,
                         message.from_user.id,
                     )
-                except Exception:
+                except Exception as e:
+                    print(e)
                     return await mystic.edit_text(_["play_3"])
                 streamtype = "playlist"
                 plist_type = "yt"
-                plist_id = url.split("=")[1]
+                if "&" in url:
+                    plist_id = (url.split("=")[1]).split("&")[0]
+                else:
+                    plist_id = url.split("=")[1]
                 img = config.PLAYLIST_IMG_URL
                 cap = _["play_10"]
             else:
@@ -351,7 +355,11 @@ async def play_commnd(
                     )
             else:
                 buttons = livestream_markup(
-                    _, track_id, user_id, "v" if video else "a", "c" if channel else "g"
+                    _,
+                    track_id,
+                    user_id,
+                    "v" if video else "a",
+                    "c" if channel else "g",
                 )
                 return await mystic.edit_text(
                     _["play_15"],
@@ -389,7 +397,11 @@ async def play_commnd(
             )
             lyrical[ran_hash] = plist_id
             buttons = playlist_markup(
-                _, ran_hash, message.from_user.id, plist_type, "c" if channel else "g"
+                _,
+                ran_hash,
+                message.from_user.id,
+                plist_type,
+                "c" if channel else "g",
             )
             await mystic.delete()
             await message.reply_photo(
@@ -403,7 +415,12 @@ async def play_commnd(
         else:
             if slider:
                 buttons = slider_markup(
-                    _, track_id, message.from_user.id, query, 0, "c" if channel else "g"
+                    _,
+                    track_id,
+                    message.from_user.id,
+                    query,
+                    0,
+                    "c" if channel else "g",
                 )
                 await mystic.delete()
                 await message.reply_photo(
@@ -419,7 +436,10 @@ async def play_commnd(
                 )
             else:
                 buttons = track_markup(
-                    _, track_id, message.from_user.id, "c" if channel else "g"
+                    _,
+                    track_id,
+                    message.from_user.id,
+                    "c" if channel else "g",
                 )
                 await mystic.delete()
                 await message.reply_photo(
@@ -446,7 +466,9 @@ async def play_music(client, CallbackQuery, _):
         except:
             return
     try:
-        chat_id , channel = await get_channeplayCB(_, cplay, CallbackQuery)
+        chat_id, channel = await get_channeplayCB(
+            _, cplay, CallbackQuery
+        )
     except:
         return
     user_name = CallbackQuery.from_user.first_name
@@ -472,7 +494,11 @@ async def play_music(client, CallbackQuery, _):
             )
     else:
         buttons = livestream_markup(
-            _, track_id, CallbackQuery.from_user.id, mode, "c" if cplay == "c" else "g"
+            _,
+            track_id,
+            CallbackQuery.from_user.id,
+            mode,
+            "c" if cplay == "c" else "g",
         )
         return await mystic.edit_text(
             _["play_15"],
@@ -531,7 +557,9 @@ async def play_playlists_command(client, CallbackQuery, _):
         except:
             return
     try:
-        chat_id , channel = await get_channeplayCB(_, cplay, CallbackQuery)
+        chat_id, channel = await get_channeplayCB(
+            _, cplay, CallbackQuery
+        )
     except:
         return
     user_name = CallbackQuery.from_user.first_name
@@ -630,7 +658,9 @@ async def slider_queries(client, CallbackQuery, _):
         title, duration_min, thumbnail, vidid = await YouTube.slider(
             query, query_type
         )
-        buttons = slider_markup(_, vidid, user_id, query, query_type, cplay)
+        buttons = slider_markup(
+            _, vidid, user_id, query, query_type, cplay
+        )
         med = InputMediaPhoto(
             media=thumbnail,
             caption=_["play_11"].format(
@@ -653,7 +683,9 @@ async def slider_queries(client, CallbackQuery, _):
         title, duration_min, thumbnail, vidid = await YouTube.slider(
             query, query_type
         )
-        buttons = slider_markup(_, vidid, user_id, query, query_type, cplay)
+        buttons = slider_markup(
+            _, vidid, user_id, query, query_type, cplay
+        )
         med = InputMediaPhoto(
             media=thumbnail,
             caption=_["play_11"].format(

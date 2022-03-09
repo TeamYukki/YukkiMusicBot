@@ -84,4 +84,4 @@ async def stream_command(
             message, streamtype="M3u8 or Index Link"
         )
     else:
-        await mystic.edit_text(_["str_1"])
+        await message.reply_text(_["str_1"])

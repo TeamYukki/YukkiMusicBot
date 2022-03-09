@@ -10,7 +10,7 @@
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup,
                             InlineQueryResultPhoto)
-from youtubesearchpython import VideosSearch
+from youtubesearchpython.__future__ import VideosSearch
 
 from config import BANNED_USERS, MUSIC_BOT_NAME
 from YukkiMusic import app
@@ -30,7 +30,7 @@ async def inline_query_handler(client, query):
             return
     else:
         a = VideosSearch(text, limit=20)
-        result = (a.result()).get("result")
+        result = (await a.next()).get("result")
         for x in range(15):
             title = (result[x]["title"]).title()
             duration = result[x]["duration"]

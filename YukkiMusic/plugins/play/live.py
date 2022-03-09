@@ -8,10 +8,10 @@
 # All rights reserved.
 
 from pyrogram import filters
-from YukkiMusic.utils.channelplay import get_channeplayCB
 
 from config import BANNED_USERS
 from YukkiMusic import YouTube, app
+from YukkiMusic.utils.channelplay import get_channeplayCB
 from YukkiMusic.utils.decorators.language import languageCB
 from YukkiMusic.utils.stream.stream import stream
 
@@ -30,7 +30,9 @@ async def play_live_stream(client, CallbackQuery, _):
         except:
             return
     try:
-        chat_id , channel = await get_channeplayCB(_, cplay, CallbackQuery)
+        chat_id, channel = await get_channeplayCB(
+            _, cplay, CallbackQuery
+        )
     except:
         return
     video = True if mode == "v" else None

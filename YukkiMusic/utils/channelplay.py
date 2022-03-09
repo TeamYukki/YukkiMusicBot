@@ -1,12 +1,15 @@
-from YukkiMusic.utils.database import (get_chatmode, get_cmode,)
 from YukkiMusic import app
+from YukkiMusic.utils.database import get_chatmode, get_cmode
+
 
 async def get_channeplayCB(_, command, CallbackQuery):
     if command == "c":
         chat_id = await get_cmode(CallbackQuery.message.chat.id)
         if chat_id is None:
             try:
-                return await CallbackQuery.answer(_["setting_12"], show_alert=True)
+                return await CallbackQuery.answer(
+                    _["setting_12"], show_alert=True
+                )
             except:
                 return
         try:
@@ -28,7 +31,9 @@ async def get_channeplayCB(_, command, CallbackQuery):
             chat_id = await get_cmode(CallbackQuery.message.chat.id)
             if chat_id is None:
                 try:
-                    return await CallbackQuery.answer(_["setting_12"], show_alert=True)
+                    return await CallbackQuery.answer(
+                        _["setting_12"], show_alert=True
+                    )
                 except:
                     return
             try:
