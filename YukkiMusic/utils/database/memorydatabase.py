@@ -122,7 +122,7 @@ async def get_playmode(chat_id: int) -> str:
         mode = await playmodedb.find_one({"chat_id": chat_id})
         if not mode:
             playmode[chat_id] = "Direct"
-            return "Direct"
+            return "Inline"
         playmode[chat_id] = mode["mode"]
         return mode["mode"]
     return mode
