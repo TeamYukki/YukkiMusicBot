@@ -13,10 +13,10 @@ from config import adminlist
 from strings import get_string
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
-from YukkiMusic.utils.database import (get_authuser_names,
-                                       get_chatmode, get_cmode,
+from YukkiMusic.utils.database import (get_authuser_names, get_cmode,
                                        get_lang, is_active_chat,
                                        is_commanddelete_on,
+                                       is_maintenance,
                                        is_nonadmin_chat)
 
 from ..formatters import int_to_alpha
@@ -24,6 +24,11 @@ from ..formatters import int_to_alpha
 
 def AdminRightsCheck(mystic):
     async def wrapper(client, message):
+        if await is_maintenance() is False:
+            if message.from_user.id not in SUDOERS:
+                return await message.reply_text(
+                    "Bot is under maintenance. Please wait for some time..."
+                )
         if await is_commanddelete_on(message.chat.id):
             try:
                 await message.delete()
@@ -57,15 +62,7 @@ def AdminRightsCheck(mystic):
             except:
                 return await message.reply_text(_["cplay_4"])
         else:
-            chatmode = await get_chatmode(message.chat.id)
-            if chatmode == "Group":
-                chat_id = message.chat.id
-            else:
-                chat_id = await get_cmode(message.chat.id)
-                try:
-                    await app.get_chat(chat_id)
-                except:
-                    return await message.reply_text(_["cplay_4"])
+            chat_id = message.chat.id
         if not await is_active_chat(chat_id):
             return await message.reply_text(_["general_6"])
         is_non_admin = await is_nonadmin_chat(message.chat.id)
@@ -84,6 +81,11 @@ def AdminRightsCheck(mystic):
 
 def AdminActual(mystic):
     async def wrapper(client, message):
+        if await is_maintenance() is False:
+            if message.from_user.id not in SUDOERS:
+                return await message.reply_text(
+                    "Bot is under maintenance. Please wait for some time..."
+                )
         if await is_commanddelete_on(message.chat.id):
             try:
                 await message.delete()
@@ -124,6 +126,12 @@ def AdminActual(mystic):
 
 def ActualAdminCB(mystic):
     async def wrapper(client, CallbackQuery):
+        if await is_maintenance() is False:
+            if CallbackQuery.message.from_user.id not in SUDOERS:
+                return await CallbackQuery.answer(
+                    "Bot is under maintenance. Please wait for some time...",
+                    show_alert=True,
+                )
         try:
             language = await get_lang(CallbackQuery.message.chat.id)
             _ = get_string(language)

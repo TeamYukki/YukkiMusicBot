@@ -35,14 +35,11 @@ class RessoAPI:
                     return False
                 html = await response.text()
         soup = BeautifulSoup(html, "html.parser")
-        print("ye")
         for tag in soup.find_all("meta"):
             if tag.get("property", None) == "og:title":
                 title = tag.get("content", None)
-                print(title)
             if tag.get("property", None) == "og:description":
                 des = tag.get("content", None)
-                print("des" + des)
                 try:
                     des = des.split("·")[0]
                 except:

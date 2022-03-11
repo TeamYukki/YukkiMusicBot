@@ -36,8 +36,13 @@ async def blacklist_chat_func(client, message: Message, _):
         return await message.reply_text(_["black_2"])
     blacklisted = await blacklist_chat(chat_id)
     if blacklisted:
-        return await message.reply_text(_["black_3"])
-    await message.reply_text("Something wrong happened.")
+        await message.reply_text(_["black_3"])
+    else:
+        await message.reply_text("Something wrong happened.")
+    try:
+        await app.leave_chat(chat_id)
+    except:
+        pass
 
 
 @app.on_message(filters.command(WHITELISTCHAT_COMMAND) & SUDOERS)

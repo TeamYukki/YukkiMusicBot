@@ -7,19 +7,22 @@
 #
 # All rights reserved.
 
+import asyncio
+
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup
 
 from config import BANNED_USERS
 from YukkiMusic import app
-from YukkiMusic.utils.database import (get_chatmode, get_cmode,
-                                       get_global_tops,
+from YukkiMusic.utils.database import (get_global_tops,
                                        get_particulars, get_userss)
 from YukkiMusic.utils.decorators.language import languageCB
 from YukkiMusic.utils.inline.playlist import (botplaylist_markup,
                                               failed_top_markup,
                                               top_play_markup)
 from YukkiMusic.utils.stream.stream import stream
+
+loop = asyncio.get_running_loop()
 
 
 @app.on_callback_query(
@@ -55,22 +58,7 @@ async def get_topz_playlists(client, CallbackQuery, _):
 @app.on_callback_query(filters.regex("SERVERTOP") & ~BANNED_USERS)
 @languageCB
 async def server_to_play(client, CallbackQuery, _):
-    chatmode = await get_chatmode(CallbackQuery.message.chat.id)
-    if chatmode == "Group":
-        chat_id = CallbackQuery.message.chat.id
-        channel = None
-    else:
-        chat_id = await get_cmode(CallbackQuery.message.chat.id)
-        try:
-            chat = await app.get_chat(chat_id)
-            channel = chat.title
-        except:
-            try:
-                return await CallbackQuery.answer(
-                    _["cplay_4"], show_alert=True
-                )
-            except:
-                return
+    chat_id = CallbackQuery.message.chat.id
     user_name = CallbackQuery.from_user.first_name
     try:
         await CallbackQuery.answer()
@@ -82,12 +70,9 @@ async def server_to_play(client, CallbackQuery, _):
         _["tracks_1"].format(
             what,
             CallbackQuery.from_user.first_name,
-            f"Enabled on {channel}" if channel else "Disabled ",
         )
     )
     upl = failed_top_markup(_)
-    limit = 0
-    results = {}
     if what == "Global":
         stats = await get_global_tops()
     elif what == "Group":
@@ -98,32 +83,43 @@ async def server_to_play(client, CallbackQuery, _):
         return await mystic.edit(
             _["tracks_2"].format(what), reply_markup=upl
         )
-    for i in stats:
-        top_list = stats[i]["spot"]
-        results[str(i)] = top_list
-        list_arranged = dict(
-            sorted(
-                results.items(),
-                key=lambda item: item[1],
-                reverse=True,
+
+    def get_stats():
+        results = {}
+        for i in stats:
+            top_list = stats[i]["spot"]
+            results[str(i)] = top_list
+            list_arranged = dict(
+                sorted(
+                    results.items(),
+                    key=lambda item: item[1],
+                    reverse=True,
+                )
             )
-        )
-    if not results:
-        return await mystic.edit(
-            _["tracks_2"].format(what), reply_markup=upl
-        )
-    details = []
-    for vidid, count in list_arranged.items():
-        if vidid == "telegram":
-            continue
-        if limit > 9:
-            break
-        limit += 1
-        details.append(vidid)
-    if not details:
-        return await mystic.edit(
-            _["tracks_2"].format(what), reply_markup=upl
-        )
+        if not results:
+            return mystic.edit(
+                _["tracks_2"].format(what), reply_markup=upl
+            )
+        details = []
+        limit = 0
+        for vidid, count in list_arranged.items():
+            if vidid == "telegram":
+                continue
+            if limit == 10:
+                break
+            limit += 1
+            details.append(vidid)
+        if not details:
+            return mystic.edit(
+                _["tracks_2"].format(what), reply_markup=upl
+            )
+        return details
+
+    try:
+        details = await loop.run_in_executor(None, get_stats)
+    except Exception as e:
+        print(e)
+        return
     try:
         await stream(
             _,

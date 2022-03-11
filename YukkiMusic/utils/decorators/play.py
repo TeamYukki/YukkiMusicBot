@@ -13,16 +13,22 @@ from config import PLAYLIST_IMG_URL, PRIVATE_BOT_MODE, adminlist
 from strings import get_string
 from YukkiMusic import YouTube, app
 from YukkiMusic.misc import SUDOERS
-from YukkiMusic.utils.database import (get_chatmode, get_cmode,
-                                       get_lang, get_loop,
+from YukkiMusic.utils.database import (get_cmode, get_lang,
                                        get_playmode, get_playtype,
+                                       is_active_chat,
                                        is_commanddelete_on,
                                        is_served_private_chat)
+from YukkiMusic.utils.database.memorydatabase import is_maintenance
 from YukkiMusic.utils.inline.playlist import botplaylist_markup
 
 
 def PlayWrapper(command):
     async def wrapper(client, message):
+        if await is_maintenance() is False:
+            if message.from_user.id not in SUDOERS:
+                return await message.reply_text(
+                    "Bot is under maintenance. Please wait for some time..."
+                )
         if PRIVATE_BOT_MODE == str(True):
             if not await is_served_private_chat(message.chat.id):
                 await message.reply_text(
@@ -91,17 +97,8 @@ def PlayWrapper(command):
                 return await message.reply_text(_["cplay_4"])
             channel = chat.title
         else:
-            chatmode = await get_chatmode(message.chat.id)
-            if chatmode == "Group":
-                chat_id = message.chat.id
-                channel = None
-            else:
-                chat_id = await get_cmode(message.chat.id)
-                try:
-                    chat = await app.get_chat(chat_id)
-                except:
-                    return await message.reply_text(_["cplay_4"])
-                channel = chat.title
+            chat_id = message.chat.id
+            channel = None
         playmode = await get_playmode(message.chat.id)
         playty = await get_playtype(message.chat.id)
         if playty != "Everyone":
@@ -112,13 +109,19 @@ def PlayWrapper(command):
                 else:
                     if message.from_user.id not in admins:
                         return await message.reply_text(_["play_4"])
-        if "vplay" in message.command:
+        if message.command[0][0] == "v":
             video = True
         else:
             if "-v" in message.text:
                 video = True
             else:
                 video = None
+        if message.command[0][-1] == "e":
+            if not await is_active_chat(chat_id):
+                return await message.reply_text(_["play_18"])
+            fplay = True
+        else:
+            fplay = None
         return await command(
             client,
             message,
@@ -128,6 +131,7 @@ def PlayWrapper(command):
             channel,
             playmode,
             url,
+            fplay,
         )
 
     return wrapper

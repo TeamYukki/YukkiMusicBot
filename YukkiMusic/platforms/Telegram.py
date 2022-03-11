@@ -154,13 +154,17 @@ class TeleAPI:
             timers = []
             for x in downloader:
                 timers.append(downloader[x])
-            low = min(timers)
-            eta = get_readable_time(low)
+            try:
+                low = min(timers)
+                eta = get_readable_time(low)
+            except:
+                eta = "Unknown"
             await mystic.edit_text(_["tg_1"].format(eta))
             return False
 
         speed_counter[message.message_id] = time.time()
         left_time[message.message_id] = datetime.now()
+
         try:
             X = await app.download_media(
                 message.reply_to_message,
