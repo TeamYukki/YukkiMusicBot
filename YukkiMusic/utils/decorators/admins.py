@@ -127,7 +127,7 @@ def AdminActual(mystic):
 def ActualAdminCB(mystic):
     async def wrapper(client, CallbackQuery):
         if await is_maintenance() is False:
-            if CallbackQuery.message.from_user.id not in SUDOERS:
+            if CallbackQuery.from_user.id not in SUDOERS:
                 return await CallbackQuery.answer(
                     "Bot is under maintenance. Please wait for some time...",
                     show_alert=True,
