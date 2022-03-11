@@ -15,165 +15,139 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 import config
 from config import clean
+from strings import get_string
 from YukkiMusic import app, userbot
-from YukkiMusic.utils.database import get_served_chats, is_active_chat
+from YukkiMusic.utils.database import get_lang, get_served_chats, is_active_chat
 
 LEAVE_TIME = config.AUTO_LEAVE_ASSISTANT_TIME
 
-BASE = "❓**Do You Know?**\n\n✅"
 strings = [
     {
-        "msg": f"{BASE} You can play music in two **search modes** i.e. Direct Mode and Inline Mode.\nChange modes via /playmode",
-        "markup": "💡 More Information",
+        "markup": True,
         "cb": "SEARCHANSWER",
         "value": 1,
     },
     {
-        "msg": f"{BASE} You can play music in two **play types** i.e. Everyone Mode and Admins Mode.\nChange modes via /playmode",
-        "markup": "💡 More Information",
+        "markup": True,
         "cb": "PLAYTYPEANSWER",
         "value": 2,
     },
     {
-        "msg": f"{BASE} You can play music in **channels** too.Set channel_id via /channelplay and change playing modes via /playmode",
-        "markup": "💡 More Information",
+        "markup": True,
         "cb": "PLAYMODEANSWER",
         "value": 3,
     },
     {
-        "msg": f"{BASE} Non Admins can use admin commands too by adding them to** AUTH USERS LIST**. Add any user to auth list by /auth , remove with /unauth and check auth users via /authusers",
-        "markup": "💡 More Information",
+        "markup": True,
         "cb": "AUTHANSWER",
         "value": 4,
     },
     {
-        "msg": f"{BASE} Bot has a feature called **Clean Mode**.\nIt deletes the bot's messages after {config.CLEANMODE_DELETE_MINS} Mins and ensures that  your chat remains clean.\nEnable or disable cleanmode from /settings [__Enabled by default__]",
-        "markup": "💡 More Information",
+        "markup": True,
         "cb": "CMANSWER",
         "value": 5,
     },
     {
-        "msg": f"{BASE} You can play **Spotify** tracks and playlists too.\n\nStart playing now with /play [Spotify Link]",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 6,
     },
     {
-        "msg": f"{BASE} You can play **Apple Music** tracks and playlists too.\n\nStart playing now with /play [Apple Link]",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 7,
     },
     {
-        "msg": f"{BASE} You can play **Resso Music** tracks and playlists too.\n\nStart playing now with /play [Resso Link]",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 8,
     },
     {
-        "msg": f"{BASE} You can play **Sound Cloud** tracks and playlists too.\n\nStart playing now with /play [SoundCloud Link]",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 9,
     },
     {
-        "msg": f"{BASE} You can play **Videos** in voice chat via /vplay [Video Name] or /play -v [Video Name]",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 10,
     },
     {
-        "msg": f"{BASE} You can set **Audio Quality** of voice chat to Low, Medium or High.\n\nSet quality via /settings",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 11,
     },
     {
-        "msg": f"{BASE} You can set **Video Quality** of voice chat to Low, Medium or High.\n\nSet quality via /settings",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 12,
     },
     {
-        "msg": f"{BASE} You can check your **Statistics** on bot like Top 10 Played Tracks.\n\nGet Stats: /stats ",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 13,
     },
     {
-        "msg": f"{BASE} You can check **Group's Stats** on bot like Top 10 Played Tracks.\n\nGet Stats: /stats ",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 14,
     },
     {
-        "msg": f"{BASE} You can check bot's **Global Stats** like top 10 users, top 10 chats, top 10 tracks etc etc.\n\nCheck Stats: /stats ",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 15,
     },
     {
-        "msg": f"{BASE} You can now mute the music which is playing on voice chat.\n\nCommand: /mute",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 16,
     },
     {
-        "msg": f"{BASE} You can now unmute and mute the music which is playing on voice chat.\n\nCommand: /mute and /unmute",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 17,
     },
     {
-        "msg": f"{BASE} You can search the lyrics of musics with us too..\n\nCommand: /lyrics [Music Name]",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 18,
     },
     {
-        "msg": f"{BASE} You can download the music or video from the bot through Youtube.\n\nCommand: /song [Music Name]",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 19,
     },
     {
-        "msg": f"{BASE} You can get a complete list of my commands that i accept.\n\nCommand: /help",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 20,
     },
     {
-        "msg": f"{BASE} Bot has server-sided playlist option.\nYou can add music in your playlist and play them all together via /play",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 21,
     },
     {
-        "msg": f"{BASE} You can now shuffle the queued musics on the bot.\n\nCommand: /shuffle",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 22,
     },
     {
-        "msg": f"{BASE} You can check the queue of the musics.\n\nCommand: /queue",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 23,
     },
     {
-        "msg": f"{BASE} You can check my owner and sudo users who manage me.\n\nCommand: /sudolist",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 24,
     },
     {
-        "msg": f"{BASE} Bot has a feature called **Commands Delete Mode**. It deletes its executed commands automatically.\nEnable or disable deletemode from /settings [__Enabled by default__]",
-        "markup": "💡 More Information",
+        "markup": True,
         "cb": "COMMANDANSWER",
         "value": 25,
     },
     {
-        "msg": f"{BASE} You can change language of the bot to available languages for easy understanding.\n\nCommand: /language",
         "markup": None,
         "cb": "SEARCHANSWER",
         "value": 26,
@@ -316,18 +290,23 @@ async def dont_do_this():
                         break
                     if x == config.LOG_GROUP_ID:
                         continue
+                    try:
+                        language = await get_lang(x)
+                        _ = get_string(language)
+                    except:
+                        _ = get_string("en")
                     string = random.choice(strings)
                     previous = suggestor.get(x)
                     if previous:
-                        if previous == string["value"]:
+                        while previous == string["value"]:
                             string = random.choice(strings)
-                            if previous == string["value"]:
-                                string = random.choice(strings)
                     suggestor[x] = string["value"]
                     if string["markup"] is None:
                         try:
+                            the_string = string["value"]
+                            msg = _["sug_1"] + _[f"sug_{the_string + 2}"]
                             sent = await app.send_message(
-                                x, string["msg"]
+                                x, msg
                             )
                             if x not in clean:
                                 clean[x] = []
@@ -348,15 +327,17 @@ async def dont_do_this():
                             [
                                 [
                                     InlineKeyboardButton(
-                                        text=string["markup"],
+                                        text=_["sug_2"],
                                         callback_data=string["cb"],
                                     )
                                 ]
                             ]
                         )
                         try:
+                            the_string = string["value"]
+                            msg = _["sug_1"] + _[f'sug_{the_string + 2}']
                             sent = await app.send_message(
-                                x, string["msg"], reply_markup=key
+                                x, msg, reply_markup=key
                             )
                             if x not in clean:
                                 clean[x] = []
