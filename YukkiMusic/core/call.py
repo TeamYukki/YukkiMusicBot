@@ -57,7 +57,6 @@ class Call(PyTgCalls):
         self.one = PyTgCalls(
             self.userbot1,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
         self.userbot2 = Client(
             api_id=config.API_ID,
@@ -67,7 +66,6 @@ class Call(PyTgCalls):
         self.two = PyTgCalls(
             self.userbot2,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
         self.userbot3 = Client(
             api_id=config.API_ID,
@@ -77,7 +75,6 @@ class Call(PyTgCalls):
         self.three = PyTgCalls(
             self.userbot3,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
         self.userbot4 = Client(
             api_id=config.API_ID,
@@ -87,7 +84,6 @@ class Call(PyTgCalls):
         self.four = PyTgCalls(
             self.userbot4,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
         self.userbot5 = Client(
             api_id=config.API_ID,
@@ -97,7 +93,6 @@ class Call(PyTgCalls):
         self.five = PyTgCalls(
             self.userbot5,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
 
     async def pause_stream(self, chat_id: int):
