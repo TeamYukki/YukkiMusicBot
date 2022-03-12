@@ -217,10 +217,10 @@ def playmode_users_markup(
         ],
         [
             InlineKeyboardButton(
-                text=_["ST_B_22"], callback_data="PLAYMODEANSWER"
+                text=_["ST_B_22"], callback_data="AUTHANSWER"
             ),
             InlineKeyboardButton(
-                text=_["ST_B_23"] if Group == True else _["ST_B_24"],
+                text=_["ST_B_16"] if Group == True else _["ST_B_17"],
                 callback_data="CHANNELMODECHANGE",
             ),
         ],

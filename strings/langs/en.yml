@@ -73,6 +73,7 @@ start_3 : "Welcome To {0}\n\nI don't need any **admin permission** to work ( unt
 start_4 : "{0}'s Owner[{1}] has just joined your chat."
 start_5 : "A member of {0}'s Sudo User[{1}] has just joined your chat."
 start_6 : "❗️ **Supergroup Needed** ❗️\n\nPlease convert your **group** to **supergroup** and then add me back.\n\n**How to make supergroup?**\n✅ Make your group's chat history **visible** once."
+start_7 : "**Blacklisted Chat**\n\nYou're chat has been blacklisted by the Bot. Please ask any SudoUser to whitelist chat first. Check [Sudolist from here]({0})"
 
 # Help
 help_1 : "Click on the buttons below for more information. If you're facing any problem in command you can contact my bot owner or ask in support chat.\n\nAll commands can be used with: /"
@@ -101,23 +102,21 @@ set_cb_7 : "Getting Auth Users List.. PLEASE WAIT."
 set_cb_8 : "Getting back.."
 
 # Misc
-gstats_1 : "Getting Global Stats, This could take some time..."
-gstats_2 : "No Global Stats Found."
-gstats_3 : "**Total Queries on Bot:** {0}\n\n{1} has played **{2}** tracks till now with a whopping count of **{3}** times.\n\n**Top {4} Tracks:**\n"
-
 ustats_1 : "No User Stats Found."
 ustats_2 : "Grettings!, You have played **{0}** tracks till now with a whopping count of **{1}** times.\n\nTop {2} played by you:\n\n"
 
-tops_1 : "Getting Global Top 10 Chats of the bot, This could take some time..."
-tops_2 : "No Stats Found"
-tops_3 : "**Top {0} Chats of {1}:**\n\n"
-tops_4 : "Getting Global Top 10 Users of the bot, This could take some time..."
-tops_5 : "**Top {0} Users of {1}:**\n\n"
-tops_6 : "Getting Top 10 Tracks of this chat, This could take some time..."
-tops_7 : "Getting Global Top 10 Tracks of the bot, This could take some time..."
-tops_8 : "This chat group has played **{0}** tracks till now with a whopping count of **{1}** times.\n\nTop {2} played by this chat group:\n\n"
-tops_9 : "Getting Bot's general stats and information.. This could take some time..."
-tops_10 : "**GLOBAL TOP 10 STATS OF THE BOT**\n\nSelect the buttons from below for which you want to check global stats from bot's servers."
+gstats_1 : "Getting Global Stats, This could take some time..."
+gstats_2 : "No Stats Found."
+gstats_3 : "Getting Global Top 10 {0} on the bot, This could take some time.."
+gstats_4 : "**Total Queries on Bot:** {0}\n\n{1} has played **{2}** tracks till now with a whopping count of **{3}** times.\n\n**Top {4} Tracks:**\n"
+gstats_5 : "**Top {0} Chats of {1}:**\n\n"
+gstats_6 : "**Top {0} Users of {1}:**\n\n"
+gstats_7 : "This chat group has played **{0}** tracks till now with a whopping count of **{1}** times.\n\nTop {2} played by this chat group:\n\n"
+gstats_8 : "Getting Bot's general stats and information.. This could take some time..."
+gstats_9 : "**GLOBAL TOP 10 STATS OF THE BOT**\n\nSelect the buttons from below for which you want to check global stats from bot's servers."
+gstats_10 : "**Global Stats of {0}**\n\nSelect the buttons from below for which you want to check global stats from bot's servers."
+gstats_11 : "**General Stats of {0}**\nSelect the buttons from below for which you want to check global stats from bot's servers.\n\nTo check top tracks, chats, users and other stuffs, please use /gstats"
+
 
 # Play 
 
@@ -151,6 +150,8 @@ play_14 : "**Unable to verify the URL.**\nBot wonders if this url belongs to any
 play_15 : "**Live Stream Detected**\n\nSystems have detected your track link as live stream. Want to play live stream ?"
 play_16 : "Failed to fetch track details. Try playing any other."
 play_17 : "Unable to play this type of spotify query!\n\nI can only play spotify tracks, albums, artists and playlists"
+play_18 : "**No Active Voice Chat Found**\n\nTo use force play, there must be an active voice chat going on in your group. **Force Play** stops the playing track on voice chat and starts playing the searched track instantly without disturbing/clearing queue."
+
 
 #Playlist
 playlist_1 : "**Usage:** /play [Music Name or Youtube Link or Reply to Audio]\n\nIf you want to play Bot's Server Playlist! Press the button below."
@@ -182,7 +183,7 @@ str_2 : "✅ Valid Stream Verified\n\nPlease wait processing link.."
 str_3 : "Unable to stream youtube live streams. No Live Format Found"
 
 #TopPlay
-tracks_1 : "**Processing {0} Top 10 Playlist**\n\n**👤Requested By:** {1}\n📢**Channel Play:** {2}\n\nCheck Top 10 tracks by /stats"
+tracks_1 : "**Processing {0} Top 10 Playlist**\nThis could take some mins(around 3-4 mins).. Please Wait...\n\n**👤Requested By:** {1}\n\nCheck Top 10 tracks by /stats"
 tracks_2 : "**Error**\n\nThere's no **{0} Top 10 Playlist** on bot's servers. Please try any other playlist"
 
 # TOOLS
@@ -191,7 +192,6 @@ tracks_2 : "**Error**\n\nThere's no **{0} Top 10 Playlist** on bot's servers. Pl
 lyrics_1 : "**Usage:**\n\n/lyrics [ Music Name]"
 lyrics_2 : "Searching Lyrics"
 lyrics_3 : "❌ Failed to fetch lyrics😭.\n\n💡**Tried Searching For:** {0}"
-lyrics_5 : 
 lyrics_4 : "Click on the button below and get searched lyrics to avoid long spam types lyrics search."
 
 #Ping
@@ -298,7 +298,7 @@ ST_B_18 : "📋 Authorized Users Lists"
 ST_B_19 : "🔎 Search Mode"
 ST_B_20 : "✅ Direct"
 ST_B_21 : "✅ Inline"
-ST_B_22 : "⏯ Play Mode"
+ST_B_22 : "👨‍⚖️ Admin Commands"
 ST_B_23 : "🏘 Group"
 ST_B_24 : "🏷 Channel"
 ST_B_25 : "🫂 Play Type"
@@ -374,14 +374,10 @@ vidmode_3 : "Video Play Mode set as m3u8. Bot will be play tracks live now."
 broad_1 : "**Broadcasted Message In {0}  Chats with {1} Pins from Bot.**"
 broad_2 : "Started Assistant Broadcast..."
 broad_3 : "**Assistant Broadcast:**\n\n"
-broad_4 : "Assistant 1 Broadcasted in {0} chats\n"
-broad_5 : "Assistant 2 Broadcasted in {0} chats\n"
-broad_6 : "Assistant 3 Broadcasted in {0} chats\n"
-broad_7 : "Assistant 4 Broadcasted in {0} chats\n"
-broad_8 : "Assistant 5 Broadcasted in {0} chats\n"
-broad_9 : "**Usage**:\n/broadcast [MESSAGE] or [Reply to a Message]"
-broad_10 : "Please provide some text to broadcast."
-broad_11 : "**Broadcasted Message to {0} Users.**"
+broad_4 : "Assistant {0} Broadcasted in {1} chats\n"
+broad_5 : "**Usage**:\n/broadcast [MESSAGE] or [Reply to a Message]"
+broad_6 : "Please provide some text to broadcast."
+broad_7 : "**Broadcasted Message to {0} Users.**"
 
 #Heroku
 heroku_1 : "Please make sure your Heroku API Key, Your App name are configured correctly in the heroku"

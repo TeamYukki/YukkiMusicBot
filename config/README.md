@@ -30,6 +30,14 @@ Config vars are basically the variables which configure or modify bot to functio
 7. `SUPPORT_CHANNEL` : If you've any channel for your music bot , fill it with your channel link
 8. `SUPPORT_GROUP` : If you've any group support for your music bot , fill it with your channel link
 
+## Play FileSize Limit Vars
+
+- Maximum File size limit for the audio and videos that a user can play from your bot. [Only Bytes Size Accepted]
+> You can convert mb into bytes from https://www.gbmb.org/mb-to-bytes and use it here 
+
+1. `TG_AUDIO_FILESIZE_LIMIT` : Maximum file size limit for audio files which can be streamed over vc. Defaults to 104857600 bytes, i.e. 100MB
+2. `TG_VIDEO_FILESIZE_LIMIT` : Maximum file size limit for video files which can be played. Defaults to 1073741824 bytes, i.e. 1024MB or 1GB
+
 
 ## Bot Vars
 
@@ -39,10 +47,10 @@ Config vars are basically the variables which configure or modify bot to functio
 2. `YOUTUBE_EDIT_SLEEP` : Time sleep duration For Youtube Downloader. Default to 3 seconds
 3. `TELEGRAM_EDIT_SLEEP` : Time sleep duration For Telegram Downloader. Default to 5 seconds
 4. `AUTO_LEAVING_ASSISTANT` : Set it in True if you want to leave your assistant after a certain amount of time.
-5. `ASSISTANT_LEAVE_TIME` : Time after which your assistant account will leave served chats automatically. Default to 5400 min, i.e 90 Mins
+5. `ASSISTANT_LEAVE_TIME` : Time after which your assistant account will leave served chats automatically. Default to 5400 seconds, i.e 90 Mins
 6. `AUTO_DOWNLOADS_CLEAR` : Set it True if you want to delete downloads after the music playout ends. 
 7. `AUTO_SUGGESTION_MODE` : Set it True if you want to bot to suggest about bot commands to random chats of your bots. 
-
+9. `AUTO_SUGGESTION_TIME` : Time after which your bot will suggest random 1/10 chats of your served chats about bot commands. Default to 5400 seconds, i.e 90 Mins
 
 ## Spotify Vars
 

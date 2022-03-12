@@ -11,95 +11,98 @@
 # Commands in Every Language
 
 # Bot Commands
-PING_COMMAND : ["ping", "पिंग"]
-START_COMMAND : ["start", "स्टार्ट"]
-HELP_COMMAND : ["help", "हेल्प"]
-SETTINGS_COMMAND : ["settings", "setting", "सेटिंग्स", "सेटिंग"]
-RELOAD_COMMAND : ["admincache", "reload", "व्यवस्थापक कैश", "पुनः लोड करें"]
-STATS_COMMAND : ["stats", "आँकड़े"]
-LANGUAGE_COMMAND : ["lang", "language"]
+PING_COMMAND : ["ping"]
+START_COMMAND : ["start"]
+HELP_COMMAND : ["help"]
+SETTINGS_COMMAND : ["settings", "setting"]
+RELOAD_COMMAND : ["admincache", "reload"]
+GSTATS_COMMAND : ["gstats"]
+STATS_COMMAND : ["stats"]
+LANGUAGE_COMMAND : ["lang", "language", "langs"]
 
 # Play Commands
-PLAY_COMMAND : ["play", "vplay", "cplay", "प्ले", "वीप्ले"]
-PLAYMODE_COMMAND : ["playmode", "खेल विधा"]
-CHANNELPLAY_COMMAND : ["channelplay", "चैनलप्ले"]
-STREAM_COMMAND : ["stream", "धारा", "cstream"]
+PLAY_COMMAND : ["play", "vplay", "cplay", "playforce", "vplayforce", "cplayforce"]
+PLAYMODE_COMMAND : ["playmode"]
+CHANNELPLAY_COMMAND : ["channelplay"]
+STREAM_COMMAND : ["stream", "cstream", "streamforce"]
 
 #Playlists Command
-PLAYLIST_COMMAND : ["playlist", "प्लेलिस्ट"]
-DELETEPLAYLIST_COMMAND : ["deleteplaylist", "प्लेलिस्ट-हटाएं"]
+PLAYLIST_COMMAND : ["playlist"]
+DELETEPLAYLIST_COMMAND : ["deleteplaylist"]
 
 
 # Tools
-QUEUE_COMMAND : ["queue", "पंक्ति", "cqueue"]
-SONG_COMMAND : ["song", "video", "गीत", "वीडियो"]
-LYRICS_COMMAND : ["lyrics", "बोल"]
+QUEUE_COMMAND : ["queue","cqueue"]
+SONG_COMMAND : ["song", "video"]
+LYRICS_COMMAND : ["lyrics"]
 
 
 # Admin Commands
-AUTH_COMMAND : ["auth", "प्रमाणन"]
-UNAUTH_COMMAND : ["unauth", "अनधिकृत"]
-AUTHUSERS_COMMAND : ["authusers", "लेखक"]
-PAUSE_COMMAND : ["pause", "ठहराव", "cpause"]
-RESUME_COMMAND : ["resume", "फिर-शुरू-करना", "cresume"]
-MUTE_COMMAND : ["mute", "मूक", "cmute"]
-UNMUTE_COMMAND : ["unmute", "अनम्यूट", "cunmute"]
-STOP_COMMAND : ["stop", "end", "विराम", "समाप्त", "cstop", "cend"]
-SKIP_COMMAND : ["skip", "छोड़ें", "cskip"]
-SHUFFLE_COMMAND : ["shuffle", "मिश्रण", "cshuffle"]
-LOOP_COMMAND : ["loop", "लूप", "cloop"]
+AUTH_COMMAND : ["auth"]
+UNAUTH_COMMAND : ["unauth"]
+AUTHUSERS_COMMAND : ["authusers"]
+PAUSE_COMMAND : ["pause", "cpause"]
+RESUME_COMMAND : ["resume", "cresume"]
+MUTE_COMMAND : ["mute", "cmute"]
+UNMUTE_COMMAND : ["unmute", "cunmute"]
+STOP_COMMAND : ["stop", "end", "cstop", "cend"]
+SKIP_COMMAND : ["skip", "cskip"]
+SHUFFLE_COMMAND : ["shuffle", "cshuffle"]
+LOOP_COMMAND : ["loop", "cloop"]
 
 
 # Sudo Users Commaands
 
 # Sudo Command
-ADDSUDO_COMMAND : ["addsudo", "अड़सुड़ो"]
-DELSUDO_COMMAND : ["delsudo", "देलसूड़ो"]
-SUDOUSERS_COMMAND : ["sudolist", "सुडोलिस्ट"]
+ADDSUDO_COMMAND : ["addsudo"]
+DELSUDO_COMMAND : ["delsudo"]
+SUDOUSERS_COMMAND : ["sudolist"]
 
 #Broadcast 
-BROADCAST_COMMAND : ["broadcast", "ब्रॉडकास्ट"]
+BROADCAST_COMMAND : ["broadcast"]
 
 #Blacklist chat
-BLACKLISTCHAT_COMMAND : ["blacklistchat", "ब्लैकलिस्टचात"]
-WHITELISTCHAT_COMMAND : ["whitelist", "व्हिटलिस्ट"]
-BLACKLISTEDCHAT_COMMAND : ["blacklistedchat", " ब्लैकलिस्टेडट"]
+BLACKLISTCHAT_COMMAND : ["blacklistchat"]
+WHITELISTCHAT_COMMAND : ["whitelistchat"]
+BLACKLISTEDCHAT_COMMAND : ["blacklistedchat"]
 
 # Video Calls Command
-VIDEOLIMIT_COMMAND : ["set_video_limit", "सेट_वीडियो_लिमिट"]
-VIDEOMODE_COMMAND : ["videomode", "विडोमोडे"]
+VIDEOLIMIT_COMMAND : ["set_video_limit"]
+VIDEOMODE_COMMAND : ["videomode"]
 
 #Mantenance
-MAINTENANCE_COMMAND : ["maintenance", "मेंटेनन्स"]
-LOGGER_COMMAND : ["logger", "लोगर"]
+MAINTENANCE_COMMAND : ["maintenance"]
+LOGGER_COMMAND : ["logger"]
 
 #Heroku
-GETLOG_COMMAND : ["get_log", "गेट_लोग"]
-GETVAR_COMMAND : ["get_var", "गेट_वर"]
-DELVAR_COMMAND : ["del_var", "देल_वर"]
-SETVAR_COMMAND : ["set_var", "सेट_वर"]
-USAGE_COMMAND : ["usage", "यूसेज"]
+GETLOG_COMMAND : ["get_log"]
+GETVAR_COMMAND : ["get_var"]
+DELVAR_COMMAND : ["del_var"]
+SETVAR_COMMAND : ["set_var"]
+USAGE_COMMAND : ["usage"]
+VARS_COMMAND : ["vars", "config"]
+
 
 #Basic Bot Commands
-UPDATE_COMMAND : ["update", "अपडेट"]
-RESTART_COMMAND : ["restart", "रीस्टार्ट"]
+UPDATE_COMMAND : ["update"]
+RESTART_COMMAND : ["restart"]
 
 #Private Bot Mode
-AUTHORIZE_COMMAND : ["authorize", "ऑथॉरिजे"]
-UNAUTHORIZE_COMMAND : ["unauthorize", "ुनौतोरीज़े"]
-AUTHORIZED_COMMAND : ["authorized", "ऑथॉरिज़ेड"]
+AUTHORIZE_COMMAND : ["authorize"]
+UNAUTHORIZE_COMMAND : ["unauthorize"]
+AUTHORIZED_COMMAND : ["authorized"]
 
 #Block Users Command
-BLOCK_COMMAND : ["block", "ब्लॉक"]
-UNBLOCK_COMMAND : ["unblock", "ुंब्लॉकेड"]
-BLOCKED_COMMAND : ["blockedusers", "ब्लॉकेडूसेर्स"]
+BLOCK_COMMAND : ["block"]
+UNBLOCK_COMMAND : ["unblock"]
+BLOCKED_COMMAND : ["blockedusers"]
 
 #sPEEDTEST
-SPEEDTEST_COMMAND : ["speedtest", स्पीडटेस्ट]
+SPEEDTEST_COMMAND : ["speedtest"]
 
 #Voice chat commands
-ACTIVEVC_COMMAND : ["activevoice", "एक्टीवेवोईस"]
-ACTIVEVIDEO_COMMAND : ["activevideo", "एक्टीवेविडो"]
+ACTIVEVC_COMMAND : ["activevoice"]
+ACTIVEVIDEO_COMMAND : ["activevideo"]
 
 #Gban Commands
 GBAN_COMMAND : ["gban"]

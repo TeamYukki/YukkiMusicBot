@@ -7,6 +7,7 @@
 #
 # All rights reserved.
 
+import asyncio
 import os
 from random import randint
 
@@ -17,8 +18,7 @@ from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import Carbon, app
 from YukkiMusic.misc import db
-from YukkiMusic.utils.database import (get_chatmode, get_cmode,
-                                       is_active_chat)
+from YukkiMusic.utils.database import get_cmode, is_active_chat
 from YukkiMusic.utils.decorators.language import language
 from YukkiMusic.utils.pastebin import Yukkibin
 
@@ -40,15 +40,7 @@ async def ping_com(client, message: Message, _):
         except:
             return await message.reply_text(_["cplay_4"])
     else:
-        chatmode = await get_chatmode(message.chat.id)
-        if chatmode == "Group":
-            chat_id = message.chat.id
-        else:
-            chat_id = await get_cmode(message.chat.id)
-            try:
-                await app.get_chat(chat_id)
-            except:
-                return await message.reply_text(_["cplay_4"])
+        chat_id = message.chat.id
     if await is_active_chat(chat_id):
         got = db.get(chat_id)
         if got:
@@ -69,6 +61,7 @@ async def ping_com(client, message: Message, _):
                 if lines >= 55:
                     car = os.linesep.join(msg.split(os.linesep)[:23])
                 else:
+                    await asyncio.sleep(1.5)
                     return await send.edit_text(msg)
                 if "🏷" in car:
                     car = car.replace("🏷", "")
@@ -80,6 +73,7 @@ async def ping_com(client, message: Message, _):
                 )
                 await send.delete()
             else:
+                await asyncio.sleep(1.5)
                 await send.edit_text(msg)
         else:
             await message.reply_text(_["queue_2"])

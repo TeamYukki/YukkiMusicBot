@@ -7,6 +7,8 @@
 #
 # All rights reserved.
 
+from typing import Union
+
 from config import autoclean, chatstats, userstats
 from YukkiMusic.misc import db
 
@@ -21,6 +23,7 @@ async def put_queue(
     vidid,
     user_id,
     stream,
+    forceplay: Union[bool, str] = None,
 ):
     title = title.title()
     put = {
@@ -32,7 +35,15 @@ async def put_queue(
         "file": file,
         "vidid": vidid,
     }
-    db[chat_id].append(put)
+    if forceplay:
+        check = db.get(chat_id)
+        if check:
+            check.insert(0, put)
+        else:
+            db[chat_id] = []
+            db[chat_id].append(put)
+    else:
+        db[chat_id].append(put)
     autoclean.append(file)
     vidid = "telegram" if vidid == "soundcloud" else vidid
     to_append = {"vidid": vidid, "title": title}
@@ -54,6 +65,7 @@ async def put_queue_index(
     user,
     vidid,
     stream,
+    forceplay: Union[bool, str] = None,
 ):
     put = {
         "title": title,
@@ -64,4 +76,12 @@ async def put_queue_index(
         "file": file,
         "vidid": vidid,
     }
-    db[chat_id].append(put)
+    if forceplay:
+        check = db.get(chat_id)
+        if check:
+            check.insert(0, put)
+        else:
+            db[chat_id] = []
+            db[chat_id].append(put)
+    else:
+        db[chat_id].append(put)

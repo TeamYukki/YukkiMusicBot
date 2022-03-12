@@ -16,7 +16,9 @@ from pyrogram.errors import (ChatAdminRequired,
                              UserNotParticipant)
 from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls, StreamType
-from pytgcalls.exceptions import NoActiveGroupCall
+from pytgcalls.exceptions import (AlreadyJoinedError,
+                                  NoActiveGroupCall,
+                                  TelegramServerError)
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.stream import StreamAudioEnded
@@ -55,7 +57,6 @@ class Call(PyTgCalls):
         self.one = PyTgCalls(
             self.userbot1,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
         self.userbot2 = Client(
             api_id=config.API_ID,
@@ -65,7 +66,6 @@ class Call(PyTgCalls):
         self.two = PyTgCalls(
             self.userbot2,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
         self.userbot3 = Client(
             api_id=config.API_ID,
@@ -75,7 +75,6 @@ class Call(PyTgCalls):
         self.three = PyTgCalls(
             self.userbot3,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
         self.userbot4 = Client(
             api_id=config.API_ID,
@@ -85,7 +84,6 @@ class Call(PyTgCalls):
         self.four = PyTgCalls(
             self.userbot4,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
         self.userbot5 = Client(
             api_id=config.API_ID,
@@ -95,7 +93,6 @@ class Call(PyTgCalls):
         self.five = PyTgCalls(
             self.userbot5,
             cache_duration=100,
-            overload_quiet_mode=True,
         )
 
     async def pause_stream(self, chat_id: int):
@@ -118,6 +115,20 @@ class Call(PyTgCalls):
         assistant = await group_assistant(self, chat_id)
         try:
             await _clear_(chat_id)
+            await assistant.leave_group_call(chat_id)
+        except:
+            pass
+
+    async def force_stop_stream(self, chat_id: int):
+        assistant = await group_assistant(self, chat_id)
+        try:
+            check = db.get(chat_id)
+            check.pop(0)
+        except:
+            pass
+        await remove_active_video_chat(chat_id)
+        await remove_active_chat(chat_id)
+        try:
             await assistant.leave_group_call(chat_id)
         except:
             pass
@@ -245,6 +256,14 @@ class Call(PyTgCalls):
                 raise AssistantErr(
                     "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again."
                 )
+        except AlreadyJoinedError:
+            raise AssistantErr(
+                "**Assistant Already in Voice Chat**\n\nSystems have detected that assistant is already there in the voice chat, this issue generally comes when you play 2 queries together.\n\n If assistant is not present in voice chat, please end voice chat and start fresh voice chat again."
+            )
+        except TelegramServerError:
+            raise AssistantErr(
+                "**Telegram Sever Error**\n\nTelegram is having some internal server problems, Please try playing again.\n\n If this problem keeps coming everytime, please end your voice chat and start fresh voice chat again."
+            )
 
     async def change_stream(self, client, chat_id):
         check = db.get(chat_id)

@@ -19,7 +19,8 @@ from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
 from YukkiMusic.utils import help_pannel
 from YukkiMusic.utils.database import get_lang, is_commanddelete_on
-from YukkiMusic.utils.decorators.language import language, languageCB
+from YukkiMusic.utils.decorators.language import (LanguageStart,
+                                                  languageCB)
 from YukkiMusic.utils.inline.help import (help_back_markup,
                                           private_help_panel)
 
@@ -77,7 +78,7 @@ async def helper_private(
     & ~filters.edited
     & ~BANNED_USERS
 )
-@language
+@LanguageStart
 async def help_com_group(client, message: Message, _):
     keyboard = private_help_panel(_)
     await message.reply_text(
