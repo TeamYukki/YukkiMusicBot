@@ -196,7 +196,7 @@ lyrics_4 : "Click on the button below and get searched lyrics to avoid long spam
 
 #Ping
 ping_1 : "Pong!!!!"
-ping_2 : "**Pong!**\n`⚡{0} ms`\n\n<b><u>{1} System Stats:</u></b>\nUptime : {2} \nRam : {3} \nCpu : {4} \nDisk : {5}"
+ping_2 : "**Telegram Pong!**\n`⚡{0} ms`\n**Py-TgCalls Pong!**\n`⚡{1} ms`\n\n<b><u>{2} System Stats:</u></b>\nUptime : {3} \nRam : {4} \nCpu : {5} \nDisk : {6}"
 
 # Song
 song_1 : "You can download Music or Video from YouTube only in private chat. Please start me in private chat."
