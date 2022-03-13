@@ -444,6 +444,20 @@ class Call(PyTgCalls):
         if config.STRING5:
             await self.five.start()
 
+    async def ping(self):
+        pings = []
+        if config.STRING1:
+            pings.append(await self.one.ping)
+        if config.STRING2:
+            pings.append(await self.two.ping)
+        if config.STRING3:
+            pings.append(await self.three.ping)
+        if config.STRING4:
+            pings.append(await self.four.ping)
+        if config.STRING5:
+            pings.append(await self.five.ping)
+        return str(round(sum(pings) / len(pings), 3))
+
     async def decorators(self):
         @self.one.on_kicked()
         @self.two.on_kicked()
