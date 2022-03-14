@@ -171,7 +171,6 @@ async def queued_tracks(client, CallbackQuery: CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
     what, videoid = callback_request.split("|")
-    basic[videoid] = False
     try:
         chat_id, channel = await get_channeplayCB(
             _, what, CallbackQuery
@@ -192,6 +191,7 @@ async def queued_tracks(client, CallbackQuery: CallbackQuery, _):
             _["queue_5"], show_alert=True
         )
     await CallbackQuery.answer()
+    basic[videoid] = False
     buttons = close_markup(_)
     med = InputMediaPhoto(
         media="https://telegra.ph//file/6f7d35131f69951c74ee5.jpg",
