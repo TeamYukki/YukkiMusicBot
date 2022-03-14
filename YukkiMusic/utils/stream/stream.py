@@ -380,7 +380,7 @@ async def stream(
                 duration_min,
                 user_name,
                 link,
-                "video",
+                "video" if video else "audio",
             )
             position = len(db.get(chat_id)) - 1
             await mystic.edit_text(
@@ -392,7 +392,7 @@ async def stream(
             if not forceplay:
                 db[chat_id] = []
             await Yukki.join_call(
-                chat_id, original_chat_id, link, video=True
+                chat_id, original_chat_id, link, video=True if video else None
             )
             await put_queue_index(
                 chat_id,
@@ -402,7 +402,7 @@ async def stream(
                 duration_min,
                 user_name,
                 link,
-                "video",
+                "video" if video else "audio",
                 forceplay=forceplay,
             )
             button = telegram_markup(_)
