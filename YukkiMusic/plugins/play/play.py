@@ -407,6 +407,7 @@ async def play_commnd(
                     user_id,
                     "v" if video else "a",
                     "c" if channel else "g",
+                    "f" if fplay else "d",
                 )
                 return await mystic.edit_text(
                     _["play_15"],
@@ -550,6 +551,7 @@ async def play_music(client, CallbackQuery, _):
             CallbackQuery.from_user.id,
             mode,
             "c" if cplay == "c" else "g",
+            "f" if fplay else "d",
         )
         return await mystic.edit_text(
             _["play_15"],

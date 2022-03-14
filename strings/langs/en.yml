@@ -63,6 +63,13 @@ admin_24 : "**Usage:**\n/loop [enable/disable] or [Number between 1-10]\n\n**Exa
 admin_25 : "Loop enabled by {0} for **{1}** times. Bot will now repeat the current playing music on voice chat for **{1}** times"
 admin_26 : "Please use numbers between 1-10 for loop play"
 admin_27 : "Loop Play has been disabled"
+admin_28 : "**Usage:**\n/seek [Duration in seconds]"
+admin_29 : "Please use numeric duration seconds like 10-20-30 second for seeking"
+admin_30 : "Sorry but you can't seek the currently playing stream. It can only be skipped or stopped."
+admin_31 : "Bot is not able to seek due to high duration given. You need to seek to a lower duration and remember that a time of 10 seconds is left after seeking.\n\nCurrently played** {0}** mins out of **{1}** mins"
+admin_32 : "Please Wait... Seeking ongoing stream."
+admin_33 : "Successfully Seeked Stream to {0} Mins"
+admin_34 : "Failed to seek the current stream."
 
 # Bot 
 
@@ -214,9 +221,10 @@ song_11 : "Uploading Started\n\nUploading speed could be slow. Please hold on.."
 
 # Tools - Queue
 queue_1 : "Please Wait..Fetching Queue.."
-queue_2 : "No tracks inside Queue."
+queue_2 : "Queued List is empty. No tracks found"
 queue_3 : "<u>**Queued Tracks:</u>**  [Checkout More Queued Tracks From Here]({0})"
 queue_4 : "⏳ Added to Queue at **#{0}\n\n💡Title:** {1}\n**⏱Duration:** {2}\n👤**Added By:** {3}"
+queue_5 : "Only one track inside queue, Please add some more to check list"
 
 # All Streaming Lines
 stream_1 : "📡 **Started Streaming** 💡\n\n👤**Requested By:** {0}\n🔦**Information: **[Here]({1})"
@@ -319,6 +327,10 @@ SA_B_5 : "💡 Overall Stats"
 SA_B_6 : "👤 User Stats"
 SA_B_7 : "🔢 Global Top 10 Stats"
 SA_B_8 : "🤖 Bot Stats"
+
+#Queue
+QU_B_1 : "📑 Queued List"
+QU_B_2 : "Played {0} out of {1} Mins"
 
 # Sudo Users [ If you are translating this to some other language .. you can leave all these strings in english language]
 

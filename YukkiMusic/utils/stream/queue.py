@@ -10,6 +10,7 @@
 from typing import Union
 
 from config import autoclean, chatstats, userstats
+from config.config import time_to_seconds
 from YukkiMusic.misc import db
 
 
@@ -26,6 +27,10 @@ async def put_queue(
     forceplay: Union[bool, str] = None,
 ):
     title = title.title()
+    try:
+        duration_in_seconds = time_to_seconds(duration) - 3
+    except:
+        duration_in_seconds = 0
     put = {
         "title": title,
         "dur": duration,
@@ -34,6 +39,8 @@ async def put_queue(
         "chat_id": original_chat_id,
         "file": file,
         "vidid": vidid,
+        "seconds": duration_in_seconds,
+        "played": 0,
     }
     if forceplay:
         check = db.get(chat_id)
@@ -75,6 +82,8 @@ async def put_queue_index(
         "chat_id": original_chat_id,
         "file": file,
         "vidid": vidid,
+        "seconds": 0,
+        "played": 0,
     }
     if forceplay:
         check = db.get(chat_id)

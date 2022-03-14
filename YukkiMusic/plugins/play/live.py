@@ -21,7 +21,7 @@ from YukkiMusic.utils.stream.stream import stream
 async def play_live_stream(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-    vidid, user_id, mode, cplay = callback_request.split("|")
+    vidid, user_id, mode, cplay, fplay = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         try:
             return await CallbackQuery.answer(
@@ -49,6 +49,7 @@ async def play_live_stream(client, CallbackQuery, _):
         details, track_id = await YouTube.track(vidid, True)
     except Exception:
         return await mystic.edit_text(_["play_3"])
+    ffplay = True if fplay == "f" else None
     if not details["duration_min"]:
         try:
             await stream(
@@ -61,6 +62,7 @@ async def play_live_stream(client, CallbackQuery, _):
                 CallbackQuery.message.chat.id,
                 video,
                 streamtype="live",
+                forceplay=ffplay,
             )
         except Exception as e:
             ex_type = type(e).__name__
