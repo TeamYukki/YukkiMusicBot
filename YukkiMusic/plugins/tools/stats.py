@@ -24,6 +24,7 @@ from strings import get_command
 from YukkiMusic import YouTube, app
 from YukkiMusic.core.userbot import assistants
 from YukkiMusic.misc import SUDOERS, pymongodb
+from YukkiMusic.plugins import ALL_MODULES
 from YukkiMusic.utils.database import (get_global_tops,
                                        get_particulars, get_queries,
                                        get_served_chats,
@@ -269,6 +270,7 @@ async def overall_stats(client, CallbackQuery, _):
     total_queries = await get_queries()
     blocked = len(BANNED_USERS)
     sudoers = len(SUDOERS)
+    mod = len(ALL_MODULES)
     assistant = len(assistants)
     playlist_limit = config.SERVER_PLAYLIST_LIMIT
     fetch_playlist = config.PLAYLIST_FETCH_LIMIT
@@ -281,6 +283,7 @@ async def overall_stats(client, CallbackQuery, _):
     cm = config.CLEANMODE_DELETE_MINS
     text = f"""**Bot's Stats and Information:**
 
+**Imported Modules:** {mod}
 **Served Chats:** {served_chats} 
 **Served Users:** {served_users} 
 **Blocked Users:** {blocked} 
@@ -346,6 +349,7 @@ async def overall_stats(client, CallbackQuery, _):
     used = str(used)
     free = hdd.free / (1024.0**3)
     free = str(free)
+    mod = len(ALL_MODULES)
     db = pymongodb
     call = db.command("dbstats")
     datasize = call["dataSize"] / 1024
@@ -364,6 +368,7 @@ async def overall_stats(client, CallbackQuery, _):
     sudoers = len(await get_sudoers())
     text = f""" **Bot's Stats and Information:**
 
+**Imported Modules:** {mod}
 **Platform:** {sc}
 **Ram:** {ram}
 **Physical Cores:** {p_core}

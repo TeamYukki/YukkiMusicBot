@@ -27,11 +27,13 @@ import config
 from strings import get_string
 from YukkiMusic import LOGGER, YouTube, app
 from YukkiMusic.misc import db
-from YukkiMusic.utils.database import (get_assistant,
+from YukkiMusic.utils.database import (add_active_chat,
+                                       add_active_video_chat,
+                                       get_assistant,
                                        get_audio_bitrate, get_lang,
                                        get_loop, get_video_bitrate,
-                                       group_assistant, mute_off,
-                                       remove_active_chat,
+                                       group_assistant, music_on,
+                                       mute_off, remove_active_chat,
                                        remove_active_video_chat,
                                        set_loop)
 from YukkiMusic.utils.exceptions import AssistantErr
@@ -144,6 +146,21 @@ class Call(PyTgCalls):
             stream(link, audio_parameters=audio_stream_quality),
         )
 
+    async def seek_stream(
+        self, chat_id, file_path, to_seek, duration, mode
+    ):
+        stream = AudioVideoPiped if mode == "video" else AudioPiped
+        assistant = await group_assistant(self, chat_id)
+        audio_stream_quality = await get_audio_bitrate(chat_id)
+        await assistant.change_stream(
+            chat_id,
+            stream(
+                file_path,
+                audio_parameters=audio_stream_quality,
+                additional_ffmpeg_parameters=f"-ss {to_seek} -to {duration}",
+            ),
+        )
+
     async def stream_call(self, link):
         assistant = await group_assistant(self, config.LOG_GROUP_ID)
         await assistant.join_group_call(
@@ -220,7 +237,6 @@ class Call(PyTgCalls):
         link,
         video: Union[bool, str] = None,
     ):
-        await mute_off(chat_id)
         assistant = await group_assistant(self, chat_id)
         audio_stream_quality = await get_audio_bitrate(chat_id)
         video_stream_quality = await get_video_bitrate(chat_id)
@@ -254,16 +270,21 @@ class Call(PyTgCalls):
                 )
             except Exception as e:
                 raise AssistantErr(
-                    "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again."
+                    "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
                 )
         except AlreadyJoinedError:
             raise AssistantErr(
-                "**Assistant Already in Voice Chat**\n\nSystems have detected that assistant is already there in the voice chat, this issue generally comes when you play 2 queries together.\n\n If assistant is not present in voice chat, please end voice chat and start fresh voice chat again."
+                "**Assistant Already in Voice Chat**\n\nSystems have detected that assistant is already there in the voice chat, this issue generally comes when you play 2 queries together.\n\nIf assistant is not present in voice chat, please end voice chat and start fresh voice chat again and if the  problem continues, try /restart"
             )
         except TelegramServerError:
             raise AssistantErr(
                 "**Telegram Sever Error**\n\nTelegram is having some internal server problems, Please try playing again.\n\n If this problem keeps coming everytime, please end your voice chat and start fresh voice chat again."
             )
+        await add_active_chat(chat_id)
+        await mute_off(chat_id)
+        await music_on(chat_id)
+        if video:
+            await add_active_video_chat(chat_id)
 
     async def change_stream(self, client, chat_id):
         check = db.get(chat_id)
@@ -430,6 +451,20 @@ class Call(PyTgCalls):
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
+
+    async def ping(self):
+        pings = []
+        if config.STRING1:
+            pings.append(await self.one.ping)
+        if config.STRING2:
+            pings.append(await self.two.ping)
+        if config.STRING3:
+            pings.append(await self.three.ping)
+        if config.STRING4:
+            pings.append(await self.four.ping)
+        if config.STRING5:
+            pings.append(await self.five.ping)
+        return str(round(sum(pings) / len(pings), 3))
 
     async def start(self):
         LOGGER(__name__).info("Starting PyTgCalls Client\n")

@@ -39,7 +39,7 @@ DELVAR_COMMAND = get_command("DELVAR_COMMAND")
 SETVAR_COMMAND = get_command("SETVAR_COMMAND")
 USAGE_COMMAND = get_command("USAGE_COMMAND")
 UPDATE_COMMAND = get_command("UPDATE_COMMAND")
-RESTART_COMMAND = get_command("RESTART_COMMAND")
+REBOOT_COMMAND = get_command("REBOOT_COMMAND")
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -322,7 +322,7 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(filters.command(RESTART_COMMAND) & SUDOERS)
+@app.on_message(filters.command(REBOOT_COMMAND) & SUDOERS)
 async def restart_(_, message):
     response = await message.reply_text("Restarting....")
     served_chats = await get_active_chats()

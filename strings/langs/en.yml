@@ -13,7 +13,7 @@ tg_1 : "Bot is **overloaded** with downloads right now.\n\n**Try After:** {0} (_
 tg_2 : "Failed to download the media from telegram."
 
 # Core - Call.py
-call_1 : "Bot requires **Admin** Permission to invite assistant account to your channel.\n\nDisable Channel playmode via : /playmode"
+call_1 : "Bot requires **Admin** Permission to invite assistant account to your channel."
 call_2 : "Assistant is banned in your group or channel, please unban.\n\n**Assistant Username:** @{0}\n**Assistant ID:** {1}"
 call_3 : "Exception Occured While Inviting Assistant Account to your chat.\n\n**Reason**: {0}"
 call_4 : "Bot requires **Invite Users Via Link** Permission to invite assistant account to your chat group."
@@ -63,6 +63,13 @@ admin_24 : "**Usage:**\n/loop [enable/disable] or [Number between 1-10]\n\n**Exa
 admin_25 : "Loop enabled by {0} for **{1}** times. Bot will now repeat the current playing music on voice chat for **{1}** times"
 admin_26 : "Please use numbers between 1-10 for loop play"
 admin_27 : "Loop Play has been disabled"
+admin_28 : "**Usage:**\n/seek [Duration in seconds]"
+admin_29 : "Please use numeric duration seconds like 10-20-30 second for seeking"
+admin_30 : "Sorry but you can't seek the currently playing stream. It can only be skipped or stopped."
+admin_31 : "Bot is not able to seek due to high duration given. You need to seek to a lower duration and remember that a time of 10 seconds is left after seeking.\n\nCurrently played** {0}** mins out of **{1}** mins"
+admin_32 : "Please Wait... Seeking ongoing stream."
+admin_33 : "Successfully Seeked Stream to {0} Mins"
+admin_34 : "Failed to seek the current stream."
 
 # Bot 
 
@@ -128,7 +135,7 @@ playcb_2 : "Getting Next Result"
 cplay_1 : "You can play music in channels from this chat[{0}] to any channel or your chat's linked channel.\n\n**For linked channel:**\n`/{1} linked`\n\n**For any other channel:**\n`/{1} [Channel ID]`"
 cplay_2 : "This chat has no linked channel."
 cplay_3 : "Channel Defined to {0}\n\n__Channel ID__: {1}"
-cplay_4 : "Failed to get channel.\n\nMake sure you have added bot in your channel and promoted it as admin.\nChange channel via /channelplay or disable channel play mode via /playmode"
+cplay_4 : "Failed to get channel.\n\nMake sure you have added bot in your channel and promoted it as admin.\nEdit or Change channel via /channelplay"
 cplay_5 : "Only Channels are supported."
 cplay_6 : "You need to be the **Owner** of the channel[{0}] to connect it with this group.\n**Channel's Owner:** @{1}\n\nAlternatively you can link your group to that channel and then try connnecting with `/channelplay linked`"
 
@@ -165,7 +172,7 @@ playlist_8 : "Already Exists\n\nThis track exists in your playlist."
 playlist_9 : "Sorry! You can only have {0} music in a playlist."
 playlist_10 : "Playlist Addition\n\n{0}\nadded to your playlist."
 playlist_11 : "Successfully deleted your track."
-playlist_12 : "Failed to deleted your track."
+playlist_12 : "Failed to delete your track."
 playlist_13 : "Deleted your whole playlists from the server. "
 playlist_14 : "**Are you Sure you want to delete your whole playlist?**\n\nYou'll lost your playlist and this can't be recovered later."
 playlist_15 : "[Checkout Whole Playlist]({0})"
@@ -183,7 +190,7 @@ str_2 : "✅ Valid Stream Verified\n\nPlease wait processing link.."
 str_3 : "Unable to stream youtube live streams. No Live Format Found"
 
 #TopPlay
-tracks_1 : "**Processing {0} Top 10 Playlist**\nThis could take some mins(around 3-4 mins).. Please Wait...\n\n**👤Requested By:** {1}\n\nCheck Top 10 tracks by /stats"
+tracks_1 : "**Processing {0} Top 10 Playlist**\nThis could take some mins(around 3-4 mins).. Please Wait...\n\n**👤Requested By:** {1}\n\nCheck Top 10 tracks by /gstats"
 tracks_2 : "**Error**\n\nThere's no **{0} Top 10 Playlist** on bot's servers. Please try any other playlist"
 
 # TOOLS
@@ -196,7 +203,8 @@ lyrics_4 : "Click on the button below and get searched lyrics to avoid long spam
 
 #Ping
 ping_1 : "Pong!!!!"
-ping_2 : "**Pong!**\n`⚡{0} ms`\n\n<b><u>{1} System Stats:</u></b>\nUptime : {2} \nRam : {3} \nCpu : {4} \nDisk : {5}"
+ping_2 : "{0} is working good with a ping of `{1}` ms.\n\nBot's uptime is {2} and has used a total of {3} server's storage. Cpu load is about {4} with a consumption of {5} Ram. Py-Tgcalls client is also having a good ping of `{6}` ms."
+
 
 # Song
 song_1 : "You can download Music or Video from YouTube only in private chat. Please start me in private chat."
@@ -213,9 +221,10 @@ song_11 : "Uploading Started\n\nUploading speed could be slow. Please hold on.."
 
 # Tools - Queue
 queue_1 : "Please Wait..Fetching Queue.."
-queue_2 : "No tracks inside Queue."
+queue_2 : "Queued List is empty. No tracks found"
 queue_3 : "<u>**Queued Tracks:</u>**  [Checkout More Queued Tracks From Here]({0})"
 queue_4 : "⏳ Added to Queue at **#{0}\n\n💡Title:** {1}\n**⏱Duration:** {2}\n👤**Added By:** {3}"
+queue_5 : "Only one track inside queue, Please add some more to check list"
 
 # All Streaming Lines
 stream_1 : "📡 **Started Streaming** 💡\n\n👤**Requested By:** {0}\n🔦**Information: **[Here]({1})"
@@ -318,6 +327,10 @@ SA_B_5 : "💡 Overall Stats"
 SA_B_6 : "👤 User Stats"
 SA_B_7 : "🔢 Global Top 10 Stats"
 SA_B_8 : "🤖 Bot Stats"
+
+#Queue
+QU_B_1 : "📑 Queued List"
+QU_B_2 : "Played {0} out of {1} Mins"
 
 # Sudo Users [ If you are translating this to some other language .. you can leave all these strings in english language]
 
@@ -424,3 +437,33 @@ gban_8 : "**Ungbanning {0}**\n\nExpected Time : {1}."
 gban_9 : "**UnGbanned Successfully**\n\nUnbanned **{0}** in **{1}** chats."
 gban_10 : "No Gbanned Users Found."
 gban_11 : "Please wait a while.. Fetching Gbanned users list"
+
+#Suggestions
+sug_0 : "❓**Do You Know?**\n\n✅ "
+sug_1 : "You can play music in two **search modes** i.e. Direct Mode and Inline Mode.\n\nChange modes via /playmode"
+sug_2 : "You can play music in two **play types** i.e. Everyone Mode and Admins Mode.\n\nChange modes via /playmode"
+sug_3 : "You can play music in **channels** too.\n\nSet channel_id via /channelplay and play via /cplay "
+sug_4 : "Non Admins can use admin commands too by adding them to** AUTH USERS LIST**. \nAdd any user to auth list by /auth , remove with /unauth and check auth users via /authusers"
+sug_5 : "Bot has a feature called **Clean Mode**.\nIt deletes the bot's messages after 5 Mins and ensures that  your chat remains clean.\n\nEnable or disable cleanmode from /settings [__Enabled by default__]"
+sug_6 : "You can play **Spotify** tracks and playlists too.\n\nStart playing now with /play [Spotify Link]"
+sug_7 : "You can play **Apple Music** tracks and playlists too.\n\nStart playing now with /play [Apple Link]"
+sug_8 : "You can play **Resso Music** tracks and playlists too.\n\nStart playing now with /play [Resso Link]"
+sug_9 : "You can play **Sound Cloud** tracks and playlists too.\n\nStart playing now with /play [SoundCloud Link]"
+sug_10 : "You can play **Videos** in voice chat via /vplay [Video Name] or /play -v [Video Name]"
+sug_11 : "You can set **Audio Quality** of voice chat to Low, Medium or High.\n\nSet quality via /settings"
+sug_12 : "You can set **Video Quality** of voice chat to Low, Medium or High.\n\nSet quality via /settings"
+sug_13 : "You can check your **Statistics** on bot like Top 10 Played Tracks.\n\nGet Stats: /gstats "
+sug_14 : "You can check **Group's Stats** on bot like Top 10 Played Tracks.\n\nGet Stats: /gstats "
+sug_15 : "You can check bot's **Global Stats** like top 10 users, top 10 chats, top 10 tracks etc etc.\n\nCheck Stats: /gstats "
+sug_16 : "You can now mute the music which is playing on voice chat.\n\nCommand: /mute"
+sug_17 : "You can now unmute and mute the music which is playing on voice chat.\n\nCommand: /mute and /unmute"
+sug_18 : "You can search the lyrics of musics with us too..\n\nCommand: /lyrics [Music Name]"
+sug_19 : "You can download the music or video from the bot through Youtube.\n\nCommand: /song [Music Name]"
+sug_20 : "You can get a complete list of my commands that i accept.\n\nCommand: /help"
+sug_21 : "Bot has server-sided playlist option.\n\nYou can add music in your playlist and play them all together via /play"
+sug_22 : "You can now shuffle the queued musics on the bot.\n\nCommand: /shuffle"
+sug_23 : "You can check the queue of the musics.\n\nCommand: /queue"
+sug_24 : "You can check my owner and sudo users who manage me.\n\nCommand: /sudolist"
+sug_25 : "Bot has a feature called **Commands Delete Mode**. It deletes its executed commands automatically.\n\nEnable or disable deletemode from /settings [__Enabled by default__]"
+sug_26 : "You can change language of the bot to available languages for easy understanding.\n\nCommand: /language"
+sug_27 : "Bot has a feature called **Force Play**.\n\n**Force Play** stops the playing track on voice chat and starts playing the searched track instantly without disturbing/clearing queue.\n\nCommand: /playforce"

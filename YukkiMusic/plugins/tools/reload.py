@@ -6,19 +6,24 @@
 # Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
 #
 # All rights reserved.
+import asyncio
 
 from pyrogram import filters
 from pyrogram.types import Message
 
-from config import BANNED_USERS, adminlist
+from config import BANNED_USERS, MUSIC_BOT_NAME, adminlist
 from strings import get_command
 from YukkiMusic import app
+from YukkiMusic.core.call import Yukki
+from YukkiMusic.misc import db
 from YukkiMusic.utils.database import get_authuser_names
 from YukkiMusic.utils.decorators import language
+from YukkiMusic.utils.decorators.admins import AdminActual
 from YukkiMusic.utils.formatters import alpha_to_int
 
 ### Multi-Lang Commands
 RELOAD_COMMAND = get_command("RELOAD_COMMAND")
+RESTART_COMMAND = get_command("RESTART_COMMAND")
 
 
 @app.on_message(
@@ -47,6 +52,28 @@ async def reload_admin_cache(client, message: Message, _):
         await message.reply_text(
             "Failed to reload admincache. Make sure Bot is admin in your chat."
         )
+
+
+@app.on_message(
+    filters.command(RESTART_COMMAND)
+    & filters.group
+    & ~filters.edited
+    & ~BANNED_USERS
+)
+@AdminActual
+async def restartbot(client, message: Message, _):
+    mystic = await message.reply_text(
+        f"Please Wait.. Restarting {MUSIC_BOT_NAME} for your chat.."
+    )
+    await asyncio.sleep(1)
+    try:
+        db[message.chat.id] = []
+        await Yukki.stop_stream(message.chat.id)
+    except:
+        pass
+    return await mystic.edit_text(
+        "Successfully restarted. Try playing now.."
+    )
 
 
 @app.on_callback_query(filters.regex("close") & ~BANNED_USERS)
