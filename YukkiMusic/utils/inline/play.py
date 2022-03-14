@@ -40,12 +40,12 @@ def stream_markup(_, videoid):
                 callback_data=f"add_playlist {videoid}",
             ),
             InlineKeyboardButton(
-                text=_["PL_B_3"], switch_inline_query_current_chat=""
+                text=_["PL_B_3"], url=f"https://t.me/cute_boy701"
             ),
         ],
         [
             InlineKeyboardButton(
-                text=_["CLOSEMENU_BUTTON"], callback_data="close"
+                text=_["CLOSEMENU_BUTTON"], url=f"https://t.me/terayaarhoomai"
             )
         ],
     ]
@@ -56,10 +56,10 @@ def telegram_markup(_):
     buttons = [
         [
             InlineKeyboardButton(
-                text=_["PL_B_3"], switch_inline_query_current_chat=""
+                text=_["PL_B_3"], url=f"https://t.me/cute_boy701"
             ),
             InlineKeyboardButton(
-                text=_["CLOSEMENU_BUTTON"], callback_data="close"
+                text=_["CLOSEMENU_BUTTON"], url=f"https://t.me/terayaarhoomai"
             ),
         ],
     ]
