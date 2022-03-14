@@ -32,7 +32,7 @@ DELETEPLAYLIST_COMMAND : ["deleteplaylist"]
 
 
 # Tools
-QUEUE_COMMAND : ["queue","cqueue"]
+QUEUE_COMMAND : ["queue","cqueue", "player", "cplayer", "playing", "cplaying"]
 SONG_COMMAND : ["song", "video"]
 LYRICS_COMMAND : ["lyrics"]
 
@@ -49,7 +49,8 @@ STOP_COMMAND : ["stop", "end", "cstop", "cend"]
 SKIP_COMMAND : ["skip", "cskip"]
 SHUFFLE_COMMAND : ["shuffle", "cshuffle"]
 LOOP_COMMAND : ["loop", "cloop"]
-
+SEEK_COMMAND : ["seek", "cseek"]
+RESTART_COMMAND : ["restart"]
 
 # Sudo Users Commaands
 
@@ -85,7 +86,7 @@ VARS_COMMAND : ["vars", "config"]
 
 #Basic Bot Commands
 UPDATE_COMMAND : ["update"]
-RESTART_COMMAND : ["restart"]
+REBOOT_COMMAND : ["reboot"]
 
 #Private Bot Mode
 AUTHORIZE_COMMAND : ["authorize"]
