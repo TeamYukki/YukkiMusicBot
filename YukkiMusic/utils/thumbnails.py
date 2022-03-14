@@ -71,13 +71,13 @@ async def gen_thumb(videoid):
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(30))
         enhancer = ImageEnhance.Brightness(background)
-        background = enhancer.enhance(0.4)
+        background = enhancer.enhance(1.2)
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
-        x1 = Xcenter - 250
-        y1 = Ycenter - 250
-        x2 = Xcenter + 250
-        y2 = Ycenter + 250
+        x1 = Xcenter - 350
+        y1 = Ycenter - 350
+        x2 = Xcenter + 350
+        y2 = Ycenter + 350
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((620, 620), Image.ANTIALIAS)
         logo = ImageOps.expand(logo, border=15, fill="white")
@@ -118,7 +118,7 @@ async def gen_thumb(videoid):
                     f"{line}",
                     fill="white",
                     stroke_width=1,
-                    stroke_fill="white",
+                    stroke_fill="black",
                     font=font,
                 )
 
