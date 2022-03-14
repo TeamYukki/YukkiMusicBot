@@ -388,7 +388,7 @@ class Call(PyTgCalls):
             elif "index_" in queued:
                 try:
                     await client.change_stream(
-                        chat_id, AudioVideoPiped(videoid)
+                        chat_id, stream(videoid)
                     )
                 except Exception:
                     return await app.send_message(
@@ -403,11 +403,6 @@ class Call(PyTgCalls):
                     reply_markup=InlineKeyboardMarkup(button),
                 )
             else:
-                stream = (
-                    AudioPiped
-                    if str(streamtype) == "audio"
-                    else AudioVideoPiped
-                )
                 try:
                     await client.change_stream(
                         chat_id, stream(queued)
