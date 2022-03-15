@@ -63,7 +63,7 @@ admin_24 : "**Usage:**\n/loop [enable/disable] or [Number between 1-10]\n\n**Exa
 admin_25 : "Loop enabled by {0} for **{1}** times. Bot will now repeat the current playing music on voice chat for **{1}** times"
 admin_26 : "Please use numbers between 1-10 for loop play"
 admin_27 : "Loop Play has been disabled"
-admin_28 : "**Usage:**\n/seek [Duration in seconds]"
+admin_28 : "**Usage:**\n/seek or /seekback [Duration in seconds]"
 admin_29 : "Please use numeric duration seconds like 10-20-30 second for seeking"
 admin_30 : "Sorry but you can't seek the currently playing stream. It can only be skipped or stopped."
 admin_31 : "Bot is not able to seek due to high duration given. You need to seek to a lower duration and remember that a time of 10 seconds is left after seeking.\n\nCurrently played** {0}** mins out of **{1}** mins"

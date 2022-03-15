@@ -392,7 +392,10 @@ async def stream(
             if not forceplay:
                 db[chat_id] = []
             await Yukki.join_call(
-                chat_id, original_chat_id, link, video=True if video else None
+                chat_id,
+                original_chat_id,
+                link,
+                video=True if video else None,
             )
             await put_queue_index(
                 chat_id,

@@ -54,22 +54,6 @@ class YouTubeAPI:
         self, link: str, videoid: Union[bool, str] = None
     ):
         if videoid:
-            link = self.status + self.base + link
-        else:
-            if "music.youtube" in link:
-                return True
-            link = self.status + link
-        async with aiohttp.ClientSession() as session:
-            async with session.get(link) as response:
-                if response.status != 200:
-                    return False
-                else:
-                    return True
-
-    async def valid(
-        self, link: str, videoid: Union[bool, str] = None
-    ):
-        if videoid:
             link = self.base + link
         if re.search(self.regex, link):
             return True
