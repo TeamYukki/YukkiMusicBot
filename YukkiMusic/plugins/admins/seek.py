@@ -46,16 +46,25 @@ async def seek_comm(cli, message: Message, _, chat_id):
     duration_played = int(playing[0]["played"])
     duration_to_skip = int(query)
     duration = playing[0]["dur"]
-    if (
-        duration_seconds - (duration_played + duration_to_skip)
-    ) <= 10:
-        return await message.reply_text(
-            _["admin_31"].format(
-                seconds_to_min(duration_played), duration
+    if message.command[0][-2] == "c":
+        if (duration_played - duration_to_skip) <= 10:
+            return await message.reply_text(
+                _["admin_31"].format(
+                    seconds_to_min(duration_played), duration
+                )
             )
-        )
+        to_seek = duration_played - duration_to_skip + 1
+    else:
+        if (
+            duration_seconds - (duration_played + duration_to_skip)
+        ) <= 10:
+            return await message.reply_text(
+                _["admin_31"].format(
+                    seconds_to_min(duration_played), duration
+                )
+            )
+        to_seek = duration_played + duration_to_skip + 1
     mystic = await message.reply_text(_["admin_32"])
-    to_seek = duration_played + duration_to_skip + 1
     if "vid_" in file_path:
         n, file_path = await YouTube.video(playing[0]["vidid"], True)
         if n == 0:
@@ -70,7 +79,10 @@ async def seek_comm(cli, message: Message, _, chat_id):
         )
     except:
         return await mystic.edit_text(_["admin_34"])
-    db[chat_id][0]["played"] += duration_to_skip
+    if message.command[0][-2] == "c":
+        db[chat_id][0]["played"] -= duration_to_skip
+    else:
+        db[chat_id][0]["played"] += duration_to_skip
     await mystic.edit_text(
         _["admin_33"].format(seconds_to_min(to_seek))
     )

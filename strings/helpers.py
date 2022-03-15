@@ -18,7 +18,8 @@ HELP_1 = """✅**<u>Admin Commands:</u>**
 /skip or /cskip- Skip the current playing music.
 /stop or /cstop- Stop the playing music.
 /shuffle or /cshuffle- Randomly shuffles the queued playlist.
-/seek or /cseek - Seek the music to your duration
+/seek or /cseek - Forward Seek the music to your duration
+/seekback or /cseekback - Backward Seek the music to your duration
 /restart - Restart bot for your chat .
 
 
