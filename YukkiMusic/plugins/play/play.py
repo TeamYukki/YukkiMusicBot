@@ -127,6 +127,7 @@ async def play_commnd(
                 )
                 return await mystic.edit_text(err)
             return await mystic.delete()
+        return
     elif video_telegram:
         if not await is_video_allowed(message.chat.id):
             return await mystic.edit_text(_["play_3"])
@@ -176,6 +177,7 @@ async def play_commnd(
                 )
                 return await mystic.edit_text(err)
             return await mystic.delete()
+        return
     elif url:
         if await YouTube.exists(url):
             if "playlist" in url:
