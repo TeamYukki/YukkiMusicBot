@@ -15,9 +15,7 @@ import config
 from config import clean
 from strings import get_string
 from YukkiMusic import app
-from YukkiMusic.utils.database import get_lang, get_served_chats
-from YukkiMusic.utils.database.mongodatabase import \
-    get_private_served_chats
+from YukkiMusic.utils.database import get_lang, get_served_chats, get_private_served_chats, is_suggestion
 
 LEAVE_TIME = config.AUTO_SUGGESTION_TIME
 
@@ -50,6 +48,8 @@ async def dont_do_this():
                     if send_to == total:
                         break
                     if x == config.LOG_GROUP_ID:
+                        continue
+                    if not await is_suggestion(x):
                         continue
                     try:
                         language = await get_lang(x)

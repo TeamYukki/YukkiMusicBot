@@ -98,6 +98,8 @@ setting_12 : "❌ You've no channel id defined for channel mode. Please define w
 setting_13 : "Can't change play mode in active group call. Please stop the voice chat first with /stop."
 setting_14 : "⁉️ What is This?\n\nWhen activated, Bot will delete its executed commands (/play, /pause, /shuffle, /stop etc) immediately.\n\nBot will be requiring delete messages admin right for this to work properly."
 setting_15 : "Failed to resolve peer, Make sure you have added bot in your channel and promoted it as admin.\n\nTry setting /channelplay again.."
+setting_16 : "⁉️ What is This?\n\nWhen activated, Bot will suggest your chat in every 1-2 hour about bot commands (How to use them, which are the commands and many other things) randomly."
+
 
 set_cb_1 : "Getting Audio Quality Panel..."
 set_cb_2 : "Getting Video Quality Panel..."
@@ -312,6 +314,7 @@ ST_B_23 : "🏘 Group"
 ST_B_24 : "🏷 Channel"
 ST_B_25 : "🫂 Play Type"
 ST_B_26 : "🗑 Command Clean"
+ST_B_27 : "🧑‍🚀 Suggestion Mode"
 
 #Song
 SG_B_1 : "↗️ Open Private Chat"
