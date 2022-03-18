@@ -16,9 +16,8 @@ from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.misc import db
-from YukkiMusic.utils.database import get_authuser_names
-from YukkiMusic.utils.decorators import language
-from YukkiMusic.utils.decorators.admins import AdminActual, ActualAdminCB
+from YukkiMusic.utils.database import get_authuser_names, get_cmode
+from YukkiMusic.utils.decorators import language, AdminActual, ActualAdminCB
 from YukkiMusic.utils.formatters import alpha_to_int
 
 ### Multi-Lang Commands
@@ -71,6 +70,17 @@ async def restartbot(client, message: Message, _):
         await Yukki.stop_stream(message.chat.id)
     except:
         pass
+    chat_id = await get_cmode(message.chat.id)
+    if chat_id:
+        try:
+            await app.get_chat(chat_id)
+        except:
+            pass
+        try:
+            db[chat_id] = []
+            await Yukki.stop_stream(chat_id)
+        except:
+            pass
     return await mystic.edit_text(
         "Successfully restarted. Try playing now.."
     )
