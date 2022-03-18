@@ -1,0 +1,421 @@
+name : Azerbaycan
+
+# General Strings
+general_1 : "İstifadəçinin mesajına cavab verin və ya istifadəçi adı/user_id-ni verin."
+general_2 : "Xəta! Komandanın Yanlış İstifadəsi."
+general_3 : "Sorğunuzu emal edərkən bəzi **istisna baş verdi**.\n\nİstisna növü:- {0}"
+general_4 : "Siz bu söhbət qrupunda anonim adminsiniz!\nAdmin Hüquqlarından İstifadəçi Hesabına qayıdın."
+general_5 : "Bu əməliyyatı yerinə yetirmək üçün səsli söhbət hüquqlarını idarə edən admin olmalısınız."
+general_6 : "Bot səsli söhbətdə yayımlanmır."
+
+# Classes - Telegram.py
+tg_1 : "Bot hazırda endirmələrlə **həddən artıq yüklənib**.\n\n**Sonra cəhd edin:** {0} (__gözlənilən vaxt__)"
+tg_2 : "Telegramdan media yükləmək alınmadı."
+
+# Core - Call.py
+call_1 : "Bot köməkçi hesabını kanalınıza dəvət etmək üçün **Admin** İcazəsi tələb edir.\n\nKanal oynatma rejimini : /playmode vasitəsilə deaktiv edin"
+call_2 : "Qrupunuzda və ya kanalınızda Assistent qadağan edilib, lütfən, qadağanı ləğv edin.\n\n**Assistent İstifadəçi Adı:** @{0}\n**Assistent ID:** {1}"
+call_3 : "Assistent Hesabını söhbətinizə dəvət edərkən İstisna baş verdi.\n\n**Səbəb**: {0}"
+call_4 : "Bot **Link vasitəsilə İstifadəçiləri Dəvət Et** Köməkçi hesabını söhbət qrupunuza dəvət etmək üçün icazə tələb edir."
+call_5 : "Assistent Hesabı 5 Saniyəyə qoşulacaq. Zəhmət olmasa Gözləyin!"
+call_6 : "Assistent Hesabı[{0}] Uğurla Qoşuldu.\n\nMusiqi İndi Başlayır"
+call_7 : "**Zərərli Admin hüququ verilir **\n\nLütfən, botdan **İSTİFADƏÇİLƏRİ QADANAN** hüquqlarını silin."
+call_8 : "**Zərərli Admin hüququ verilir **\n\nLütfən, botdan **YENİ ADMINSƏLƏMƏ** hüquqlarını silin."
+call_9 : "**Yayımı dəyişmək alınmadı**\nTresi yenidən dəyişmək üçün /skip istifadə edin."
+call_10 : "Pleylistdən növbəti trek endirilir"
+call_11 : "Lütfən, kanalınıza @{0} əlavə edin[ ID: {1}].\n\nBot kanal təfərrüatlarını əldə edə bilmir."
+
+# PLUGINS - Auth.py
+auth_1 : "Qrupunuzun Səlahiyyətli İstifadəçilər Siyahısında (AUL) yalnız 20 İstifadəçi ola bilər"
+auth_2 : "Qrupunuzun Səlahiyyətli İstifadəçilər Siyahısına əlavə edildi."
+auth_3 : "Artıq Səlahiyyətli İstifadəçilər Siyahısındadır."
+auth_4 : "Bu Qrupun Səlahiyyətli İstifadəçiləri Siyahısından Silindi."
+auth_5 : "Hədəf edilmiş istifadəçi Səlahiyyətli İstifadəçi deyil."
+auth_6 : "İcazəli İstifadəçilər götürülür... Lütfən gözləyin"
+auth_7 : "**Səlahiyyətli İstifadəçilər Siyahısı[AUL]:**\n\n"
+auth_8 : "┗ Əlavə edib:-"
+
+# PLUGINS - Admins
+admin_1 : "Musiqi artıq dayandırılıb."
+admin_2 : "🎧 Səsli söhbət {} tərəfindən dayandırıldı!"
+admin_3 : "Musiqi artıq davam etdirilib."
+admin_4 : "🎧 Səsli söhbət {} tərəfindən davam etdirildi!"
+admin_5 : "Musiqi artıq səssizdir."
+admin_6 : "🎧 Səsli söhbət {} tərəfindən susduruldu!"
+admin_7 : "Musiqi artıq səssizdir."
+admin_8 : "🎧 Səsli söhbət {} tərəfindən səssizdən çıxarıldı!"
+admin_9 : "🎧 Səsli söhbət {} tərəfindən bitdi/dayandırıldı!"
+admin_10 : "🎧 Səsli söhbət {} tərəfindən atlandı!. Növbədə daha musiqi yoxdur."
+admin_11 : "Yayım **{0}** olaraq dəyişdirilərkən xəta baş verdi.\n\nLütfən, yenidən /skip istifadə edin."
+admin_12 : "Aktivləşdirilmiş loop ifasına görə xüsusi treki keçmək mümkün deyil. Lütfən, bu funksiyadan istifadə etmək üçün `/loop disable` vasitəsilə loop ifasını deaktiv edin."
+admin_13 : "Xüsusi treklər üçün rəqəmli nömrələrdən istifadə edin, məsələn, 1, 2 və ya 4 və s."
+admin_14 : "Xüsusi nömrəyə keçmək üçün növbəyə ən azı 2 trek lazımdır. Növbəni /növbə ilə yoxlayın"
+admin_15 : "Sizin verdiyiniz dəyər üçün növbədə kifayət qədər trek yoxdur. Lütfən, 1 və {0} arasında rəqəmlər seçin"
+admin_16 : "Xüsusi treki keçmək alınmadı.\n\nSol növbəni /queue ilə yoxlayın"
+admin_17 : "{0}.. Zəhmət olmasa gözləyin"
+admin_18 : "Admin Siyahısı Tapılmadı\n\nLütfən, /admincache və ya /reload vasitəsilə admin siyahısını yenidən yükləyin"
+admin_19 : "Bunu həyata keçirmək üçün səsli çatı idarə etmək hüququ olan admin olmalısınız.\nƏgər siz artıq adminsinizsə, /admincache vasitəsilə admincache yenidən yükləyin "
+admin_20 : "Admin keşi uğurla yenidən yükləndi."
+admin_21 : "Növbədə qarışdırmaq üçün heç nə yoxdur"
+admin_22 : "Qarışdırmaq alınmadı.\n\nNövbəni yoxlayın : /növbə"
+admin_23 : "**Növbə {0} tərəfindən qarışdırıldı**\n\nQarışdırılmış növbəni yoxlayın : /növbə"
+admin_24 : "**İstifadə:**\n/döngü [enable/disable] və ya [1-10 arası rəqəm]\n\n**Misal:** /döngü 5"
+admin_25 : "Loop {0} tərəfindən **{1}** dəfə aktivləşdirildi. Bot indi səsli çatda cari oxunan musiqini **{1}** dəfə təkrarlayacaq"
+admin_26 : "Lütfən, dövrə oyunu üçün 1-10 arası rəqəmlərdən istifadə edin"
+admin_27 : "Loop Play qeyri-aktiv edilib"
+
+# Bot 
+
+# Start
+start_1 : "Məni {0}-da olduğunuz üçün təşəkkür edirəm.\n{1} sağdır.\n\nHər hansı yardım və ya yardım üçün dəstək qrupumuzu və kanalımızı yoxlayın."
+start_2 : "Salam, mənim adım {0}.\n\nMənim bəzi faydalı xüsusiyyətləri olan teleqram yayım botuyam. Youtube, Spotify, Resso, AppleMusic, Soundcloud və s. kimi platformaları istifadə edirəm.\n\nMəni qruplarınıza əlavə etməkdən çəkinməyin."
+start_3 : "Xoş gəlmisiniz {0}\n\nİşləmək üçün **admin icazəsinə** ehtiyacım yoxdur ( tələb olunana qədər).\n\nAssistent İstifadəçi Adı:- @{1}\nAssistent ID-si:- {2} "
+start_4 : "{0} Sahibi[{1}] indicə söhbətinizə qoşulub."
+start_5 : "{0} adlı istifadəçinin Sudo İstifadəçisinin[{1}] üzvü indicə söhbətinizə qoşulub."
+start_6 : "❗️ **Superqrup lazımdır** ❗️\n\nLütfən, **qrupunuzu** **superqrupa** çevirin və sonra məni yenidən əlavə edin.\n\n**Superqrupu necə yaratmaq olar?**\n✅ Qrupunuzun söhbət tarixçəsini bir dəfə **görünən** edin."
+start_7 : "**Blacklisted Chat**\n\nYou're chat has been blacklisted by the Bot. Please ask any SudoUser to whitelist chat first. Check [Sudolist from here]({0})"
+
+# Help
+help_1 : "Ətraflı məlumat üçün aşağıdakı düymələrə klikləyin. Əgər komandada hər hansı problemlə üzləşsəniz, bot sahibimlə əlaqə saxlaya və ya dəstək çatında soruşa bilərsiniz.\n\nBütün əmrlər aşağıdakılarla istifadə edilə bilər: /"
+help_2 : "Kömək üçün PM-də mənimlə əlaqə saxlayın."
+
+# Settings
+settings_1 : "⚙️ **Musiqi Botu Parametrləri**\n\n🖇**Qrup:** {0}\n🔖**Qrup ID-si:** `{1}`\n\n💡**Funksiyanı seçin Aşağıdan redaktə etmək və ya dəyişmək istədiyiniz düymələr.**"
+settings_3 : "⁉️ Bu nədir?\n\n1) Birbaşa: Axtarış sorğularını birbaşa oxuyur. Videoları birbaşa rejimdə oynamaq üçün -v düyməsini istifadə edin.\n\n2) Daxil: Video və audio arasında seçim etmək üçün Daxili İşarələmə Düymələrini qaytarır."
+settings_4 : "⁉️ Bu nədir?\n\n👥 Hər kəs: Bu qrupda mövcud olan admin əmrlərindən (keçmə, fasilə, davam etdirmə və s.) hər kəs istifadə edə bilər.\n\n🙍 Yalnız Admin: Yalnız adminlər və səlahiyyətli istifadəçilər admin əmrlərindən istifadə edə bilər. ."
+settings_5 : "Heç bir Səlahiyyətli İstifadəçi Tapılmadı\n\nSiz hər hansı qeyri-admin admin əmrlərimi /auth ilə istifadə etməyə və /unauth istifadə edərək silməyə icazə verə bilərsiniz"
+settings_9 : "⁉️ Bu nədir?\n\nAktivləşdirildikdə, Bot söhbətinizi təmiz və aydın etmək üçün {0} sonra mesajını siləcək."
+settings_10 : "⁉️ Bu nədir?\n\n1) Qrup: Komandanın verildiyi qrupda musiqi ifa edir .\n\n2) Kanal: İstədiyiniz kanalda musiqi oxuyur. /channelplay vasitəsilə kanal id-sini təyin edin."
+settings_11 : "⁉️ Bu nədir?\n\n1) Hər kəs: Bu qrupda olan hər kəs burada musiqi ifa edə bilər.\n\n2) Yalnız Admin: Bu qrupda musiqini yalnız adminlər ifa edə bilər."
+settings_12 : "❌ Kanal rejimi üçün müəyyən edilmiş kanal id-si yoxdur. Lütfən, /channelplay ilə müəyyən edin."
+settings_13 : "Aktiv qrup zəngində ifa rejimini dəyişmək mümkün deyil. Lütfən, əvvəlcə /stop ilə səsli söhbəti dayandırın."
+settings_14 : "⁉️ Bu nədir?\n\nAktivləşdirildikdə, Bot icra etdiyi əmrləri (/oynat, /pauza, /qarışdır, /dayan və s.) dərhal siləcək.\n\nBunun üçün bot admindən mesajların silinməsini tələb edəcək. düzgün işləyin."
+settings_15 : "Peer həll edilmədi, kanalınıza bot əlavə etdiyinizə və onu admin kimi tanıtdığınıza əmin olun.\n\nYenidən /channelplay-ı quraşdırmağa cəhd edin.."
+
+set_cb_1 : "Səs Keyfiyyəti Paneli əldə edilir..."
+set_cb_2 : "Video Keyfiyyət Paneli əldə edilir..."
+set_cb_3 : "İstifadəçilərin Auth Paneli əldə edilir..."
+set_cb_4 : "Oynatma Rejimi Paneli əldə edilir..."
+set_cb_5 : "Təmiz Rejim Paneli əldə edilir..."
+set_cb_6 : "Dəyişikliklərin qurulması."
+set_cb_7 : "Auth İstifadəçi Siyahısı əldə edilir.. LÜTFEN GÖZLƏYİN."
+set_cb_8 : "Geri qayıdıram.."
+
+# Misc
+ustats_1 : "Heç bir istifadəçi statistikası tapılmadı."
+ustats_2 : "Salam!, Siz indiyə qədər **{1}** dəfə çoxlu sayda **{0}** trek ifa etmisiniz.\n\nƏn çox ifa etdiyiniz {2}:\n\n"
+
+gstats_1 : "Qlobal Statistika əldə edilir, bu bir az vaxt ala bilər..."
+gstats_2 : "Heç bir statistika tapılmadı."
+gstats_3 : "Botda Qlobal Top 10 {0}-u əldə etmək, bu bir az vaxt apara bilər.."
+gstats_4 : "**Botdakı Ümumi Sorğular:** {0}\n\n{1} indiyədək **{3}** dəfə çoxlu sayda **{2}** treki ifa edib.\n \n**Ən yaxşı {4} trek:**\n"
+gstats_5 : "**Ən Yaxşı {0} Söhbət {1}:**\n\n"
+gstats_6 : "**Ən çox {1} istifadəçisi olan {0}:**\n\n"
+gstats_7 : "Bu söhbət qrupu indiyədək **{1}** dəfə çoxlu sayda **{0}** trek ifa edib.\n\nBu söhbət qrupu tərəfindən ifa olunan ən yaxşı {2}:\n\n"
+gstats_8 : "Botun ümumi statistikası və məlumatı əldə edilir.. Bu bir az vaxt ala bilər..."
+gstats_9 : "**BOTUN ÜÇÜN QLOBAL 10 İSTATİSTİKASI**\n\nAşağıdan botun serverlərindən qlobal statistikanı yoxlamaq istədiyiniz düymələri seçin."
+gstats_10 : "**{0} üzrə Qlobal Statistikalar**\n\nAşağıdan botun serverlərindən qlobal statistikanı yoxlamaq istədiyiniz düymələri seçin."
+gstats_11 : "**{0} üzrə Ümumi Statistikalar**\nAşağıdan botun serverlərindən qlobal statistik göstəriciləri yoxlamaq istədiyiniz düymələri seçin.\n\nƏn yaxşı trekləri, söhbətləri, istifadəçiləri və digər materialları yoxlamaq üçün /gstats istifadə edin."
+
+
+# Play 
+
+#Play Callback 
+cplay_1 : "Siz bu söhbətdən[{0}] istənilən kanala və ya söhbətinizin əlaqəli kanalına olan kanallarda musiqi oxuya bilərsiniz.\n\n**Əlaqəli kanal üçün:**\n`/{1} əlaqələndirilmiş`\n\ n**Hər hansı digər kanal üçün:**\n`/{1} [Kanal ID]`"
+cplay_2 : "Bu çatda bağlı kanal yoxdur."
+cplay_3 : "Kanal {0} üçün müəyyən edilib\n\n__Kanal ID__: {1}"
+cplay_4 : "Kanal əldə etmək alınmadı.\n\nKanalınıza bot əlavə etdiyinizə və onu admin kimi təbliğ etdiyinizə əmin olun.\nKanalı /channelplay vasitəsilə dəyişdirin və ya /playmode vasitəsilə kanalın oxutma rejimini deaktiv edin"
+cplay_5 : "Yalnız Kanallar dəstəklənir."
+cplay_6 : "Bu qrupa qoşulmaq üçün kanalın[{0}] **Sahibi** olmalısınız.\n**Kanalın Sahibi:** @{1}\n\nAlternativ olaraq qrupunuzu əlaqələndirə bilərsiniz. həmin kanala və sonra `/channelplay linked` ilə qoşulmağa cəhd edin"
+
+#Play
+play_1 : "🔄 Sorğu emal olunur... Lütfən gözləyin!"
+play_2 : "**🏷Kanal Oynatma Rejimi**\n\n🔄 Sorğu emal olunur... Lütfən gözləyin!\n**Əlaqələndirilmiş Kanal:** {0}"
+play_3 : "Sorğunu emal etmək alınmadı!"
+play_4 : "🖇 **Yalnız Adminlər Oynadır**\nYalnız Adminlər və Auth İstifadəçiləri bu qrupda musiqi oxuya bilər.\n\nRejimi /playmode vasitəsilə dəyişin və artıq adminsinizsə, /admincache vasitəsilə admincache yenidən yükləyin"
+play_5 : "Audio faylı emal etmək alınmadı.\n\nAudio Faylın Ölçüsü 100 mb-dən Az Olmalıdır"
+play_6 : "**Müddət Limiti keçdi**\n\n**İcazə Verilən Müddət: **{0} dəqiqə\n**Qəbul Müddəti:** {1} saat(s)"
+play_7 : "Bağışlayın! Bot CPU-nun həddən artıq yüklənməsi problemlərinə görə yalnız məhdud sayda video zənglərə icazə verir. Bir çox digər çatlar hazırda video zəngdən istifadə edir. Audioya keçin və ya sonra yenidən cəhd edin"
+play_8 : "Etibarlı Video Fayl Genişlənməsi Deyil!\n\n**Dəstəklənən Formatlar:** {0}"
+play_9 : "Videonun Fayl Ölçüsü 1 GiB-dən Az Olmalıdır"
+play_10 : "**Youtube Pleylist Xüsusiyyəti**\n\nBütün Youtube Pleylistini oxutmaq istədiyiniz Rejimi seçin"
+play_11 : "📎Başlıq: **{0}\n\n⏳Müddət:** {1} Dəqiqə"
+play_12 : "**Spotify Play Mode**\n\nTələb:- {0}"
+play_13 : "**Apple Playlists**\n\nTələb:- {0}"
+play_14 : "**URL-i yoxlamaq mümkün olmadı.**\nBot bu url-in aşağıdakı platformalardan hər hansı birinə aid olub-olmaması ilə maraqlanır: Youtube, AppleMusic, Spotify, Resso və Soundcloud.\n\nM3u8 və ya Uzaqdan Linklər üçün /stream istifadə edə bilərsiniz. ."
+play_15 : "**Canlı Yayım Aşkarlandı**\n\nSistemlər trek linkinizi canlı yayım kimi aşkarladı. Canlı yayımı oynamaq istəyirsiniz?"
+play_16 : "Toz təfərrüatlarını əldə etmək alınmadı. Başqa birini çalmağa cəhd edin."
+play_17 : "Bu cür spotify sorğusunu oxutmaq mümkün deyil!\n\nMən yalnız spotify musiqilərini, albomlarını, ifaçılarını və çalğı siyahılarını oxuya bilərəm"
+play_18 : "**Heç bir Aktiv Səsli Söhbət Tapılmadı**\n\nZorla oxutmaqdan istifadə etmək üçün qrupunuzda aktiv səsli söhbət olmalıdır. **Force Play** səsli çatda oxunan treki dayandırır və növbəni pozmadan/təmizləmədən dərhal treki axtardı."
+
+
+#Playlist
+playlist_1 : "**İstifadə:** /oyun [Musiqi Adı və ya Youtube Linki və ya Audioya Cavab]\n\nƏgər Botun Server Pleylistini oynamaq istəyirsinizsə! Aşağıdakı düyməni basın."
+playlist_2 : "Pleylistiniz alınır. Lütfən gözləyin"
+playlist_3 : "Bot serverində pleylistiniz yoxdur."
+playlist_4 : "Gətirilmiş pleylist:\n\n"
+playlist_5 : " Müddət - {0} Dəqiqə"
+playlist_6 : "Playlistlərin silinməsi üçün mənimlə PM-də əlaqə saxlayın."
+playlist_7 : "Pleylist daxilindəki treklər: {0}\n\nPleylistinizdəki xüsusi treki silmək üçün Düymələrə basın.\n\nBütün pleylisti silmək üçün: Bütün Pleylist düyməsini basın."
+playlist_8 : "Artıq Mövcuddur\n\nBu trek pleylistinizdə mövcuddur."
+playlist_9 : "Bağışlayın! Pleylistdə yalnız {0} musiqi ola bilər."
+playlist_10 : "Pleylist Əlavəsi\n\n{0}\nplaylistinizə əlavə edildi."
+playlist_11 : "Trağınız uğurla silindi."
+playlist_12 : "Trağınızı silmək alınmadı."
+playlist_13 : "Bütün pleylistləriniz serverdən silindi."
+playlist_14 : "**Bütün pleylistinizi silmək istədiyinizə əminsiniz?**\n\nPleylistinizi itirəcəksiniz və onu sonradan bərpa etmək mümkün olmayacaq."
+playlist_15 : "[Bütün Pleylistini Yoxlayın]({0})"
+playlist_16 : "Növbəyə qoyulmuş pleylist:"
+playlist_17 : "Növbəyə qoyulmuş mövqe-"
+playlist_18 : "[Bütün növbəyə qoyulmuş pleylistə baxın]({0})\n\nSon növbəyə qoyulmuş mövqe : **{1}**"
+
+#Playmode
+playmode_1 : "Qrupunuzda sorğuları oynamaq istədiyiniz rejimi seçin[{0}]."
+playmode_2 : "Parametrlər {0} tərəfindən dəyişdirildi və uğurla yadda saxlanıldı"
+
+#Stream 
+str_1 : "Lütfən, M3u8 Linkləri və ya İndeks Bağlantılarını təmin edin."
+str_2 : "✅ Etibarlı Yayım Doğrulandı\n\nLütfən, linkin işlənilməsini gözləyin.."
+str_3 : "YouTube canlı yayımlarını yayımlamaq mümkün deyil. Canlı Format Tapılmadı"
+
+#TopPlay
+tracks_1 : "**{0} Ən Yaxşı 10 Pleylist işlənilir**\nBu, bir neçə dəqiqə çəkə bilər (təxminən 3-4 dəqiqə).. Lütfən, gözləyin...\n\n**👤Tələb:** {1}\n\nTop 10 treki /gstats"
+tracks_2 : "**Xəta**\n\nBotun serverlərində **{0} Top 10 Pleylist** yoxdur. Lütfən, hər hansı digər pleylistə cəhd edin"
+
+# TOOLS
+
+#Lyrics
+lyrics_1 : "**İstifadə:**\n\n/lyrics [ Musiqi Adı]"
+lyrics_2 : "Lirika Axtarıram"
+lyrics_3 : "❌ Mahnı sözləri əldə etmək alınmadı😭.\n\n💡**Axtarmağa cəhd edilib:** {0}"
+lyrics_4 : "Uzun spam tipli sözlər axtarışından qaçmaq üçün aşağıdakı düyməyə klikləyin və axtarılan sözləri əldə edin."
+
+#Ping
+ping_1: "Pong !!!!"
+
+
+# Song
+song_1 : "YouTube'dan Musiqi və ya Videonu yalnız şəxsi söhbətdə endirə bilərsiniz. Zəhmət olmasa, şəxsi söhbətdə mənə başlayın."
+song_2 : "**İstifadə:**\n\n/mahnı [Musiqi Adı] və ya [Youtube Linki]"
+song_3 : "Canlı Link Aşkarlandı. Mən canlı youtube videolarını endirə bilmirəm."
+song_4 : "**🔗Başlıq:**- {0}\n\nEndirmək istədiyiniz növü seçin."
+song_5 : "Etibarlı Youtube Linki deyil"
+song_6 : "Formatlar əldə edilir.. \n\nLütfən, gözləyin.."
+song_7 : "Video üçün mövcud formatları əldə etmək alınmadı. Lütfən, hər hansı digər treki sınayın."
+song_8 : "Endirmə başladı\n\nYükləmə sürəti yavaş ola bilər. Zəhmət olmasa, saxlayın.."
+song_9 : "Youtube-DL-dən mahnı yükləmək alınmadı\n\n**Səbəb:** {0}"
+song_10 : "Serverlərdən teleqrama yükləmək alınmadı."
+song_11 : "Yükləmə Başladı\n\nYükləmə sürəti yavaş ola bilər. Zəhmət olmasa, saxlayın.."
+
+# Tools - Queue
+queue_1 : "Please Wait..Fetching Queue.."
+queue_2 : "No tracks inside Queue."
+queue_3 : "<u>**Queued Tracks:</u>**  [Checkout More Queued Tracks From Here]({0})"
+queue_4 : "⏳ Added to Queue at **#{0}\n\n💡Title:** {1}\n**⏱Duration:** {2}\n👤**Added By:** {3}"
+
+# All Streaming Lines
+stream_1 : "📡 **Yayım başladı** 💡\n\n👤**Tələb:** {0}\n🔦**Məlumat: **[Burada]({1})"
+stream_2 : "📡 **URL vasitəsilə yayıma başladı ** 💡\n\n👤**Tələb edən:** {0}"
+stream_3 : "📡 **Yayım başladı** 💡\n\n**🏷Başlıq:** {0}\n⌛️**Müddət**: {1}\n👤**Tələb:** {2} "
+stream_4 : "📡 **Yayım başladı** 💡\n\n**🏷Başlıq:** [{0}]({1})\n⌛️**Müddət**: {2}\n👤**Tələb olundu Müəllif:** {3}"
+
+# Inline Buttons
+
+#General Buttons
+CLOSE_BUTTON  : "🗑 Bağla"
+CLOSEMENU_BUTTON  : "🗑 Menyunu bağlayın"
+BACK_BUTTON : "⬅ Geri"
+UNBAN_BUTTON : "🗑 Köməkçinin qadağasını aradan qaldırın"
+
+#Lyrics
+L_B_1 : "🚀 İndi Mahnıları yoxlayın"
+
+# Start
+S_B_1 : "🗒 Əmrlər"
+S_B_2 : "🔧 Parametrlər"
+S_B_3 : "📨 Dəstək"
+S_B_4 : "📨 Kanal"
+S_B_5 : "✚ Məni öz qrupuna əlavə et"
+S_B_6 : "💡 Git Repo"
+S_B_7 : "👤 Bot Sahibi"
+S_B_8 : "🔎 Necə İstifadə Edilir? Komandalar Menyu."
+
+#Help 
+H_B_1 : "Admin Əmrləri"
+H_B_2 : "Oynatma Əmrləri"
+H_B_3 : "Bot Əmrləri"
+H_B_4 : "Əlavə əmrlər"
+H_B_5 : "Menyunu bağla"
+H_B_6 : "SudoUser Əmrləri"
+
+#PlayMode
+PM_B_1: "Birbaşa Oyun"
+PM_B_2: "Daxili İşarələmə"
+PM_B_3: "Kanal Oynatma"
+
+#Play
+P_B_1 : "🎵 Audio Play"
+P_B_2 : "🎥 Videonu Oynat"
+P_B_3 : "🏮 Canlı Yayımı Başlat"
+P_B_4 : "🎵 Play Playlist"
+
+#Playlist
+PL_B_1 : "🚀 Playlist çalın"
+PL_B_2 : "✚ Pleylistlər"
+PL_B_3 : "✚ Əlavə"
+PL_B_4 : "📡 Oyun rejimi"
+PL_B_5 : "🔄 Del Bütün Pleylist"
+PL_B_6 : "↗️ Pleylist silin"
+PL_B_7 : "❗️ Bəli, əminəm. Silin"
+PL_B_8 : "🔢 Top 10-u oynayın"
+PL_B_9 : "🤖 Qlobal Ən Yaxşı 10 Mahnısını Oynayın"
+PL_B_10 : "🏘 Qrupun ən yaxşı 10 trekini çalın"
+PL_B_11 : "👤 Şəxsi Top 10 treki çalın"
+
+#Settings
+ST_B_1 : "🔊Aud Keyfiyyəti"
+ST_B_2 : "🎥 Video Keyfiyyəti"
+ST_B_3 : "🎩 Auth İstifadəçiləri"
+ST_B_4 : "📱 İdarə paneli"
+ST_B_5 : "▶️ Oyun rejimi"
+ST_B_6 : "🇦🇿 Dil"
+ST_B_7 : "🔄 Təmiz rejimi"
+ST_B_8 : "{0} Aşağı Keyfiyyətli Audio"
+ST_B_9 : "{0} Orta Keyfiyyətli Audio"
+ST_B_10 : "{0} Yüksək Keyfiyyətli Audio"
+ST_B_11 : "{0} Aşağı Keyfiyyətli Video"
+ST_B_12 : "{0} Orta Keyfiyyətli Video"
+ST_B_13 : "{0} Yüksək Keyfiyyətli Video"
+ST_B_14 : "✅ Aktivdir"
+ST_B_15 : "❌ Deaktivdir"
+ST_B_16 : "👤 Adminlər"
+ST_B_17 : "👥 Hər kəs"
+ST_B_18 : "📋 Səlahiyyətli İstifadəçi Siyahıları"
+ST_B_19 : "🔎 Axtarış rejimi"
+ST_B_20 : "✅ Birbaşa"
+ST_B_21 : "✅ Daxili"
+ST_B_22 : "👨‍⚖️ Admin Əmrləri"
+ST_B_23 : "🏘 Qrup"
+ST_B_24 : "🏷 Kanal"
+ST_B_25 : "🫂 Oyun Növü"
+ST_B_26 : "🗑 Təmizləmə əmri"
+
+#Song
+SG_B_1 : "↗️ Şəxsi Söhbəti Açın"
+SG_B_2 : "🔊 Audio"
+SG_B_3 : "🎥 Video"
+
+#Stats
+SA_B_1 : "📢 Top 10 Söhbət"
+SA_B_2 : "🔢 Top 10 Trek"
+SA_B_3 : "🧛 Ən Yaxşı 10 İstifadəçi"
+SA_B_4 : "🏷 Top 10 Burada"
+SA_B_5 : "💡 Ümumi Statistika"
+SA_B_6 : "👤 İstifadəçi Statistikası"
+SA_B_7 : "🔢 Qlobal Top 10 Statistika"
+SA_B_8 : "🤖 Bot Statistikası"
+
+# Sudo Users [ If you are translating this to some other language .. you can leave all these strings in english language]
+
+#Sudo
+sudo_1 : "{0} artıq sudo istifadəçisidir."
+sudo_2 : "Sudo İstifadəçilərinə **{0}** əlavə edildi."
+sudo_3 : "Bot Sudo-nun bir hissəsi deyil."
+sudo_4 : "Botun Sudo İstifadəçisindən silindi"
+sudo_5 : "⭐️<u> **Sahiblər:**</u>\n"
+sudo_6 : "\n⭐️<u> **Sudo İstifadəçiləri:**</u>\n"
+sudo_7 : "Sudo İstifadəçiləri Yoxdur"
+
+#Block
+block_1 : "{0} is already blocked from the bot."
+block_2 : "Added **{0}** to Block List of bot. User won't be able to use bot now under any condition.\n\nCheck blocked users: /blockedusers"
+block_3 : "User is already free and not blocked."
+block_4 : "Removed User from the block list. User will be able to use bot now."
+block_5 : "No Blocked Users Found"
+block_6 : "Getting Blocked Users List.. Please Wait"
+block_7 : "**Blocked Users:**\n\n"
+
+#Blacklist Chats
+block_1 : "{0} artıq botdan bloklanıb."
+block_2 : "Blok siyahısına **{0}** əlavə edildi. İstifadəçi heç bir şərt altında botdan istifadə edə bilməyəcək.\n\nBloklanmış istifadəçiləri yoxlayın: /blockedusers"
+block_3 : "İstifadəçi artıq azaddır və bloklanmayıb."
+block_4 : "İstifadəçi blok siyahısından silindi. İstifadəçi indi botdan istifadə edə biləcək."
+block_5 : "Heç bir Bloklanmış İstifadəçi Tapılmadı"
+block_6 : "Bloklanmış İstifadəçilər Siyahısı əldə edilir. Zəhmət olmasa gözləyin"
+block_7 : "**Bloklanmış İstifadəçilər:**\n\n"
+
+#videolimit
+vid_1 : "**İstifadə:**\n/set_video_limit [İcazə verilən söhbətlərin sayı] və ya [Deaktiv edin]"
+vid_2 : "Lütfü təyin etmək üçün rəqəmsal rəqəmlərdən istifadə edin."
+vid_3 : "Video Zənglərin Maksimum Limiti {0} Çat üçün Müəyyən edilib."
+vid_4 : "Video Zənglər Deaktivdir"
+
+#maintenance
+maint_1 : "**İstifadə:**\n/xidmət [enable|deaktiv]"
+maint_2 : "Xidmət üçün aktivdir"
+maint_3 : "Xidmət rejimi qeyri-aktivdir"
+
+#log
+log_1 : "**İstifadə:**\n/logger [enable|deaktiv]"
+log_2 : "Girişi aktivləşdirdi"
+log_3 : "Giriş Deaktivdir"
+
+#videomode
+vidmode_1 : "**İstifadə:**\n/videorejim [download |m3u8]"
+vidmode_2 : "Video Oynatma Rejimi endirici olaraq təyin edildi. Bot indi trekləri endirəcək."
+vidmode_3 : "Video Oynatma Rejimi m3u8 olaraq təyin edildi. Bot indi canlı trekləri səsləndirəcək."
+
+#broadcast
+broad_1 : "**Botdan {1} Pin ilə {0} Çatda Yayımlanan Mesaj.**"
+broad_2 : "Assistent yayıma başladı..."
+broad_3 : "**Köməkçi Yayımı:**\n\n"
+broad_4 : "Assistent {0} {1} çatda yayımlandı\n"
+broad_5 : "**İstifadə**:\n/yayım [MESSAGE] və ya [Mesajı Cavab]"
+broad_6 : "Lütfən, yayımlamaq üçün bir neçə mətn təqdim edin."
+broad_7 : "**{0} İstifadəçiyə Yayımlanan Mesaj.**"
+
+#Heroku
+heroku_1 : "Lütfən, Heroku API Açarınızın, Tətbiq adınızın herokuda düzgün konfiqurasiya edildiyinə əmin olun"
+heroku_2 : "Siz yalnız Heroku Proqramlarının qeydlərini əldə edə bilərsiniz"
+heroku_3 : "**İstifadə:**\n/get_var [Var Adı]"
+heroku_4 : "Belə bir var tapmaq mümkün deyil."
+heroku_5 : ".env faylı tapılmadı."
+heroku_6 : "**İstifadə:**\n/del_var [Var Adı]"
+heroku_7 : "{0} Silindi."
+heroku_8 : "**İstifadə:**\n/set_var [Var Adı] [Var Dəyəri]"
+heroku_9 : "{0} uğurla yeniləndi"
+heroku_10 : "{0} uğurla əlavə edildi"
+heroku_11 : "Yalnız Heroku Proqramları üçün"
+heroku_12 : "Heroku İstifadəsi Yoxlanılır. Zəhmət olmasa gözləyin"
+heroku_13 : "Mövcud yeniləmələr yoxlanılır..."
+heroku_14 : "Git Komanda xətası"
+heroku_15 : "Etibarsız Git Repsitory"
+
+#Private bot mode
+pbot_1 : "**İstifadə:**\n/icazə verin [CHAT_ID]"
+pbot_2 : "**İstifadə:**\n/icazəsiz [CHAT_ID]"
+pbot_3 : "Verilmiş söhbət səlahiyyətli siyahıya əlavə edildi"
+pbot_4 : "Verilmiş söhbət səlahiyyətli siyahıdan silindi"
+pbot_5 : "Söhbət artıq icazəli siyahıdadır"
+pbot_6 : "İcazə verilmiş siyahıda belə söhbət yoxdur"
+pbot_7 : "chat_id-i doğrulamaq alınmadı.\n\nOnun rəqəmli və düzgün formatda olduğuna əmin olun. Söhbət istifadəçi adından və ya keçidlərdən istifadə etməyin."
+pbot_8 : "Lütfən gözləyin... Səlahiyyətli söhbətlər alınır."
+pbot_9 : "**<b>Gətirilmiş Söhbətlər:</b>**\n\n"
+pbot_10 : "Şəxsi Söhbət"
+pbot_11 : "Heç bir icazəli söhbət tapılmadı"
+pbot_12 : "Şəxsi Bot Rejimi deaktiv edilib.\n\nBotunuzu şəxsi bot kimi istifadə etmək üçün **PRIVATE_BOT_MODE** = **True** təyin etdiyinizə əmin olun."
+pbot_13 : "\n**<b>Gətirilməmiş Söhbətlər:</b>**\n\n"
+
+
+#Gbanned
+gban_1 : "Sən özünü gban etmək istəyirsən? Necə də axmaq!"
+gban_2 : "Özümü bloklamalıyam? Lol"
+gban_3 : "Sudo istifadəçisini bloklamaq istəyirsiniz?"
+gban_4 : "{0} artıq botdan **gbanlanıb**."
+gban_5 : "**Qobal qadağası {0}** tarixində işə salınır.\n\nGözlənilən vaxt : {1}."
+gban_6 : "**Uğurla Qbanlandı**\n\n**{1}** çatlarından **{0}** qadağan edildi."
+gban_7 : "{0} hələ botdan **gbanlanmayıb."
+gban_8 : "**Qadağanın ləğvi {0}**\n\nGözlənilən vaxt : {1}."
+gban_9 : "**Uğurla Qadağadan Çıxarıldı**\n\n**{1}** çatlarda **{0}** qadağası ləğv edildi."
+gban_10 : "Qanlanmış İstifadəçilər tapılmadı."
+gban_11 : "Lütfən, bir az gözləyin. Qbanlanmış istifadəçilər siyahısı gətirilir"
