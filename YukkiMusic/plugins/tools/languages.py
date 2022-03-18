@@ -113,7 +113,6 @@ async def language_markup(client, CallbackQuery, _):
         return await CallbackQuery.answer(
             "You're already on same language", show_alert=True
         )
-    await set_lang(CallbackQuery.message.chat.id, langauge)
     try:
         _ = get_string(langauge)
         await CallbackQuery.answer(
