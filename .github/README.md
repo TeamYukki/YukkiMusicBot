@@ -131,7 +131,7 @@ This project is licensed under the **GNU General Public License v3**. All design
 
 See [LICENSE](../LICENSE) for more information.
 
-## 📑 Acknowledgements
+## 📑 Acknowledgement
 
 Special thanks to these amazing projects/people which/who help power Yukki Music Bot:
 
