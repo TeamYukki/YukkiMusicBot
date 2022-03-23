@@ -42,10 +42,6 @@ def stream_markup(_, videoid):
             InlineKeyboardButton(
                 text=_["PL_B_3"], switch_inline_query_current_chat=""
             ),
-        ]
-    ]
-            InlineKeyboardButton(
-                    text=_["OWNER_1"], url=f"{OWNER_ID}"
         ],
         [
             InlineKeyboardButton(
