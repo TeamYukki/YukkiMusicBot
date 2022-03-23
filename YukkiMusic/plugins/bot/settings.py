@@ -16,7 +16,7 @@ from config import (BANNED_USERS, CLEANMODE_DELETE_MINS,
                     MUSIC_BOT_NAME, OWNER_ID)
 from strings import get_command
 from YukkiMusic import app
-from YukkiMusic.utils.database import (is_suggestion, suggestion_off, suggestion_on, add_nonadmin_chat,
+from YukkiMusic.utils.database import (add_nonadmin_chat,
                                        cleanmode_off, cleanmode_on,
                                        commanddelete_off,
                                        commanddelete_on,
@@ -27,10 +27,12 @@ from YukkiMusic.utils.database import (is_suggestion, suggestion_off, suggestion
                                        is_cleanmode_on,
                                        is_commanddelete_on,
                                        is_nonadmin_chat,
+                                       is_suggestion,
                                        remove_nonadmin_chat,
                                        save_audio_bitrate,
                                        save_video_bitrate,
-                                       set_playmode, set_playtype)
+                                       set_playmode, set_playtype,
+                                       suggestion_off, suggestion_on)
 from YukkiMusic.utils.decorators.admins import ActualAdminCB
 from YukkiMusic.utils.decorators.language import language, languageCB
 from YukkiMusic.utils.inline.settings import (
@@ -203,7 +205,9 @@ async def without_Admin_rights(client, CallbackQuery, _):
         sug = None
         if await is_suggestion(CallbackQuery.message.chat.id):
             sug = True
-        buttons = cleanmode_settings_markup(_, status=cle, dels=sta, sug=sug)
+        buttons = cleanmode_settings_markup(
+            _, status=cle, dels=sta, sug=sug
+        )
     if command == "AQ":
         try:
             await CallbackQuery.answer(_["set_cb_1"], show_alert=True)
@@ -494,7 +498,9 @@ async def authusers_mar(client, CallbackQuery, _):
 
 
 @app.on_callback_query(
-    filters.regex(pattern=r"^(CLEANMODE|COMMANDELMODE|SUGGESTIONCHANGE)$")
+    filters.regex(
+        pattern=r"^(CLEANMODE|COMMANDELMODE|SUGGESTIONCHANGE)$"
+    )
     & ~BANNED_USERS
 )
 @ActualAdminCB
@@ -517,7 +523,9 @@ async def cleanmode_mark(client, CallbackQuery, _):
         else:
             await cleanmode_on(CallbackQuery.message.chat.id)
             cle = True
-        buttons = cleanmode_settings_markup(_, status=cle, dels=sta, sug=sug)
+        buttons = cleanmode_settings_markup(
+            _, status=cle, dels=sta, sug=sug
+        )
         return await CallbackQuery.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(buttons)
         )
@@ -534,7 +542,9 @@ async def cleanmode_mark(client, CallbackQuery, _):
         else:
             await commanddelete_on(CallbackQuery.message.chat.id)
             sta = True
-        buttons = cleanmode_settings_markup(_, status=cle, dels=sta, sug=sug)
+        buttons = cleanmode_settings_markup(
+            _, status=cle, dels=sta, sug=sug
+        )
     if command == "SUGGESTIONCHANGE":
         cle = None
         sta = None
@@ -548,7 +558,9 @@ async def cleanmode_mark(client, CallbackQuery, _):
         else:
             await suggestion_on(CallbackQuery.message.chat.id)
             sug = True
-        buttons = cleanmode_settings_markup(_, status=cle, dels=sta, sug=sug)
+        buttons = cleanmode_settings_markup(
+            _, status=cle, dels=sta, sug=sug
+        )
     try:
         return await CallbackQuery.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(buttons)

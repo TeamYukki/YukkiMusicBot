@@ -129,6 +129,7 @@ HELP_5 = """🔰**<u>ADD & REMOVE SUDO USERS :</u>**
 /maintenance [enable / disable] 
 /logger [enable / disable] - Bot logs the searched queries in logger group.
 /get_log [Number of Lines] - Get log of your bot from heroku or vps. Works for both.
+/autoend [enable|disable] - Enable Auto stream end after 3 mins if no one is listening.
 
 📈**<u>STATS COMMANDS:</u>**
 /activevoice - Check active voice chats on bot.

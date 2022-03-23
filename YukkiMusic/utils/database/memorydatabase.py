@@ -22,6 +22,8 @@ authdb = mongodb.adminauth
 videodb = mongodb.yukkivideocalls
 onoffdb = mongodb.onoffper
 suggdb = mongodb.suggestion
+autoenddb = mongodb.autoend
+
 
 # Shifting to memory [ mongo sucks often]
 loop = {}
@@ -41,10 +43,43 @@ nonadmin = {}
 vlimit = []
 maintenance = []
 suggestion = {}
+autoend = {}
 
+
+# Auto End Stream
+
+
+async def is_autoend() -> bool:
+    chat_id = 123
+    mode = autoend.get(chat_id)
+    if not mode:
+        user = await autoenddb.find_one({"chat_id": chat_id})
+        if not user:
+            autoend[chat_id] = False
+            return False
+        autoend[chat_id] = True
+        return True
+    return mode
+
+
+async def autoend_on():
+    chat_id = 123
+    autoend[chat_id] = True
+    user = await autoenddb.find_one({"chat_id": chat_id})
+    if not user:
+        return await autoenddb.insert_one({"chat_id": chat_id})
+
+
+async def autoend_off():
+    chat_id = 123
+    autoend[chat_id] = False
+    user = await autoenddb.find_one({"chat_id": chat_id})
+    if user:
+        return await autoenddb.delete_one({"chat_id": chat_id})
 
 
 # SUGGESTION
+
 
 async def is_suggestion(chat_id: int) -> bool:
     mode = suggestion.get(chat_id)
@@ -62,7 +97,7 @@ async def suggestion_on(chat_id: int):
     suggestion[chat_id] = True
     user = await suggdb.find_one({"chat_id": chat_id})
     if user:
-       return await suggdb.delete_one({"chat_id": chat_id})
+        return await suggdb.delete_one({"chat_id": chat_id})
 
 
 async def suggestion_off(chat_id: int):

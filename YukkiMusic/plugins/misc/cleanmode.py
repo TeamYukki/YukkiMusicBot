@@ -234,7 +234,7 @@ async def auto_clean():
                             user_id, vidid, new_spot
                         )
         except:
-            pass
+            continue
         try:
             for chat_id in clean:
                 if chat_id == config.LOG_GROUP_ID:
@@ -248,11 +248,11 @@ async def auto_clean():
                         except FloodWait as e:
                             await asyncio.sleep(e.x)
                         except:
-                            pass
+                            continue
                     else:
                         continue
         except:
-            pass
+            continue
         try:
             served_chats = await get_active_chats()
             for chat_id in served_chats:
@@ -269,7 +269,7 @@ async def auto_clean():
                         user_id = await alpha_to_int(user)
                         adminlist[chat_id].append(user_id)
         except:
-            pass
+            continue
 
 
 asyncio.create_task(auto_clean())
