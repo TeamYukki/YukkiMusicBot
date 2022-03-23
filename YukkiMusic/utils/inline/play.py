@@ -45,7 +45,7 @@ def stream_markup(_, videoid):
         ]
     ]
             InlineKeyboardButton(
-                    text=_[Owner], url=f"{https://t.me/realsaberxd}"
+                    text=[Owner], url=f"{https://t.me/realsaberxd}"
         ],
         [
             InlineKeyboardButton(
