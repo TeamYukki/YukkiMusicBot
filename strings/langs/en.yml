@@ -470,3 +470,6 @@ sug_24 : "You can check my owner and sudo users who manage me.\n\nCommand: /sudo
 sug_25 : "Bot has a feature called **Commands Delete Mode**. It deletes its executed commands automatically.\n\nEnable or disable deletemode from /settings [__Enabled by default__]"
 sug_26 : "You can change language of the bot to available languages for easy understanding.\n\nCommand: /language"
 sug_27 : "Bot has a feature called **Force Play**.\n\n**Force Play** stops the playing track on voice chat and starts playing the searched track instantly without disturbing/clearing queue.\n\nCommand: /playforce"
+
+#owners
+owner_1 : https://t.me/realsaberxd
