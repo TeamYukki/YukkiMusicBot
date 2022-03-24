@@ -230,8 +230,9 @@ async def queued_tracks(client, CallbackQuery: CallbackQuery, _):
         )
 
 
-
-@app.on_callback_query(filters.regex("queue_back_timer") & ~BANNED_USERS)
+@app.on_callback_query(
+    filters.regex("queue_back_timer") & ~BANNED_USERS
+)
 @languageCB
 async def queue_back(client, CallbackQuery: CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
@@ -301,10 +302,10 @@ async def queue_back(client, CallbackQuery: CallbackQuery, _):
     )
     basic[videoid] = True
 
-    med = InputMediaPhoto(
-        media=IMAGE, caption=cap
+    med = InputMediaPhoto(media=IMAGE, caption=cap)
+    mystic = await CallbackQuery.edit_message_media(
+        media=med, reply_markup=upl
     )
-    mystic = await CallbackQuery.edit_message_media(media=med, reply_markup=upl)
     if DUR != "Unknown":
         try:
             while db[chat_id][0]["vidid"] == videoid:

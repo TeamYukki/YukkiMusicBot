@@ -9,12 +9,12 @@
 
 from pyrogram import filters
 from pyrogram.types import Message
-from YukkiMusic.utils.database import set_loop
 
 from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
+from YukkiMusic.utils.database import set_loop
 from YukkiMusic.utils.decorators import AdminRightsCheck
 
 # Commands

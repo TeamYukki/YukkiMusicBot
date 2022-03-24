@@ -136,7 +136,10 @@ def video_quality_markup(
 
 
 def cleanmode_settings_markup(
-    _, status: Union[bool, str] = None, dels: Union[bool, str] = None, sug: Union[bool, str] = None
+    _,
+    status: Union[bool, str] = None,
+    dels: Union[bool, str] = None,
+    sug: Union[bool, str] = None,
 ):
     buttons = [
         [
