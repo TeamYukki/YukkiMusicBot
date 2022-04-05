@@ -10,7 +10,7 @@
 * Loop, Seek, Shuffle, Specific Skip, Playlists etc support
 * Global, Users, Chats Top 10 played tracks stats
 * Multi-Language support
-
+  
 
 # 🔗 An Overview
 
