@@ -12,7 +12,7 @@ pillow
 psutil
 py-tgcalls
 pykeyboard
-pyrogram
+pyrogram==1.4.12
 python-dotenv
 pyyaml==5.3.1
 requests
