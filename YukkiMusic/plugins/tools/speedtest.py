@@ -30,7 +30,6 @@ def testspeed(m):
         test.download()
         m = m.edit("Running Upload SpeedTest")
         test.upload()
-        test.results.share()
         result = test.results.dict()
         m = m.edit("Sharing SpeedTest Results")
         path = wget.download(result["share"])
