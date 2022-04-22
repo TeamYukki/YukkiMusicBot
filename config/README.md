@@ -29,7 +29,7 @@ Config vars are basically the variables which configure or modify bot to functio
 5. `PLAYLIST_FETCH_LIMIT` :  Maximum limit for fetching playlist's track from youtube, spotify, apple links. Default to 25
 6. `CLEANMODE_MINS` : Cleanmode time after which bot will delete its old messages from chats. Default to 5 Mins.
 7. `SUPPORT_CHANNEL` : If you've any channel for your music bot , fill it with your channel link
-8. `SUPPORT_GROUP` : If you've any group support for your music bot , fill it with your channel link
+8. `SUPPORT_GROUP` : If you've any group support for your music bot , fill it with your group link
 
 ## Play FileSize Limit Vars
 
