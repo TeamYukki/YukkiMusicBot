@@ -22,8 +22,8 @@ Config vars are basically the variables which configure or modify bot to functio
 
 - These are the extra vars for extra features inside Music Bot. You can leave non mandatory vars for now and can add them later.
 
-1. `DURATION_LIMIT` : Custom max audio(music) duration for voice chat. Default to 60 mins.
-2. `SONG_DOWNLOAD_DURATION_LIMIT`  : Duration Limit for downloading Songs in MP3 or MP4 format from bot. Default to 180 mins.
+1. `DURATION_LIMIT` : Custom max audio(music) duration for voice chat. Default to 300 mins.
+2. `SONG_DOWNLOAD_DURATION_LIMIT`  : Duration Limit for downloading Songs in MP3 or MP4 format from bot. Default to 240 mins.
 3. `VIDEO_STREAM_LIMIT` : Maximum number of video calls allowed on bot. You can later set it via /set_video_limit on telegram. Default to 3 chats.
 4. `SERVER_PLAYLIST_LIMIT` : Maximum Limit Allowed for users to save playlists on bot's server. Default to 30
 5. `PLAYLIST_FETCH_LIMIT` :  Maximum limit for fetching playlist's track from youtube, spotify, apple links. Default to 25
@@ -36,7 +36,7 @@ Config vars are basically the variables which configure or modify bot to functio
 - Maximum File size limit for the audio and videos that a user can play from your bot. [Only Bytes Size Accepted]
 > You can convert mb into bytes from https://www.gbmb.org/mb-to-bytes and use it here 
 
-1. `TG_AUDIO_FILESIZE_LIMIT` : Maximum file size limit for audio files which can be streamed over vc. Defaults to 104857600 bytes, i.e. 100MB
+1. `TG_AUDIO_FILESIZE_LIMIT` : Maximum file size limit for audio files which can be streamed over vc. Defaults to 1073741824 bytes, i.e. 1024MB
 2. `TG_VIDEO_FILESIZE_LIMIT` : Maximum file size limit for video files which can be played. Defaults to 1073741824 bytes, i.e. 1024MB or 1GB
 
 
@@ -47,7 +47,7 @@ Config vars are basically the variables which configure or modify bot to functio
 1. `PRIVATE_BOT_MODE` : Set it true if you want your bot to be private only or False for all groups. Default to False
 2. `YOUTUBE_EDIT_SLEEP` : Time sleep duration For Youtube Downloader. Default to 3 seconds
 3. `TELEGRAM_EDIT_SLEEP` : Time sleep duration For Telegram Downloader. Default to 5 seconds
-4. `AUTO_LEAVING_ASSISTANT` : Set it in True if you want to leave your assistant after a certain amount of time.
+4. `AUTO_LEAVING_ASSISTANT` : Set it in False if you want to leave your assistant after a certain amount of time.
 5. `ASSISTANT_LEAVE_TIME` : Time after which your assistant account will leave served chats automatically. Default to 5400 seconds, i.e 90 Mins
 6. `AUTO_DOWNLOADS_CLEAR` : Set it True if you want to delete downloads after the music playout ends. 
 7. `AUTO_SUGGESTION_MODE` : Set it True if you want to bot to suggest about bot commands to random chats of your bots. 
@@ -92,7 +92,7 @@ Config vars are basically the variables which configure or modify bot to functio
 - You can change images which are used in Yukki Music Bot.
 - You can generate telegaph links from [@YukkiTelegraphBot](http://t.me/YukkiTelegraphBot) and use it here.
 
-1. `START_IMG_URL` : Image which comes on /start command in private messages of bot.
+1. `START_IMG_URL` : https://te.legra.ph/file/00fa3118722c56376a232.jpg /start command in private messages of bot.
 2. `PING_IMG_URL` : Image which comes on /ping command of bot.
 3. `PLAYLIST_IMG_URL` : Image which comes on /play command of bot. 
 4. `GLOBAL_IMG_URL` : Image which comes on /stats command of bot. 
