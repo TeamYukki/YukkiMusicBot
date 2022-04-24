@@ -29,6 +29,7 @@ def testspeed(m):
         m = m.edit("Running Download SpeedTest")
         test.download()
         m = m.edit("Running Upload SpeedTest")
+        test.results.share()
         test.upload()
         result = test.results.dict()
         m = m.edit("Sharing SpeedTest Results")
