@@ -166,7 +166,7 @@ async def start_comm(client, message: Message, _):
                             text="🎥 Watch ", url=f"{link}"
                         ),
                         InlineKeyboardButton(
-                            text="🔄 Close", callback_data="close"
+                            text="✨ Close", callback_data="close"
                         ),
                     ],
                 ]
