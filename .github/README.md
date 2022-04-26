@@ -74,7 +74,7 @@ For more information on the technologies that power the Yukki Music Bot, check o
 
 
 ```console
-shikhar@MacBook~ $ git clone https://github.com/TeamYukki/YukkiMusicBot
+shikhar@MacBook~ $ git clone https://github.com/@AbhayNarayanSingh123/YukkiMusicBot
 shikhar@MacBook~ $ cd YukkiMusicBot
 shikhar@MacBook~ $ sudo bash setup
 ```
@@ -95,15 +95,15 @@ shikhar@MacBook~ $ bash start
 
 Reach out to the maintainer at one of the following places:
 
-- [GitHub Issues](https://github.com/TeamYukki/yukkimusicbot/issues/new?assignees=&labels=question&template=SUPPORT_QUESTION.md&title=support%3A+)
-- Contact options listed on [this GitHub profile](https://github.com/TeamYukki)
+- [GitHub Issues](https://github.com/@AbhayNarayanSingh123/yukkimusicbot/issues/new?assignees=&labels=question&template=SUPPORT_QUESTION.md&title=support%3A+)
+- Contact options listed on [this GitHub profile](https://github.com/@AbhayNarayanSingh123)
 - [Telegram Support](https://t.me/YukkiSupport)
 
 ## 🎗 Project assistance
 
 If you want to say **thank you** or/and support active development of YukkiMusicBot:
 
-- Add a [GitHub Star](https://github.com/TeamYukki/YukkiMusicBot) to the project.
+- Add a [GitHub Star](https://github.com/@AbhayNarayanSingh123/YukkiMusicBot) to the project.
 - Fork the Repo :)
 - Write interesting articles about the project on [Dev.to](https://dev.to/), [Medium](https://medium.com/) or your personal blog.
 
@@ -120,9 +120,9 @@ Please read [our contribution guidelines](CONTRIBUTING.md), and thank you for be
 
 ## 👨🏻‍💻 Authors & contributors
 
-The original setup of this repository is by [Team Yukki](https://github.com/TeamYukki).
+The original setup of this repository is by [Team Yukki](https://github.com/@AbhayNarayanSingh123).
 
-For a full list of all authors and contributors, see [the contributors page](https://github.com/TeamYukki/YukkiMusicBot/contributors).
+For a full list of all authors and contributors, see [the contributors page](https://github.com/@AbhayNarayanSingh123/YukkiMusicBot/contributors).
 
 ## ⚠️ Security
 
