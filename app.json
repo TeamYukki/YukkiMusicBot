@@ -70,7 +70,7 @@
       },
       "UPSTREAM_REPO": {
         "description": "If you dont know this, Leave as it is",
-        "value": "https://github.com/TeamYukki/YukkiMusicBot",
+        "value": "https://github.com/@AbhayNarayanSingh123/YukkiMusicBot",
         "required": true
       },
       "UPSTREAM_BRANCH": {
@@ -87,7 +87,7 @@
               "url": "heroku/nodejs"
           },
           {
-              "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+              "url": "https://github.com/@AbhayNarayanSingh123/heroku-buildpack-ffmpeg-latest.git"
           }
       ],
       "formation": {
