@@ -1,6 +1,6 @@
 version: "4"
 services:
-  worker:
+  yukki:
     build: .
     environment:
       API_ID: $API_ID
