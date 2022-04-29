@@ -204,9 +204,8 @@ lyrics_3 : "❌ Failed to fetch lyrics😭.\n\n💡**Tried Searching For:** {0}"
 lyrics_4 : "Click on the button below and get searched lyrics to avoid long spam types lyrics search."
 
 #Ping
-ping_1 : "Pᴏɴɢ!!!!"
-ping_2 : ""Pᴏɴɢ!\n⚡{0} ms\n\n<b><u>{1} Sʏsᴛᴇᴍ Sᴛᴀᴛs:</u></b>\nUᴘᴛɪᴍᴇ : {2} \nRᴀᴍ : {3} \nCᴘᴜ : {4} \nDɪsᴋ : {5}"
-
+ping_1 : "Pong!!!!"
+ping_2 : "**Pong!**\n`⚡{0} ms`\n\n<b><u>{1} System Stats:</u></b>\nUptime : {2} \nRam : {3} \nCpu : {4} \nDisk : {5}"
 
 # Song
 song_1 : "You can download Music or Video from YouTube only in private chat. Please start me in private chat."
