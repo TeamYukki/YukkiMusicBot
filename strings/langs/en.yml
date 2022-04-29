@@ -205,7 +205,7 @@ lyrics_4 : "Click on the button below and get searched lyrics to avoid long spam
 
 #Ping
 ping_1 : "Pong!!!!"
-ping_2 : "**Pong!**\n`⚡{0} ms`\n\n<b><u>{1} System Stats:</u></b>\nUptime : {2} \nRam : {3} \nCpu : {4} \nDisk : {5}"
+ping_2 : "𝞿𝞾𝞮𝞮𝞰 ✰ 𝞛𝞾𝙨𝞲𝞻 is working good with a ping of `{1}` ms.\n\nBot's uptime is {2} and has used a total of {3} server's storage. Cpu load is about {4} with a consumption of {5} Ram. Py-Tgcalls client is also having a good ping of `{6}` ms."
 
 # Song
 song_1 : "You can download Music or Video from YouTube only in private chat. Please start me in private chat."
