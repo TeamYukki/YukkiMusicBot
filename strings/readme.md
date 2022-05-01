@@ -1,4 +1,4 @@
-# Yukki Multi-Language Support
+# Yukki Multi-Language Support .
 
 - These all are the languages currently available in Yukki Music Bot. You can edit or change all strings available.
 
