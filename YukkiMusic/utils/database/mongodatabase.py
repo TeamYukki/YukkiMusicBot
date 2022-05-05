@@ -349,9 +349,7 @@ async def get_particulars(chat_id: int) -> Dict[str, int]:
     return ids["vidid"]
 
 
-async def get_particular_top(
-    chat_id: int, name: str
-) -> Union[bool, dict]:
+async def get_particular_top(chat_id: int, name: str) -> Union[bool, dict]:
     ids = await get_particulars(chat_id)
     if name in ids:
         return ids[name]
@@ -384,9 +382,7 @@ async def get_user_top(chat_id: int, name: str) -> Union[bool, dict]:
 async def update_user_top(chat_id: int, name: str, vidid: dict):
     ids = await get_userss(chat_id)
     ids[name] = vidid
-    await userdb.update_one(
-        {"chat_id": chat_id}, {"$set": {"vidid": ids}}, upsert=True
-    )
+    await userdb.update_one({"chat_id": chat_id}, {"$set": {"vidid": ids}}, upsert=True)
 
 
 async def get_topp_users() -> dict:

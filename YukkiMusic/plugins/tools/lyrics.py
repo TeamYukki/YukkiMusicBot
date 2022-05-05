@@ -12,11 +12,9 @@ import re
 import string
 
 import lyricsgenius as lg
-from pyrogram import filters
-from pyrogram.types import (InlineKeyboardButton,
-                            InlineKeyboardMarkup, Message)
-
 from config import BANNED_USERS, lyrical
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.utils.decorators.language import language
@@ -34,9 +32,7 @@ y = lg.Genius(
 y.verbose = False
 
 
-@app.on_message(
-    filters.command(LYRICS_COMMAND) & ~filters.edited & ~BANNED_USERS
-)
+@app.on_message(filters.command(LYRICS_COMMAND) & ~filters.edited & ~BANNED_USERS)
 @language
 async def lrsearch(client, message: Message, _):
     if len(message.command) < 2:
@@ -46,9 +42,7 @@ async def lrsearch(client, message: Message, _):
     S = y.search_song(title, get_full_info=False)
     if S is None:
         return await m.edit(_["lyrics_3"].format(title))
-    ran_hash = "".join(
-        random.choices(string.ascii_uppercase + string.digits, k=10)
-    )
+    ran_hash = "".join(random.choices(string.ascii_uppercase + string.digits, k=10))
     lyric = S.lyrics
     if "Embed" in lyric:
         lyric = re.sub(r"\d*Embed", "", lyric)

@@ -7,10 +7,9 @@
 #
 # All rights reserved.
 
+import config
 from pyrogram import filters
 from pyrogram.types import Message
-
-import config
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS

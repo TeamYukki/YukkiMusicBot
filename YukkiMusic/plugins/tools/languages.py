@@ -7,16 +7,14 @@
 #
 # All rights reserved.
 
+from config import BANNED_USERS
 from pykeyboard import InlineKeyboard
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, Message
-
-from config import BANNED_USERS
 from strings import get_command, get_string
 from YukkiMusic import app
 from YukkiMusic.utils.database import get_lang, set_lang
-from YukkiMusic.utils.decorators import (ActualAdminCB, language,
-                                         languageCB)
+from YukkiMusic.utils.decorators import ActualAdminCB, language, languageCB
 
 # Languages Available
 
@@ -64,9 +62,7 @@ def lanuages_keyboard(_):
             text=_["BACK_BUTTON"],
             callback_data=f"settingsback_helper",
         ),
-        InlineKeyboardButton(
-            text=_["CLOSE_BUTTON"], callback_data=f"close"
-        ),
+        InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data=f"close"),
     )
     return keyboard
 
@@ -75,10 +71,7 @@ LANGUAGE_COMMAND = get_command("LANGUAGE_COMMAND")
 
 
 @app.on_message(
-    filters.command(LANGUAGE_COMMAND)
-    & filters.group
-    & ~filters.edited
-    & ~BANNED_USERS
+    filters.command(LANGUAGE_COMMAND) & filters.group & ~filters.edited & ~BANNED_USERS
 )
 @language
 async def langs_command(client, message: Message, _):
@@ -97,14 +90,10 @@ async def lanuagecb(client, CallbackQuery, _):
     except:
         pass
     keyboard = lanuages_keyboard(_)
-    return await CallbackQuery.edit_message_reply_markup(
-        reply_markup=keyboard
-    )
+    return await CallbackQuery.edit_message_reply_markup(reply_markup=keyboard)
 
 
-@app.on_callback_query(
-    filters.regex(r"languages:(.*?)") & ~BANNED_USERS
-)
+@app.on_callback_query(filters.regex(r"languages:(.*?)") & ~BANNED_USERS)
 @ActualAdminCB
 async def language_markup(client, CallbackQuery, _):
     langauge = (CallbackQuery.data).split(":")[1]
@@ -125,6 +114,4 @@ async def language_markup(client, CallbackQuery, _):
         )
     await set_lang(CallbackQuery.message.chat.id, langauge)
     keyboard = lanuages_keyboard(_)
-    return await CallbackQuery.edit_message_reply_markup(
-        reply_markup=keyboard
-    )
+    return await CallbackQuery.edit_message_reply_markup(reply_markup=keyboard)

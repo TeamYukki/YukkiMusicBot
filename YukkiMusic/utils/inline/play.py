@@ -39,15 +39,9 @@ def stream_markup(_, videoid):
                 text=_["PL_B_2"],
                 callback_data=f"add_playlist {videoid}",
             ),
-            InlineKeyboardButton(
-                text=_["PL_B_3"], switch_inline_query_current_chat=""
-            ),
+            InlineKeyboardButton(text=_["PL_B_3"], switch_inline_query_current_chat=""),
         ],
-        [
-            InlineKeyboardButton(
-                text=_["CLOSEMENU_BUTTON"], callback_data="close"
-            )
-        ],
+        [InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="close")],
     ]
     return buttons
 
@@ -55,12 +49,8 @@ def stream_markup(_, videoid):
 def telegram_markup(_):
     buttons = [
         [
-            InlineKeyboardButton(
-                text=_["PL_B_3"], switch_inline_query_current_chat=""
-            ),
-            InlineKeyboardButton(
-                text=_["CLOSEMENU_BUTTON"], callback_data="close"
-            ),
+            InlineKeyboardButton(text=_["PL_B_3"], switch_inline_query_current_chat=""),
+            InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="close"),
         ],
     ]
     return buttons
@@ -104,9 +94,7 @@ def livestream_markup(_, videoid, user_id, mode, channel, fplay):
     return buttons
 
 
-def slider_markup(
-    _, videoid, user_id, query, query_type, channel, fplay
-):
+def slider_markup(_, videoid, user_id, query, query_type, channel, fplay):
     query = f"{query[:20]}"
     buttons = [
         [

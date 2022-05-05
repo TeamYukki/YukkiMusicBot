@@ -7,11 +7,9 @@
 #
 # All rights reserved.
 
-import re
 from os import path
 
 from yt_dlp import YoutubeDL
-
 from YukkiMusic.utils.formatters import seconds_to_min
 
 

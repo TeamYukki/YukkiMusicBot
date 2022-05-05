@@ -7,15 +7,17 @@
 #
 # All rights reserved.
 
+from config import BANNED_USERS, adminlist
 from pyrogram import filters
 from pyrogram.types import Message
-
-from config import BANNED_USERS, adminlist
 from strings import get_command
 from YukkiMusic import app
-from YukkiMusic.utils.database import (delete_authuser, get_authuser,
-                                       get_authuser_names,
-                                       save_authuser)
+from YukkiMusic.utils.database import (
+    delete_authuser,
+    get_authuser,
+    get_authuser_names,
+    save_authuser,
+)
 from YukkiMusic.utils.decorators import AdminActual, language
 from YukkiMusic.utils.formatters import int_to_alpha
 
@@ -26,10 +28,7 @@ AUTHUSERS_COMMAND = get_command("AUTHUSERS_COMMAND")
 
 
 @app.on_message(
-    filters.command(AUTH_COMMAND)
-    & filters.group
-    & ~filters.edited
-    & ~BANNED_USERS
+    filters.command(AUTH_COMMAND) & filters.group & ~filters.edited & ~BANNED_USERS
 )
 @AdminActual
 async def auth(client, message: Message, _):
@@ -93,10 +92,7 @@ async def auth(client, message: Message, _):
 
 
 @app.on_message(
-    filters.command(UNAUTH_COMMAND)
-    & filters.group
-    & ~filters.edited
-    & ~BANNED_USERS
+    filters.command(UNAUTH_COMMAND) & filters.group & ~filters.edited & ~BANNED_USERS
 )
 @AdminActual
 async def unauthusers(client, message: Message, _):
@@ -131,10 +127,7 @@ async def unauthusers(client, message: Message, _):
 
 
 @app.on_message(
-    filters.command(AUTHUSERS_COMMAND)
-    & filters.group
-    & ~filters.edited
-    & ~BANNED_USERS
+    filters.command(AUTHUSERS_COMMAND) & filters.group & ~filters.edited & ~BANNED_USERS
 )
 @language
 async def authusers(client, message: Message, _):

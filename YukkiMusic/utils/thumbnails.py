@@ -13,11 +13,9 @@ import textwrap
 
 import aiofiles
 import aiohttp
-from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
-                 ImageFont, ImageOps)
-from youtubesearchpython.__future__ import VideosSearch
-
 from config import MUSIC_BOT_NAME, YOUTUBE_IMG_URL
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
+from youtubesearchpython.__future__ import VideosSearch
 
 
 def changeImageSize(maxWidth, maxHeight, image):
@@ -60,9 +58,7 @@ async def gen_thumb(videoid):
         async with aiohttp.ClientSession() as session:
             async with session.get(thumbnail) as resp:
                 if resp.status == 200:
-                    f = await aiofiles.open(
-                        f"cache/thumb{videoid}.png", mode="wb"
-                    )
+                    f = await aiofiles.open(f"cache/thumb{videoid}.png", mode="wb")
                     await f.write(await resp.read())
                     await f.close()
 
@@ -89,9 +85,7 @@ async def gen_thumb(videoid):
         name_font = ImageFont.truetype("assets/font.ttf", 30)
         para = textwrap.wrap(title, width=32)
         j = 0
-        draw.text(
-            (5, 5), f"{MUSIC_BOT_NAME}", fill="white", font=name_font
-        )
+        draw.text((5, 5), f"{MUSIC_BOT_NAME}", fill="white", font=name_font)
         draw.text(
             (600, 150),
             "NOW PLAYING",

@@ -7,17 +7,18 @@
 #
 # All rights reserved.
 
+import config
 from pyrogram import filters
 from pyrogram.types import Message
-
-import config
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
-from YukkiMusic.utils.database import (add_private_chat,
-                                       get_private_served_chats,
-                                       is_served_private_chat,
-                                       remove_private_chat)
+from YukkiMusic.utils.database import (
+    add_private_chat,
+    get_private_served_chats,
+    is_served_private_chat,
+    remove_private_chat,
+)
 from YukkiMusic.utils.decorators.language import language
 
 AUTHORIZE_COMMAND = get_command("AUTHORIZE_COMMAND")

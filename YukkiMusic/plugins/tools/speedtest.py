@@ -13,7 +13,6 @@ import os
 import speedtest
 import wget
 from pyrogram import filters
-
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
@@ -56,8 +55,6 @@ async def speedtest_function(client, message):
 **__Sponsor:__** {result['server']['sponsor']}
 **__Latency:__** {result['server']['latency']}  
 **__Ping:__** {result['ping']}"""
-    msg = await app.send_photo(
-        chat_id=message.chat.id, photo=path, caption=output
-    )
+    msg = await app.send_photo(chat_id=message.chat.id, photo=path, caption=output)
     os.remove(path)
     await m.delete()

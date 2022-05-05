@@ -10,10 +10,9 @@
 import socket
 import time
 
+import config
 import heroku3
 from pyrogram import filters
-
-import config
 from YukkiMusic.core.mongo import pymongodb
 
 from .logging import LOGGER

@@ -10,23 +10,27 @@
 import asyncio
 from datetime import datetime, timedelta
 
+import config
+from config import adminlist, chatstats, clean, userstats
 from pyrogram import filters
 from pyrogram.errors import FloodWait
 from pyrogram.raw import types
-
-import config
-from config import adminlist, chatstats, clean, userstats
 from strings import get_command
-from YukkiMusic import app, userbot
+from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
-from YukkiMusic.utils.database import (get_active_chats,
-                                       get_authuser_names, get_client,
-                                       get_particular_top,
-                                       get_served_chats,
-                                       get_served_users, get_user_top,
-                                       is_cleanmode_on, set_queries,
-                                       update_particular_top,
-                                       update_user_top)
+from YukkiMusic.utils.database import (
+    get_active_chats,
+    get_authuser_names,
+    get_client,
+    get_particular_top,
+    get_served_chats,
+    get_served_users,
+    get_user_top,
+    is_cleanmode_on,
+    set_queries,
+    update_particular_top,
+    update_user_top,
+)
 from YukkiMusic.utils.decorators.language import language
 from YukkiMusic.utils.formatters import alpha_to_int
 
@@ -205,15 +209,11 @@ async def auto_clean():
                         spot = spot["spot"]
                         next_spot = spot + 1
                         new_spot = {"spot": next_spot, "title": title}
-                        await update_particular_top(
-                            chat_id, vidid, new_spot
-                        )
+                        await update_particular_top(chat_id, vidid, new_spot)
                     else:
                         next_spot = 1
                         new_spot = {"spot": next_spot, "title": title}
-                        await update_particular_top(
-                            chat_id, vidid, new_spot
-                        )
+                        await update_particular_top(chat_id, vidid, new_spot)
             for user_id in userstats:
                 for dic in userstats[user_id]:
                     vidid = dic["vidid"]
@@ -224,15 +224,11 @@ async def auto_clean():
                         spot = spot["spot"]
                         next_spot = spot + 1
                         new_spot = {"spot": next_spot, "title": title}
-                        await update_user_top(
-                            user_id, vidid, new_spot
-                        )
+                        await update_user_top(user_id, vidid, new_spot)
                     else:
                         next_spot = 1
                         new_spot = {"spot": next_spot, "title": title}
-                        await update_user_top(
-                            user_id, vidid, new_spot
-                        )
+                        await update_user_top(user_id, vidid, new_spot)
         except:
             continue
         try:
@@ -242,9 +238,7 @@ async def auto_clean():
                 for x in clean[chat_id]:
                     if datetime.now() > x["timer_after"]:
                         try:
-                            await app.delete_messages(
-                                chat_id, x["msg_id"]
-                            )
+                            await app.delete_messages(chat_id, x["msg_id"])
                         except FloodWait as e:
                             await asyncio.sleep(e.x)
                         except:

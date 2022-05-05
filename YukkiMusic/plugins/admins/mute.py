@@ -7,10 +7,9 @@
 #
 # All rights reserved.
 
+from config import BANNED_USERS
 from pyrogram import filters
 from pyrogram.types import Message
-
-from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
@@ -22,10 +21,7 @@ MUTE_COMMAND = get_command("MUTE_COMMAND")
 
 
 @app.on_message(
-    filters.command(MUTE_COMMAND)
-    & filters.group
-    & ~filters.edited
-    & ~BANNED_USERS
+    filters.command(MUTE_COMMAND) & filters.group & ~filters.edited & ~BANNED_USERS
 )
 @AdminRightsCheck
 async def mute_admin(cli, message: Message, _, chat_id):
@@ -35,6 +31,4 @@ async def mute_admin(cli, message: Message, _, chat_id):
         return await message.reply_text(_["admin_5"])
     await mute_on(chat_id)
     await Yukki.mute_stream(chat_id)
-    await message.reply_text(
-        _["admin_6"].format(message.from_user.mention)
-    )
+    await message.reply_text(_["admin_6"].format(message.from_user.mention))

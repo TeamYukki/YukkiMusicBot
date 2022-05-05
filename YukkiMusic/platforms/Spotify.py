@@ -9,11 +9,10 @@
 
 import re
 
+import config
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from youtubesearchpython.__future__ import VideosSearch
-
-import config
 
 
 class SpotifyAPI:
@@ -22,10 +21,8 @@ class SpotifyAPI:
         self.client_id = config.SPOTIFY_CLIENT_ID
         self.client_secret = config.SPOTIFY_CLIENT_SECRET
         if config.SPOTIFY_CLIENT_ID and config.SPOTIFY_CLIENT_SECRET:
-            self.client_credentials_manager = (
-                SpotifyClientCredentials(
-                    self.client_id, self.client_secret
-                )
+            self.client_credentials_manager = SpotifyClientCredentials(
+                self.client_id, self.client_secret
             )
             self.spotify = spotipy.Spotify(
                 client_credentials_manager=self.client_credentials_manager
