@@ -47,7 +47,7 @@ async def stream(
         return
     if video:
         if not await is_video_allowed(chat_id):
-            raise AssistantErr(_["play_6"])
+            raise AssistantErr(_["play_7"])
     if forceplay:
         await Yukki.force_stop_stream(chat_id)
     if streamtype == "playlist":
