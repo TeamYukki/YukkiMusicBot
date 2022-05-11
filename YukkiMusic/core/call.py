@@ -379,7 +379,7 @@ class Call(PyTgCalls):
                     )
                 img = await gen_thumb(videoid)
                 button = telegram_markup(_)
-                await app.send_photo(
+                run = await app.send_photo(
                     original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
@@ -388,6 +388,8 @@ class Call(PyTgCalls):
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
+                db[chat_id][0]["mystic"] = run
+                db[chat_id][0]["markup"] = "tg"
             elif "vid_" in queued:
                 mystic = await app.send_message(
                     original_chat_id, _["call_10"]
@@ -427,7 +429,7 @@ class Call(PyTgCalls):
                 img = await gen_thumb(videoid)
                 button = stream_markup(_, videoid)
                 await mystic.delete()
-                await app.send_photo(
+                run = await app.send_photo(
                     original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
@@ -436,6 +438,8 @@ class Call(PyTgCalls):
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
+                db[chat_id][0]["mystic"] = run
+                db[chat_id][0]["markup"] = "stream"
             elif "index_" in queued:
                 stream = (
                     AudioVideoPiped(
@@ -456,12 +460,14 @@ class Call(PyTgCalls):
                         text=_["call_9"],
                     )
                 button = telegram_markup(_)
-                await app.send_photo(
+                run = await app.send_photo(
                     original_chat_id,
                     photo=config.STREAM_IMG_URL,
                     caption=_["stream_2"].format(user),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
+                db[chat_id][0]["mystic"] = run
+                db[chat_id][0]["markup"] = "tg"
             else:
                 stream = (
                     AudioVideoPiped(
@@ -483,7 +489,7 @@ class Call(PyTgCalls):
                     )
                 if videoid == "telegram":
                     button = telegram_markup(_)
-                    await app.send_photo(
+                    run = await app.send_photo(
                         original_chat_id,
                         photo=config.TELEGRAM_AUDIO_URL
                         if str(streamtype) == "audio"
@@ -493,9 +499,11 @@ class Call(PyTgCalls):
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
+                    db[chat_id][0]["mystic"] = run
+                    db[chat_id][0]["markup"] = "tg"
                 elif videoid == "soundcloud":
                     button = telegram_markup(_)
-                    await app.send_photo(
+                    run = await app.send_photo(
                         original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
                         caption=_["stream_3"].format(
@@ -503,10 +511,12 @@ class Call(PyTgCalls):
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
+                    db[chat_id][0]["mystic"] = run
+                    db[chat_id][0]["markup"] = "tg"
                 else:
                     img = await gen_thumb(videoid)
                     button = stream_markup(_, videoid)
-                    await app.send_photo(
+                    run = await app.send_photo(
                         original_chat_id,
                         photo=img,
                         caption=_["stream_1"].format(
@@ -515,6 +525,8 @@ class Call(PyTgCalls):
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
+                    db[chat_id][0]["mystic"] = run
+                    db[chat_id][0]["markup"] = "stream"
 
     async def ping(self):
         pings = []
