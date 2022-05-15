@@ -26,7 +26,7 @@
       "AUTO_LEAVING_ASSISTANT": {
         "description": "If you want your assistant to leave all chats automatically after some time.",
         "value": "True",
-        "required": true
+        "required": false
       },
       "BOT_TOKEN": {
         "description": "A Bot's token from Botfather",
@@ -36,7 +36,7 @@
       "MONGO_DB_URI": {
         "description": "Get a mongodb url from https://cloud.mongodb.com . You can leave it blank if you want , bot will use Yukki's database for you.",
         "value": "",
-        "required": false
+        "required": true
       },
       "MUSIC_BOT_NAME": {
         "description": "A name for your Music Bot. Please don't use ascii characters",
@@ -95,6 +95,5 @@
               "quantity": 1,
               "size": "free"
           }
-      },
-      "stack": "container"
+      }
   }
