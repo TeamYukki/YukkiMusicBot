@@ -112,7 +112,7 @@ set_cb_8 : "Getting back.."
 
 # Misc
 ustats_1 : "No User Stats Found."
-ustats_2 : "Grettings!, You have played **{0}** tracks till now with a whopping count of **{1}** times.\n\nTop {2} played by you:\n\n"
+ustats_2 : "Greetings!, You have played **{0}** tracks till now with a whopping count of **{1}** times.\n\nTop {2} played by you:\n\n"
 
 gstats_1 : "Getting Global Stats, This could take some time..."
 gstats_2 : "No Stats Found."
@@ -383,7 +383,7 @@ log_3 : "Logging Disabled"
 
 #videomode
 vidmode_1 : "**Usage:**\n/videomode [download|m3u8]"
-vidmode_2 : "Video Play Mode set as downloder. Bot will be downloading tracks now."
+vidmode_2 : "Video Play Mode set as downloader. Bot will be downloading tracks now."
 vidmode_3 : "Video Play Mode set as m3u8. Bot will be play tracks live now."
 
 #broadcast
