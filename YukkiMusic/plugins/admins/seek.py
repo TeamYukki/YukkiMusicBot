@@ -54,15 +54,15 @@ async def seek_comm(cli, message: Message, _, chat_id):
                 )
             )
         to_seek = duration_played - duration_to_skip + 1
-    else:
-        if (
+    elif (
             duration_seconds - (duration_played + duration_to_skip)
         ) <= 10:
-            return await message.reply_text(
-                _["admin_31"].format(
-                    seconds_to_min(duration_played), duration
-                )
+        return await message.reply_text(
+            _["admin_31"].format(
+                seconds_to_min(duration_played), duration
             )
+        )
+    else:
         to_seek = duration_played + duration_to_skip + 1
     mystic = await message.reply_text(_["admin_32"])
     if "vid_" in file_path:

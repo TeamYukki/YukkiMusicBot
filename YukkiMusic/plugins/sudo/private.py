@@ -56,9 +56,8 @@ async def unauthorize(client, message: Message, _):
         return await message.reply_text(_["pbot_7"])
     if not await is_served_private_chat(chat_id):
         return await message.reply_text(_["pbot_6"])
-    else:
-        await remove_private_chat(chat_id)
-        return await message.reply_text(_["pbot_4"])
+    await remove_private_chat(chat_id)
+    return await message.reply_text(_["pbot_4"])
 
 
 @app.on_message(filters.command(AUTHORIZED_COMMAND) & SUDOERS)
@@ -67,11 +66,9 @@ async def authorized(client, message: Message, _):
     if config.PRIVATE_BOT_MODE != str(True):
         return await message.reply_text(_["pbot_12"])
     m = await message.reply_text(_["pbot_8"])
-    served_chats = []
     text = _["pbot_9"]
     chats = await get_private_served_chats()
-    for chat in chats:
-        served_chats.append(int(chat["chat_id"]))
+    served_chats = [int(chat["chat_id"]) for chat in chats]
     count = 0
     co = 0
     msg = _["pbot_13"]
@@ -85,13 +82,9 @@ async def authorized(client, message: Message, _):
             co += 1
             msg += f"{co}:- {title} [{served_chat}]\n"
     if co == 0:
-        if count == 0:
-            return await m.edit(_["pbot_11"])
-        else:
-            return await m.edit(text)
+        return await m.edit(_["pbot_11"]) if count == 0 else await m.edit(text)
+    if count == 0:
+        await m.edit(msg)
     else:
-        if count == 0:
-            await m.edit(msg)
-        else:
-            text = f"{text} {msg}"
-            return await m.edit(text)
+        text = f"{text} {msg}"
+        return await m.edit(text)

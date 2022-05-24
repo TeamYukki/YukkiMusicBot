@@ -45,10 +45,7 @@ async def get_playlist_names(chat_id: int) -> List[str]:
 async def get_playlist(chat_id: int, name: str) -> Union[bool, dict]:
     name = name
     _notes = await _get_playlists(chat_id)
-    if name in _notes:
-        return _notes[name]
-    else:
-        return False
+    return _notes[name] if name in _notes else False
 
 
 async def save_playlist(chat_id: int, name: str, note: dict):
@@ -197,10 +194,7 @@ async def get_authuser_names(chat_id: int) -> List[str]:
 async def get_authuser(chat_id: int, name: str) -> Union[bool, dict]:
     name = name
     _notes = await _get_authusers(chat_id)
-    if name in _notes:
-        return _notes[name]
-    else:
-        return False
+    return _notes[name] if name in _notes else False
 
 
 async def save_authuser(chat_id: int, name: str, note: dict):
@@ -332,9 +326,7 @@ async def get_global_tops() -> dict:
             title_ = chat["vidid"][i]["title"]
             if counts_ > 0:
                 if i not in results:
-                    results[i] = {}
-                    results[i]["spot"] = counts_
-                    results[i]["title"] = title_
+                    results[i] = {"spot": counts_, "title": title_}
                 else:
                     spot = results[i]["spot"]
                     count_ = spot + counts_

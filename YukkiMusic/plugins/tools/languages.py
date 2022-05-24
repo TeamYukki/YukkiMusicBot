@@ -25,49 +25,36 @@ def lanuages_keyboard(_):
     keyboard = InlineKeyboard(row_width=2)
     keyboard.row(
         InlineKeyboardButton(
-            text="🏴󠁧󠁢󠁥󠁮󠁧󠁿 English",
-            callback_data=f"languages:en",
+            text="🏴󠁧󠁢󠁥󠁮󠁧󠁿 English", callback_data="languages:en"
         ),
+        InlineKeyboardButton(text="🇮🇳 हिन्दी", callback_data="languages:hi"),
+    )
+
+    keyboard.row(
+        InlineKeyboardButton(text="🇱🇰 සිංහල", callback_data="languages:si"),
         InlineKeyboardButton(
-            text="🇮🇳 हिन्दी",
-            callback_data=f"languages:hi",
+            text="🇦🇿 Azərbaycan", callback_data="languages:az"
         ),
     )
+
+    keyboard.row(
+        InlineKeyboardButton(text="🇮🇳 ગુજરાતી", callback_data="languages:gu"),
+        InlineKeyboardButton(
+            text="🇹🇷 Türkiye Türkçesi", callback_data="languages:tr"
+        ),
+    )
+
+    keyboard.row(
+        InlineKeyboardButton(text="🐶 Cheems", callback_data="languages:cheems")
+    )
+
     keyboard.row(
         InlineKeyboardButton(
-            text="🇱🇰 සිංහල",
-            callback_data=f"languages:si",
+            text=_["BACK_BUTTON"], callback_data="settingsback_helper"
         ),
-        InlineKeyboardButton(
-            text="🇦🇿 Azərbaycan",
-            callback_data=f"languages:az",
-        ),
+        InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
     )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="🇮🇳 ગુજરાતી",
-            callback_data=f"languages:gu",
-        ),
-        InlineKeyboardButton(
-            text="🇹🇷 Türkiye Türkçesi",
-            callback_data=f"languages:tr",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="🐶 Cheems",
-            callback_data=f"languages:cheems",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text=_["BACK_BUTTON"],
-            callback_data=f"settingsback_helper",
-        ),
-        InlineKeyboardButton(
-            text=_["CLOSE_BUTTON"], callback_data=f"close"
-        ),
-    )
+
     return keyboard
 
 

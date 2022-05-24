@@ -35,60 +35,51 @@ SKIP_COMMAND = get_command("SKIP_COMMAND")
 )
 @AdminRightsCheck
 async def skip(cli, message: Message, _, chat_id):
-    if not len(message.command) < 2:
+    if len(message.command) >= 2:
         loop = await get_loop(chat_id)
         if loop != 0:
             return await message.reply_text(_["admin_12"])
         state = message.text.split(None, 1)[1].strip()
-        if state.isnumeric():
-            state = int(state)
-            check = db.get(chat_id)
-            if check:
-                count = len(check)
-                if count > 2:
-                    count = int(count - 1)
-                    if 1 <= state <= count:
-                        for x in range(state):
-                            popped = None
-                            try:
-                                popped = check.pop(0)
-                            except:
-                                return await message.reply_text(
-                                    _["admin_16"]
-                                )
-                            if popped:
-                                if (
-                                    config.AUTO_DOWNLOADS_CLEAR
-                                    == str(True)
-                                ):
-                                    await auto_clean(popped)
-                            if not check:
-                                try:
-                                    await message.reply_text(
-                                        _["admin_10"].format(
-                                            message.from_user.first_name
-                                        )
-                                    )
-                                    await Yukki.stop_stream(chat_id)
-                                except:
-                                    return
-                                break
-                    else:
-                        return await message.reply_text(
-                            _["admin_15"].format(count)
-                        )
-                else:
-                    return await message.reply_text(_["admin_14"])
-            else:
-                return await message.reply_text(_["queue_2"])
-        else:
+        if not state.isnumeric():
             return await message.reply_text(_["admin_13"])
+        state = int(state)
+        check = db.get(chat_id)
+        if not check:
+            return await message.reply_text(_["queue_2"])
+        count = len(check)
+        if count <= 2:
+            return await message.reply_text(_["admin_14"])
+        count = int(count - 1)
+        if not 1 <= state <= count:
+            return await message.reply_text(
+                _["admin_15"].format(count)
+            )
+        for _ in range(state):
+            popped = None
+            try:
+                popped = check.pop(0)
+            except:
+                return await message.reply_text(
+                    _["admin_16"]
+                )
+            if popped and (config.AUTO_DOWNLOADS_CLEAR == str(True)):
+                await auto_clean(popped)
+            if not check:
+                try:
+                    await message.reply_text(
+                        _["admin_10"].format(
+                            message.from_user.first_name
+                        )
+                    )
+                    await Yukki.stop_stream(chat_id)
+                except:
+                    return
+                break
     else:
         check = db.get(chat_id)
         popped = None
         try:
-            popped = check.pop(0)
-            if popped:
+            if popped := check.pop(0):
                 if config.AUTO_DOWNLOADS_CLEAR == str(True):
                     await auto_clean(popped)
             if not check:

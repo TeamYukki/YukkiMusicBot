@@ -13,30 +13,18 @@ from pyrogram.types import InlineKeyboardButton
 
 
 def setting_markup(_):
-    buttons = [
+    return [
         [
-            InlineKeyboardButton(
-                text=_["ST_B_1"], callback_data="AQ"
-            ),
-            InlineKeyboardButton(
-                text=_["ST_B_2"], callback_data="VQ"
-            ),
+            InlineKeyboardButton(text=_["ST_B_1"], callback_data="AQ"),
+            InlineKeyboardButton(text=_["ST_B_2"], callback_data="VQ"),
         ],
         [
-            InlineKeyboardButton(
-                text=_["ST_B_3"], callback_data="AU"
-            ),
-            InlineKeyboardButton(
-                text=_["ST_B_6"], callback_data="LG"
-            ),
+            InlineKeyboardButton(text=_["ST_B_3"], callback_data="AU"),
+            InlineKeyboardButton(text=_["ST_B_6"], callback_data="LG"),
         ],
         [
-            InlineKeyboardButton(
-                text=_["ST_B_5"], callback_data="PM"
-            ),
-            InlineKeyboardButton(
-                text=_["ST_B_7"], callback_data="CM"
-            ),
+            InlineKeyboardButton(text=_["ST_B_5"], callback_data="PM"),
+            InlineKeyboardButton(text=_["ST_B_7"], callback_data="CM"),
         ],
         [
             InlineKeyboardButton(
@@ -44,7 +32,6 @@ def setting_markup(_):
             ),
         ],
     ]
-    return buttons
 
 
 def audio_quality_markup(
@@ -53,7 +40,7 @@ def audio_quality_markup(
     medium: Union[bool, str] = None,
     high: Union[bool, str] = None,
 ):
-    buttons = [
+    return [
         [
             InlineKeyboardButton(
                 text=_["ST_B_8"].format("✅")
@@ -88,7 +75,6 @@ def audio_quality_markup(
             ),
         ],
     ]
-    return buttons
 
 
 def video_quality_markup(
@@ -97,7 +83,7 @@ def video_quality_markup(
     medium: Union[bool, str] = None,
     high: Union[bool, str] = None,
 ):
-    buttons = [
+    return [
         [
             InlineKeyboardButton(
                 text=_["ST_B_11"].format("✅")
@@ -132,7 +118,6 @@ def video_quality_markup(
             ),
         ],
     ]
-    return buttons
 
 
 def cleanmode_settings_markup(
@@ -141,11 +126,9 @@ def cleanmode_settings_markup(
     dels: Union[bool, str] = None,
     sug: Union[bool, str] = None,
 ):
-    buttons = [
+    return [
         [
-            InlineKeyboardButton(
-                text=_["ST_B_7"], callback_data="CMANSWER"
-            ),
+            InlineKeyboardButton(text=_["ST_B_7"], callback_data="CMANSWER"),
             InlineKeyboardButton(
                 text=_["ST_B_14"] if status == True else _["ST_B_15"],
                 callback_data="CLEANMODE",
@@ -179,24 +162,19 @@ def cleanmode_settings_markup(
             ),
         ],
     ]
-    return buttons
 
 
 def auth_users_markup(_, status: Union[bool, str] = None):
-    buttons = [
+    return [
         [
-            InlineKeyboardButton(
-                text=_["ST_B_3"], callback_data="AUTHANSWER"
-            ),
+            InlineKeyboardButton(text=_["ST_B_3"], callback_data="AUTHANSWER"),
             InlineKeyboardButton(
                 text=_["ST_B_16"] if status == True else _["ST_B_17"],
                 callback_data="AUTH",
             ),
         ],
         [
-            InlineKeyboardButton(
-                text=_["ST_B_18"], callback_data="AUTHLIST"
-            ),
+            InlineKeyboardButton(text=_["ST_B_18"], callback_data="AUTHLIST"),
         ],
         [
             InlineKeyboardButton(
@@ -208,7 +186,6 @@ def auth_users_markup(_, status: Union[bool, str] = None):
             ),
         ],
     ]
-    return buttons
 
 
 def playmode_users_markup(
@@ -217,7 +194,7 @@ def playmode_users_markup(
     Group: Union[bool, str] = None,
     Playtype: Union[bool, str] = None,
 ):
-    buttons = [
+    return [
         [
             InlineKeyboardButton(
                 text=_["ST_B_19"], callback_data="SEARCHANSWER"
@@ -241,9 +218,7 @@ def playmode_users_markup(
                 text=_["ST_B_25"], callback_data="PLAYTYPEANSWER"
             ),
             InlineKeyboardButton(
-                text=_["ST_B_16"]
-                if Playtype == True
-                else _["ST_B_17"],
+                text=_["ST_B_16"] if Playtype == True else _["ST_B_17"],
                 callback_data="PLAYTYPECHANGE",
             ),
         ],
@@ -257,4 +232,3 @@ def playmode_users_markup(
             ),
         ],
     ]
-    return buttons
