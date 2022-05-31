@@ -1,0 +1,4 @@
+icon: https://img.shields.io/github/v/release/TeamYukki/YukkiMusicBot?color=black&logo=github&logoColor=black&style=social
+deploy:
+    - okteto stack deploy --build -f docker-compose.yml
+# vars: [{"name": "BRANCH", "value": "master"}]
