@@ -11,7 +11,7 @@ HELP_1 = """✅**<u>Admin Commands:</u>**
 
 **c** stands for channel play.
 
-/pause or /cpause - Pause the playing music.
+/pause - لإيقاف تشغيل الموسيقى مؤقتًا 
 /resume or /cresume- Resume the paused music.
 /mute or /cmute- Mute the playing music.
 /unmute or /cunmute- Unmute the muted music.
