@@ -55,7 +55,7 @@ async def start_comm(client, message: Message, _):
             return await message.reply_text(_["song_2"])
         if name[0:3] == "sta":
             m = await message.reply_text(
-                "🔎 Fetching your personal stats.!"
+                "🔎 إحضار الإحصائيات الشخصية الخاصة بك.!"
             )
             stats = await get_userss(message.from_user.id)
             tot = len(stats)
@@ -115,7 +115,7 @@ async def start_comm(client, message: Message, _):
                 sender_name = message.from_user.first_name
                 return await app.send_message(
                     config.LOG_GROUP_ID,
-                    f"{message.from_user.mention} has just started bot to check <code>SUDOLIST</code>\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}",
+                    f"{message.from_user.mention} بدأ للتو برنامج البوت للتحقق <code>SUDOLIST</code>\n\n**معرف المستخدم:** {sender_id}\n**اسم االمستخدم:** {sender_name}",
                 )
             return
         if name[0:3] == "lyr":
@@ -131,7 +131,7 @@ async def start_comm(client, message: Message, _):
         if name[0:3] == "del":
             await del_plist_msg(client=client, message=message, _=_)
         if name[0:3] == "inf":
-            m = await message.reply_text("🔎 Fetching Info!")
+            m = await message.reply_text("🔎 إحضار المعلومات!")
             query = (str(name)).replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
             results = VideosSearch(query, limit=1)
@@ -147,26 +147,26 @@ async def start_comm(client, message: Message, _):
                 link = result["link"]
                 published = result["publishedTime"]
             searched_text = f"""
-🔍__**Video Track Information**__
+🔍__**معلومات مسار الفيديو**__
 
-❇️**Title:** {title}
+❇️**عنوان:** {title}
 
-⏳**Duration:** {duration} Mins
-👀**Views:** `{views}`
-⏰**Published Time:** {published}
-🎥**Channel Name:** {channel}
-📎**Channel Link:** [Visit From Here]({channellink})
-🔗**Video Link:** [Link]({link})
+⏳**مدة:** {duration} Mins
+👀**الآراء:** `{views}`
+⏰**وقت النشر:** {published}
+🎥**اسم القناة:** {channel}
+📎**رابط القناة:** [Visit From Here]({channellink})
+🔗**رابط الفيديو:** [Link]({link})
 
 ⚡️ __Searched Powered By {config.MUSIC_BOT_NAME}__"""
             key = InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="🎥 Watch ", url=f"{link}"
+                            text="🎥 شاهد ", url=f"{link}"
                         ),
                         InlineKeyboardButton(
-                            text="🔄 Close", callback_data="close"
+                            text="🔄 سده", callback_data="close"
                         ),
                     ],
                 ]
@@ -217,7 +217,7 @@ async def start_comm(client, message: Message, _):
             sender_name = message.from_user.first_name
             return await app.send_message(
                 config.LOG_GROUP_ID,
-                f"{message.from_user.mention} has just started Bot.\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}",
+                f"{message.from_user.mention} بده هستوه.\n\n**معرف المستخدم :** {sender_id}\n**اسم المستخدم :** {sender_name}",
             )
 
 
@@ -247,7 +247,7 @@ async def welcome(client, message: Message):
     if config.PRIVATE_BOT_MODE == str(True):
         if not await is_served_private_chat(message.chat.id):
             await message.reply_text(
-                "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
+                "**بوت موسيقي خاص**\n\بس للمجموعات المصرح بيها المالك .ااطلب من المالك السماح بالدردشه اول شي."
             )
             return await app.leave_chat(message.chat.id)
     else:
