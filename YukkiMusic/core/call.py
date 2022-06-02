@@ -299,7 +299,7 @@ class Call(PyTgCalls):
                 )
         except AlreadyJoinedError:
             raise AssistantErr(
-                "**المساعد موجود بل مكالمه **\n\nاكتشفت بلفعل ان المساعد موجود في المكالمه لاكن يحدث هذا نتيجه تشغيل استعلامين  معا\n\nIf assistant is not present in voice chat, please end voice chat and start fresh voice chat again and if the  problem continues, try /restart"
+                "**المساعد موجود بل مكالمه **\n\nاكتشفت بلفعل ان المساعد موجود في المكالمه لاكن يحدث هذا نتيجه تشغيل استعلامين  معا\n\nاذا جان المساعد ما موجود في المكالمه فه لازم تطفي المكالمه وترجع تشغلها من دجديد واذا ضلت هل مشكله فحاول  /restart"
             )
         except TelegramServerError:
             raise AssistantErr(
