@@ -3,7 +3,7 @@ name : العربية
 # General Strings
 general_1 : "رد عل مستخدم او اكتب يوزره /user_id."
 general_2 : "حجي الامر مكتوب غلط."
-general_3 : "بعض ** حدث استثناء ** أثناء معالجة استفسارك.\n\nنوع الاستثناء:- {0}"
+general_3 : "بعض ** حدث استثناء ** أثناء معالجة طلبك .\n\nنوع الاستثناء:- {0}"
 general_4 : "حب انت ادمن مجهول بهذه الاكروب !\nارجع للحساب من حقوق االادمن."
 general_5 : "اغاتي لازم تكون ادمن بصلاحية المكالمات يلا تتشتغل ."
 general_6 : "لا يتدفق البوت على المكالمه ."
@@ -61,8 +61,8 @@ admin_22 : "فشل التبديل العشوائي. \ n \ n تحقق من قائ
 admin_23 : "** تم ترتيب قائمة الانتظار عشوائيًا حسب {0} ** \ n \ n تحقق من ترتيب قائمة الانتظار : /queue"
 admin_24 : "**إستعمال:**\n/loop [تمكين / تعطيل] أو [رقم بين 1-10] \ n \ n ** مثال: ** /loop 5"
 admin_25 : "العجلة فُعلت من {0} الى **{1}** مرات . البوت سيقوم باعادة تشغيل الموسيقى المختارة  **{1}** مرة "
-admin_26 : "الرجاء اختيار رقم بين 1-10 لتفعيل مود العجلة "
-admin_27 : "تم تعطيل مود العجلة"
+admin_26 : "الرجاء اختيار رقم بين 1-10 لتفعيل مود الحلقة "
+admin_27 : "تم تعطيل مود الحلقة"
 admin_28 : "**إستعمال:**\n/seek or /seekback [المدة بالثواني]"
 admin_29 : "الرجاء استخدام عدد الثواني المدة مثل 10-20-30 ثانية للبحث"
 admin_30 : "آسف ولكن لا يمكنك البحث عن البث الجاري تشغيله. يمكن فقط تخطيها أو إيقافها."
@@ -199,9 +199,9 @@ tracks_2 : "** خطأ ** \ n \ n لا توجد ** {0} أفضل 10 قائمة ت�
 
 #Lyrics
 lyrics_1 : "**Usage:**\n\n/lyrics [ Music Name]"
-lyrics_2 : "Searching Lyrics"
-lyrics_3 : "❌ Failed to fetch lyrics😭.\n\n💡**Tried Searching For:** {0}"
-lyrics_4 : "Click on the button below and get searched lyrics to avoid long spam types lyrics search."
+lyrics_2 : "يتم البحث ..."
+lyrics_3 : "❌ فشلت في الحصول على الكلمات😭.\n\n💡**جرب البحث عن :** {0}"
+lyrics_4 : "اضغط على الزر ادناه للبخث عن الكلمات لتجنب السبام في مجموعتك ."
 
 #Ping
 ping_1 : "Pong!!!!"
@@ -209,22 +209,22 @@ ping_2 : "{0} is working good with a ping of `{1}` ms.\n\nBot's uptime is {2} an
 
 
 # Song
-song_1 : "You can download Music or Video from YouTube only in private chat. Please start me in private chat."
-song_2 : "**Usage:**\n\n/song [Music Name] or [Youtube Link]"
-song_3 : "Live Link Detected. I am not able to download live youtube videos. "
-song_4 : "**🔗Title:**- {0}\n\nSelect the type in which you want to download."
-song_5 : "Not a valid Youtube Link"
-song_6 : "Getting Formats.. \n\nPlease Wait.."
-song_7 : "Failed to get available formats for the video. Please try any other track."
-song_8 : "Download Started\n\nDownloading speed could be slow. Please hold on.."
-song_9 : "Failed to download song from Youtube-DL\n\n**Reason:** {0}"
-song_10 : "Failed to upload on telegram from servers."
-song_11 : "Uploading Started\n\nUploading speed could be slow. Please hold on.."
+song_1 : "يمكنك التنزيل من يوتيوب فقط في محادثة خاصة. الرجاء ارسال الامر في خاص البوت."
+song_2 : "**مثال:**\n\n/song [الاسم] or [الرابط من يوتيوب]"
+song_3 : "تم كشف الرابط. انا غير قادر على تنزيل البث المباشر. "
+song_4 : "**🔗العنوان:**- {0}\n\nاختر ما تريد تنزيله ."
+song_5 : "رابط غير صالح"
+song_6 : يتم الجلب.. \n\nيرجى الانتظار .."
+song_7 : "لقد فشلت .. جرب مقطع اخر."
+song_8 : "يتم التنزيل\n\nربما يكون التنزيل بطيئا نوعا ما. الرجاء الانتظار .."
+song_9 : "فشلت في تنزيل الاغنية -DL\n\n**Reason:** {0}"
+song_10 : "فشلت في رفع الملف الى تليغرام .. اعد المحاولة."
+song_11 : "يتم الرفع\n\nUploading ربما اتاخر بعض الشيء. الرجاء الانتظار.."
 
 # Tools - Queue
 queue_1 : "يرجى الانتظار ..."
 queue_2 : "قائمه الانتظار فارغة 🤐"
-queue_3 : "<u>**Queued Tracks:</u>**  [تفحص المزيد من المسارات من هنا ({0})"
+queue_3 : "<u>**رقم.:</u>**  [تفحص المزيد من المسارات من هنا ({0})"
 queue_4 : "⏳ أضيفت لقائمه الانتظار في **#{0 \n\n💡العنوان:** {1}\n**⏱المدة:** {2}\n👤**اضيفت بواسطة:** {3}"
 queue_5 : "لا توجد سوى اغنية واحدة في في القائمه ، الرجاء تشغيل المزيد أولا "
 
@@ -240,7 +240,7 @@ stream_4 : "📡 **بدأ البث** 💡\n\n**🏷العنوان:** [{0}]({1})\
 CLOSE_BUTTON  : "🗑 حذف"
 CLOSEMENU_BUTTON  : "🗑 حذف القائمه"
 BACK_BUTTON : "⬅ الرجوع"
-UNBAN_BUTTON : "🗑 Unban Assistant"
+UNBAN_BUTTON : "🗑 الغاء حظر المساعد"
 
 #Lyrics
 L_B_1 : "🚀 البحث عن الكلمات "
@@ -354,20 +354,20 @@ block_6 : "جلب المستخدمين المحظورين ... الرجاء ال�
 block_7 : "**المستخدمين المحظورون:**\n\n"
 
 #Blacklist Chats
-black_1 : "**Usage:**\n/blacklistchat [CHAT_ID]"
-black_2 : "Chat is already blacklisted."
-black_3 : "Chat has been successfully blacklisted"
-black_4 : "**Usage:**\n/whitelistchat [CHAT_ID]"
-black_5 : "Chat is already whitelisted."
-black_6 : "Chat has been successfully whitelisted"
-black_7 : "**Blacklisted Chats:**\n\n"
-black_8 : "No Blacklisted Chats"
+black_1 : "**مثال:**\n/blacklistchat [ايدي المجموعة]"
+black_2 : "المجموعة بالفعل محظورة."
+black_3 : "تم حظر المجموعة ✅"
+black_4 : "**مثال:**\n/whitelistchat [ايدي المجموعة]"
+black_5 : "المجموعة ليست بالقائمه اساسا."
+black_6 : "تم ازالة المجموعة من القائمه المحظورة"
+black_7 : "**المجموعات المحظورة:**\n\n"
+black_8 : "لا توجد مجموعات محظورة"
 
 #videolimit
-vid_1 : "**Usage:**\n/set_video_limit [Number of chats allowed] or [Disable]"
+vid_1 : "**مثال:**\n/set_video_limit [رقم الحد الاقصى المجموعات اللي تشغل فيديو نفس الوقت ] أو [Disable]"
 vid_2 : "Please Use Numeric Numbers for Setting Limit."
-vid_3 : "Video Calls Maximum Limit Defined to {0} Chats."
-vid_4 : "Video Calls Disabled"
+vid_3 : "تم تغيير الحد الاقصى لبث الفيديو الى {0} مجموعة."
+vid_4 : "تم تعطيل الحد الاقصى ، اصبحت عامة"
 
 #maintenance
 maint_1 : "**Usage:**\n/maintenance [enable|disable]"
@@ -385,13 +385,13 @@ vidmode_2 : "Video Play Mode set as downloader. Bot will be downloading tracks n
 vidmode_3 : "Video Play Mode set as m3u8. Bot will be play tracks live now."
 
 #broadcast
-broad_1 : "**Broadcasted Message In {0}  Chats with {1} Pins from Bot.**"
-broad_2 : "Started Assistant Broadcast..."
-broad_3 : "**Assistant Broadcast:**\n\n"
-broad_4 : "Assistant {0} Broadcasted in {1} chats\n"
-broad_5 : "**Usage**:\n/broadcast [MESSAGE] or [Reply to a Message]"
-broad_6 : "Please provide some text to broadcast."
-broad_7 : "**Broadcasted Message to {0} Users.**"
+broad_1 : "**تتم الاذاعه في {0}  مجموعة مع  {1} التثبيت من قبل البوت .**"
+broad_2 : "يتم اذاعه الحساب المساعد..."
+broad_3 : "**بث المساعد:**\n\n"
+broad_4 : "الحساب المساعد  {0} اذاع في {1} مجموعة\n"
+broad_5 : "**مثال**:\n/broadcast [الاذاعة] او [بالرد على الرسالة]"
+broad_6 : "الرجاء كتابة الاذاعه مع الامر."
+broad_7 : "**اذيعت الرسالة الى {0} مشترك.**"
 
 #Heroku
 heroku_1 : "Please make sure your Heroku API Key, Your App name are configured correctly in the heroku"
@@ -427,25 +427,25 @@ pbot_13 : "\n**<b>Unfetched Chats:</b>**\n\n"
 
 
 #Gbanned
-gban_1 : "You want to gban yourself? How Fool!"
-gban_2 : "Should i block myself? Lol"
-gban_3 : "You want to block a sudo user?"
-gban_4 : "{0} is already **gbanned** from the bot."
-gban_5 : "**Initializing Global Ban on {0}**\n\nExpected Time : {1}."
-gban_6 : "**Gbanned Successfully**\n\nBanned **{0}** from **{1}** chats."
-gban_7 : "{0} is not **gbanned **yet from the bot."
-gban_8 : "**Ungbanning {0}**\n\nExpected Time : {1}."
-gban_9 : "**UnGbanned Successfully**\n\nUnbanned **{0}** in **{1}** chats."
-gban_10 : "No Gbanned Users Found."
-gban_11 : "Please wait a while.. Fetching Gbanned users list"
+gban_1 : تريد تحظر روحك ؟ الحمد لله والشكر !"
+gban_2 : "يعني هسة لازم احظر نفسي ؟ ضحكك"
+gban_3 : "كل عقلك تريد تحظرة وهو مطور ?"
+gban_4 : "{0} هو بالفعل **محظور** من البوت."
+gban_5 : "**جاري اعادة ضبط المحظورين {0}**\n\nالوقت المتوقع : {1}."
+gban_6 : "**تم حظره**\n\nمحظور  **{0}** من **{1}** مجموعة ."
+gban_7 : "{0} غير محظور من البوت حتى الان ."
+gban_8 : "**يتم الان {0}**\n\nالوقت المتوقع : {1}."
+gban_9 : "**تم الغاء حظره **\n\nغير محظور **{0}** في **{1}** مجموعه."
+gban_10 : "الله وكيلك فارغه ."
+gban_11 : "يرجى الانتظار قليلا.. يم جلب القائمه"
 
 #Suggestions
-sug_0 : "❓**Do You Know?**\n\n✅ "
-sug_1 : "You can play music in two **search modes** i.e. Direct Mode and Inline Mode.\n\nChange modes via /playmode"
-sug_2 : "You can play music in two **play types** i.e. Everyone Mode and Admins Mode.\n\nChange modes via /playmode"
-sug_3 : "You can play music in **channels** too.\n\nSet channel_id via /channelplay and play via /cplay "
-sug_4 : "Non Admins can use admin commands too by adding them to** AUTH USERS LIST**. \nAdd any user to auth list by /auth , remove with /unauth and check auth users via /authusers"
-sug_5 : "Bot has a feature called **Clean Mode**.\nIt deletes the bot's messages after 5 Mins and ensures that  your chat remains clean.\n\nEnable or disable cleanmode from /settings [__Enabled by default__]"
+sug_0 : "❓**هل تعلم ?**\n\n✅ "
+sug_1 : "يمكنك تشغيل الاغاني بوضعين مختلفين  **وضع البحث** i.e. الوضع المباشر وازرار الانلاين .\n\nغير في الاوامر من  /playmode"
+sug_2 : "يمكنك تشغيل الموسيقى بوضعين  **اوامر التشغيل** i.e. التحكم للادمنية فقط والتحكم لجميع الاعضاء .\n\nغير الضوع من خلال  /playmode"
+sug_3 : "يمكنك تشغيل الموسيقى في **القنوات**.\n\nضع ايدي القناة /channelplay وشغل من أمر /cplay "
+sug_4 : "لا أحد يستطيع ان يتحكم في الاوامر حتى يضاف الى** قائمه المعتمدين**. \nاضف اي شخص للقائمه من خلال /auth , امسحه بـ /unauth وتفقد القائمه من خلال /authusers"
+sug_5 : "اذا تم تفعيل  **وضع التنظيف**.\nسيحذف البوت رسائله بعد 5 دقائق للتاكد من بقاء محادثتك نظيفة n.\n\nEnable or disable cleanmode from /settings [__Enabled by default__]"
 sug_6 : "You can play **Spotify** tracks and playlists too.\n\nStart playing now with /play [Spotify Link]"
 sug_7 : "You can play **Apple Music** tracks and playlists too.\n\nStart playing now with /play [Apple Link]"
 sug_8 : "You can play **Resso Music** tracks and playlists too.\n\nStart playing now with /play [Resso Link]"
