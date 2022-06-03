@@ -37,15 +37,15 @@ auth_8 : "┗ Added By:-"
 
 # PLUGINS - Admins
 admin_1 : "الموسيقى موقفة بالفعل."
-admin_2 : "🎧 تم ايقاف الاغنية بواسطه فلان {}!"
-admin_3 : "Music is already resumed."
-admin_4 : "🎧 كملنا الاغنية بواسطه فلان {}!"
-admin_5 : "Music is already muted."
-admin_6 : "🎧 Voicechat Muted by {}!"
+admin_2 : "🎧تم ايقاف تشغيل الموسيقى من قِبل {}!"
+admin_3 : "لتصير لوتي لعد اني شمسوي غير مستئنف."
+admin_4 : "🎧 تم اسئناف الموسيقى بواسطة {}!"
+admin_5 : "لكك أرنب هي اصلا مكتومه 🤐."
+admin_6 : "🎧 تم كتم الصوت بواسطة {}!"
 admin_7 : "Music is already unmuted."
-admin_8 : "🎧 Voicechat Unmuted by {}!"
-admin_9 : "🎧 Voicechat End/Stopped by {}!"
-admin_10 : "🎧 Voicechat Skipped by {}!. No More Music in Queue."
+admin_8 : "🎧 يلا عاد اذا جنت مدوخكم شعدكم مشغليني ، تم ارجع الصوت بواسطة {}!"
+admin_9 : "🎧 المحادثة الصوتية انتهت بواسطة {}!"
+admin_10 : "🎧 تخطيت الاغنية بواسطة {}!. لا توجد اغاني اخرى في الانتظار."
 admin_11 : "Error while changing stream to **{0}**\n\nPlease use /skip again."
 admin_12 : "Unable to skip to a specific track because of enabled loop play. Please disable loop play via `/loop disable` to use this feature."
 admin_13 : "Please use numeric numbers for specific tracks, like 1, 2 or 4 etc"
@@ -267,57 +267,57 @@ PM_B_2 : "InlineMarkup"
 PM_B_3 : "ChannelPlay"
 
 #Play
-P_B_1 : "🎵 Play Audio"
-P_B_2 : "🎥 Play Video"
-P_B_3 : "🏮 Start Live Stream"
-P_B_4 : "🎵 Play Playlist"
+P_B_1 : "🎵 تشغيل الاغاني"
+P_B_2 : "🎥 تشغيل الفيديوهات"
+P_B_3 : "🏮 تشغيل بث مباشر"
+P_B_4 : "تشغيل قائمه الانتظار"
 
 #Playlist
-PL_B_1 : "🚀 Play Playlist"
-PL_B_2 : "✚ Playlists"
+PL_B_1 : "🚀 قائمه الانتظار"
+PL_B_2 : "✚ اضف للقائمه"
 PL_B_3 : "✚ CPanel"
-PL_B_4 : "📡 Play Mode"
-PL_B_5 : "🔄 Del Whole Playlist"
-PL_B_6 : "↗️ Delete Playlist"
-PL_B_7 : "❗️ Yes, I'm sure. Delete it"
-PL_B_8 : "🔢 Play Top 10"
-PL_B_9 : "🤖 Play Global Top 10 Tracks"
-PL_B_10 : "🏘 Play Group's Top 10 Tracks"
-PL_B_11 : "👤 Play Personal Top 10 Tracks"
+PL_B_4 : "📡 وضع التشغيل"
+PL_B_5 : "🔄 مسح مدري شنو"
+PL_B_6 : "↗️ تصفية قائمه الانتظار"
+PL_B_7 : "📍 نعم انا متأكد ، احذفها"
+PL_B_8 : "🌟 الاكثر تشغيلا "
+PL_B_9 : "🤖 تشغيل التوب 10 للبوت كامل"
+PL_B_10 : "🏘 تشغيل التوب 10 لمجموعتك فقط"
+PL_B_11 : "👤 تشغيل التوب 10 الخاصه بك"
 
 #Settings
-ST_B_1 : "🔊 Aud Quality"
-ST_B_2 : "🎥 Vid Quality"
-ST_B_3 : "🎩 Auth Users"
-ST_B_4 : "📱 Dashboard"
-ST_B_5 : "▶️ Play Mode"
+ST_B_1 : "🔊 جودة الصوت"
+ST_B_2 : "🎥 جودة الفيديو"
+ST_B_3 : "🎩 المستخدمون الموثوقون"
+ST_B_4 : "📱 لوحة التحكم"
+ST_B_5 : "▶️ وضع التشغيل"
 ST_B_6 : "اللغات 🌐"
 ST_B_7 : "وضع التنظيف 🌟"
 ST_B_8 : "{0} دقة صوت منخفضه"
 ST_B_9 : "{0} دقه صوت متوسطه"
 ST_B_10 : "{0} دقه صوت عالية"
-ST_B_11 : "{0} Low Quality Video"
-ST_B_12 : "{0} Medium Quality Video"
-ST_B_13 : "{0} High Quality Video"
-ST_B_14 : "✅ Enabled"
-ST_B_15 : "❌ Disabled"
-ST_B_16 : "👤 Admins"
-ST_B_17 : "👥 Everyone"
-ST_B_18 : "📋 Authorized Users Lists"
-ST_B_19 : "🔎 Search Mode"
-ST_B_20 : "✅ Direct"
-ST_B_21 : "✅ Inline"
-ST_B_22 : "👨‍⚖️ Admin Commands"
-ST_B_23 : "🏘 Group"
-ST_B_24 : "🏷 Channel"
-ST_B_25 : "🫂 Play Type"
-ST_B_26 : "🗑 Command Clean"
-ST_B_27 : "🧑‍🚀 Suggestion Mode"
+ST_B_11 : "{0} دقة فيديو عالية"
+ST_B_12 : "{0} دقة فيديو متوسطه"
+ST_B_13 : "{0} دقة صوت عالية"
+ST_B_14 : "✅ تفعيل"
+ST_B_15 : "❌ تعطيل"
+ST_B_16 : "👤 المشرفين"
+ST_B_17 : "👥 الجميع"
+ST_B_18 : "📋 قائمه الموثوق بهم"
+ST_B_19 : "🔎 وضع البحث"
+ST_B_20 : "✅ مباشر"
+ST_B_21 : "✅ ازرار"
+ST_B_22 : "👨‍⚖️ اوامر الادمن"
+ST_B_23 : "🏘 المجموعة"
+ST_B_24 : "🏷 القناة"
+ST_B_25 : "🫂 نوع التشغيل"
+ST_B_26 : "🗑 امر التنظيف"
+ST_B_27 : "🧑‍🚀 الامر المقترح لك"
 
 #Song
-SG_B_1 : "↗️ Open Private Chat"
-SG_B_2 : "🔊 Audio"
-SG_B_3 : "🎥 Video"
+SG_B_1 : "↗️ ارسالها في الهاص"
+SG_B_2 : "🔊 صوت"
+SG_B_3 : "🎥 فيديو"
 
 #Stats
 SA_B_1 : "📢 Top 10 Chat"
