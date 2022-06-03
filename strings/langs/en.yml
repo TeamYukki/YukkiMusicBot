@@ -243,7 +243,7 @@ BACK_BUTTON : "⬅ الرجوع"
 UNBAN_BUTTON : "🗑 Unban Assistant"
 
 #Lyrics
-L_B_1 : "🚀 Checkout Lyrics Now"
+L_B_1 : "🚀 البحث عن الكلمات "
 
 # Start
 S_B_1 : "🛠️ الاوامر "
@@ -292,7 +292,7 @@ ST_B_3 : "🎩 الموثوقون"
 ST_B_4 : "📱 لوحة التحكم"
 ST_B_5 : "▶️ وضع التشغيل"
 ST_B_6 : "اللغات 🌐"
-ST_B_7 : "وضع التنظيف 🌟"
+ST_B_7 : "الوضع النظيف 🌟"
 ST_B_8 : "{0} دقة صوت منخفضه"
 ST_B_9 : "{0} دقه صوت متوسطه"
 ST_B_10 : "{0} دقه صوت عالية"
@@ -330,19 +330,19 @@ SA_B_7 : "🔢 Global Top 10 Stats"
 SA_B_8 : "🤖 Bot Stats"
 
 #Queue
-QU_B_1 : "📑 Queued List"
-QU_B_2 : "Played {0} out of {1} Mins"
+QU_B_1 : "📑 قائمه الانتظار"
+QU_B_2 : "شُغلت {0} من {1} "
 
 # Sudo Users [ If you are translating this to some other language .. you can leave all these strings in english language]
 
 #Sudo
-sudo_1 : "{0} is already a sudo user."
-sudo_2 : "Added **{0}** to Sudo Users." 
+sudo_1 : "{0} المستخدم مطور مسبقًا."
+sudo_2 : "أضيف **{0}** الى مطورين البوت." 
 sudo_3 : "Not a part of Bot's Sudo."
-sudo_4 : "Removed from Bot's Sudo User"
-sudo_5 : "⭐️<u> **Owners:**</u>\n"
-sudo_6 : "\n⭐️<u> **Sudo Users:**</u>\n"
-sudo_7 : "No Sudo Users"
+sudo_4 : "تم حذفه من المطورين"
+sudo_5 : "⭐️<u> **المالكين:**</u>\n"
+sudo_6 : "\n⭐️<u> **المطورين:**</u>\n"
+sudo_7 : "لا يوجد مطورين"
 
 #Block
 block_1 : "{0} is already blocked from the bot."
