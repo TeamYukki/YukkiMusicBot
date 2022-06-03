@@ -237,8 +237,8 @@ stream_4 : "📡 **Started Streaming** 💡\n\n**🏷Title:** [{0}]({1})\n⌛️
 # Inline Buttons
 
 #General Buttons
-CLOSE_BUTTON  : "🗑 Close"
-CLOSEMENU_BUTTON  : "🗑 Close Menu"
+CLOSE_BUTTON  : "🗑 حذف"
+CLOSEMENU_BUTTON  : "🗑 حذف القائمه"
 BACK_BUTTON : "⬅ Back"
 UNBAN_BUTTON : "🗑 Unban Assistant"
 
@@ -246,14 +246,12 @@ UNBAN_BUTTON : "🗑 Unban Assistant"
 L_B_1 : "🚀 Checkout Lyrics Now"
 
 # Start
-S_B_1 : "🗒 Commands"
-S_B_2 : "🔧 Settings"
-S_B_3 : "📨 Support"
-S_B_4 : "📨 Channel"
-S_B_5 : "✚ Add me to your Group"
-S_B_6 : "💡 Git Repo"
-S_B_7 : "👤 Bot Owner"
-S_B_8 : "🔎 How to Use? Commands Menu."
+S_B_1 : "🛠️ الاوامر "
+S_B_2 : "🔧 الاعدادات"
+S_B_3 : "📨 الدعم"
+S_B_4 : "📨 قناة البوت"
+S_B_5 : "✚ أضفني لمجموعتك"
+S_B_7 : "👤 مطور البوت"
 
 #Help 
 H_B_1 : "Admin Commands"
