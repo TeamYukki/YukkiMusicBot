@@ -164,36 +164,36 @@ play_18 : "**لا توجد مكالمه في المجموعة**\n\nلاستخد�
 
 #Playlist
 playlist_1 : "**Usage:** /play [اسم الموسيقى أو رابط Youtube أو الرد على الصوت] \ n \ n إذا كنت تريد تشغيل قائمة تشغيل خادم Bot! اضغط على الزر أدناه."
-playlist_2 : "Getting your playlist. Please wait"
-playlist_3 : "You have no playlist on Bot's Server."
-playlist_4 : "Fetched Playlist:\n\n"
-playlist_5 :  "    Duration- {0} Mins"
-playlist_6 : "Contact me in PM for deletion of Playlists."
-playlist_7 : "Tracks Inside Playlist: {0}\n\nPress the Buttons to delete a particular track in your playlist.\n\nTo delete whole playlist: Press Del Whole Playlist button."
-playlist_8 : "Already Exists\n\nThis track exists in your playlist."
-playlist_9 : "Sorry! You can only have {0} music in a playlist."
-playlist_10 : "Playlist Addition\n\n{0}\nadded to your playlist."
-playlist_11 : "Successfully deleted your track."
-playlist_12 : "Failed to delete your track."
-playlist_13 : "Deleted your whole playlists from the server. "
-playlist_14 : "**Are you Sure you want to delete your whole playlist?**\n\nYou'll lost your playlist and this can't be recovered later."
-playlist_15 : "[Checkout Whole Playlist]({0})"
-playlist_16 : "Queued Playlist:"
-playlist_17 : "Queued Position-"
-playlist_18 : "[Checkout Whole Queued Playlist]({0})\n\nLast Queued Position : **{1}**"
+playlist_2 : "الحصول على قائمة التشغيل الخاصة بك. أرجو الإنتظار"
+playlist_3 : "ليس لديك قائمة تشغيل على خادم البوت."
+playlist_4 : "قائمة التشغيل التي تم جلبها: \ n \ n"
+playlist_5 :  "المدة- {0} دقيقة"
+playlist_6 : "اتصل بي في المساء لحذف قوائم التشغيل."
+playlist_7 : "المسارات داخل قائمة التشغيل: {0} \ n \ n اضغط على الأزرار لحذف مسار معين في قائمة التشغيل الخاصة بك. \ n \ n لحذف قائمة التشغيل بأكملها: اضغط على الزر "حذف قائمة التشغيل بالكامل"."
+playlist_8 : "موجود بالفعل \ n \ n هذا المسار موجود في قائمة التشغيل الخاصة بك."
+playlist_9 : "آسف! يمكن أن يكون لديك {0} موسيقى فقط في قائمة التشغيل."
+playlist_10 : "إضافة قائمة التشغيل \ n \ n {0} \ n مضافة إلى قائمة التشغيل الخاصة بك."
+playlist_11 : "تم حذف مسارك بنجاح."
+playlist_12 : "فشل حذف المسار الخاص بك."
+playlist_13 : "حذف كل قوائم التشغيل الخاصة بك من الخادم. "
+playlist_14 : "**هل تريد بالتأكيد حذف قائمة التشغيل بأكملها؟ ** \ n \ n ستفقد قائمة التشغيل الخاصة بك ولا يمكن استردادها لاحقًا."
+playlist_15 : "[الخروج من قائمة التشغيل بأكملها]({0})"
+playlist_16 : "قائمة التشغيل في قائمة الانتظار:"
+playlist_17 : "موقف في قائمة الانتظار-"
+playlist_18 : "[Checkout Whole Queued Playlist] ({0}) \ n \ n آخر موضع في قائمة الانتظار : **{1}**"
 
 #Playmode
-playmode_1 : "Select the mode in which you want to play the queries inside your group[{0}]."
-playmode_2 : "Settings changed and saved successfully by {0}"
+playmode_1 : "حدد الوضع الذي تريد تشغيل الاستعلامات فيه داخل مجموعتك [{0}]."
+playmode_2 : "تم تغيير الإعدادات وحفظها بنجاح بواسطة {0}"
 
 #Stream 
-str_1 : "Please Provide M3u8 Links or Index Links."
-str_2 : "✅ Valid Stream Verified\n\nPlease wait processing link.."
-str_3 : "Unable to stream youtube live streams. No Live Format Found"
+str_1 : "يرجى توفير روابط M3u8 أو روابط الفهرس"
+str_2 : "✅تم التحقق من دفق صالح \ n \ n الرجاء انتظار ارتباط المعالجة.."
+str_3 : "غير قادر على دفق يوتيوب البث المباشر. لم يتم العثور على تنسيق مباشر"
 
 #TopPlay
-tracks_1 : "**Processing {0} Top 10 Playlist**\nThis could take some mins(around 3-4 mins).. Please Wait...\n\n**👤Requested By:** {1}\n\nCheck Top 10 tracks by /gstats"
-tracks_2 : "**Error**\n\nThere's no **{0} Top 10 Playlist** on bot's servers. Please try any other playlist"
+tracks_1 : "** جارٍ معالجة {0} أفضل 10 قوائم تشغيل ** \ n قد يستغرق ذلك بعض الدقائق (حوالي 3-4 دقائق) .. يُرجى الانتظار ... \ n \ n ** 👤 تم طلبه بواسطة: ** {1} \ n \ n تحقق أفضل 10 مسارات/gstats"
+tracks_2 : "** خطأ ** \ n \ n لا توجد ** {0} أفضل 10 قائمة تشغيل ** على خوادم الروبوت. يرجى محاولة أي قائمة تشغيل أخرى"
 
 # TOOLS
 
