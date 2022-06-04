@@ -180,7 +180,7 @@ playlist_14 : "**هل تريد بالتأكيد حذف قائمة التشغيل
 playlist_15 : "[الخروج من قائمة التشغيل بأكملها]({0})"
 playlist_16 : "قائمة التشغيل في قائمة الانتظار:"
 playlist_17 : "موقف في قائمة الانتظار-"
-playlist_18 : "[Checkout Whole Queued Playlist] ({0}) \ n \ n آخر موضع في قائمة الانتظار : **{1}**"
+playlist_18 : "[الخروج من قائمة التشغيل بأكملها في قائمة الانتظار] ({0}) \ n \ n آخر موضع في قائمة الانتظار : **{1}**"
 
 #Playmode
 playmode_1 : "حدد الوضع الذي تريد تشغيل الاستعلامات فيه داخل مجموعتك [{0}]."
@@ -205,7 +205,7 @@ lyrics_4 : "اضغط على الزر ادناه للبخث عن الكلمات �
 
 #Ping
 ping_1 : "Pong!!!!"
-ping_2 : "{0} is working good with a ping of `{1}` ms.\n\nBot's uptime is {2} and has used a total of {3} server's storage. Cpu load is about {4} with a consumption of {5} Ram. Py-Tgcalls client is also having a good ping of `{6}` ms."
+ping_2 : "يعمل {0} بشكل جيد مع اختبار ping "{1} مللي ثانية. \ n \ n وقت تشغيل الروبوت هو {2} ويستخدم إجمالي مساحة تخزين الخادم {3}. حمل وحدة المعالجة المركزية حوالي {4} مع استهلاك {5} رام. يمتلك عميل Py-Tgcalls أيضًا اختبار اتصال جيد يبلغ '{6} `ms."
 
 
 # Song
@@ -365,24 +365,24 @@ black_8 : "لا توجد مجموعات محظورة"
 
 #videolimit
 vid_1 : "**مثال:**\n/set_video_limit [رقم الحد الاقصى المجموعات اللي تشغل فيديو نفس الوقت ] أو [Disable]"
-vid_2 : "Please Use Numeric Numbers for Setting Limit."
+vid_2 : "يرجى استخدام الأرقام الرقمية لتحديد الحد."
 vid_3 : "تم تغيير الحد الاقصى لبث الفيديو الى {0} مجموعة."
 vid_4 : "تم تعطيل الحد الاقصى ، اصبحت عامة"
 
 #maintenance
-maint_1 : "**Usage:**\n/maintenance [enable|disable]"
-maint_2 : "Enabled for Maintenance"
-maint_3 : "Maintenance Mode Disabled"
+maint_1 : "**إستعمال:**\n/maintenance [تمكين | تعطيل]"
+maint_2 : "ممكن للصيانة"
+maint_3 : "وضع الصيانة معطل"
 
 #log
-log_1 : "**Usage:**\n/logger [enable|disable]"
-log_2 : "Enabled Logging"
-log_3 : "Logging Disabled"
+log_1 : "**إستعمال:**\n/logger [تمكين | تعطيل]"
+log_2 : "تمكين التسجيل"
+log_3 : "تسجيل تعطيل"
 
 #videomode
-vidmode_1 : "**Usage:**\n/videomode [download|m3u8]"
-vidmode_2 : "Video Play Mode set as downloader. Bot will be downloading tracks now."
-vidmode_3 : "Video Play Mode set as m3u8. Bot will be play tracks live now."
+vidmode_1 : "**إستعمال:**\n/videomode [تحميل|m3u8]"
+vidmode_2 : "تم تعيين وضع تشغيل الفيديو على أنه برنامج تنزيل. سيقوم البوت بتنزيل المسارات الآن."
+vidmode_3 : "تم تعيين وضع تشغيل الفيديو على m3u8. الروبوت سيتم تشغيل المسارات مباشرة الآن."
 
 #broadcast
 broad_1 : "**تتم الاذاعه في {0}  مجموعة مع  {1} التثبيت من قبل البوت .**"
@@ -394,36 +394,36 @@ broad_6 : "الرجاء كتابة الاذاعه مع الامر."
 broad_7 : "**اذيعت الرسالة الى {0} مشترك.**"
 
 #Heroku
-heroku_1 : "Please make sure your Heroku API Key, Your App name are configured correctly in the heroku"
-heroku_2 : "You can only get logs of Heroku Apps"
-heroku_3 : "**Usage:**\n/get_var [Var Name]"
-heroku_4 : "Unable to find any such var."
-heroku_5 : ".env file not found."
-heroku_6 : "**Usage:**\n/del_var [Var Name]"
+heroku_1 : "يرجى التأكد من أن مفتاح ايبي هيروكو الخاص بك ، واسم التطبيق الخاص بك مهيأ بشكل صحيح في هيروكو "
+heroku_2 : "يمكنك فقط الحصول على سجلات تطبيقات هيروكو "
+heroku_3 : "**إستعمال:**\n/get_var [اسم المتغير]"
+heroku_4 : "غير قادر على العثور على أي فار."
+heroku_5 : "لم يتم العثور على ملف .env."
+heroku_6 : "**إستعمال:**\n/del_var [اسم المتغير]"
 heroku_7 : "{0} Deleted."
-heroku_8 : "**Usage:**\n/set_var [Var Name] [Var Value]"
-heroku_9 : "{0} has been updated successfully"
-heroku_10 : "{0} has been added successfully"
-heroku_11 : "Only for Heroku Apps"
-heroku_12 : "Checking Heroku Usage. Please Wait"
-heroku_13 : "Checking for available updates..."
-heroku_14 : "Git Command Error"
-heroku_15 : "Invalid Git Repsitory"
+heroku_8 : "**إستعمال:**\n/set_var [اسم المتغير] [قيمة فار]"
+heroku_9 : "تم تحديث {0} بنجاح"
+heroku_10 : "تمت إضافة {0} بنجاح"
+heroku_11 : "فقط من أجل تطبيقات هيروكو"
+heroku_12 : "التحقق من استخدام هيروكو. أرجو الإنتظار"
+heroku_13 : "التحقق من وجود تحديثات متوفرة ..."
+heroku_14 : "خطأ أمر Git"
+heroku_15 : "ملف Git Repsitory غير صالح"
 
 #Private bot mode
-pbot_1 : "**Usage:**\n/authorize [CHAT_ID]"
-pbot_2 :  "**Usage:**\n/unauthorize [CHAT_ID]"
-pbot_3 : "Added given chat to authorized list"
-pbot_4 : "Removed given chat from authorized list"
-pbot_5 : "Chat is already in the authorized list"
-pbot_6 : "No such chat exists in the authorized list"
-pbot_7 : "Failed to verify chat_id.\n\nMake sure its numeric and in correct format. Don't use chat username or links."
-pbot_8 : "Please wait.... Fetching Authorized chats."
-pbot_9 : "**<b>Fetched Chats:</b>**\n\n"
-pbot_10 : "Private Chat"
-pbot_11 : "No Authorized chats found"
-pbot_12 : "Private Bot Mode is disabled.\n\nTo use your bot as private bot make sure to set **PRIVATE_BOT_MODE** = **True**"
-pbot_13 : "\n**<b>Unfetched Chats:</b>**\n\n"
+pbot_1 : "**إستعمال:**\n/authorize [CHAT_ID]"
+pbot_2 :  "**إستعمال:**\n/unauthorize [CHAT_ID]"
+pbot_3 : "تمت إضافة الدردشة المعينة إلى القائمة المصرح بها"
+pbot_4 : "تمت إزالة الدردشة المعطاة من القائمة المصرح بها"
+pbot_5 : "الدردشة موجودة بالفعل في القائمة المصرح بها"
+pbot_6 : "لا توجد مثل هذه الدردشة في القائمة المصرح بها"
+pbot_7 : "فشل التحقق من معرف الدردشة. \ n \ n تأكد من أنه رقمي وصحيح. لا تستخدم اسم مستخدم الدردشة أو الروابط."
+pbot_8 : "الرجاء الانتظار .... إحضار الدردشات المصرح بها."
+pbot_9 : "**<b>الدردشات التي تم جلبها:</b>**\n\n"
+pbot_10 : "دردشة خاصة"
+pbot_11 : "لم يتم العثور على محادثات مصرح بها"
+pbot_12 : "وضع الروبوت الخاص معطل. \ n \ n لاستخدام الروبوت الخاص بك كبوت خاص ، تأكد من التعيين **PRIVATE_BOT_MODE** = **True**"
+pbot_13 : "\n**<b>الدردشات التي لم يتم إحضارها:</b>**\n\n"
 
 
 #Gbanned
@@ -446,25 +446,25 @@ sug_2 : "يمكنك تشغيل الموسيقى بوضعين  **اوامر ال�
 sug_3 : "يمكنك تشغيل الموسيقى في **القنوات**.\n\nضع ايدي القناة /channelplay وشغل من أمر /cplay "
 sug_4 : "لا أحد يستطيع ان يتحكم في الاوامر حتى يضاف الى** قائمه المعتمدين**. \nاضف اي شخص للقائمه من خلال /auth , امسحه بـ /unauth وتفقد القائمه من خلال /authusers"
 sug_5 : "اذا تم تفعيل  **وضع التنظيف**.\nسيحذف البوت رسائله بعد 5 دقائق للتاكد من بقاء محادثتك نظيفة n.\n\nEnable or disable cleanmode from /settings [__Enabled by default__]"
-sug_6 : "You can play **Spotify** tracks and playlists too.\n\nStart playing now with /play [Spotify Link]"
-sug_7 : "You can play **Apple Music** tracks and playlists too.\n\nStart playing now with /play [Apple Link]"
-sug_8 : "You can play **Resso Music** tracks and playlists too.\n\nStart playing now with /play [Resso Link]"
-sug_9 : "You can play **Sound Cloud** tracks and playlists too.\n\nStart playing now with /play [SoundCloud Link]"
-sug_10 : "You can play **Videos** in voice chat via /vplay [Video Name] or /play -v [Video Name]"
-sug_11 : "You can set **Audio Quality** of voice chat to Low, Medium or High.\n\nSet quality via /settings"
-sug_12 : "You can set **Video Quality** of voice chat to Low, Medium or High.\n\nSet quality via /settings"
-sug_13 : "You can check your **Statistics** on bot like Top 10 Played Tracks.\n\nGet Stats: /gstats "
-sug_14 : "You can check **Group's Stats** on bot like Top 10 Played Tracks.\n\nGet Stats: /gstats "
-sug_15 : "You can check bot's **Global Stats** like top 10 users, top 10 chats, top 10 tracks etc etc.\n\nCheck Stats: /gstats "
-sug_16 : "You can now mute the music which is playing on voice chat.\n\nCommand: /mute"
-sug_17 : "You can now unmute and mute the music which is playing on voice chat.\n\nCommand: /mute and /unmute"
-sug_18 : "You can search the lyrics of musics with us too..\n\nCommand: /lyrics [Music Name]"
-sug_19 : "You can download the music or video from the bot through Youtube.\n\nCommand: /song [Music Name]"
-sug_20 : "You can get a complete list of my commands that i accept.\n\nCommand: /help"
-sug_21 : "Bot has server-sided playlist option.\n\nYou can add music in your playlist and play them all together via /play"
-sug_22 : "You can now shuffle the queued musics on the bot.\n\nCommand: /shuffle"
-sug_23 : "You can check the queue of the musics.\n\nCommand: /queue"
-sug_24 : "You can check my owner and sudo users who manage me.\n\nCommand: /sudolist"
-sug_25 : "Bot has a feature called **Commands Delete Mode**. It deletes its executed commands automatically.\n\nEnable or disable deletemode from /settings [__Enabled by default__]"
-sug_26 : "You can change language of the bot to available languages for easy understanding.\n\nCommand: /language"
-sug_27 : "Bot has a feature called **Force Play**.\n\n**Force Play** stops the playing track on voice chat and starts playing the searched track instantly without disturbing/clearing queue.\n\nCommand: /playforce"
+sug_6 : "يمكنك أيضًا تشغيل مسارات وقوائم تشغيل ** Spotify **. \ n \ n ابدأ اللعب الآن /play [Spotify Link]"
+sug_7 : "يمكنك أيضًا تشغيل مسارات وقوائم تشغيل ** Apple Music **. \ n \ n ابدأ اللعب الآن باستخدام /play [Apple Link]"
+sug_8 : "يمكنك أيضًا تشغيل مسارات وقوائم تشغيل ** Resso Music **. \ n \ n ابدأ اللعب الآن باستخدام /play [Resso Link]"
+sug_9 : "يمكنك أيضًا تشغيل مسارات وقوائم تشغيل ** Sound Cloud **. \ n \ n ابدأ اللعب الآن /play [SoundCloud Link]"
+sug_10 : "يمكنك تشغيل ** مقاطع فيديو ** في الدردشة الصوتية عبر /vplay [Video Name] or /play -v [Video Name]"
+sug_11 : "يمكنك ضبط ** جودة الصوت ** للدردشة الصوتية على منخفضة أو متوسطة أو عالية. \ n \ n اضبط الجودة عبر/settings"
+sug_12 : "يمكنك ضبط ** جودة الفيديو ** للدردشة الصوتية على منخفضة أو متوسطة أو عالية. \ n \ n اضبط الجودة عبر /settings"
+sug_13 : "يمكنك التحقق من ** الإحصائيات ** الخاصة بك على الروبوت مثل أفضل 10 مسارات تم تشغيلها. \ n \ n احصل على الإحصائيات: /gstats "
+sug_14 : "يمكنك التحقق من ** إحصائيات المجموعة ** على الروبوت مثل أفضل 10 مسارات تم تشغيلها. \ n \ n احصل على الإحصائيات: /gstats "
+sug_15 : "يمكنك التحقق من ** الإحصائيات العالمية ** الخاصة بالبوت مثل أفضل 10 مستخدمين وأهم 10 محادثات وأهم 10 مسارات وما إلى ذلك. \ n \ n تحقق من الإحصائيات: /gstats "
+sug_16 : "يمكنك الآن كتم صوت الموسيقى قيد التشغيل في الدردشة الصوتية. \ n \ n أمر: /mute"
+sug_17 : "يمكنك الآن إلغاء كتم صوت وكتم صوت الموسيقى التي يتم تشغيلها في الدردشة الصوتية. \ n \ n الأمر: /mute and /unmute"
+sug_18 : "يمكنك البحث معنا أيضًا في كلمات الموسيقى .. \ n \ n الأمر: /lyrics [Music Name]"
+sug_19 : "يمكنك تنزيل الموسيقى أو الفيديو من الروبوت من خلال Youtube. \ n \ n الأمر: /song [Music Name]"
+sug_20 : "يمكنك الحصول على قائمة كاملة بالأوامر التي أقبلها. \ n \ n الأمر: /help"
+sug_21 : "يحتوي الروبوت على خيار قائمة تشغيل على جانب الخادم. \ n \ n يمكنك إضافة موسيقى في قائمة التشغيل وتشغيلها جميعًا معًا عبر /play"
+sug_22 : "يمكنك الآن تبديل الموسيقى في قائمة الانتظار على الروبوت عشوائيًا. \ n \ n الأمر: /shuffle"
+sug_23 : "يمكنك التحقق من قائمة انتظار الموسيقى. \ n \ n الأمر: /queue"
+sug_24 : "يمكنك التحقق من المالك ومستخدمي sudo الذين يديرونني. \ n \ n الأمر: /sudolist"
+sug_25 : "يحتوي البوت على ميزة تسمى ** وضع حذف الأوامر **. يقوم بحذف الأوامر المنفذة الخاصة به تلقائيًا. \ n \ n تمكين أو تعطيل الحذف من /settings [__Enabled by default__]"
+sug_26 : "يمكنك تغيير لغة الروبوت إلى اللغات المتاحة لفهمها بسهولة. \ n \ n أمر: /language"
+sug_27 : "يحتوي الروبوت على ميزة تسمى ** Force Play **. \ n \ n ** Force Play ** يوقف مسار التشغيل في الدردشة الصوتية ويبدأ في تشغيل المسار الذي تم البحث عنه على الفور دون إزعاج / مسح قائمة الانتظار. \ n \ n الأمر: /playforce"
