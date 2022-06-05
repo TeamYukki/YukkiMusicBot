@@ -1,4 +1,4 @@
-name : العربية 
+name : English 
 
 # General Strings
 general_1 : "رد عل مستخدم او اكتب يوزره /user_id."
@@ -169,7 +169,7 @@ playlist_3 : "ليس لديك قائمة تشغيل على خادم البوت."
 playlist_4 : "قائمة التشغيل التي تم جلبها: \ n \ n"
 playlist_5 :  "المدة- {0} دقيقة"
 playlist_6 : "اتصل بي في المساء لحذف قوائم التشغيل."
-playlist_7 : "المسارات داخل قائمة التشغيل: {0} \ n \ n اضغط على الأزرار لحذف مسار معين في قائمة التشغيل الخاصة بك. \ n \ n لحذف قائمة التشغيل بأكملها: اضغط على الزر "حذف قائمة التشغيل بالكامل"."
+playlist_7 : "Tracks Inside Playlist: {0}\n\nPress the Buttons to delete a particular track in your playlist.\n\nTo delete whole playlist: Press Del Whole Playlist button."
 playlist_8 : "موجود بالفعل \ n \ n هذا المسار موجود في قائمة التشغيل الخاصة بك."
 playlist_9 : "آسف! يمكن أن يكون لديك {0} موسيقى فقط في قائمة التشغيل."
 playlist_10 : "إضافة قائمة التشغيل \ n \ n {0} \ n مضافة إلى قائمة التشغيل الخاصة بك."
