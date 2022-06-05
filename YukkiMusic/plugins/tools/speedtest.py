@@ -26,9 +26,9 @@ def testspeed(m):
     try:
         test = speedtest.Speedtest()
         test.get_best_server()
-        m = m.edit("ʀᴜɴɴɪɴɢ ᴅᴏᴡɴʟᴏᴀᴅ ꜱᴩᴇᴇᴅᴛᴇꜱᴛ)
+        m = m.edit("ʀᴜɴɴɪɴɢ ᴅᴏᴡɴʟᴏᴀᴅ ꜱᴩᴇᴇᴅᴛᴇꜱᴛ")
         test.download()
-        m = m.edit("ʀᴜɴɴɪɴɢ ᴜᴩʟᴏᴀᴅ ꜱᴩᴇᴇᴅᴛᴇꜱᴛ)
+        m = m.edit("ʀᴜɴɴɪɴɢ ᴜᴩʟᴏᴀᴅ ꜱᴩᴇᴇᴅᴛᴇꜱᴛ")
         test.upload()
         test.results.share()
         result = test.results.dict()
