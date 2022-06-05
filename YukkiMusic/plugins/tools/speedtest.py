@@ -26,13 +26,13 @@ def testspeed(m):
     try:
         test = speedtest.Speedtest()
         test.get_best_server()
-        m = m.edit("Running Download SpeedTest")
+        m = m.edit("ʀᴜɴɴɪɴɢ ᴅᴏᴡɴʟᴏᴀᴅ ꜱᴩᴇᴇᴅᴛᴇꜱᴛ)
         test.download()
-        m = m.edit("Running Upload SpeedTest")
+        m = m.edit("ʀᴜɴɴɪɴɢ ᴜᴩʟᴏᴀᴅ ꜱᴩᴇᴇᴅᴛᴇꜱᴛ)
         test.upload()
         test.results.share()
         result = test.results.dict()
-        m = m.edit("Sharing SpeedTest Results")
+        m = m.edit("ꜱʜᴀʀɪɴɢ ꜱᴩᴇᴇᴅᴛᴇꜱᴛ ʀᴇꜱᴜʟᴛꜱ")
         path = wget.download(result["share"])
     except Exception as e:
         return m.edit(e)
@@ -41,10 +41,10 @@ def testspeed(m):
 
 @app.on_message(filters.command(SPEEDTEST_COMMAND) & SUDOERS)
 async def speedtest_function(client, message):
-    m = await message.reply_text("Running Speed test")
+    m = await message.reply_text("ʀᴜɴɴɪɴɢ ꜱᴩᴇᴇᴅ ᴛᴇꜱᴛ")
     loop = asyncio.get_event_loop()
     result, path = await loop.run_in_executor(None, testspeed, m)
-    output = f"""**Speedtest Results**
+    output = f"""**ꜱᴩᴇᴇᴅᴛᴇꜱᴛ ʀᴇꜱᴜʟᴛꜱ**
     
 <u>**Client:**</u>
 **__ISP:__** {result['client']['isp']}
