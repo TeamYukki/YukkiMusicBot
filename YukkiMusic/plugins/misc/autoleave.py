@@ -75,7 +75,7 @@ async def auto_end():
                 try:
                     await app.send_message(
                         chat_id,
-                        "Bot has left voice chat due to inactivity to avoid overload on servers. No-one was listening to the bot on voice chat.",
+                        "ʙᴏᴛ ʜᴀꜱ ʟᴇꜰᴛ ᴠᴏɪᴄᴇ-ᴄʜᴀᴛ ᴅᴜᴇ ᴛᴏ ɪɴᴀᴄᴛɪᴠɪᴛy ᴛᴏ ᴀᴠᴏɪᴅ ʟᴏᴀᴅ ᴏɴ ꜱᴇʀᴠᴇʀ'ꜱ. ɴᴏ-ᴏɴᴇ ᴡᴀꜱ ʟɪꜱᴛᴇɴɪɴɢ ᴛᴏ ᴛʜᴇ ʙᴏᴛ ᴏɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.",
                     )
                 except:
                     continue
