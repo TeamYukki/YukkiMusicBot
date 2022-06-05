@@ -51,7 +51,7 @@ async def edit_or_reply(msg: Message, **kwargs):
 async def executor(client, message):
     if len(message.command) < 2:
         return await edit_or_reply(
-            message, text="__Nigga Give me some command to execute.__"
+            message, text="__ɴᴏᴏʙ, ɢɪᴠᴇ ᴍᴇ ꜱᴏᴍᴇ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴇxᴇᴄᴜᴛᴇ.__"
         )
     try:
         cmd = message.text.split(" ", maxsplit=1)[1]
