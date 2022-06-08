@@ -125,7 +125,10 @@ async def gen_thumb(videoid):
         draw.text(
             (600, 450),
             f"Views : {views[:23]}",
-            (255, 255, 255),
+            (275, 275, 275),
+            fill="green",
+          stroke_width=1,
+          stroke_fill="green",
             font=arial,
         )
         draw.text(
