@@ -35,12 +35,6 @@ def lanuages_keyboard(_):
     )
     keyboard.row(
         InlineKeyboardButton(
-            text="🐶 Cheems",
-            callback_data=f"languages:cheems",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
             text=_["BACK_BUTTON"],
             callback_data=f"settingsback_helper",
         ),
