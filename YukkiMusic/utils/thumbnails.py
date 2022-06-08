@@ -74,19 +74,19 @@ async def gen_thumb(videoid):
         background = enhancer.enhance(0.6)
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
-        x1 = Xcenter - 350
-        y1 = Ycenter - 350
-        x2 = Xcenter + 350
-        y2 = Ycenter + 350
+        x1 = Xcenter - 250
+        y1 = Ycenter - 250
+        x2 = Xcenter + 250
+        y2 = Ycenter + 250
         logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((620, 620), Image.ANTIALIAS)
-        logo = ImageOps.expand(logo, border=25, fill="white")
-        background.paste(logo, (150, 200))
+        logo.thumbnail((520, 520), Image.ANTIALIAS)
+        logo = ImageOps.expand(logo, border=10, fill="blue")
+        background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype("assets/font2.ttf", 140)
-        font2 = ImageFont.truetype("assets/font2.ttf", 170)
-        arial = ImageFont.truetype("assets/font2.ttf", 130)
-        name_font = ImageFont.truetype("assets/font.ttf", 130)
+        font = ImageFont.truetype("assets/font2.ttf", 40)
+        font2 = ImageFont.truetype("assets/font2.ttf", 70)
+        arial = ImageFont.truetype("assets/font2.ttf", 30)
+        name_font = ImageFont.truetype("assets/font.ttf", 30)
         para = textwrap.wrap(title, width=32)
         j = 0
         draw.text(
@@ -94,10 +94,10 @@ async def gen_thumb(videoid):
         )
         draw.text(
             (600, 150),
-            "Nᴏᴡ Pʟᴀyɪɴɢ",
-            fill="red",
+            "NOW PLAYING",
+            fill="black",
             stroke_width=2,
-            stroke_fill="red",
+            stroke_fill="black",
             font=font2,
         )
         for line in para:
