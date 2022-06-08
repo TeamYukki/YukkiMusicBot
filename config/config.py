@@ -184,7 +184,7 @@ GLOBAL_IMG_URL = getenv(
 
 STATS_IMG_URL = getenv(
     "STATS_IMG_URL",
-    "assets/teddymusic.jpg",
+    "https://github.com/SuruXmanager/YukkiMusicBot/blob/master/assets/teddymusic.jpg?raw=true",
 )
 
 TELEGRAM_AUDIO_URL = getenv(
