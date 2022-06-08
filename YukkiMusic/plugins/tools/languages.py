@@ -35,26 +35,6 @@ def lanuages_keyboard(_):
     )
     keyboard.row(
         InlineKeyboardButton(
-            text="🇱🇰 සිංහල",
-            callback_data=f"languages:si",
-        ),
-        InlineKeyboardButton(
-            text="🇦🇿 Azərbaycan",
-            callback_data=f"languages:az",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="🇮🇳 ગુજરાતી",
-            callback_data=f"languages:gu",
-        ),
-        InlineKeyboardButton(
-            text="🇹🇷 Türkiye Türkçesi",
-            callback_data=f"languages:tr",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
             text="🐶 Cheems",
             callback_data=f"languages:cheems",
         ),
