@@ -304,21 +304,21 @@ def panel_markup_3(_, videoid, chat_id):
     buttons = [
         [
             InlineKeyboardButton(
-                text="⏮ s10 تقدم",
+                text="⏮ s10 عودة",
                 callback_data=f"ADMIN 1|{chat_id}",
             ),
             InlineKeyboardButton(
-                text="⏭ s10 عودة",
+                text="⏭ s10 تقدم",
                 callback_data=f"ADMIN 2|{chat_id}",
             ),
         ],
         [
             InlineKeyboardButton(
-                text="⏮ s30 تقدم",
+                text="⏮ s30 عودة",
                 callback_data=f"ADMIN 3|{chat_id}",
             ),
             InlineKeyboardButton(
-                text="⏭ s30 عودة",
+                text="⏭ s30 تقدم",
                 callback_data=f"ADMIN 4|{chat_id}",
             ),
         ],
