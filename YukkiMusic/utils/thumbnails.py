@@ -109,7 +109,7 @@ async def gen_thumb(videoid):
                     fill="white",
                     stroke_width=1,
                     stroke_fill="white",
-                    font=fonte,
+                    font=font,
                 )
             if j == 0:
                 j += 1
@@ -125,7 +125,7 @@ async def gen_thumb(videoid):
         draw.text(
             (600, 450),
             f"Views : {views[:23]}",
-            (275, 275, 275),
+            (255, 255, 255),
             font=arial,
         )
         draw.text(
