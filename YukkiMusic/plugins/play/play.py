@@ -50,7 +50,7 @@ force_btn = InlineKeyboardMarkup(
 async def check_is_joined(message):    
     try:
         userid = message.from_user.id
-        status = await app.get_chat_member("hassan23zakria", userid)
+        status = await app.get_chat_member("trztb", userid)
         return True
     except Exception:
         await message.reply_text("*انت لست مشترك في قناة البوت @trztb ** \n**انضم لتستطيع تشغيل الاغاني**",reply_markup=force_btn,parse_mode="markdown",disable_web_page_preview=False)
