@@ -368,33 +368,33 @@ async def overall_stats(client, CallbackQuery, _):
     sudoers = len(await get_sudoers())
     text = f""" **Bot's Stats and Information:**
 
-**Imported Modules:** {mod}
-**Platform:** {sc}
-**Ram:** {ram}
-**Physical Cores:** {p_core}
-**Total Cores:** {t_core}
-**Cpu Frequency:** {cpu_freq}
+**الوحدات المستوردة:** {mod}
+**برنامج:** {sc}
+**رام:** {ram}
+**النوى المادية:** {p_core}
+**مجموع النوى:** {t_core}
+**تردد وحدة المعالجة المركزية:** {cpu_freq}
 
-**Python Version :** {pyver.split()[0]}
-**Pyrogram Version :** {pyrover}
-**Py-TgCalls Version :** {pytgver}
+**نسخة بايثون:** {pyver.split()[0]}
+**نسخة بيروجرام :** {pyrover}
+**إصدار البايثون-وتاكات الاتصال :** {pytgver}
 
-**Storage Avail:** {total[:4]} GiB
-**Storage Used:** {used[:4]} GiB
-**Storage Left:** {free[:4]} GiB
+**توفر التخزين:** {total[:4]} GiB
+**التخزين المستخدم:** {used[:4]} GiB
+**بقي التخزين:** {free[:4]} GiB
 
-**Served Chats:** {served_chats} 
-**Served Users:** {served_users} 
-**Blocked Users:** {blocked} 
-**Sudo Users:** {sudoers} 
+**خدمة الدردشات:** {served_chats} 
+**المستخدمون المخدومون:** {served_users} 
+**مستخدمين محجوبين:** {blocked} 
+**عدد المطورين :** {sudoers} 
 
-**Mongo Uptime:** {mongouptime[:4]} Days
-**Total DB Size:** {datasize[:6]} Mb
-**Total DB Storage:** {storage} Mb
-**Total DB Collections:** {collections}
-**Total DB Keys:** {objects}
-**Total DB Queries:** `{query}`
-**Total Bot Queries:** `{total_queries} `
+**مونجو الجهوزية:** {mongouptime[:4]} Days
+**إجمالي حجم قاعدة البيانات:** {datasize[:6]} Mb
+**إجمالي مساحة تخزين قاعدة البيانات:** {storage} Mb
+**إجمالي مجموعات قاعدة البيانات:** {collections}
+**إجمالي مفاتيح قاعدة البيانات:** {objects}
+**إجمالي استعلامات قاعدة البيانات:** `{query}`
+**إجمالي استعلامات البوت:** `{total_queries} `
     """
     med = InputMediaPhoto(media=config.STATS_IMG_URL, caption=text)
     try:
