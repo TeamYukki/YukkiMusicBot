@@ -24,7 +24,7 @@ ACTIVEVIDEO_COMMAND = get_command("ACTIVEVIDEO_COMMAND")
 @app.on_message(filters.command(ACTIVEVC_COMMAND) & SUDOERS)
 async def activevc(_, message: Message):
     mystic = await message.reply_text(
-        "Getting active voice chats.. Please hold"
+        "جارٍ تفعيل الدردشات الصوتية .. يُرجى الانتظار"
     )
     served_chats = await get_active_chats()
     text = ""
