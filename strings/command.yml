@@ -32,7 +32,7 @@ DELETEPLAYLIST_COMMAND : ["deleteplaylist"]
 
 
 # Tools
-QUEUE_COMMAND : ["queue","cqueue", "player", "cplayer", "playing", "cplaying", "الانتظار", "القائمة", "القائمه"]
+QUEUE_COMMAND : ["queue","cqueue", "player", "cplayer", "playing", "cplaying", "الانتظار", "القائمة", "القائمه", "قائمة الانتظار"]
 SONG_COMMAND : ["تحميل"]
 LYRICS_COMMAND : ["lyrics"]
 
@@ -47,16 +47,16 @@ MUTE_COMMAND : ["mute", "cmute", "كتم"]
 UNMUTE_COMMAND : ["unmute", "cunmute", "الغاء الكتم"]
 STOP_COMMAND : ["stop", "end", "cstop", "cend", "ايقاف", "انهاء"]
 SKIP_COMMAND : ["skip", "cskip", "تخطي"]
-SHUFFLE_COMMAND : ["shuffle", "cshuffle", "عشوائي"]
+SHUFFLE_COMMAND : ["shuffle", "cshuffle", "عشوائي", "ترتيب عشوائي"]
 LOOP_COMMAND : ["loop", "cloop"]
 SEEK_COMMAND : ["seek", "cseek", "seekback", "cseekback", "تقدم", "تقديم"]
-RESTART_COMMAND : ["restart"]
+RESTART_COMMAND : ["اعادة تشغيل", "اعادة التشغيل", "restart"]
 
 # Sudo Users Commaands
 
 # Sudo Command
-ADDSUDO_COMMAND : ["addsudo", "مطور"]
-DELSUDO_COMMAND : ["delsudo", "تنزيل_مطور"]
+ADDSUDO_COMMAND : ["addsudo", "مطور", "رفع مطور", "اضف مطور"]
+DELSUDO_COMMAND : ["delsudo", "تنزيل مطور"]
 SUDOUSERS_COMMAND : ["sudolist", "المطورين"]
 
 #Broadcast 
