@@ -281,13 +281,13 @@ async def overall_stats(client, CallbackQuery, _):
     else:
         ass = "No"
     cm = config.CLEANMODE_DELETE_MINS
-    text = f"""**Bot's Stats and Information:**
+    text = f"""**إحصائيات ومعلومات بوت:**
 
 **الوحدات المستوردة:** {mod}
 **خدمة الدردشات:** {served_chats} 
 **المستخدمون المخدومون:** {served_users} 
 **مستخدمين محجوبين:** {blocked} 
-**Sudo Users:** {sudoers} 
+**عدد المطورين:** {sudoers} 
     
 **إجمالي الاستعلامات:** {total_queries} 
 **مجموع المساعدين:** {assistant}
@@ -366,7 +366,7 @@ async def overall_stats(client, CallbackQuery, _):
     total_queries = await get_queries()
     blocked = len(BANNED_USERS)
     sudoers = len(await get_sudoers())
-    text = f""" **Bot's Stats and Information:**
+    text = f""" **إحصائيات ومعلومات بوت:**
 
 **الوحدات المستوردة:** {mod}
 **برنامج:** {sc}
