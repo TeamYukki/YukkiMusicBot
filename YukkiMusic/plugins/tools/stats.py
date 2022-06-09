@@ -283,21 +283,21 @@ async def overall_stats(client, CallbackQuery, _):
     cm = config.CLEANMODE_DELETE_MINS
     text = f"""**Bot's Stats and Information:**
 
-**Imported Modules:** {mod}
-**Served Chats:** {served_chats} 
-**Served Users:** {served_users} 
-**Blocked Users:** {blocked} 
+**الوحدات المستوردة:** {mod}
+**خدمة الدردشات:** {served_chats} 
+**المستخدمون المخدومون:** {served_users} 
+**مستخدمين محجوبين:** {blocked} 
 **Sudo Users:** {sudoers} 
     
-**Total Queries:** {total_queries} 
-**Total Assistants:** {assistant}
-**Auto Leaving Assistant:** {ass}
-**Cleanmode duration:** {cm} Mins
+**إجمالي الاستعلامات:** {total_queries} 
+**مجموع المساعدين:** {assistant}
+**عدد مغادره المساعد:** {ass}
+**مدة الوضع:** {cm} Mins
 
-**Play Duration Limit:** {play_duration} Mins
-**Song Download Limit:** {song} Mins
-**Bot's Server Playlist Limit:** {playlist_limit}
-**Playlist Play Limit:** {fetch_playlist}"""
+**حد مدة اللعب:** {play_duration} Mins
+**حد تنزيل الأغنية:** {song} Mins
+**حد قائمة تشغيل خادم البوت:** {playlist_limit}
+**حد تشغيل قائمة التشغيل:** {fetch_playlist}"""
     med = InputMediaPhoto(media=config.STATS_IMG_URL, caption=text)
     try:
         await CallbackQuery.edit_message_media(
