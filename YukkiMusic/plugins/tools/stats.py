@@ -233,7 +233,7 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
             except:
                 continue
             limit += 1
-            msg += f"🔗`{extract}` شُغلت {count} مرة في البوت.\n\n"
+            msg += f"🔗`{extract}` شغل {count} مرة في البوت.\n\n"
         temp = (
             _["gstats_5"].format(limit, MUSIC_BOT_NAME)
             if what == "Chats"
