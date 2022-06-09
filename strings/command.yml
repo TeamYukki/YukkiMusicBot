@@ -24,23 +24,23 @@ LANGUAGE_COMMAND : ["lang", "language", "langs", "اللغات"]
 PLAY_COMMAND : ["play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce", "تشغيل"]
 PLAYMODE_COMMAND : ["playmode"]
 CHANNELPLAY_COMMAND : ["channelplay"]
-STREAM_COMMAND : ["stream", "cstream", "streamforce"]
+STREAM_COMMAND : ["stream", "cstream", "streamforce", "بث"]
 
 #Playlists Command
 PLAYLIST_COMMAND : ["playlist", "قائمتي"]
-DELETEPLAYLIST_COMMAND : ["deleteplaylist"]
+DELETEPLAYLIST_COMMAND : ["deleteplaylist", "مسح قائمتي", "حذف قائمتي"]
 
 
 # Tools
 QUEUE_COMMAND : ["queue","cqueue", "player", "cplayer", "playing", "cplaying", "الانتظار", "القائمة", "القائمه", "قائمة الانتظار"]
 SONG_COMMAND : ["تحميل"]
-LYRICS_COMMAND : ["lyrics"]
+LYRICS_COMMAND : ["lyrics", "كلمات"]
 
 
 # Admin Commands
-AUTH_COMMAND : ["auth", "رفع"]
-UNAUTH_COMMAND : ["unauth", "تنزيل"]
-AUTHUSERS_COMMAND : ["authusers", "المعتمدين", "الموثوثقين"]
+AUTH_COMMAND : ["auth", "رفع معتمد", "رفع ادمن"]
+UNAUTH_COMMAND : ["unauth", "تنزيل معتمد", "تنزيل ادمن"]
+AUTHUSERS_COMMAND : ["authusers", "المعتمدين", "الموثوثقين", "الادمنية", "الادمنيه"]
 PAUSE_COMMAND : ["pause", "cpause", "توقف"]
 RESUME_COMMAND : ["resume", "cresume", "استئناف"]
 MUTE_COMMAND : ["mute", "cmute", "كتم"]
@@ -60,7 +60,7 @@ DELSUDO_COMMAND : ["delsudo", "تنزيل مطور"]
 SUDOUSERS_COMMAND : ["sudolist", "المطورين"]
 
 #Broadcast 
-BROADCAST_COMMAND : ["broadcast"]
+BROADCAST_COMMAND : ["broadcast", "اذاعه", "اذاعة"]
 
 #Blacklist chat
 BLACKLISTCHAT_COMMAND : ["blacklistchat"]
