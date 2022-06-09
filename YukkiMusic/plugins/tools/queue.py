@@ -97,9 +97,9 @@ async def ping_com(client, message: Message, _):
         else:
             IMAGE = get_image(videoid)
     send = (
-        "**⌛️Duration:** Unknown Duration Stream\n\nClick on button below to get whole queued list."
+        "**⌛️مدة:** دفق المدة غير معروف\n\nانقر فوق الزر أدناه للحصول على قائمة الانتظار بأكملها."
         if DUR == "Unknown"
-        else "\nClick on button below to get whole queued list."
+        else "\nانقر فوق الزر أدناه للحصول على قائمة الانتظار بأكملها."
     )
     cap = f"""**{config.MUSIC_BOT_NAME} Player**
 
@@ -277,7 +277,7 @@ async def queue_back(client, CallbackQuery: CallbackQuery, _):
         else:
             IMAGE = get_image(videoid)
     send = (
-        "**⌛️Duration:** Unknown Duration Stream\n\nClick on button below to get whole queued list."
+        "**⌛️مدة:** دفق المدة غير معروف\n\nانقر فوق الزر أدناه للحصول على قائمة الانتظار بأكملها."
         if DUR == "Unknown"
         else "\nClick on button below to get whole queued list."
     )
