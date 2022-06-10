@@ -284,9 +284,9 @@ async def overall_stats(client, CallbackQuery, _):
     text = f"""**إحصائيات ومعلومات بوت:**
 
 **الوحدات المستوردة:** {mod}
-**خدمة الدردشات:** {served_chats} 
-**المستخدمون المخدومون:** {served_users} 
-**مستخدمين محجوبين:** {blocked} 
+**المجموعات:** {served_chats} 
+**المشتركين:** {served_users} 
+**المحظورين:** {blocked} 
 **عدد المطورين:** {sudoers} 
     
 **إجمالي الاستعلامات:** {total_queries} 
@@ -294,8 +294,8 @@ async def overall_stats(client, CallbackQuery, _):
 **عدد مغادره المساعد:** {ass}
 **مدة الوضع:** {cm} Mins
 
-**حد مدة اللعب:** {play_duration} Mins
-**حد تنزيل الأغنية:** {song} Mins
+**حد مدة التشغيل:** {play_duration} دقيقة
+**حد تنزيل الأغنية:** {song} دقيقة
 **حد قائمة تشغيل خادم البوت:** {playlist_limit}
 **حد تشغيل قائمة التشغيل:** {fetch_playlist}"""
     med = InputMediaPhoto(media=config.STATS_IMG_URL, caption=text)
