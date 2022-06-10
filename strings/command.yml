@@ -16,8 +16,8 @@ START_COMMAND : ["start", "بدأ"]
 HELP_COMMAND : ["help", "مساعدة"]
 SETTINGS_COMMAND : ["settings", "setting", "الاعدادات"]
 RELOAD_COMMAND : ["admincache", "reload"]
-GSTATS_COMMAND : ["gstats"]
-STATS_COMMAND : ["stats"]
+GSTATS_COMMAND : ["stats", "الاحصائيات"]
+STATS_COMMAND : ["نانوني"]
 LANGUAGE_COMMAND : ["lang", "language", "langs", "اللغات"]
 
 # Play Commands
