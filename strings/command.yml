@@ -12,13 +12,13 @@
 
 # Bot Commands
 PING_COMMAND : ["ping"]
-START_COMMAND : ["start"]
-HELP_COMMAND : ["help"]
-SETTINGS_COMMAND : ["settings", "setting"]
+START_COMMAND : ["Vcstart"]
+HELP_COMMAND : ["Vchelp"]
+SETTINGS_COMMAND : ["Vcsettings", "Vcsetting"]
 RELOAD_COMMAND : ["admincache", "reload"]
-GSTATS_COMMAND : ["gstats"]
-STATS_COMMAND : ["stats"]
-LANGUAGE_COMMAND : ["lang", "language", "langs"]
+GSTATS_COMMAND : ["Vcgstats"]
+STATS_COMMAND : ["Vcstats"]
+LANGUAGE_COMMAND : ["Vclang", "Vclanguage", "Vclangs"]
 
 # Play Commands
 PLAY_COMMAND : ["play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"]
