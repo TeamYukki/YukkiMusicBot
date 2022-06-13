@@ -46,6 +46,10 @@ For more information on the technologies that power the Yukki Music Bot, check o
 - [MongoDB URI](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/mongodb)
 - [Pyrogram String Session](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/string-session)
 
+## 🚀 Okteto Deployment
+
+<h4>Click the button below to deploy Yukki on Okteto!</h4>
+<a href="https://cloud.okteto.com/deploy?repository=https://github.com/Kutty-Angel/YukkiMusicBot"><img src="https://img.shields.io/badge/Deploy%20To%20Okteto-informational?style=for-the-badge&logo=Okteto" width="200""/></a>
 
 ## 🖇 Generating Pyrogram String Session
 
