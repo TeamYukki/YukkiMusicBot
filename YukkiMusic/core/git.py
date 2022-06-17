@@ -18,7 +18,7 @@ import config
 
 from ..logging import LOGGER
 
-loop = asyncio.get_event_loop().get_event_loop_policy()
+loop = asyncio.get_event_loop_policy().get_event_loop()
 
 
 def install_req(cmd: str) -> Tuple[str, str, int, int]:
