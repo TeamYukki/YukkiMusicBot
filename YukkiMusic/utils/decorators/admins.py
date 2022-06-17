@@ -117,7 +117,7 @@ def AdminActual(mystic):
                 )
             except:
                 return
-            if not member.can_manage_voice_chats:
+            if not member.privileges.can_manage_video_chats:
                 return await message.reply(_["general_5"])
         return await mystic(client, message, _)
 

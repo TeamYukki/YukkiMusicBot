@@ -7,7 +7,7 @@
 #
 # All rights reserved.
 
-from pyrogram import filters
+from pyrogram import filters, enums
 from pyrogram.types import Message
 
 from config import BANNED_USERS
@@ -23,7 +23,6 @@ CHANNELPLAY_COMMAND = get_command("CHANNELPLAY_COMMAND")
 @app.on_message(
     filters.command(CHANNELPLAY_COMMAND)
     & filters.group
-    & ~filters.edited
     & ~BANNED_USERS
 )
 @AdminActual
@@ -55,16 +54,16 @@ async def playmode_(client, message: Message, _):
             chat = await app.get_chat(query)
         except:
             return await message.reply_text(_["cplay_4"])
-        if chat.type != "channel":
+        if chat.type != enums.ChatType.CHANNEL:
             return await message.reply_text(_["cplay_5"])
         try:
             admins = await app.get_chat_members(
-                chat.id, filter="administrators"
+                chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
             )
         except:
             return await message.reply_text(_["cplay_4"])
         for users in admins:
-            if users.status == "creator":
+            if users.status == enums.ChatMemberStatus.OWNER:
                 creatorusername = users.user.username
                 creatorid = users.user.id
         if creatorid != message.from_user.id:

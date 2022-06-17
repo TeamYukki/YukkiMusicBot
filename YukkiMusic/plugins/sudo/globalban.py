@@ -71,7 +71,7 @@ async def gbanuser(client, message: Message, _):
             await app.ban_chat_member(chat_id, user_id)
             number_of_chats += 1
         except FloodWait as e:
-            await asyncio.sleep(int(e.x))
+            await asyncio.sleep(int(e.value))
         except Exception:
             pass
     await add_banned_user(user_id)
@@ -114,7 +114,7 @@ async def gungabn(client, message: Message, _):
             await app.unban_chat_member(chat_id, user_id)
             number_of_chats += 1
         except FloodWait as e:
-            await asyncio.sleep(int(e.x))
+            await asyncio.sleep(int(e.value))
         except Exception:
             pass
     await remove_banned_user(user_id)
