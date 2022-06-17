@@ -9,7 +9,7 @@
 
 import asyncio
 
-from pyrogram import filters
+from pyrogram import filters, enums
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup, Message)
 from youtubesearchpython.__future__ import VideosSearch
@@ -175,7 +175,7 @@ async def start_comm(client, message: Message, _):
                 message.chat.id,
                 photo=thumbnail,
                 caption=searched_text,
-                parse_mode="markdown",
+                parse_mode=enums.ParseMode.MARKDOWN,
                 reply_markup=key,
             )
             if await is_on_off(config.LOG):
@@ -256,7 +256,7 @@ async def welcome(client, message: Message):
             _ = get_string(language)
             if member.id == app.id:
                 chat_type = message.chat.type
-                if chat_type != "supergroup":
+                if chat_type != enums.ChatType.SUPERGROUP:
                     await message.reply_text(_["start_6"])
                     return await app.leave_chat(message.chat.id)
                 if chat_id in await blacklisted_chats():
