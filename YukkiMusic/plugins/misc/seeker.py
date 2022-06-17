@@ -64,7 +64,7 @@ async def markup_timer():
                 except:
                     continue
                 try:
-                    check = wrong[chat_id][mystic.message_id]
+                    check = wrong[chat_id][mystic.id]
                     if check is False:
                         continue
                 except:

@@ -43,10 +43,10 @@ class TeleAPI:
 
     async def get_link(self, message):
         if message.chat.username:
-            link = f"https://t.me/{message.chat.username}/{message.reply_to_message.message_id}"
+            link = f"https://t.me/{message.chat.username}/{message.reply_to_message.id}"
         else:
             xf = str((message.chat.id))[4:]
-            link = f"https://t.me/c/{xf}/{message.reply_to_message.message_id}"
+            link = f"https://t.me/c/{xf}/{message.reply_to_message.id}"
         return link
 
     async def get_filename(
