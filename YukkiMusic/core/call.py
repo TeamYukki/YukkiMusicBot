@@ -11,7 +11,7 @@ import asyncio
 from datetime import datetime, timedelta
 from typing import Union
 
-from pyrogram import Client
+from pyrogram import Client, enums
 from pyrogram.errors import (ChatAdminRequired,
                              UserAlreadyParticipant,
                              UserNotParticipant)
@@ -210,7 +210,7 @@ class Call(PyTgCalls):
                 get = await app.get_chat_member(chat_id, userbot.id)
             except ChatAdminRequired:
                 raise AssistantErr(_["call_1"])
-            if get.status == "banned" or get.status == "kicked":
+            if get.status == enums.ChatMemberStatus.BANNED or get.status == enums.ChatMemberStatus.LEFT:
                 raise AssistantErr(
                     _["call_2"].format(userbot.username, userbot.id)
                 )
