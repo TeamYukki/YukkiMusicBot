@@ -24,30 +24,35 @@ class Userbot(Client):
         self.one = Client(
             api_id=config.API_ID,
             api_hash=config.API_HASH,
+            name="YukkiBot",
             session_string=str(config.STRING1),
             no_updates=True,
         )
         self.two = Client(
             api_id=config.API_ID,
             api_hash=config.API_HASH,
+            name="YukkiBot",
             session_string=str(config.STRING2),
             no_updates=True,
         )
         self.three = Client(
             api_id=config.API_ID,
             api_hash=config.API_HASH,
+            name="YukkiBot",
             session_string=str(config.STRING3),
             no_updates=True,
         )
         self.four = Client(
             api_id=config.API_ID,
             api_hash=config.API_HASH,
+            name="YukkiBot",
             session_string=str(config.STRING4),
             no_updates=True,
         )
         self.five = Client(
             api_id=config.API_ID,
             api_hash=config.API_HASH,
+            name="YukkiBot",
             session_string=str(config.STRING5),
             no_updates=True,
         )
