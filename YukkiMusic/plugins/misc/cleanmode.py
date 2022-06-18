@@ -71,7 +71,7 @@ async def clean_mode(client, update, users, chats):
 async def braodcast_message(client, message, _):
     global IS_BROADCASTING
     if message.reply_to_message:
-        x = message.reply_to_message.id
+        x = message.reply_to_message_id
         y = message.chat.id
     else:
         if len(message.command) < 2:
