@@ -54,9 +54,9 @@ For more information on the technologies that power the Yukki Music Bot, check o
 - Generate a Pyrogram String Session via [Telegram String Generation Bot](https://t.me/YukkiStringBot)
 
 
-## 🖇 VPS Deployment
+## 🖇 heroku heroku.com
 
-> Checkout [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/local-hosting-or-vps) for Detailed Explanation on VPS Deploy
+> Checkout [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/heroku.com) for Detailed Explanation on VPS Deploy
 
 
 ```console
