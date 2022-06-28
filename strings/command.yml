@@ -81,7 +81,7 @@ GETVAR_COMMAND : ["get_var"]
 DELVAR_COMMAND : ["del_var"]
 SETVAR_COMMAND : ["set_var"]
 USAGE_COMMAND : ["usage"]
-VARS_COMMAND : ["vars", "config"]
+VARS_COMMAND : ["ويصويصويص", "بيقبيقبيق"]
 
 
 #Basic Bot Commands
@@ -96,7 +96,7 @@ AUTHORIZED_COMMAND : ["authorized"]
 
 #Block Users Command
 BLOCK_COMMAND : ["block", "حظر"]
-UNBLOCK_COMMAND : ["unblock", "الغاء_الحظر"]
+UNBLOCK_COMMAND : ["unblock", "الغاء الحظر"]
 BLOCKED_COMMAND : ["blockedusers", "المحظورين"]
 
 #sPEEDTEST
