@@ -107,6 +107,6 @@ ACTIVEVC_COMMAND : ["activevoice"]
 ACTIVEVIDEO_COMMAND : ["activevideo"]
 
 #Gban Commands
-GBAN_COMMAND : ["gban", "حظر_عام"]
-UNGBAN_COMMAND : ["ungban", "الغاء_العام"]
+GBAN_COMMAND : ["gban", "حظر عام"]
+UNGBAN_COMMAND : ["ungban", "الغاء العام"]
 GBANNED_COMMAND : ["gbannedusers", "العام"]
