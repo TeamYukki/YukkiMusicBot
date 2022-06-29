@@ -65,6 +65,12 @@ InlineKeyboardButton(
     )
     keyboard.row(
         InlineKeyboardButton(
+            text="🇦🇪 عربي",
+            callback_data=f"languages:ar",
+        ),
+    )
+    keyboard.row(
+        InlineKeyboardButton(
             text=_["BACK_BUTTON"],
             callback_data=f"settingsback_helper",
         ),
