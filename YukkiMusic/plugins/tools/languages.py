@@ -12,7 +12,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, Message
 
 from config import BANNED_USERS
-from strings import get_command, get_string
+from strings import get_command, get_string, languages_present
 from YukkiMusic import app
 from YukkiMusic.utils.database import get_lang, set_lang
 from YukkiMusic.utils.decorators import (ActualAdminCB, language,
@@ -20,54 +20,13 @@ from YukkiMusic.utils.decorators import (ActualAdminCB, language,
 
 # Languages Available
 
-
 def lanuages_keyboard(_):
-    keyboard = InlineKeyboard(row_width=2)
-    keyboard.row(
-        InlineKeyboardButton(
-            text="🏴󠁧󠁢󠁥󠁮󠁧󠁿 English",
-            callback_data=f"languages:en",
-        ),
-        InlineKeyboardButton(
-            text="🇮🇳 हिन्दी",
-            callback_data=f"languages:hi",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="🇱🇰 සිංහල",
-            callback_data=f"languages:si",
-        ),
-        InlineKeyboardButton(
-            text="🇦🇿 Azərbaycan",
-            callback_data=f"languages:az",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="🇮🇳 ગુજરાતી",
-            callback_data=f"languages:gu",
-        ),
-        InlineKeyboardButton(
-            text="🇹🇷 Türkiye Türkçesi",
-            callback_data=f"languages:tr",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="🇮🇩 Indonesian",
-            callback_data=f"languages:id",
-        ),
-InlineKeyboardButton(
-            text="🐶 Cheems",
-            callback_data=f"languages:cheems",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="🇦🇪 عربي",
-            callback_data=f"languages:ar",
-        ),
+    keyboard = InlineKeyboard(row_width=3)
+    keyboard.add(
+        *[
+            (InlineKeyboardButton(text=languages_present[i], callback_data=f"languages:{i}"))
+            for i in languages_present
+        ]
     )
     keyboard.row(
         InlineKeyboardButton(
