@@ -20,11 +20,17 @@ from YukkiMusic.utils.decorators import (ActualAdminCB, language,
 
 # Languages Available
 
+
 def lanuages_keyboard(_):
     keyboard = InlineKeyboard(row_width=3)
     keyboard.add(
         *[
-            (InlineKeyboardButton(text=languages_present[i], callback_data=f"languages:{i}"))
+            (
+                InlineKeyboardButton(
+                    text=languages_present[i],
+                    callback_data=f"languages:{i}",
+                )
+            )
             for i in languages_present
         ]
     )
