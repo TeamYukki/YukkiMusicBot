@@ -7,6 +7,8 @@
 | en | English | Thanks to [TeamYukki](https://t.me/TeamYukki)
 | si | Sinhala  | Thanks to [Damantha](https://t.me/MrItzme) & [Supun](https://t.me/Supunma)
 | hi | Hindi  | Thanks to [TeamYukki](https://t.me/TeamYukki)
+| ar | Arabic | Thanks to [Mustafa](https://t.me/tr_4z)
+| te | Telugu | Thanks to [Telugu Coders](https://t.me/tgshadow_fighters)
 
 
 ### We need your help in translating Yukki Music Bot. How to Contribute?
