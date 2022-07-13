@@ -32,6 +32,8 @@ Checkout [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/loc
 
 # 🏷 Support / Assistance
 
+<img src="https://telegra.ph/file/d8d7635583c6c4c5914ff.png" />
+
 Reach out to the maintainer at one of the following places:
 
 - [GitHub Issues](https://github.com/TeamYukki/yukkimusicbot/issues/new?assignees=&labels=question&template=SUPPORT_QUESTION.md&title=support%3A+)
