@@ -151,12 +151,12 @@ async def start_comm(client, message: Message, _):
 
 ❇️**Title:** {title}
 
-⏳**Duration:** {duration} Mins
-👀**Views:** `{views}`
-⏰**Published Time:** {published}
-🎥**Channel Name:** {channel}
-📎**Channel Link:** [Visit From Here]({channellink})
-🔗**Video Link:** [Link]({link})
+⏳Duration: {duration} Mins
+👀Views: `{views}`
+⏰Published Time: {published}
+🎥Channel Name: {channel}
+📎Channel Link: [Visit From Here]({channellink})
+🔗Video Link: [Link]({link})
 
 ⚡️ __Searched Powered By {config.MUSIC_BOT_NAME}__"""
             key = InlineKeyboardMarkup(
