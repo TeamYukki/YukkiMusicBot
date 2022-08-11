@@ -61,18 +61,18 @@ async def markup_timer():
                 try:
                     mystic = playing[0]["mystic"]
                     markup = playing[0]["markup"]
-                except:
+                except Exception:
                     continue
                 try:
-                    check = wrong[chat_id][mystic.message_id]
+                    check = wrong[chat_id][mystic.id]
                     if check is False:
                         continue
-                except:
+                except Exception:
                     pass
                 try:
                     language = await get_lang(chat_id)
                     _ = get_string(language)
-                except:
+                except Exception:
                     _ = get_string("en")
                 try:
                     buttons = (
@@ -94,9 +94,9 @@ async def markup_timer():
                     await mystic.edit_reply_markup(
                         reply_markup=InlineKeyboardMarkup(buttons)
                     )
-                except:
+                except Exception:
                     continue
-            except:
+            except Exception:
                 continue
 
 

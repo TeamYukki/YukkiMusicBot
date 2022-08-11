@@ -23,26 +23,12 @@ from YukkiMusic.utils.decorators import (ActualAdminCB, language,
 
 def lanuages_keyboard(_):
     keyboard = InlineKeyboard(row_width=3)
-    keyboard.add(
-        *[
-            (
-                InlineKeyboardButton(
-                    text=languages_present[i],
-                    callback_data=f"languages:{i}",
-                )
-            )
-            for i in languages_present
-        ]
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text=_["BACK_BUTTON"],
-            callback_data=f"settingsback_helper",
-        ),
-        InlineKeyboardButton(
-            text=_["CLOSE_BUTTON"], callback_data=f"close"
-        ),
-    )
+    keyboard.add(*[InlineKeyboardButton(text=languages_present[i],
+                 callback_data=f"languages:{i}") for i in languages_present])
+
+    keyboard.row(InlineKeyboardButton(text=_["BACK_BUTTON"], callback_data="settingsback_helper"), InlineKeyboardButton(
+        text=_["CLOSE_BUTTON"], callback_data="close"))
+
     return keyboard
 
 
@@ -52,7 +38,6 @@ LANGUAGE_COMMAND = get_command("LANGUAGE_COMMAND")
 @app.on_message(
     filters.command(LANGUAGE_COMMAND)
     & filters.group
-    & ~filters.edited
     & ~BANNED_USERS
 )
 @language
@@ -69,37 +54,27 @@ async def langs_command(client, message: Message, _):
 async def lanuagecb(client, CallbackQuery, _):
     try:
         await CallbackQuery.answer()
-    except:
+    except Exception:
         pass
     keyboard = lanuages_keyboard(_)
-    return await CallbackQuery.edit_message_reply_markup(
-        reply_markup=keyboard
-    )
+    return await CallbackQuery.edit_message_reply_markup(reply_markup=keyboard)
 
 
-@app.on_callback_query(
-    filters.regex(r"languages:(.*?)") & ~BANNED_USERS
-)
+@app.on_callback_query(filters.regex("languages:(.*?)") & ~BANNED_USERS)
 @ActualAdminCB
 async def language_markup(client, CallbackQuery, _):
-    langauge = (CallbackQuery.data).split(":")[1]
+    langauge = CallbackQuery.data.split(":")[1]
     old = await get_lang(CallbackQuery.message.chat.id)
     if str(old) == str(langauge):
-        return await CallbackQuery.answer(
-            "You're already on same language", show_alert=True
-        )
+        return await CallbackQuery.answer("You're already on same language", show_alert=True)
+
     try:
         _ = get_string(langauge)
-        await CallbackQuery.answer(
-            "Successfully changed your language.", show_alert=True
-        )
-    except:
-        return await CallbackQuery.answer(
-            "Failed to change language or Language under update.",
-            show_alert=True,
-        )
+        await CallbackQuery.answer("Successfully changed your language.", show_alert=True)
+
+    except Exception:
+        return await CallbackQuery.answer("Failed to change language or Language under update.", show_alert=True)
+
     await set_lang(CallbackQuery.message.chat.id, langauge)
     keyboard = lanuages_keyboard(_)
-    return await CallbackQuery.edit_message_reply_markup(
-        reply_markup=keyboard
-    )
+    return await CallbackQuery.edit_message_reply_markup(reply_markup=keyboard)

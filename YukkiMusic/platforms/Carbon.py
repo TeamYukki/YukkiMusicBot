@@ -87,13 +87,8 @@ class CarbonAPI:
         self.watermark = False
 
     async def generate(self, text: str, user_id):
-        async with aiohttp.ClientSession(
-            headers={"Content-Type": "application/json"},
-        ) as ses:
-            params = {
-                "code": text,
-            }
-            params["backgroundColor"] = random.choice(colour)
+        async with aiohttp.ClientSession(headers={"Content-Type": "application/json"}) as ses:
+            params = {"code": text, "backgroundColor": random.choice(colour)}
             params["theme"] = random.choice(themes)
             params["dropShadow"] = self.drop_shadow
             params["dropShadowOffsetY"] = self.drop_shadow_offset
@@ -103,12 +98,9 @@ class CarbonAPI:
             params["watermark"] = self.watermark
             params["widthAdjustment"] = self.width_adjustment
             try:
-                request = await ses.post(
-                    "https://carbonara.vercel.app/api/cook",
-                    json=params,
-                )
-            except client_exceptions.ClientConnectorError:
-                raise UnableToFetchCarbon("Can not reach the Host!")
+                request = await ses.post("https://carbonara.vercel.app/api/cook", json=params)
+            except client_exceptions.ClientConnectorError as e:
+                raise UnableToFetchCarbon("Can not reach the Host!") from e
             resp = await request.read()
             with open(f"cache/carbon{user_id}.jpg", "wb") as f:
                 f.write(resp)

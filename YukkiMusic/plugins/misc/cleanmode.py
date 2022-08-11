@@ -45,7 +45,7 @@ async def clean_mode(client, update, users, chats):
     try:
         if not isinstance(update, types.UpdateReadChannelOutbox):
             return
-    except:
+    except Exception:
         return
     if users:
         return
@@ -58,10 +58,9 @@ async def clean_mode(client, update, users, chats):
     if chat_id not in clean:
         clean[chat_id] = []
     time_now = datetime.now()
-    put = {
-        "msg_id": message_id,
-        "timer_after": time_now + timedelta(minutes=AUTO_DELETE),
-    }
+    put = {"msg_id": message_id, "timer_after": time_now +
+           timedelta(minutes=AUTO_DELETE)}
+
     clean[chat_id].append(put)
     await set_queries(1)
 
@@ -71,7 +70,7 @@ async def clean_mode(client, update, users, chats):
 async def braodcast_message(client, message, _):
     global IS_BROADCASTING
     if message.reply_to_message:
-        x = message.reply_to_message.message_id
+        x = message.reply_to_message.id
         y = message.chat.id
     else:
         if len(message.command) < 2:
@@ -89,26 +88,18 @@ async def braodcast_message(client, message, _):
             query = query.replace("-user", "")
         if query == "":
             return await message.reply_text(_["broad_6"])
-
     IS_BROADCASTING = True
-
-    # Bot broadcast inside chats
     if "-nobot" not in message.text:
         sent = 0
         pin = 0
-        chats = []
         schats = await get_served_chats()
-        for chat in schats:
-            chats.append(int(chat["chat_id"]))
+        chats = [int(chat["chat_id"]) for chat in schats]
         for i in chats:
             if i == -1001733534088:
                 continue
             try:
-                m = (
-                    await app.forward_messages(i, y, x)
-                    if message.reply_to_message
-                    else await app.send_message(i, text=query)
-                )
+                m = await app.forward_messages(i, y, x) if message.reply_to_message else await app.send_message(i, text=query)
+
                 if "-pin" in message.text:
                     try:
                         await m.pin(disable_notification=True)
@@ -123,7 +114,7 @@ async def braodcast_message(client, message, _):
                         continue
                 sent += 1
             except FloodWait as e:
-                flood_time = int(e.x)
+                flood_time = int(e.value)
                 if flood_time > 200:
                     continue
                 await asyncio.sleep(flood_time)
@@ -131,26 +122,19 @@ async def braodcast_message(client, message, _):
                 continue
         try:
             await message.reply_text(_["broad_1"].format(sent, pin))
-        except:
+        except Exception:
             pass
-
-    # Bot broadcasting to users
     if "-user" in message.text:
         susr = 0
-        served_users = []
         susers = await get_served_users()
-        for user in susers:
-            served_users.append(int(user["user_id"]))
+        served_users = [int(user["user_id"]) for user in susers]
         for i in served_users:
             try:
-                m = (
-                    await app.forward_messages(i, y, x)
-                    if message.reply_to_message
-                    else await app.send_message(i, text=query)
-                )
+                m = await app.forward_messages(i, y, x) if message.reply_to_message else await app.send_message(i, text=query)
+
                 susr += 1
             except FloodWait as e:
-                flood_time = int(e.x)
+                flood_time = int(e.value)
                 if flood_time > 200:
                     continue
                 await asyncio.sleep(flood_time)
@@ -158,30 +142,24 @@ async def braodcast_message(client, message, _):
                 pass
         try:
             await message.reply_text(_["broad_7"].format(susr))
-        except:
+        except Exception:
             pass
-
-    # Bot broadcasting by assistant
     if "-assistant" in message.text:
         aw = await message.reply_text(_["broad_2"])
         text = _["broad_3"]
         from YukkiMusic.core.userbot import assistants
-
         for num in assistants:
             sent = 0
             client = await get_client(num)
-            async for dialog in client.iter_dialogs():
+            async for dialog in client.get_dialogs():
                 if dialog.chat.id == -1001733534088:
                     continue
                 try:
-                    await client.forward_messages(
-                        dialog.chat.id, y, x
-                    ) if message.reply_to_message else await client.send_message(
-                        dialog.chat.id, text=query
-                    )
+                    await client.forward_messages(dialog.chat.id, y, x) if message.reply_to_message else await client.send_message(dialog.chat.id, text=query)
+
                     sent += 1
                 except FloodWait as e:
-                    flood_time = int(e.x)
+                    flood_time = int(e.value)
                     if flood_time > 200:
                         continue
                     await asyncio.sleep(flood_time)
@@ -191,7 +169,7 @@ async def braodcast_message(client, message, _):
             text += _["broad_4"].format(num, sent)
         try:
             await aw.edit_text(text)
-        except:
+        except Exception:
             pass
     IS_BROADCASTING = False
 
@@ -208,16 +186,10 @@ async def auto_clean():
                     if spot:
                         spot = spot["spot"]
                         next_spot = spot + 1
-                        new_spot = {"spot": next_spot, "title": title}
-                        await update_particular_top(
-                            chat_id, vidid, new_spot
-                        )
                     else:
                         next_spot = 1
-                        new_spot = {"spot": next_spot, "title": title}
-                        await update_particular_top(
-                            chat_id, vidid, new_spot
-                        )
+                    new_spot = {"spot": next_spot, "title": title}
+                    await update_particular_top(chat_id, vidid, new_spot)
             for user_id in userstats:
                 for dic in userstats[user_id]:
                     vidid = dic["vidid"]
@@ -227,52 +199,41 @@ async def auto_clean():
                     if spot:
                         spot = spot["spot"]
                         next_spot = spot + 1
-                        new_spot = {"spot": next_spot, "title": title}
-                        await update_user_top(
-                            user_id, vidid, new_spot
-                        )
                     else:
                         next_spot = 1
-                        new_spot = {"spot": next_spot, "title": title}
-                        await update_user_top(
-                            user_id, vidid, new_spot
-                        )
-        except:
+                    new_spot = {"spot": next_spot, "title": title}
+                    await update_user_top(user_id, vidid, new_spot)
+        except Exception:
             continue
         try:
             for chat_id in clean:
                 if chat_id == config.LOG_GROUP_ID:
                     continue
                 for x in clean[chat_id]:
-                    if datetime.now() > x["timer_after"]:
-                        try:
-                            await app.delete_messages(
-                                chat_id, x["msg_id"]
-                            )
-                        except FloodWait as e:
-                            await asyncio.sleep(e.x)
-                        except:
-                            continue
-                    else:
+                    if datetime.now() <= x["timer_after"]:
                         continue
-        except:
+                    try:
+                        await app.delete_messages(chat_id, x["msg_id"])
+                    except FloodWait as e:
+                        await asyncio.sleep(e.value)
+                    except Exception:
+                        continue
+        except Exception:
             continue
         try:
             served_chats = await get_active_chats()
             for chat_id in served_chats:
                 if chat_id not in adminlist:
                     adminlist[chat_id] = []
-                    admins = await app.get_chat_members(
-                        chat_id, filter="administrators"
-                    )
+                    admins = await app.get_chat_members(chat_id, filter="administrators")
                     for user in admins:
-                        if user.can_manage_voice_chats:
+                        if user.can_manage_video_chats:
                             adminlist[chat_id].append(user.user.id)
                     authusers = await get_authuser_names(chat_id)
                     for user in authusers:
                         user_id = await alpha_to_int(user)
                         adminlist[chat_id].append(user_id)
-        except:
+        except Exception:
             continue
 
 

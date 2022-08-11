@@ -38,7 +38,6 @@ loop = asyncio.get_running_loop()
 @app.on_message(
     filters.command(get_command("START_COMMAND"))
     & filters.private
-    & ~filters.edited
     & ~BANNED_USERS
 )
 @LanguageStart
@@ -46,14 +45,14 @@ async def start_comm(client, message: Message, _):
     await add_served_user(message.from_user.id)
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
-        if name[0:4] == "help":
+        if name[:4] == "help":
             keyboard = help_pannel(_)
             return await message.reply_text(
                 _["help_1"], reply_markup=keyboard
             )
-        if name[0:4] == "song":
+        if name[:4] == "song":
             return await message.reply_text(_["song_2"])
-        if name[0:3] == "sta":
+        if name[:3] == "sta":
             m = await message.reply_text(
                 "🔎 Fetching your personal stats.!"
             )
@@ -108,7 +107,7 @@ async def start_comm(client, message: Message, _):
             await m.delete()
             await message.reply_photo(photo=thumbnail, caption=msg)
             return
-        if name[0:3] == "sud":
+        if name[:3] == "sud":
             await sudoers_list(client=client, message=message, _=_)
             if await is_on_off(config.LOG):
                 sender_id = message.from_user.id
@@ -118,7 +117,7 @@ async def start_comm(client, message: Message, _):
                     f"{message.from_user.mention} has just started bot to check <code>SUDOLIST</code>\n\n**USER ID:** {sender_id}\n**USER NAME:** {sender_name}",
                 )
             return
-        if name[0:3] == "lyr":
+        if name[:3] == "lyr":
             query = (str(name)).replace("lyrics_", "", 1)
             lyrical = config.lyrical
             lyrics = lyrical.get(query)
@@ -128,9 +127,9 @@ async def start_comm(client, message: Message, _):
                 return await message.reply_text(
                     "Failed to get lyrics."
                 )
-        if name[0:3] == "del":
+        if name[:3] == "del":
             await del_plist_msg(client=client, message=message, _=_)
-        if name[0:3] == "inf":
+        if name[:3] == "inf":
             m = await message.reply_text("🔎 Fetching Info!")
             query = (str(name)).replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
@@ -190,7 +189,7 @@ async def start_comm(client, message: Message, _):
         try:
             await app.resolve_peer(OWNER_ID[0])
             OWNER = OWNER_ID[0]
-        except:
+        except Exception:
             OWNER = None
         out = private_panel(_, app.username, OWNER)
         if config.START_IMG_URL:
@@ -202,7 +201,7 @@ async def start_comm(client, message: Message, _):
                     ),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
-            except:
+            except Exception:
                 await message.reply_text(
                     _["start_2"].format(config.MUSIC_BOT_NAME),
                     reply_markup=InlineKeyboardMarkup(out),
@@ -224,7 +223,6 @@ async def start_comm(client, message: Message, _):
 @app.on_message(
     filters.command(get_command("START_COMMAND"))
     & filters.group
-    & ~filters.edited
     & ~BANNED_USERS
 )
 @LanguageStart

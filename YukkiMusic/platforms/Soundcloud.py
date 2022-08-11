@@ -26,24 +26,17 @@ class SoundAPI:
         }
 
     async def valid(self, link: str):
-        if "soundcloud" in link:
-            return True
-        else:
-            return False
+        return "soundcloud" in link
 
     async def download(self, url):
         d = YoutubeDL(self.opts)
         try:
             info = d.extract_info(url)
-        except:
+        except Exception:
             return False
         xyz = path.join("downloads", f"{info['id']}.{info['ext']}")
         duration_min = seconds_to_min(info["duration"])
-        track_details = {
-            "title": info["title"],
-            "duration_sec": info["duration"],
-            "duration_min": duration_min,
-            "uploader": info["uploader"],
-            "filepath": xyz,
-        }
+        track_details = {"title": info["title"], "duration_sec": info["duration"],
+                         "duration_min": duration_min, "uploader": info["uploader"], "filepath": xyz}
+
         return track_details, xyz

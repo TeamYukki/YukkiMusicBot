@@ -19,16 +19,11 @@ from YukkiMusic.core.call import Yukki
 from YukkiMusic.utils import bot_sys_stats
 from YukkiMusic.utils.decorators.language import language
 
-### Commands
+# Commands
 PING_COMMAND = get_command("PING_COMMAND")
 
 
-@app.on_message(
-    filters.command(PING_COMMAND)
-    & filters.group
-    & ~filters.edited
-    & ~BANNED_USERS
-)
+@app.on_message(filters.command(PING_COMMAND) & filters.group & ~BANNED_USERS)
 @language
 async def ping_com(client, message: Message, _):
     response = await message.reply_photo(

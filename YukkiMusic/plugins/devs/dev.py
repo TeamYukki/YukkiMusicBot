@@ -96,12 +96,8 @@ async def executor(client, message):
                 ]
             ]
         )
-        await message.reply_document(
-            document=filename,
-            caption=f"**INPUT:**\n`{cmd[0:980]}`\n\n**OUTPUT:**\n`Attached Document`",
-            quote=False,
-            reply_markup=keyboard,
-        )
+        await message.reply_document(document=filename, caption=f"**INPUT:**\n`{cmd[:980]}`\n\n**OUTPUT:**\n`Attached Document`", quote=False, reply_markup=keyboard)
+
         await message.delete()
         os.remove(filename)
     else:
@@ -138,15 +134,14 @@ async def forceclose_command(_, CallbackQuery):
     query, user_id = callback_request.split("|")
     if CallbackQuery.from_user.id != int(user_id):
         try:
-            return await CallbackQuery.answer(
-                "You're not allowed to close this.", show_alert=True
-            )
-        except:
+            return await CallbackQuery.answer("You're not allowed to close this.", show_alert=True)
+
+        except Exception:
             return
     await CallbackQuery.message.delete()
     try:
         await CallbackQuery.answer()
-    except:
+    except Exception:
         return
 
 
@@ -214,7 +209,7 @@ async def shellrunner(client, message):
             await client.send_document(
                 message.chat.id,
                 "output.txt",
-                reply_to_message_id=message.message_id,
+                reply_to_message_id=message.id,
                 caption="`Output`",
             )
             return os.remove("output.txt")

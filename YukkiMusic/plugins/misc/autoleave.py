@@ -18,42 +18,38 @@ from YukkiMusic.utils.database import (get_client, is_active_chat,
 
 
 async def auto_leave():
-    if config.AUTO_LEAVING_ASSISTANT == str(True):
-        while not await asyncio.sleep(
-            config.AUTO_LEAVE_ASSISTANT_TIME
-        ):
-            from YukkiMusic.core.userbot import assistants
+    if config.AUTO_LEAVING_ASSISTANT != str(True):
+        return
+    while not await asyncio.sleep(
+        config.AUTO_LEAVE_ASSISTANT_TIME
+    ):
+        from YukkiMusic.core.userbot import assistants
 
-            for num in assistants:
-                client = await get_client(num)
-                left = 0
-                try:
-                    async for i in client.iter_dialogs():
-                        chat_type = i.chat.type
-                        if chat_type in [
-                            "supergroup",
-                            "group",
-                            "channel",
-                        ]:
-                            chat_id = i.chat.id
-                            if (
-                                chat_id != config.LOG_GROUP_ID
-                                and chat_id != -1001190342892
-                                and chat_id != -1001733534088
-                                and chat_id != -1001443281821
-                            ):
-                                if left == 20:
+        for num in assistants:
+            client = await get_client(num)
+            left = 0
+            try:
+                async for i in client.get_dialogs():
+                    chat_type = i.chat.type
+                    if chat_type in [
+                        "supergroup",
+                        "group",
+                        "channel",
+                    ]:
+                        chat_id = i.chat.id
+                        if chat_id not in [config.LOG_GROUP_ID, -1001190342892, -1001733534088, -1001443281821]:
+                            if left == 20:
+                                continue
+                            if not await is_active_chat(chat_id):
+                                try:
+                                    await client.leave_chat(
+                                        chat_id
+                                    )
+                                    left += 1
+                                except Exception:
                                     continue
-                                if not await is_active_chat(chat_id):
-                                    try:
-                                        await client.leave_chat(
-                                            chat_id
-                                        )
-                                        left += 1
-                                    except:
-                                        continue
-                except:
-                    pass
+            except Exception:
+                pass
 
 
 asyncio.create_task(auto_leave())
@@ -74,14 +70,14 @@ async def auto_end():
                 autoend[chat_id] = {}
                 try:
                     await Yukki.stop_stream(chat_id)
-                except:
+                except Exception:
                     continue
                 try:
                     await app.send_message(
                         chat_id,
                         "Bot has left voice chat due to inactivity to avoid overload on servers. No-one was listening to the bot on voice chat.",
                     )
-                except:
+                except Exception:
                     continue
 
 

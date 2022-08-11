@@ -41,7 +41,7 @@ async def blacklist_chat_func(client, message: Message, _):
         await message.reply_text("Something wrong happened.")
     try:
         await app.leave_chat(chat_id)
-    except:
+    except Exception:
         pass
 
 

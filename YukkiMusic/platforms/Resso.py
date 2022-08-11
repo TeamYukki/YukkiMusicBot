@@ -21,10 +21,7 @@ class RessoAPI:
         self.base = "https://m.resso.com/"
 
     async def valid(self, link: str):
-        if re.search(self.regex, link):
-            return True
-        else:
-            return False
+        return bool(re.search(self.regex, link))
 
     async def track(self, url, playid: Union[bool, str] = None):
         if playid:
@@ -42,7 +39,7 @@ class RessoAPI:
                 des = tag.get("content", None)
                 try:
                     des = des.split("·")[0]
-                except:
+                except Exception:
                     pass
         if des == "":
             return
@@ -53,11 +50,7 @@ class RessoAPI:
             vidid = result["id"]
             duration_min = result["duration"]
             thumbnail = result["thumbnails"][0]["url"].split("?")[0]
-        track_details = {
-            "title": title,
-            "link": ytlink,
-            "vidid": vidid,
-            "duration_min": duration_min,
-            "thumb": thumbnail,
-        }
+        track_details = {"title": title, "link": ytlink, "vidid": vidid,
+                         "duration_min": duration_min, "thumb": thumbnail}
+
         return track_details, vidid

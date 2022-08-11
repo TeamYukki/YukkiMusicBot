@@ -24,12 +24,11 @@ RESUME_COMMAND = get_command("RESUME_COMMAND")
 @app.on_message(
     filters.command(RESUME_COMMAND)
     & filters.group
-    & ~filters.edited
     & ~BANNED_USERS
 )
 @AdminRightsCheck
 async def resume_com(cli, message: Message, _, chat_id):
-    if not len(message.command) == 1:
+    if len(message.command) != 1:
         return await message.reply_text(_["general_2"])
     if await is_music_playing(chat_id):
         return await message.reply_text(_["admin_3"])
