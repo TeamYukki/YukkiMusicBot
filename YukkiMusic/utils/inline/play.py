@@ -54,7 +54,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
     line = "ⒿⓔⓡⓡⓨⓂⓤⓢⓘⓒ"
     circle = "𖣐"
 
-    bar = line*(pos-1)
+    bar = line*(pos-10)
     bar += circle
     bar += line*(1-len(bar))
 
@@ -96,7 +96,7 @@ def telegram_markup_timer(_, chat_id, played, dur):
     line = "ⒿⓔⓡⓡⓨⓂⓤⓢⓘⓒ"
     circle = "𖣐"
 
-    bar = line*(pos-1)
+    bar = line*(pos-10)
     bar += circle
     bar += line*(1-len(bar))
 
