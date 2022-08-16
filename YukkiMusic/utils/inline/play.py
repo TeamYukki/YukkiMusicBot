@@ -51,12 +51,12 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
     x, y = str(round(played_sec/total_sec,1)).split(".")
     pos = int(y)
 
-    line = "—"
+    line = "ⒿⓔⓡⓡⓨⓂⓤⓢⓘⓒ"
     circle = "𖣐"
 
     bar = line*(pos-1)
     bar += circle
-    bar += line*(10-len(bar))
+    bar += line*((bar))
 
     buttons = [
         [
@@ -93,12 +93,12 @@ def telegram_markup_timer(_, chat_id, played, dur):
     x, y = str(round(played_sec/total_sec,1)).split(".")
     pos = int(y)
 
-    line = "—"
+    line = "ⒿⓔⓡⓡⓨⓂⓤⓢⓘⓒ"
     circle = "𖣐"
 
     bar = line*(pos-1)
     bar += circle
-    bar += line*(10-len(bar))
+    bar += line*((bar))
 
 def telegram_markup_timer(_, chat_id, played, dur):
     bar = random.choice(selection)
