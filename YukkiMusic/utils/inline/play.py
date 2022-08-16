@@ -54,9 +54,9 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
     line = "ⒿⓔⓡⓡⓨⓂⓤⓢⓘⓒ"
     circle = "𖣐"
 
-    bar = line*
+    bar = line*(pos) 
     bar += circle
-    bar += line*
+    bar += line*(len(bar)) 
 
     buttons = [
         [
