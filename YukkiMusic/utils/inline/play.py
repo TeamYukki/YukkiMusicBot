@@ -58,9 +58,6 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
     bar += circle
     bar += line*(10-len(bar))
 
-
-def stream_markup_timer(_, videoid, chat_id, played, dur):
-    bar = random.choice(selections)
     buttons = [
         [
             InlineKeyboardButton(
