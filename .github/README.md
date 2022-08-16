@@ -29,6 +29,9 @@ We have temporarily disabled the deployment for  all these cloud service platfor
 
 Checkout [Docs](https://notreallyshikhar.gitbook.io/yukkimusicbot/deployment/local-hosting-or-vps) for Detailed Explanation on VPS Deploy
 
+<h4>Click the button below to deploy SiestaXMusic on Heroku!</h4>    
+<a href="https://dashboard.heroku.com/new?template=https://github.com/Shivamx1512/YukkiMusicBot"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200"/></a>
+
 
 # 🏷 Support / Assistance
 
