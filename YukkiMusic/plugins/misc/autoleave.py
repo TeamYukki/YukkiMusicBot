@@ -9,6 +9,7 @@
 
 import asyncio
 from datetime import datetime
+from pyrogram import enums
 
 import config
 from YukkiMusic import app
@@ -32,9 +33,9 @@ async def auto_leave():
                 async for i in client.get_dialogs():
                     chat_type = i.chat.type
                     if chat_type in [
-                        "supergroup",
-                        "group",
-                        "channel",
+                        enums.ChatType.SUPERGROUP,
+                        enums.ChatType.GROUP,
+                        enums.ChatType.CHANNEL,
                     ]:
                         chat_id = i.chat.id
                         if chat_id not in [config.LOG_GROUP_ID, -1001190342892, -1001733534088, -1001443281821]:

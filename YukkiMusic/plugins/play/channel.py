@@ -7,7 +7,7 @@
 #
 # All rights reserved.
 
-from pyrogram import filters
+from pyrogram import filters, enums
 from pyrogram.types import Message
 
 from config import BANNED_USERS
@@ -53,7 +53,7 @@ async def playmode_(client, message: Message, _):
             chat = await app.get_chat(query)
         except Exception:
             return await message.reply_text(_["cplay_4"])
-        if chat.type != "channel":
+        if chat.type != enums.ChatType.CHANNEL:
             return await message.reply_text(_["cplay_5"])
         try:
             admins = await app.get_chat_members(
