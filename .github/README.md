@@ -1,6 +1,6 @@
-<img src="https://telegra.ph/file/7824952d381c4943c0123.jpg" align="right" width="200" height="200"/>
+<img src="https://telegra.ph/file/7824952d381c4943c0123.jpg" align="right" width="150" height="200"/>
 
-# PUSATMUSIC <img src="https://img.shields.io/github/v/release/TeamYukki/YukkiMusicBot?color=black&logo=github&logoColor=black&style=social" alt="RELEASE">
+# PUSAT MUSIC <img src="https://img.shields.io/github/v/release/TeamYukki/YukkiMusicBot?color=black&logo=github&logoColor=black&style=social" alt="RELEASE">
 
 [PUSAT MUSIC BOT](https://github.com/mamenkuy/SUPERMAN-MUSIC) is a Powerful Telegram Music+Video Bot written in Python using Pyrogram and Py-Tgcalls by which you can stream songs, video and even live streams in your group calls via various sources.
 
