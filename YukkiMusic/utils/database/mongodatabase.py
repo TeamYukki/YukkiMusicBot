@@ -178,6 +178,16 @@ async def get_authuser(chat_id: int, name: str) -> Union[bool, dict]:
     return _notes[name] if name in _notes else False
 
 
+async def save_authuser(chat_id: int, name: str, note: dict):
+    name = name
+    _notes = await _get_authusers(chat_id)
+    _notes[name] = note
+
+    await authuserdb.update_one(
+        {"chat_id": chat_id}, {"$set": {"notes": _notes}}, upsert=True
+    )
+
+
 async def delete_authuser(chat_id: int, name: str) -> bool:
     notesd = await _get_authusers(chat_id)
     name = name
