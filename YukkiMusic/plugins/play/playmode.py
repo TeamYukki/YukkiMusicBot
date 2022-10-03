@@ -13,12 +13,15 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import app
-from YukkiMusic.utils.database import (get_playmode, get_playtype,
-                                       is_nonadmin_chat)
+from YukkiMusic.utils.database import (
+    get_playmode,
+    get_playtype,
+    is_nonadmin_chat,
+)
 from YukkiMusic.utils.decorators import language
 from YukkiMusic.utils.inline.settings import playmode_users_markup
 
-### Commands
+# Commands
 PLAYMODE_COMMAND = get_command("PLAYMODE_COMMAND")
 
 
@@ -31,22 +34,13 @@ PLAYMODE_COMMAND = get_command("PLAYMODE_COMMAND")
 @language
 async def playmode_(client, message: Message, _):
     playmode = await get_playmode(message.chat.id)
-    if playmode == "Direct":
-        Direct = True
-    else:
-        Direct = None
+    Direct = True if playmode == "Direct" else None
     is_non_admin = await is_nonadmin_chat(message.chat.id)
-    if not is_non_admin:
-        Group = True
-    else:
-        Group = None
+    Group = None if is_non_admin else True
     playty = await get_playtype(message.chat.id)
-    if playty == "Everyone":
-        Playtype = None
-    else:
-        Playtype = True
+    Playtype = None if playty == "Everyone" else True
     buttons = playmode_users_markup(_, Direct, Group, Playtype)
-    response = await message.reply_text(
+    await message.reply_text(
         _["playmode_1"].format(message.chat.title),
         reply_markup=InlineKeyboardMarkup(buttons),
     )

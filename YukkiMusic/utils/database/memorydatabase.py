@@ -8,6 +8,8 @@
 # All rights reserved.
 
 
+import contextlib
+
 import config
 from config import PRIVATE_BOT_MODE
 from YukkiMusic.core.mongo import mongodb
@@ -110,9 +112,7 @@ async def suggestion_off(chat_id: int):
 # LOOP PLAY
 async def get_loop(chat_id: int) -> int:
     lop = loop.get(chat_id)
-    if not lop:
-        return 0
-    return lop
+    return lop or 0
 
 
 async def set_loop(chat_id: int, mode: int):
@@ -201,9 +201,7 @@ async def set_lang(chat_id: int, lang: str):
 # Muted
 async def is_muted(chat_id: int) -> bool:
     mode = mute.get(chat_id)
-    if not mode:
-        return False
-    return mode
+    return mode or False
 
 
 async def mute_on(chat_id: int):
@@ -217,9 +215,7 @@ async def mute_off(chat_id: int):
 # Pause-Skip
 async def is_music_playing(chat_id: int) -> bool:
     mode = pause.get(chat_id)
-    if not mode:
-        return False
-    return mode
+    return mode or False
 
 
 async def music_on(chat_id: int):
@@ -236,10 +232,7 @@ async def get_active_chats() -> list:
 
 
 async def is_active_chat(chat_id: int) -> bool:
-    if chat_id not in active:
-        return False
-    else:
-        return True
+    return chat_id in active
 
 
 async def add_active_chat(chat_id: int):
@@ -258,10 +251,7 @@ async def get_active_video_chats() -> list:
 
 
 async def is_active_video_chat(chat_id: int) -> bool:
-    if chat_id not in activevideo:
-        return False
-    else:
-        return True
+    return chat_id in activevideo
 
 
 async def add_active_video_chat(chat_id: int):
@@ -276,10 +266,7 @@ async def remove_active_video_chat(chat_id: int):
 
 # Delete command mode
 async def is_commanddelete_on(chat_id: int) -> bool:
-    if chat_id not in command:
-        return True
-    else:
-        return False
+    return chat_id not in command
 
 
 async def commanddelete_off(chat_id: int):
@@ -288,18 +275,13 @@ async def commanddelete_off(chat_id: int):
 
 
 async def commanddelete_on(chat_id: int):
-    try:
+    with contextlib.suppress(Exception):
         command.remove(chat_id)
-    except:
-        pass
 
 
 # Clean Mode
 async def is_cleanmode_on(chat_id: int) -> bool:
-    if chat_id not in cleanmode:
-        return True
-    else:
-        return False
+    return chat_id not in cleanmode
 
 
 async def cleanmode_off(chat_id: int):
@@ -308,18 +290,14 @@ async def cleanmode_off(chat_id: int):
 
 
 async def cleanmode_on(chat_id: int):
-    try:
+    with contextlib.suppress(Exception):
         cleanmode.remove(chat_id)
-    except:
-        pass
 
 
 # Non Admin Chat
 async def check_nonadmin_chat(chat_id: int) -> bool:
     user = await authdb.find_one({"chat_id": chat_id})
-    if not user:
-        return False
-    return True
+    return bool(user)
 
 
 async def is_nonadmin_chat(chat_id: int) -> bool:
@@ -352,8 +330,8 @@ async def remove_nonadmin_chat(chat_id: int):
 
 # Video Limit
 async def is_video_allowed(chat_idd) -> str:
-    chat_id = 123456
     if not vlimit:
+        chat_id = 123456
         dblimit = await videodb.find_one({"chat_id": chat_id})
         if not dblimit:
             vlimit.clear()
@@ -368,23 +346,14 @@ async def is_video_allowed(chat_idd) -> str:
     if limit == 0:
         return False
     count = len(await get_active_video_chats())
-    if int(count) == int(limit):
-        if not await is_active_video_chat(chat_idd):
-            return False
-    return True
+    return bool(count != int(limit) or await is_active_video_chat(chat_idd))
 
 
 async def get_video_limit() -> str:
-    chat_id = 123456
-    if not vlimit:
-        dblimit = await videodb.find_one({"chat_id": chat_id})
-        if not dblimit:
-            limit = config.VIDEO_STREAM_LIMIT
-        else:
-            limit = dblimit["limit"]
-    else:
-        limit = vlimit[0]
-    return limit
+    if vlimit:
+        return vlimit[0]
+    dblimit = await videodb.find_one({"chat_id": 123456})
+    return dblimit["limit"] if dblimit else config.VIDEO_STREAM_LIMIT
 
 
 async def set_video_limit(limt: int):
@@ -399,9 +368,7 @@ async def set_video_limit(limt: int):
 # On Off
 async def is_on_off(on_off: int) -> bool:
     onoff = await onoffdb.find_one({"on_off": on_off})
-    if not onoff:
-        return False
-    return True
+    return bool(onoff)
 
 
 async def add_on(on_off: int):
@@ -422,21 +389,17 @@ async def add_off(on_off: int):
 
 
 async def is_maintenance():
-    if not maintenance:
-        get = await onoffdb.find_one({"on_off": 1})
-        if not get:
-            maintenance.clear()
-            maintenance.append(2)
-            return True
-        else:
-            maintenance.clear()
-            maintenance.append(1)
-            return False
+    if maintenance:
+        return 1 not in maintenance
+    get = await onoffdb.find_one({"on_off": 1})
+    if not get:
+        maintenance.clear()
+        maintenance.append(2)
+        return True
     else:
-        if 1 in maintenance:
-            return False
-        else:
-            return True
+        maintenance.clear()
+        maintenance.append(1)
+        return False
 
 
 async def maintenance_off():
@@ -459,12 +422,14 @@ async def maintenance_on():
 
 # Audio Video Limit
 
-from pytgcalls.types.input_stream.quality import (HighQualityAudio,
-                                                  HighQualityVideo,
-                                                  LowQualityAudio,
-                                                  LowQualityVideo,
-                                                  MediumQualityAudio,
-                                                  MediumQualityVideo)
+from pytgcalls.types.input_stream.quality import (
+    HighQualityAudio,
+    HighQualityVideo,
+    LowQualityAudio,
+    LowQualityVideo,
+    MediumQualityAudio,
+    MediumQualityVideo,
+)
 
 
 async def save_audio_bitrate(chat_id: int, bitrate: str):
@@ -477,19 +442,14 @@ async def save_video_bitrate(chat_id: int, bitrate: str):
 
 async def get_aud_bit_name(chat_id: int) -> str:
     mode = audio.get(chat_id)
-    if not mode:
-        return "High"
-    return mode
+    return mode or "High"
 
 
 async def get_vid_bit_name(chat_id: int) -> str:
-    mode = video.get(chat_id)
-    if not mode:
-        if PRIVATE_BOT_MODE == str(True):
-            return "High"
-        else:
-            return "Medium"
-    return mode
+    if mode := video.get(chat_id):
+        return mode
+    else:
+        return "High" if PRIVATE_BOT_MODE == str(True) else "Medium"
 
 
 async def get_audio_bitrate(chat_id: int) -> str:

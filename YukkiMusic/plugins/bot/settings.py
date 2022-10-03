@@ -7,41 +7,62 @@
 #
 # All rights reserved.
 
+import contextlib
+
 from pyrogram import filters
 from pyrogram.errors import MessageNotModified
-from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineKeyboardMarkup, Message)
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+)
 
-from config import (BANNED_USERS, CLEANMODE_DELETE_MINS,
-                    MUSIC_BOT_NAME, OWNER_ID)
+from config import (
+    BANNED_USERS,
+    CLEANMODE_DELETE_MINS,
+    MUSIC_BOT_NAME,
+    OWNER_ID,
+)
 from strings import get_command
 from YukkiMusic import app
-from YukkiMusic.utils.database import (add_nonadmin_chat,
-                                       cleanmode_off, cleanmode_on,
-                                       commanddelete_off,
-                                       commanddelete_on,
-                                       get_aud_bit_name, get_authuser,
-                                       get_authuser_names,
-                                       get_playmode, get_playtype,
-                                       get_vid_bit_name,
-                                       is_cleanmode_on,
-                                       is_commanddelete_on,
-                                       is_nonadmin_chat,
-                                       is_suggestion,
-                                       remove_nonadmin_chat,
-                                       save_audio_bitrate,
-                                       save_video_bitrate,
-                                       set_playmode, set_playtype,
-                                       suggestion_off, suggestion_on)
+from YukkiMusic.utils.database import (
+    add_nonadmin_chat,
+    cleanmode_off,
+    cleanmode_on,
+    commanddelete_off,
+    commanddelete_on,
+    get_aud_bit_name,
+    get_authuser,
+    get_authuser_names,
+    get_playmode,
+    get_playtype,
+    get_vid_bit_name,
+    is_cleanmode_on,
+    is_commanddelete_on,
+    is_nonadmin_chat,
+    is_suggestion,
+    remove_nonadmin_chat,
+    save_audio_bitrate,
+    save_video_bitrate,
+    set_playmode,
+    set_playtype,
+    suggestion_off,
+    suggestion_on,
+)
 from YukkiMusic.utils.decorators.admins import ActualAdminCB
 from YukkiMusic.utils.decorators.language import language, languageCB
 from YukkiMusic.utils.inline.settings import (
-    audio_quality_markup, auth_users_markup,
-    cleanmode_settings_markup, playmode_users_markup, setting_markup,
-    video_quality_markup)
+    audio_quality_markup,
+    auth_users_markup,
+    cleanmode_settings_markup,
+    playmode_users_markup,
+    setting_markup,
+    video_quality_markup,
+)
 from YukkiMusic.utils.inline.start import private_panel
 
-### Command
+# Command
 SETTINGS_COMMAND = get_command("SETTINGS_COMMAND")
 
 
@@ -65,10 +86,8 @@ async def settings_mar(client, message: Message, _):
 )
 @languageCB
 async def settings_cb(client, CallbackQuery, _):
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer(_["set_cb_8"])
-    except:
-        pass
     buttons = setting_markup(_)
     return await CallbackQuery.edit_message_text(
         _["setting_1"].format(
@@ -86,15 +105,13 @@ async def settings_cb(client, CallbackQuery, _):
 async def settings_back_markup(
     client, CallbackQuery: CallbackQuery, _
 ):
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer()
-    except:
-        pass
     if CallbackQuery.message.chat.type == "private":
         try:
             await app.resolve_peer(OWNER_ID[0])
             OWNER = OWNER_ID[0]
-        except:
+        except Exception:
             OWNER = None
         buttons = private_panel(_, app.username, OWNER)
         return await CallbackQuery.edit_message_text(
@@ -108,7 +125,7 @@ async def settings_back_markup(
         )
 
 
-## Audio and Video Quality
+# Audio and Video Quality
 async def gen_buttons_aud(_, aud):
     if aud == "High":
         buttons = audio_quality_markup(_, high=True)
@@ -146,28 +163,28 @@ async def without_Admin_rights(client, CallbackQuery, _):
             return await CallbackQuery.answer(
                 _["setting_3"], show_alert=True
             )
-        except:
+        except Exception:
             return
     if command == "PLAYMODEANSWER":
         try:
             return await CallbackQuery.answer(
                 _["setting_10"], show_alert=True
             )
-        except:
+        except Exception:
             return
     if command == "PLAYTYPEANSWER":
         try:
             return await CallbackQuery.answer(
                 _["setting_11"], show_alert=True
             )
-        except:
+        except Exception:
             return
     if command == "AUTHANSWER":
         try:
             return await CallbackQuery.answer(
                 _["setting_4"], show_alert=True
             )
-        except:
+        except Exception:
             return
     if command == "CMANSWER":
         try:
@@ -175,88 +192,62 @@ async def without_Admin_rights(client, CallbackQuery, _):
                 _["setting_9"].format(CLEANMODE_DELETE_MINS),
                 show_alert=True,
             )
-        except:
+        except Exception:
             return
     if command == "COMMANDANSWER":
         try:
             return await CallbackQuery.answer(
                 _["setting_14"], show_alert=True
             )
-        except:
+        except Exception:
             return
     if command == "SUGGANSWER":
         try:
             return await CallbackQuery.answer(
                 _["setting_16"], show_alert=True
             )
-        except:
+        except Exception:
             return
     if command == "CM":
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(_["set_cb_5"], show_alert=True)
-        except:
-            pass
         sta = None
-        cle = None
-        if await is_cleanmode_on(CallbackQuery.message.chat.id):
-            cle = True
+        cle = True if await is_cleanmode_on(CallbackQuery.message.chat.id) else None
         if await is_commanddelete_on(CallbackQuery.message.chat.id):
             sta = True
-        sug = None
-        if await is_suggestion(CallbackQuery.message.chat.id):
-            sug = True
+        sug = True if await is_suggestion(CallbackQuery.message.chat.id) else None
         buttons = cleanmode_settings_markup(
             _, status=cle, dels=sta, sug=sug
         )
     if command == "AQ":
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(_["set_cb_1"], show_alert=True)
-        except:
-            pass
         aud = await get_aud_bit_name(CallbackQuery.message.chat.id)
         buttons = await gen_buttons_aud(_, aud)
     if command == "VQ":
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(_["set_cb_2"], show_alert=True)
-        except:
-            pass
         aud = await get_vid_bit_name(CallbackQuery.message.chat.id)
         buttons = await gen_buttons_vid(_, aud)
     if command == "PM":
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(_["set_cb_4"], show_alert=True)
-        except:
-            pass
         playmode = await get_playmode(CallbackQuery.message.chat.id)
-        if playmode == "Direct":
-            Direct = True
-        else:
-            Direct = None
+        Direct = True if playmode == "Direct" else None
         is_non_admin = await is_nonadmin_chat(
             CallbackQuery.message.chat.id
         )
-        if not is_non_admin:
-            Group = True
-        else:
-            Group = None
+        Group = None if is_non_admin else True
         playty = await get_playtype(CallbackQuery.message.chat.id)
-        if playty == "Everyone":
-            Playtype = None
-        else:
-            Playtype = True
+        Playtype = None if playty == "Everyone" else True
         buttons = playmode_users_markup(_, Direct, Group, Playtype)
     if command == "AU":
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(_["set_cb_3"], show_alert=True)
-        except:
-            pass
         is_non_admin = await is_nonadmin_chat(
             CallbackQuery.message.chat.id
         )
-        if not is_non_admin:
-            buttons = auth_users_markup(_, True)
-        else:
-            buttons = auth_users_markup(_)
+        buttons = auth_users_markup(_) if is_non_admin else auth_users_markup(_, True)
     try:
         return await CallbackQuery.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(buttons)
@@ -275,10 +266,8 @@ async def without_Admin_rights(client, CallbackQuery, _):
 @ActualAdminCB
 async def aud_vid_cb(client, CallbackQuery, _):
     command = CallbackQuery.matches[0].group(1)
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer(_["set_cb_6"], show_alert=True)
-    except:
-        pass
     if command == "LQA":
         await save_audio_bitrate(CallbackQuery.message.chat.id, "Low")
         buttons = audio_quality_markup(_, low=True)
@@ -334,21 +323,13 @@ async def playmode_ans(client, CallbackQuery, _):
             await remove_nonadmin_chat(CallbackQuery.message.chat.id)
             Group = True
         playmode = await get_playmode(CallbackQuery.message.chat.id)
-        if playmode == "Direct":
-            Direct = True
-        else:
-            Direct = None
+        Direct = True if playmode == "Direct" else None
         playty = await get_playtype(CallbackQuery.message.chat.id)
-        if playty == "Everyone":
-            Playtype = None
-        else:
-            Playtype = True
+        Playtype = None if playty == "Everyone" else True
         buttons = playmode_users_markup(_, Direct, Group, Playtype)
     if command == "MODECHANGE":
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(_["set_cb_6"], show_alert=True)
-        except:
-            pass
         playmode = await get_playmode(CallbackQuery.message.chat.id)
         if playmode == "Direct":
             await set_playmode(
@@ -363,21 +344,13 @@ async def playmode_ans(client, CallbackQuery, _):
         is_non_admin = await is_nonadmin_chat(
             CallbackQuery.message.chat.id
         )
-        if not is_non_admin:
-            Group = True
-        else:
-            Group = None
+        Group = None if is_non_admin else True
         playty = await get_playtype(CallbackQuery.message.chat.id)
-        if playty == "Everyone":
-            Playtype = False
-        else:
-            Playtype = True
+        Playtype = playty != "Everyone"
         buttons = playmode_users_markup(_, Direct, Group, Playtype)
     if command == "PLAYTYPECHANGE":
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(_["set_cb_6"], show_alert=True)
-        except:
-            pass
         playty = await get_playtype(CallbackQuery.message.chat.id)
         if playty == "Everyone":
             await set_playtype(CallbackQuery.message.chat.id, "Admin")
@@ -388,17 +361,11 @@ async def playmode_ans(client, CallbackQuery, _):
             )
             Playtype = True
         playmode = await get_playmode(CallbackQuery.message.chat.id)
-        if playmode == "Direct":
-            Direct = True
-        else:
-            Direct = None
+        Direct = True if playmode == "Direct" else None
         is_non_admin = await is_nonadmin_chat(
             CallbackQuery.message.chat.id
         )
-        if not is_non_admin:
-            Group = True
-        else:
-            Group = None
+        Group = None if is_non_admin else True
         buttons = playmode_users_markup(_, Direct, Group, Playtype)
     try:
         return await CallbackQuery.edit_message_reply_markup(
@@ -424,15 +391,13 @@ async def authusers_mar(client, CallbackQuery, _):
                 return await CallbackQuery.answer(
                     _["setting_5"], show_alert=True
                 )
-            except:
+            except Exception:
                 return
         else:
-            try:
+            with contextlib.suppress(Exception):
                 await CallbackQuery.answer(
                     _["set_cb_7"], show_alert=True
                 )
-            except:
-                pass
             j = 0
             await CallbackQuery.edit_message_text(_["auth_6"])
             msg = _["auth_7"]
@@ -457,11 +422,11 @@ async def authusers_mar(client, CallbackQuery, _):
                 [
                     [
                         InlineKeyboardButton(
-                            text=_["BACK_BUTTON"], callback_data=f"AU"
+                            text=_["BACK_BUTTON"], callback_data="AU"
                         ),
                         InlineKeyboardButton(
                             text=_["CLOSE_BUTTON"],
-                            callback_data=f"close",
+                            callback_data="close",
                         ),
                     ]
                 ]
@@ -472,10 +437,8 @@ async def authusers_mar(client, CallbackQuery, _):
                 )
             except MessageNotModified:
                 return
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer(_["set_cb_6"], show_alert=True)
-    except:
-        pass
     if command == "AUTH":
         is_non_admin = await is_nonadmin_chat(
             CallbackQuery.message.chat.id
@@ -494,7 +457,7 @@ async def authusers_mar(client, CallbackQuery, _):
         return
 
 
-## Clean Mode
+# Clean Mode
 
 
 @app.on_callback_query(
@@ -506,10 +469,8 @@ async def authusers_mar(client, CallbackQuery, _):
 @ActualAdminCB
 async def cleanmode_mark(client, CallbackQuery, _):
     command = CallbackQuery.matches[0].group(1)
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer(_["set_cb_6"], show_alert=True)
-    except:
-        pass
     if command == "CLEANMODE":
         sta = None
         if await is_commanddelete_on(CallbackQuery.message.chat.id):

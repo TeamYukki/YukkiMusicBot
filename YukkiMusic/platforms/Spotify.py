@@ -34,10 +34,7 @@ class SpotifyAPI:
             self.spotify = None
 
     async def valid(self, link: str):
-        if re.search(self.regex, link):
-            return True
-        else:
-            return False
+        return bool(re.search(self.regex, link))
 
     async def track(self, link: str):
         track = self.spotify.track(link)

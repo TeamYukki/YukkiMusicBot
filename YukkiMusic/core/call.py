@@ -8,20 +8,28 @@
 # All rights reserved.
 
 import asyncio
+import contextlib
 from datetime import datetime, timedelta
 from typing import Union
 
 from pyrogram import Client
-from pyrogram.errors import (ChatAdminRequired,
-                             UserAlreadyParticipant,
-                             UserNotParticipant)
+from pyrogram.errors import (
+    ChatAdminRequired,
+    UserAlreadyParticipant,
+    UserNotParticipant,
+)
 from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls, StreamType
-from pytgcalls.exceptions import (AlreadyJoinedError,
-                                  NoActiveGroupCall,
-                                  TelegramServerError)
-from pytgcalls.types import (JoinedGroupCallParticipant,
-                             LeftGroupCallParticipant, Update)
+from pytgcalls.exceptions import (
+    AlreadyJoinedError,
+    NoActiveGroupCall,
+    TelegramServerError,
+)
+from pytgcalls.types import (
+    JoinedGroupCallParticipant,
+    LeftGroupCallParticipant,
+    Update,
+)
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.stream import StreamAudioEnded
 
@@ -29,19 +37,24 @@ import config
 from strings import get_string
 from YukkiMusic import LOGGER, YouTube, app
 from YukkiMusic.misc import db
-from YukkiMusic.utils.database import (add_active_chat,
-                                       add_active_video_chat,
-                                       get_assistant,
-                                       get_audio_bitrate, get_lang,
-                                       get_loop, get_video_bitrate,
-                                       group_assistant, is_autoend,
-                                       music_on, mute_off,
-                                       remove_active_chat,
-                                       remove_active_video_chat,
-                                       set_loop)
+from YukkiMusic.utils.database import (
+    add_active_chat,
+    add_active_video_chat,
+    get_assistant,
+    get_audio_bitrate,
+    get_lang,
+    get_loop,
+    get_video_bitrate,
+    group_assistant,
+    is_autoend,
+    music_on,
+    mute_off,
+    remove_active_chat,
+    remove_active_video_chat,
+    set_loop,
+)
 from YukkiMusic.utils.exceptions import AssistantErr
-from YukkiMusic.utils.inline.play import (stream_markup,
-                                          telegram_markup)
+from YukkiMusic.utils.inline.play import stream_markup, telegram_markup
 from YukkiMusic.utils.stream.autoclear import auto_clean
 from YukkiMusic.utils.thumbnails import gen_thumb
 
@@ -122,25 +135,19 @@ class Call(PyTgCalls):
 
     async def stop_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
-        try:
+        with contextlib.suppress(Exception):
             await _clear_(chat_id)
             await assistant.leave_group_call(chat_id)
-        except:
-            pass
 
     async def force_stop_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
-        try:
+        with contextlib.suppress(Exception):
             check = db.get(chat_id)
             check.pop(0)
-        except:
-            pass
         await remove_active_video_chat(chat_id)
         await remove_active_chat(chat_id)
-        try:
+        with contextlib.suppress(Exception):
             await assistant.leave_group_call(chat_id)
-        except:
-            pass
 
     async def skip_stream(
         self, chat_id: int, link: str, video: Union[bool, str] = None
@@ -203,9 +210,9 @@ class Call(PyTgCalls):
         try:
             try:
                 get = await app.get_chat_member(chat_id, userbot.id)
-            except ChatAdminRequired:
-                raise AssistantErr(_["call_1"])
-            if get.status == "banned" or get.status == "kicked":
+            except ChatAdminRequired as e:
+                raise AssistantErr(_["call_1"]) from e
+            if get.status in ["banned", "kicked"]:
                 raise AssistantErr(
                     _["call_2"].format(userbot.username, userbot.id)
                 )
@@ -217,7 +224,7 @@ class Call(PyTgCalls):
                 except UserAlreadyParticipant:
                     pass
                 except Exception as e:
-                    raise AssistantErr(_["call_3"].format(e))
+                    raise AssistantErr(_["call_3"].format(e)) from e
             else:
                 try:
                     try:
@@ -229,16 +236,16 @@ class Call(PyTgCalls):
                                         chat_id
                                     )
                                 )
-                        except:
+                        except Exception:
                             invitelink = (
                                 await app.export_chat_invite_link(
                                     chat_id
                                 )
                             )
-                    except ChatAdminRequired:
-                        raise AssistantErr(_["call_4"])
+                    except ChatAdminRequired as exc:
+                        raise AssistantErr(_["call_4"]) from exc
                     except Exception as e:
-                        raise AssistantErr(e)
+                        raise AssistantErr(e) from e
                     m = await app.send_message(
                         original_chat_id, _["call_5"]
                     )
@@ -253,7 +260,7 @@ class Call(PyTgCalls):
                 except UserAlreadyParticipant:
                     pass
                 except Exception as e:
-                    raise AssistantErr(_["call_3"].format(e))
+                    raise AssistantErr(_["call_3"].format(e)) from e
 
     async def join_call(
         self,
@@ -294,17 +301,14 @@ class Call(PyTgCalls):
                     stream_type=StreamType().pulse_stream,
                 )
             except Exception as e:
-                raise AssistantErr(
-                    "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
-                )
-        except AlreadyJoinedError:
-            raise AssistantErr(
-                "**Assistant Already in Voice Chat**\n\nSystems have detected that assistant is already there in the voice chat, this issue generally comes when you play 2 queries together.\n\nIf assistant is not present in voice chat, please end voice chat and start fresh voice chat again and if the  problem continues, try /restart"
-            )
-        except TelegramServerError:
-            raise AssistantErr(
-                "**Telegram Server Error**\n\nTelegram is having some internal server problems, Please try playing again.\n\n If this problem keeps coming everytime, please end your voice chat and start fresh voice chat again."
-            )
+                raise AssistantErr("**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart") from e
+
+        except AlreadyJoinedError as e:
+            raise AssistantErr("**Assistant Already in Voice Chat**\n\nSystems have detected that assistant is already there in the voice chat, this issue generally comes when you play 2 queries together.\n\nIf assistant is not present in voice chat, please end voice chat and start fresh voice chat again and if the  problem continues, try /restart") from e
+
+        except TelegramServerError as e:
+            raise AssistantErr("**Telegram Server Error**\n\nTelegram is having some internal server problems, Please try playing again.\n\n If this problem keeps coming everytime, please end your voice chat and start fresh voice chat again.") from e
+
         await add_active_chat(chat_id)
         await mute_off(chat_id)
         await music_on(chat_id)
@@ -319,6 +323,7 @@ class Call(PyTgCalls):
                 )
 
     async def change_stream(self, client, chat_id):
+        # sourcery skip: low-code-quality
         check = db.get(chat_id)
         popped = None
         loop = await get_loop(chat_id)
@@ -328,17 +333,16 @@ class Call(PyTgCalls):
             else:
                 loop = loop - 1
                 await set_loop(chat_id, loop)
-            if popped:
-                if config.AUTO_DOWNLOADS_CLEAR == str(True):
-                    await auto_clean(popped)
+            if popped and config.AUTO_DOWNLOADS_CLEAR == str(True):
+                await auto_clean(popped)
             if not check:
                 await _clear_(chat_id)
                 return await client.leave_group_call(chat_id)
-        except:
+        except Exception:
             try:
                 await _clear_(chat_id)
                 return await client.leave_group_call(chat_id)
-            except:
+            except Exception:
                 return
         else:
             queued = check[0]["file"]
@@ -395,15 +399,9 @@ class Call(PyTgCalls):
                     original_chat_id, _["call_10"]
                 )
                 try:
-                    file_path, direct = await YouTube.download(
-                        videoid,
-                        mystic,
-                        videoid=True,
-                        video=True
-                        if str(streamtype) == "video"
-                        else False,
-                    )
-                except:
+                    file_path, direct = await YouTube.download(videoid, mystic, videoid=True, video=str(streamtype) == "video")
+
+                except Exception:
                     return await mystic.edit_text(
                         _["call_9"], disable_web_page_preview=True
                     )
@@ -599,7 +597,7 @@ class Call(PyTgCalls):
             if not users:
                 try:
                     got = len(await client.get_participants(chat_id))
-                except:
+                except Exception:
                     return
                 counter[chat_id] = got
                 if got == 1:

@@ -77,7 +77,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
             duration,
             playing[0]["streamtype"],
         )
-    except:
+    except Exception:
         return await mystic.edit_text(_["admin_34"])
     if message.command[0][-2] == "c":
         db[chat_id][0]["played"] -= duration_to_skip

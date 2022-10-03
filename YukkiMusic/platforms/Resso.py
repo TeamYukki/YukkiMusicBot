@@ -7,6 +7,7 @@
 #
 # All rights reserved.
 
+import contextlib
 import re
 from typing import Union
 
@@ -21,10 +22,7 @@ class RessoAPI:
         self.base = "https://m.resso.com/"
 
     async def valid(self, link: str):
-        if re.search(self.regex, link):
-            return True
-        else:
-            return False
+        return bool(re.search(self.regex, link))
 
     async def track(self, url, playid: Union[bool, str] = None):
         if playid:
@@ -40,10 +38,8 @@ class RessoAPI:
                 title = tag.get("content", None)
             if tag.get("property", None) == "og:description":
                 des = tag.get("content", None)
-                try:
+                with contextlib.suppress(Exception):
                     des = des.split("·")[0]
-                except:
-                    pass
         if des == "":
             return
         results = VideosSearch(title, limit=1)

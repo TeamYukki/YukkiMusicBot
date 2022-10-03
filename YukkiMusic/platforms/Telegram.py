@@ -8,20 +8,19 @@
 # All rights reserved.
 
 import asyncio
+import contextlib
 import os
 import time
 from datetime import datetime, timedelta
 from typing import Union
 
-from pyrogram.types import (InlineKeyboardButton,
-                            InlineKeyboardMarkup, Voice)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Voice
 
 import config
 from config import MUSIC_BOT_NAME, lyrical
 from YukkiMusic import app
 
-from ..utils.formatters import (convert_bytes, get_readable_time,
-                                seconds_to_min)
+from ..utils.formatters import convert_bytes, get_readable_time, seconds_to_min
 
 downloader = {}
 
@@ -33,7 +32,7 @@ class TeleAPI:
 
     async def send_split_text(self, message, string):
         n = self.chars_limit
-        out = [(string[i : i + n]) for i in range(0, len(string), n)]
+        out = [(string[i: i + n]) for i in range(0, len(string), n)]
         j = 0
         for x in out:
             if j <= 2:
@@ -43,11 +42,10 @@ class TeleAPI:
 
     async def get_link(self, message):
         if message.chat.username:
-            link = f"https://t.me/{message.chat.username}/{message.reply_to_message.message_id}"
-        else:
-            xf = str((message.chat.id))[4:]
-            link = f"https://t.me/c/{xf}/{message.reply_to_message.message_id}"
-        return link
+            return f"https://t.me/{message.chat.username}/{message.reply_to_message.message_id}"
+
+        xf = str((message.chat.id))[4:]
+        return f"https://t.me/c/{xf}/{message.reply_to_message.message_id}"
 
     async def get_filename(
         self, file, audio: Union[bool, str] = None
@@ -61,7 +59,7 @@ class TeleAPI:
                     else "Telegram Video File"
                 )
 
-        except:
+        except Exception:
             file_name = (
                 "Telegram Audio File"
                 if audio
@@ -72,7 +70,7 @@ class TeleAPI:
     async def get_duration(self, file):
         try:
             dur = seconds_to_min(file.duration)
-        except:
+        except Exception:
             dur = "Unknown"
         return dur
 
@@ -83,17 +81,9 @@ class TeleAPI:
     ):
         if audio:
             try:
-                file_name = (
-                    audio.file_unique_id
-                    + "."
-                    + (
-                        (audio.file_name.split(".")[-1])
-                        if (not isinstance(audio, Voice))
-                        else "ogg"
-                    )
-                )
-            except:
-                file_name = audio.file_unique_id + "." + ".ogg"
+                file_name = f"{audio.file_unique_id}." + ("ogg" if isinstance(audio, Voice) else audio.file_name.split(".")[-1])
+            except Exception:
+                file_name = f"{audio.file_unique_id}..ogg"
             file_name = os.path.join(
                 os.path.realpath("downloads"), file_name
             )
@@ -104,8 +94,8 @@ class TeleAPI:
                     + "."
                     + (video.file_name.split(".")[-1])
                 )
-            except:
-                file_name = video.file_unique_id + "." + "mp4"
+            except Exception:
+                file_name = f"{video.file_unique_id}.mp4"
             file_name = os.path.join(
                 os.path.realpath("downloads"), file_name
             )
@@ -150,15 +140,13 @@ class TeleAPI:
 **{MUSIC_BOT_NAME} Telegram Media Downloader**
 
 **Total FileSize:** {total_size}
-**Completed:** {completed_size} 
+**Completed:** {completed_size}
 **Percentage:** {percentage[:5]}%
 
 **Speed:** {speed}/s
 **ETA:** {eta}"""
-                    try:
+                    with contextlib.suppress(Exception):
                         await mystic.edit_text(text, reply_markup=upl)
-                    except:
-                        pass
                     left_time[
                         message.message_id
                     ] = datetime.now() + timedelta(seconds=self.sleep)
@@ -176,7 +164,7 @@ class TeleAPI:
                     "Successfully Downloaded.. Processing file now"
                 )
                 downloader.pop(message.message_id)
-            except:
+            except Exception:
                 await mystic.edit_text(_["tg_2"])
 
         if len(downloader) > 10:
@@ -186,7 +174,7 @@ class TeleAPI:
             try:
                 low = min(timers)
                 eta = get_readable_time(low)
-            except:
+            except Exception:
                 eta = "Unknown"
             await mystic.edit_text(_["tg_1"].format(eta))
             return False

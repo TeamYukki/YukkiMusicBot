@@ -21,8 +21,7 @@ from io import StringIO
 from time import time
 
 from pyrogram import filters
-from pyrogram.types import (InlineKeyboardButton,
-                            InlineKeyboardMarkup, Message)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
@@ -96,12 +95,8 @@ async def executor(client, message):
                 ]
             ]
         )
-        await message.reply_document(
-            document=filename,
-            caption=f"**INPUT:**\n`{cmd[0:980]}`\n\n**OUTPUT:**\n`Attached Document`",
-            quote=False,
-            reply_markup=keyboard,
-        )
+        await message.reply_document(document=filename, caption=f"**INPUT:**\n`{cmd[:980]}`\n\n**OUTPUT:**\n`Attached Document`", quote=False, reply_markup=keyboard)
+
         await message.delete()
         os.remove(filename)
     else:
@@ -141,12 +136,12 @@ async def forceclose_command(_, CallbackQuery):
             return await CallbackQuery.answer(
                 "You're not allowed to close this.", show_alert=True
             )
-        except:
+        except Exception:
             return
     await CallbackQuery.message.delete()
     try:
         await CallbackQuery.answer()
-    except:
+    except Exception:
         return
 
 

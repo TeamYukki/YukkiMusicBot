@@ -7,9 +7,11 @@
 #
 # All rights reserved.
 
-from pyrogram.types import (InlineKeyboardButton,
-                            InlineKeyboardMarkup,
-                            InlineQueryResultPhoto)
+from pyrogram.types import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InlineQueryResultPhoto,
+)
 from youtubesearchpython.__future__ import VideosSearch
 
 from config import BANNED_USERS, MUSIC_BOT_NAME
@@ -20,17 +22,17 @@ from YukkiMusic.utils.inlinequery import answer
 @app.on_inline_query(~BANNED_USERS)
 async def inline_query_handler(client, query):
     text = query.query.strip().lower()
-    answers = []
     if text.strip() == "":
         try:
             await client.answer_inline_query(
                 query.id, results=answer, cache_time=10
             )
-        except:
+        except Exception:
             return
     else:
         a = VideosSearch(text, limit=20)
         result = (await a.next()).get("result")
+        answers = []
         for x in range(15):
             title = (result[x]["title"]).title()
             duration = result[x]["duration"]
@@ -79,5 +81,5 @@ __Reply with /play on this searched message to stream it on voice chat.__
             return await client.answer_inline_query(
                 query.id, results=answers
             )
-        except:
+        except Exception:
             return

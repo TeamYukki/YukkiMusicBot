@@ -7,6 +7,8 @@
 #
 # All rights reserved.
 
+import contextlib
+
 from pykeyboard import InlineKeyboard
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, Message
@@ -15,8 +17,7 @@ from config import BANNED_USERS
 from strings import get_command, get_string, languages_present
 from YukkiMusic import app
 from YukkiMusic.utils.database import get_lang, set_lang
-from YukkiMusic.utils.decorators import (ActualAdminCB, language,
-                                         languageCB)
+from YukkiMusic.utils.decorators import ActualAdminCB, language, languageCB
 
 # Languages Available
 
@@ -34,15 +35,8 @@ def lanuages_keyboard(_):
             for i in languages_present
         ]
     )
-    keyboard.row(
-        InlineKeyboardButton(
-            text=_["BACK_BUTTON"],
-            callback_data=f"settingsback_helper",
-        ),
-        InlineKeyboardButton(
-            text=_["CLOSE_BUTTON"], callback_data=f"close"
-        ),
-    )
+    keyboard.row(InlineKeyboardButton(text=_["BACK_BUTTON"], callback_data="settingsback_helper"), InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"))
+
     return keyboard
 
 
@@ -67,10 +61,8 @@ async def langs_command(client, message: Message, _):
 @app.on_callback_query(filters.regex("LG") & ~BANNED_USERS)
 @languageCB
 async def lanuagecb(client, CallbackQuery, _):
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer()
-    except:
-        pass
     keyboard = lanuages_keyboard(_)
     return await CallbackQuery.edit_message_reply_markup(
         reply_markup=keyboard
@@ -93,7 +85,7 @@ async def language_markup(client, CallbackQuery, _):
         await CallbackQuery.answer(
             "Successfully changed your language.", show_alert=True
         )
-    except:
+    except Exception:
         return await CallbackQuery.answer(
             "Failed to change language or Language under update.",
             show_alert=True,

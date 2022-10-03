@@ -8,6 +8,7 @@
 # All rights reserved.
 
 import asyncio
+import contextlib
 import shlex
 from typing import Tuple
 
@@ -52,9 +53,9 @@ def git():
         UPSTREAM_REPO = config.UPSTREAM_REPO
     try:
         repo = Repo()
-        LOGGER(__name__).info(f"Git Client Found [VPS DEPLOYER]")
+        LOGGER(__name__).info("Git Client Found [VPS DEPLOYER]")
     except GitCommandError:
-        LOGGER(__name__).info(f"Invalid Git Command")
+        LOGGER(__name__).info("Invalid Git Command")
     except InvalidGitRepositoryError:
         repo = Repo.init()
         if "origin" in repo.remotes:
@@ -70,10 +71,8 @@ def git():
             origin.refs[config.UPSTREAM_BRANCH]
         )
         repo.heads[config.UPSTREAM_BRANCH].checkout(True)
-        try:
+        with contextlib.suppress(BaseException):
             repo.create_remote("origin", config.UPSTREAM_REPO)
-        except BaseException:
-            pass
         nrs = repo.remote("origin")
         nrs.fetch(config.UPSTREAM_BRANCH)
         try:

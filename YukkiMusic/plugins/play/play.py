@@ -9,18 +9,23 @@
 
 import random
 import string
-from ast import ExceptHandler
 
 from pyrogram import filters
-from pyrogram.types import (InlineKeyboardMarkup, InputMediaPhoto,
-                            Message)
+from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
 from config import BANNED_USERS, lyrical
 from strings import get_command
-from YukkiMusic import (Apple, Resso, SoundCloud, Spotify, Telegram,
-                        YouTube, app)
+from YukkiMusic import (
+    Apple,
+    Resso,
+    SoundCloud,
+    Spotify,
+    Telegram,
+    YouTube,
+    app,
+)
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.utils import seconds_to_min, time_to_seconds
 from YukkiMusic.utils.channelplay import get_channeplayCB
@@ -28,9 +33,12 @@ from YukkiMusic.utils.database import is_video_allowed
 from YukkiMusic.utils.decorators.language import languageCB
 from YukkiMusic.utils.decorators.play import PlayWrapper
 from YukkiMusic.utils.formatters import formats
-from YukkiMusic.utils.inline.play import (livestream_markup,
-                                          playlist_markup,
-                                          slider_markup, track_markup)
+from YukkiMusic.utils.inline.play import (
+    livestream_markup,
+    playlist_markup,
+    slider_markup,
+    track_markup,
+)
 from YukkiMusic.utils.inline.playlist import botplaylist_markup
 from YukkiMusic.utils.logger import play_logs
 from YukkiMusic.utils.stream.stream import stream
@@ -138,7 +146,7 @@ async def play_commnd(
                     return await mystic.edit_text(
                         _["play_8"].format(f"{' | '.join(formats)}")
                     )
-            except:
+            except Exception:
                 return await mystic.edit_text(
                     _["play_8"].format(f"{' | '.join(formats)}")
                 )
@@ -292,7 +300,7 @@ async def play_commnd(
         elif await Resso.valid(url):
             try:
                 details, track_id = await Resso.track(url)
-            except Exception as e:
+            except Exception:
                 return await mystic.edit_text(_["play_3"])
             streamtype = "youtube"
             img = details["thumb"]
@@ -485,7 +493,7 @@ async def play_commnd(
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
                 return await play_logs(
-                    message, streamtype=f"Searched on Youtube"
+                    message, streamtype="Searched on Youtube"
                 )
             else:
                 buttons = track_markup(
@@ -502,7 +510,7 @@ async def play_commnd(
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
                 return await play_logs(
-                    message, streamtype=f"URL Searched Inline"
+                    message, streamtype="URL Searched Inline"
                 )
 
 
@@ -517,19 +525,19 @@ async def play_music(client, CallbackQuery, _):
             return await CallbackQuery.answer(
                 _["playcb_1"], show_alert=True
             )
-        except:
+        except Exception:
             return
     try:
         chat_id, channel = await get_channeplayCB(
             _, cplay, CallbackQuery
         )
-    except:
+    except Exception:
         return
     user_name = CallbackQuery.from_user.first_name
     try:
         await CallbackQuery.message.delete()
         await CallbackQuery.answer()
-    except:
+    except Exception:
         pass
     mystic = await CallbackQuery.message.reply_text(
         _["play_2"].format(channel) if channel else _["play_1"]
@@ -594,7 +602,7 @@ async def anonymous_check(client, CallbackQuery):
             "You're an Anonymous Admin\n\nGo to your group's setting \n-> Administrators List \n-> Click on your name \n-> uncheck REMAIN ANONYMOUS button there.",
             show_alert=True,
         )
-    except:
+    except Exception:
         return
 
 
@@ -618,19 +626,19 @@ async def play_playlists_command(client, CallbackQuery, _):
             return await CallbackQuery.answer(
                 _["playcb_1"], show_alert=True
             )
-        except:
+        except Exception:
             return
     try:
         chat_id, channel = await get_channeplayCB(
             _, cplay, CallbackQuery
         )
-    except:
+    except Exception:
         return
     user_name = CallbackQuery.from_user.first_name
     await CallbackQuery.message.delete()
     try:
         await CallbackQuery.answer()
-    except:
+    except Exception:
         pass
     mystic = await CallbackQuery.message.reply_text(
         _["play_2"].format(channel) if channel else _["play_1"]
@@ -713,7 +721,7 @@ async def slider_queries(client, CallbackQuery, _):
             return await CallbackQuery.answer(
                 _["playcb_1"], show_alert=True
             )
-        except:
+        except Exception:
             return
     what = str(what)
     rtype = int(rtype)
@@ -724,7 +732,7 @@ async def slider_queries(client, CallbackQuery, _):
             query_type = int(rtype + 1)
         try:
             await CallbackQuery.answer(_["playcb_2"])
-        except:
+        except Exception:
             pass
         title, duration_min, thumbnail, vidid = await YouTube.slider(
             query, query_type
@@ -749,7 +757,7 @@ async def slider_queries(client, CallbackQuery, _):
             query_type = int(rtype - 1)
         try:
             await CallbackQuery.answer(_["playcb_2"])
-        except:
+        except Exception:
             pass
         title, duration_min, thumbnail, vidid = await YouTube.slider(
             query, query_type

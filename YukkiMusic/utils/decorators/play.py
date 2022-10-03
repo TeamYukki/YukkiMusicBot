@@ -7,39 +7,41 @@
 #
 # All rights reserved.
 
+import contextlib
+
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import PLAYLIST_IMG_URL, PRIVATE_BOT_MODE, adminlist
 from strings import get_string
 from YukkiMusic import YouTube, app
 from YukkiMusic.misc import SUDOERS
-from YukkiMusic.utils.database import (get_cmode, get_lang,
-                                       get_playmode, get_playtype,
-                                       is_active_chat,
-                                       is_commanddelete_on,
-                                       is_served_private_chat)
+from YukkiMusic.utils.database import (
+    get_cmode,
+    get_lang,
+    get_playmode,
+    get_playtype,
+    is_active_chat,
+    is_commanddelete_on,
+    is_served_private_chat,
+)
 from YukkiMusic.utils.database.memorydatabase import is_maintenance
 from YukkiMusic.utils.inline.playlist import botplaylist_markup
 
 
 def PlayWrapper(command):
     async def wrapper(client, message):
-        if await is_maintenance() is False:
-            if message.from_user.id not in SUDOERS:
-                return await message.reply_text(
-                    "Bot is under maintenance. Please wait for some time..."
-                )
-        if PRIVATE_BOT_MODE == str(True):
-            if not await is_served_private_chat(message.chat.id):
-                await message.reply_text(
-                    "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
-                )
-                return await app.leave_chat(message.chat.id)
+        if await is_maintenance() is False and message.from_user.id not in SUDOERS:
+            return await message.reply_text(
+                "Bot is under maintenance. Please wait for some time..."
+            )
+        if PRIVATE_BOT_MODE == str(True) and not await is_served_private_chat(message.chat.id):
+            await message.reply_text(
+                "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
+            )
+            return await app.leave_chat(message.chat.id)
         if await is_commanddelete_on(message.chat.id):
-            try:
+            with contextlib.suppress(Exception):
                 await message.delete()
-            except:
-                pass
         language = await get_lang(message.chat.id)
         _ = get_string(language)
         audio_telegram = (
@@ -59,20 +61,15 @@ def PlayWrapper(command):
             else None
         )
         url = await YouTube.url(message)
-        if (
-            audio_telegram is None
-            and video_telegram is None
-            and url is None
-        ):
-            if len(message.command) < 2:
-                if "stream" in message.command:
-                    return await message.reply_text(_["str_1"])
-                buttons = botplaylist_markup(_)
-                return await message.reply_photo(
-                    photo=PLAYLIST_IMG_URL,
-                    caption=_["playlist_1"],
-                    reply_markup=InlineKeyboardMarkup(buttons),
-                )
+        if (audio_telegram is None and video_telegram is None and url is None) and len(message.command) < 2:
+            if "stream" in message.command:
+                return await message.reply_text(_["str_1"])
+            buttons = botplaylist_markup(_)
+            return await message.reply_photo(
+                photo=PLAYLIST_IMG_URL,
+                caption=_["playlist_1"],
+                reply_markup=InlineKeyboardMarkup(buttons),
+            )
         if message.sender_chat:
             upl = InlineKeyboardMarkup(
                 [
@@ -93,7 +90,7 @@ def PlayWrapper(command):
                 return await message.reply_text(_["setting_12"])
             try:
                 chat = await app.get_chat(chat_id)
-            except:
+            except Exception:
                 return await message.reply_text(_["cplay_4"])
             channel = chat.title
         else:
@@ -101,14 +98,12 @@ def PlayWrapper(command):
             channel = None
         playmode = await get_playmode(message.chat.id)
         playty = await get_playtype(message.chat.id)
-        if playty != "Everyone":
-            if message.from_user.id not in SUDOERS:
-                admins = adminlist.get(message.chat.id)
-                if not admins:
-                    return await message.reply_text(_["admin_18"])
-                else:
-                    if message.from_user.id not in admins:
-                        return await message.reply_text(_["play_4"])
+        if playty != "Everyone" and message.from_user.id not in SUDOERS:
+            admins = adminlist.get(message.chat.id)
+            if not admins:
+                return await message.reply_text(_["admin_18"])
+            if message.from_user.id not in admins:
+                return await message.reply_text(_["play_4"])
         if message.command[0][0] == "v":
             video = True
         else:

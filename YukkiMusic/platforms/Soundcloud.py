@@ -7,7 +7,6 @@
 #
 # All rights reserved.
 
-import re
 from os import path
 
 from yt_dlp import YoutubeDL
@@ -26,16 +25,13 @@ class SoundAPI:
         }
 
     async def valid(self, link: str):
-        if "soundcloud" in link:
-            return True
-        else:
-            return False
+        return "soundcloud" in link
 
     async def download(self, url):
         d = YoutubeDL(self.opts)
         try:
             info = d.extract_info(url)
-        except:
+        except Exception:
             return False
         xyz = path.join("downloads", f"{info['id']}.{info['ext']}")
         duration_min = seconds_to_min(info["duration"])

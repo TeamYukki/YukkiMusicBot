@@ -16,9 +16,8 @@ from ..logging import LOGGER
 
 def dirr():
     if "assets" not in listdir():
-        LOGGER(__name__).warning(
-            f"Assets Folder not Found. Please clone repository again."
-        )
+        LOGGER(__name__).warning("Assets Folder not Found. Please clone repository again.")
+
         sys.exit()
     for file in os.listdir():
         if file.endswith(".jpg"):

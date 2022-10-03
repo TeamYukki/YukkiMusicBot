@@ -3,24 +3,36 @@ import random
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 
-from config import (AUTO_DOWNLOADS_CLEAR, BANNED_USERS,
-                    SOUNCLOUD_IMG_URL, STREAM_IMG_URL,
-                    TELEGRAM_AUDIO_URL, TELEGRAM_VIDEO_URL, adminlist)
+from config import (
+    AUTO_DOWNLOADS_CLEAR,
+    BANNED_USERS,
+    SOUNCLOUD_IMG_URL,
+    STREAM_IMG_URL,
+    TELEGRAM_AUDIO_URL,
+    TELEGRAM_VIDEO_URL,
+    adminlist,
+)
 from YukkiMusic import YouTube, app
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.misc import SUDOERS, db
-from YukkiMusic.utils.database import (is_active_chat,
-                                       is_music_playing, is_muted,
-                                       is_nonadmin_chat, music_off,
-                                       music_on, mute_off, mute_on,
-                                       set_loop)
+from YukkiMusic.utils.database import (
+    is_active_chat,
+    is_music_playing,
+    is_muted,
+    is_nonadmin_chat,
+    music_off,
+    music_on,
+    mute_off,
+    mute_on,
+    set_loop,
+)
 from YukkiMusic.utils.decorators.language import languageCB
 from YukkiMusic.utils.formatters import seconds_to_min
-from YukkiMusic.utils.inline.play import (panel_markup_1,
-                                          panel_markup_2,
-                                          panel_markup_3,
-                                          stream_markup,
-                                          telegram_markup)
+from YukkiMusic.utils.inline.play import (
+    panel_markup_1,
+    stream_markup,
+    telegram_markup,
+)
 from YukkiMusic.utils.stream.autoclear import auto_clean
 from YukkiMusic.utils.thumbnails import gen_thumb
 
@@ -40,69 +52,11 @@ async def markup_panel(client, CallbackQuery: CallbackQuery, _):
         await CallbackQuery.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(buttons)
         )
-    except:
+    except Exception:
         return
     if chat_id not in wrong:
         wrong[chat_id] = {}
     wrong[chat_id][CallbackQuery.message.message_id] = False
-
-
-@app.on_callback_query(filters.regex("MainMarkup") & ~BANNED_USERS)
-@languageCB
-async def del_back_playlist(client, CallbackQuery, _):
-    await CallbackQuery.answer()
-    callback_data = CallbackQuery.data.strip()
-    callback_request = callback_data.split(None, 1)[1]
-    videoid, chat_id = callback_request.split("|")
-    if videoid == str(None):
-        buttons = telegram_markup(_, chat_id)
-    else:
-        buttons = stream_markup(_, videoid, chat_id)
-    chat_id = CallbackQuery.message.chat.id
-    try:
-        await CallbackQuery.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
-    except:
-        return
-    if chat_id not in wrong:
-        wrong[chat_id] = {}
-    wrong[chat_id][CallbackQuery.message.message_id] = True
-
-
-@app.on_callback_query(filters.regex("Pages") & ~BANNED_USERS)
-@languageCB
-async def del_back_playlist(client, CallbackQuery, _):
-    await CallbackQuery.answer()
-    callback_data = CallbackQuery.data.strip()
-    callback_request = callback_data.split(None, 1)[1]
-    state, pages, videoid, chat = callback_request.split("|")
-    chat_id = int(chat)
-    pages = int(pages)
-    if state == "Forw":
-        if pages == 0:
-            buttons = panel_markup_2(_, videoid, chat_id)
-        if pages == 2:
-            buttons = panel_markup_1(_, videoid, chat_id)
-        if pages == 1:
-            buttons = panel_markup_3(_, videoid, chat_id)
-    if state == "Back":
-        if pages == 2:
-            buttons = panel_markup_2(_, videoid, chat_id)
-        if pages == 1:
-            buttons = panel_markup_1(_, videoid, chat_id)
-        if pages == 0:
-            buttons = panel_markup_3(_, videoid, chat_id)
-    try:
-        await CallbackQuery.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
-    except:
-        return
-
-
-downvote = {}
-downvoters = {}
 
 
 @app.on_callback_query(filters.regex("ADMIN") & ~BANNED_USERS)
@@ -197,7 +151,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             )
         try:
             popped = check.pop(0)
-        except:
+        except Exception:
             return await CallbackQuery.answer(
                 _["admin_22"], show_alert=True
             )
@@ -231,9 +185,9 @@ async def del_back_playlist(client, CallbackQuery, _):
                 )
                 try:
                     return await Yukki.stop_stream(chat_id)
-                except:
+                except Exception:
                     return
-        except:
+        except Exception:
             try:
                 await CallbackQuery.edit_message_text(
                     f"Skipped by {mention}"
@@ -242,7 +196,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                     _["admin_10"].format(mention)
                 )
                 return await Yukki.stop_stream(chat_id)
-            except:
+            except Exception:
                 return
         await CallbackQuery.answer()
         queued = check[0]["file"]
@@ -288,7 +242,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                     videoid=True,
                     video=status,
                 )
-            except:
+            except Exception:
                 return await mystic.edit_text(_["call_9"])
             try:
                 await Yukki.skip_stream(
@@ -432,7 +386,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                 duration,
                 playing[0]["streamtype"],
             )
-        except:
+        except Exception:
             return await mystic.edit_text(_["admin_34"])
         if int(command) in [1, 3]:
             db[chat_id][0]["played"] -= duration_to_skip

@@ -7,6 +7,8 @@
 #
 # All rights reserved.
 
+import contextlib
+
 from pyrogram import filters
 from pyrogram.types import Message
 
@@ -14,9 +16,11 @@ from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
-from YukkiMusic.utils.database import (blacklist_chat,
-                                       blacklisted_chats,
-                                       whitelist_chat)
+from YukkiMusic.utils.database import (
+    blacklist_chat,
+    blacklisted_chats,
+    whitelist_chat,
+)
 from YukkiMusic.utils.decorators.language import language
 
 # Commands
@@ -39,10 +43,8 @@ async def blacklist_chat_func(client, message: Message, _):
         await message.reply_text(_["black_3"])
     else:
         await message.reply_text("Something wrong happened.")
-    try:
+    with contextlib.suppress(Exception):
         await app.leave_chat(chat_id)
-    except:
-        pass
 
 
 @app.on_message(filters.command(WHITELISTCHAT_COMMAND) & SUDOERS)

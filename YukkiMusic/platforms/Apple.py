@@ -21,10 +21,7 @@ class AppleAPI:
         self.base = "https://music.apple.com/in/playlist/"
 
     async def valid(self, link: str):
-        if re.search(self.regex, link):
-            return True
-        else:
-            return False
+        return bool(re.search(self.regex, link))
 
     async def track(self, url, playid: Union[bool, str] = None):
         if playid:
@@ -78,7 +75,7 @@ class AppleAPI:
                         0
                     ]
                 ).replace("-", " ")
-            except:
+            except Exception:
                 xx = ((item["content"]).split("album/")[1]).split(
                     "/"
                 )[0]

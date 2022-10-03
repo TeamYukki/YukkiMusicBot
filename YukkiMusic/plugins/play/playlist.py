@@ -7,24 +7,29 @@
 #
 # All rights reserved.
 
+import contextlib
 import os
 from random import randint
 
 from pykeyboard import InlineKeyboard
 from pyrogram import filters
-from pyrogram.types import (InlineKeyboardButton,
-                            InlineKeyboardMarkup, Message)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import BANNED_USERS, SERVER_PLAYLIST_LIMIT
 from strings import get_command
 from YukkiMusic import Carbon, YouTube, app
-from YukkiMusic.utils.database import (delete_playlist, get_playlist,
-                                       get_playlist_names,
-                                       save_playlist)
+from YukkiMusic.utils.database import (
+    delete_playlist,
+    get_playlist,
+    get_playlist_names,
+    save_playlist,
+)
 from YukkiMusic.utils.decorators.language import language, languageCB
-from YukkiMusic.utils.inline.playlist import (botplaylist_markup,
-                                              get_playlist_markup,
-                                              warning_markup)
+from YukkiMusic.utils.inline.playlist import (
+    botplaylist_markup,
+    get_playlist_markup,
+    warning_markup,
+)
 from YukkiMusic.utils.pastebin import Yukkibin
 from YukkiMusic.utils.stream.stream import stream
 
@@ -57,10 +62,7 @@ async def check_playlist(client, message: Message, _):
         msg += _["playlist_5"].format(duration)
     link = await Yukkibin(msg)
     lines = msg.count("\n")
-    if lines >= 17:
-        car = os.linesep.join(msg.split(os.linesep)[:17])
-    else:
-        car = msg
+    car = os.linesep.join(msg.split(os.linesep)[:17]) if lines >= 17 else msg
     carbon = await Carbon.generate(car, randint(100, 10000000000))
     await get.delete()
     await message.reply_photo(
@@ -103,15 +105,8 @@ async def get_keyboard(_, user_id):
                 callback_data=f"del_playlist {x}",
             )
         )
-    keyboard.row(
-        InlineKeyboardButton(
-            text=_["PL_B_5"],
-            callback_data=f"delete_warning",
-        ),
-        InlineKeyboardButton(
-            text=_["CLOSE_BUTTON"], callback_data=f"close"
-        ),
-    )
+    keyboard.row(InlineKeyboardButton(text=_["PL_B_5"], callback_data="delete_warning"), InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"))
+
     return keyboard, count
 
 
@@ -147,20 +142,16 @@ async def play_playlist(client, CallbackQuery, _):
                 _["playlist_3"],
                 show_alert=True,
             )
-        except:
+        except Exception:
             return
     chat_id = CallbackQuery.message.chat.id
     user_name = CallbackQuery.from_user.first_name
     await CallbackQuery.message.delete()
-    result = []
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer()
-    except:
-        pass
     video = True if mode == "v" else None
     mystic = await CallbackQuery.message.reply_text(_["play_1"])
-    for vidids in _playlist:
-        result.append(vidids)
+    result = list(_playlist)
     try:
         await stream(
             _,
@@ -196,7 +187,7 @@ async def add_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(
                 _["playlist_8"], show_alert=True
             )
-        except:
+        except Exception:
             return
     _count = await get_playlist_names(user_id)
     count = len(_count)
@@ -206,7 +197,7 @@ async def add_playlist(client, CallbackQuery, _):
                 _["playlist_9"].format(SERVER_PLAYLIST_LIMIT),
                 show_alert=True,
             )
-        except:
+        except Exception:
             return
     (
         title,
@@ -227,7 +218,7 @@ async def add_playlist(client, CallbackQuery, _):
         return await CallbackQuery.answer(
             _["playlist_10"].format(title), show_alert=True
         )
-    except:
+    except Exception:
         return
 
 
@@ -241,18 +232,16 @@ async def del_plist(client, CallbackQuery, _):
         CallbackQuery.from_user.id, videoid
     )
     if deleted:
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(
                 _["playlist_11"], show_alert=True
             )
-        except:
-            pass
     else:
         try:
             return await CallbackQuery.answer(
                 _["playlist_12"], show_alert=True
             )
-        except:
+        except Exception:
             return
     keyboard, count = await get_keyboard(_, user_id)
     return await CallbackQuery.edit_message_reply_markup(
@@ -276,10 +265,8 @@ async def del_whole_playlist(client, CallbackQuery, _):
 )
 @languageCB
 async def get_playlist_playmode_(client, CallbackQuery, _):
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer()
-    except:
-        pass
     buttons = get_playlist_markup(_)
     return await CallbackQuery.edit_message_reply_markup(
         reply_markup=InlineKeyboardMarkup(buttons)
@@ -291,10 +278,8 @@ async def get_playlist_playmode_(client, CallbackQuery, _):
 )
 @languageCB
 async def delete_warning_message(client, CallbackQuery, _):
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer()
-    except:
-        pass
     upl = warning_markup(_)
     return await CallbackQuery.edit_message_text(
         _["playlist_14"], reply_markup=upl
@@ -304,10 +289,8 @@ async def delete_warning_message(client, CallbackQuery, _):
 @app.on_callback_query(filters.regex("home_play") & ~BANNED_USERS)
 @languageCB
 async def home_play_(client, CallbackQuery, _):
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer()
-    except:
-        pass
     buttons = botplaylist_markup(_)
     return await CallbackQuery.edit_message_reply_markup(
         reply_markup=InlineKeyboardMarkup(buttons)
@@ -322,18 +305,16 @@ async def del_back_playlist(client, CallbackQuery, _):
     user_id = CallbackQuery.from_user.id
     _playlist = await get_playlist_names(user_id)
     if _playlist:
-        try:
+        with contextlib.suppress(Exception):
             await CallbackQuery.answer(
                 _["playlist_2"], show_alert=True
             )
-        except:
-            pass
     else:
         try:
             return await CallbackQuery.answer(
                 _["playlist_3"], show_alert=True
             )
-        except:
+        except Exception:
             return
     keyboard, count = await get_keyboard(_, user_id)
     return await CallbackQuery.edit_message_text(

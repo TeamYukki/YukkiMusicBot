@@ -8,16 +8,19 @@
 # All rights reserved.
 
 import asyncio
+import contextlib
 
 from pyrogram.types import InlineKeyboardMarkup
 
 from strings import get_string
 from YukkiMusic.misc import db
-from YukkiMusic.utils.database import (get_active_chats, get_lang,
-                                       is_music_playing)
+from YukkiMusic.utils.database import (
+    get_active_chats,
+    get_lang,
+    is_music_playing,
+)
 from YukkiMusic.utils.formatters import seconds_to_min
-from YukkiMusic.utils.inline import (stream_markup_timer,
-                                     telegram_markup_timer)
+from YukkiMusic.utils.inline import stream_markup_timer, telegram_markup_timer
 
 from ..admins.callback import wrong
 
@@ -61,18 +64,16 @@ async def markup_timer():
                 try:
                     mystic = playing[0]["mystic"]
                     markup = playing[0]["markup"]
-                except:
+                except Exception:
                     continue
-                try:
+                with contextlib.suppress(Exception):
                     check = wrong[chat_id][mystic.message_id]
                     if check is False:
                         continue
-                except:
-                    pass
                 try:
                     language = await get_lang(chat_id)
                     _ = get_string(language)
-                except:
+                except Exception:
                     _ = get_string("en")
                 try:
                     buttons = (
@@ -94,9 +95,9 @@ async def markup_timer():
                     await mystic.edit_reply_markup(
                         reply_markup=InlineKeyboardMarkup(buttons)
                     )
-                except:
+                except Exception:
                     continue
-            except:
+            except Exception:
                 continue
 
 

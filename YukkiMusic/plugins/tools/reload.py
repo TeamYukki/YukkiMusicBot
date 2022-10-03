@@ -6,7 +6,9 @@
 # Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
 #
 # All rights reserved.
+
 import asyncio
+import contextlib
 
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, Message
@@ -17,11 +19,10 @@ from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.misc import db
 from YukkiMusic.utils.database import get_authuser_names, get_cmode
-from YukkiMusic.utils.decorators import (ActualAdminCB, AdminActual,
-                                         language)
+from YukkiMusic.utils.decorators import ActualAdminCB, AdminActual, language
 from YukkiMusic.utils.formatters import alpha_to_int
 
-### Multi-Lang Commands
+# Multi-Lang Commands
 RELOAD_COMMAND = get_command("RELOAD_COMMAND")
 RESTART_COMMAND = get_command("RESTART_COMMAND")
 
@@ -40,15 +41,13 @@ async def reload_admin_cache(client, message: Message, _):
             chat_id, filter="administrators"
         )
         authusers = await get_authuser_names(chat_id)
-        adminlist[chat_id] = []
-        for user in admins:
-            if user.can_manage_voice_chats:
-                adminlist[chat_id].append(user.user.id)
+        adminlist[chat_id] = [user.user.id for user in admins if user.can_manage_voice_chats]
+
         for user in authusers:
             user_id = await alpha_to_int(user)
             adminlist[chat_id].append(user_id)
         await message.reply_text(_["admin_20"])
-    except:
+    except Exception:
         await message.reply_text(
             "Failed to reload admincache. Make sure Bot is admin in your chat."
         )
@@ -66,22 +65,16 @@ async def restartbot(client, message: Message, _):
         f"Please Wait.. Restarting {MUSIC_BOT_NAME} for your chat.."
     )
     await asyncio.sleep(1)
-    try:
+    with contextlib.suppress(Exception):
         db[message.chat.id] = []
         await Yukki.stop_stream(message.chat.id)
-    except:
-        pass
     chat_id = await get_cmode(message.chat.id)
     if chat_id:
-        try:
+        with contextlib.suppress(Exception):
             await app.get_chat(chat_id)
-        except:
-            pass
-        try:
+        with contextlib.suppress(Exception):
             db[chat_id] = []
             await Yukki.stop_stream(chat_id)
-        except:
-            pass
     return await mystic.edit_text(
         "Successfully restarted. Try playing now.."
     )
@@ -92,16 +85,7 @@ async def close_menu(_, CallbackQuery):
     try:
         await CallbackQuery.message.delete()
         await CallbackQuery.answer()
-    except:
-        return
-
-
-@app.on_callback_query(filters.regex("close") & ~BANNED_USERS)
-async def close_menu(_, CallbackQuery):
-    try:
-        await CallbackQuery.message.delete()
-        await CallbackQuery.answer()
-    except:
+    except Exception:
         return
 
 
@@ -124,17 +108,15 @@ async def stop_download(client, CallbackQuery: CallbackQuery, _):
     if not task.done():
         try:
             task.cancel()
-            try:
+            with contextlib.suppress(Exception):
                 lyrical.pop(message_id)
-            except:
-                pass
             await CallbackQuery.answer(
                 "Downloading Cancelled", show_alert=True
             )
             return await CallbackQuery.edit_message_text(
                 f"Download Cancelled by {CallbackQuery.from_user.mention}"
             )
-        except:
+        except Exception:
             return await CallbackQuery.answer(
                 "Failed to stop the Downloading.", show_alert=True
             )

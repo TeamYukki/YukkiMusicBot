@@ -18,8 +18,7 @@ from YukkiMusic.core.call import Yukki
 from YukkiMusic.misc import db
 from YukkiMusic.utils.database import get_loop
 from YukkiMusic.utils.decorators import AdminRightsCheck
-from YukkiMusic.utils.inline.play import (stream_markup,
-                                          telegram_markup)
+from YukkiMusic.utils.inline.play import stream_markup, telegram_markup
 from YukkiMusic.utils.stream.autoclear import auto_clean
 from YukkiMusic.utils.thumbnails import gen_thumb
 
@@ -52,7 +51,7 @@ async def skip(cli, message: Message, _, chat_id):
                             popped = None
                             try:
                                 popped = check.pop(0)
-                            except:
+                            except Exception:
                                 return await message.reply_text(
                                     _["admin_16"]
                                 )
@@ -70,7 +69,7 @@ async def skip(cli, message: Message, _, chat_id):
                                         )
                                     )
                                     await Yukki.stop_stream(chat_id)
-                                except:
+                                except Exception:
                                     return
                                 break
                     else:
@@ -97,15 +96,15 @@ async def skip(cli, message: Message, _, chat_id):
                 )
                 try:
                     return await Yukki.stop_stream(chat_id)
-                except:
+                except Exception:
                     return
-        except:
+        except Exception:
             try:
                 await message.reply_text(
                     _["admin_10"].format(message.from_user.first_name)
                 )
                 return await Yukki.stop_stream(chat_id)
-            except:
+            except Exception:
                 return
     queued = check[0]["file"]
     title = (check[0]["title"]).title()
@@ -146,7 +145,7 @@ async def skip(cli, message: Message, _, chat_id):
                 videoid=True,
                 video=status,
             )
-        except:
+        except Exception:
             return await mystic.edit_text(_["call_9"])
         try:
             await Yukki.skip_stream(chat_id, file_path, video=status)

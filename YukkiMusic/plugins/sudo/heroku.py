@@ -8,6 +8,7 @@
 # All rights reserved.
 
 import asyncio
+import contextlib
 import math
 import os
 import shutil
@@ -26,9 +27,11 @@ import config
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.misc import HAPP, SUDOERS, XCB
-from YukkiMusic.utils.database import (get_active_chats,
-                                       remove_active_chat,
-                                       remove_active_video_chat)
+from YukkiMusic.utils.database import (
+    get_active_chats,
+    remove_active_chat,
+    remove_active_video_chat,
+)
 from YukkiMusic.utils.decorators.language import language
 from YukkiMusic.utils.pastebin import Yukkibin
 
@@ -56,23 +59,18 @@ async def log_(client, message, _):
             if HAPP is None:
                 return await message.reply_text(_["heroku_1"])
             data = HAPP.get_log()
-            link = await Yukkibin(data)
-            return await message.reply_text(link)
         else:
-            if os.path.exists(config.LOG_FILE_NAME):
-                log = open(config.LOG_FILE_NAME)
-                lines = log.readlines()
-                data = ""
-                try:
-                    NUMB = int(message.text.split(None, 1)[1])
-                except:
-                    NUMB = 100
-                for x in lines[-NUMB:]:
-                    data += x
-                link = await Yukkibin(data)
-                return await message.reply_text(link)
-            else:
+            if not os.path.exists(config.LOG_FILE_NAME):
                 return await message.reply_text(_["heroku_2"])
+            log = open(config.LOG_FILE_NAME)
+            lines = log.readlines()
+            try:
+                NUMB = int(message.text.split(None, 1)[1])
+            except Exception:
+                NUMB = 100
+            data = "".join(lines[-NUMB:])
+        link = await Yukkibin(data)
+        return await message.reply_text(link)
     except Exception as e:
         print(e)
         await message.reply_text(_["heroku_2"])
@@ -81,8 +79,8 @@ async def log_(client, message, _):
 @app.on_message(filters.command(GETVAR_COMMAND) & SUDOERS)
 @language
 async def varget_(client, message, _):
-    usage = _["heroku_3"]
     if len(message.command) != 2:
+        usage = _["heroku_3"]
         return await message.reply_text(usage)
     check_var = message.text.split(None, 2)[1]
     if await is_heroku():
@@ -99,31 +97,29 @@ async def varget_(client, message, _):
         path = dotenv.find_dotenv()
         if not path:
             return await message.reply_text(_["heroku_5"])
-        output = dotenv.get_key(path, check_var)
-        if not output:
-            await message.reply_text(_["heroku_4"])
-        else:
+        if output := dotenv.get_key(path, check_var):
             return await message.reply_text(
                 f"**{check_var}:** `{str(output)}`"
             )
+        else:
+            await message.reply_text(_["heroku_4"])
 
 
 @app.on_message(filters.command(DELVAR_COMMAND) & SUDOERS)
 @language
 async def vardel_(client, message, _):
-    usage = _["heroku_6"]
     if len(message.command) != 2:
+        usage = _["heroku_6"]
         return await message.reply_text(usage)
     check_var = message.text.split(None, 2)[1]
     if await is_heroku():
         if HAPP is None:
             return await message.reply_text(_["heroku_1"])
         heroku_config = HAPP.config()
-        if check_var in heroku_config:
-            await message.reply_text(_["heroku_7"].format(check_var))
-            del heroku_config[check_var]
-        else:
+        if check_var not in heroku_config:
             return await message.reply_text(_["heroku_4"])
+        await message.reply_text(_["heroku_7"].format(check_var))
+        del heroku_config[check_var]
     else:
         path = dotenv.find_dotenv()
         if not path:
@@ -131,16 +127,15 @@ async def vardel_(client, message, _):
         output = dotenv.unset_key(path, check_var)
         if not output[0]:
             return await message.reply_text(_["heroku_4"])
-        else:
-            await message.reply_text(_["heroku_7"].format(check_var))
-            os.system(f"kill -9 {os.getpid()} && bash start")
+        await message.reply_text(_["heroku_7"].format(check_var))
+        os.system(f"kill -9 {os.getpid()} && bash start")
 
 
 @app.on_message(filters.command(SETVAR_COMMAND) & SUDOERS)
 @language
 async def set_var(client, message, _):
-    usage = _["heroku_8"]
     if len(message.command) < 3:
+        usage = _["heroku_8"]
         return await message.reply_text(usage)
     to_set = message.text.split(None, 2)[1].strip()
     value = message.text.split(None, 2)[2].strip()
@@ -168,12 +163,10 @@ async def set_var(client, message, _):
 @app.on_message(filters.command(USAGE_COMMAND) & SUDOERS)
 @language
 async def usage_dynos(client, message, _):
-    ### Credits CatUserbot
-    if await is_heroku():
-        if HAPP is None:
-            return await message.reply_text(_["heroku_1"])
-    else:
+    if not await is_heroku():
         return await message.reply_text(_["heroku_11"])
+    if HAPP is None:
+        return await message.reply_text(_["heroku_1"])
     dyno = await message.reply_text(_["heroku_12"])
     Heroku = heroku3.from_key(config.HEROKU_API_KEY)
     account_id = Heroku.account().id
@@ -187,8 +180,8 @@ async def usage_dynos(client, message, _):
         "Authorization": f"Bearer {config.HEROKU_API_KEY}",
         "Accept": "application/vnd.heroku+json; version=3.account-quotas",
     }
-    path = "/accounts/" + account_id + "/actions/get-quota"
-    r = requests.get("https://api.heroku.com" + path, headers=headers)
+    path = f"/accounts/{account_id}/actions/get-quota"
+    r = requests.get(f"https://api.heroku.com{path}", headers=headers)
     if r.status_code != 200:
         return await dyno.edit("Unable to fetch.")
     result = r.json()
@@ -225,9 +218,8 @@ Total Left: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]"""
 @app.on_message(filters.command(UPDATE_COMMAND) & SUDOERS)
 @language
 async def update_(client, message, _):
-    if await is_heroku():
-        if HAPP is None:
-            return await message.reply_text(_["heroku_1"])
+    if await is_heroku() and HAPP is None:
+        return await message.reply_text(_["heroku_1"])
     response = await message.reply_text(_["heroku_13"])
     try:
         repo = Repo()
@@ -248,20 +240,17 @@ async def update_(client, message, _):
         verification = str(checks.count())
     if verification == "":
         return await response.edit("Bot is up-to-date!")
-    updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
         "tsnrhtdd"[
             (format // 10 % 10 != 1)
             * (format % 10 < 4)
             * format
-            % 10 :: 4
+            % 10:: 4
         ],
     )
-    for info in repo.iter_commits(
-        f"HEAD..origin/{config.UPSTREAM_BRANCH}"
-    ):
-        updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
+    updates = "".join(f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n" for info in repo.iter_commits(f"HEAD..origin/{config.UPSTREAM_BRANCH}"))
+
     _update_response_ = "<b>A new update is available for the Bot!</b>\n\n➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n"
     _final_updates_ = _update_response_ + updates
     if len(_final_updates_) > 4096:
@@ -278,15 +267,13 @@ async def update_(client, message, _):
         try:
             served_chats = await get_active_chats()
             for x in served_chats:
-                try:
+                with contextlib.suppress(Exception):
                     await app.send_message(
                         x,
                         f"{config.MUSIC_BOT_NAME} has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
                     )
                     await remove_active_chat(x)
                     await remove_active_video_chat(x)
-                except Exception:
-                    pass
             await response.edit(
                 f"{nrs.text}\n\nBot was updated successfully on Heroku! Now, wait for 2 - 3 mins until the bot restarts!"
             )
@@ -305,15 +292,13 @@ async def update_(client, message, _):
     else:
         served_chats = await get_active_chats()
         for x in served_chats:
-            try:
+            with contextlib.suppress(Exception):
                 await app.send_message(
                     x,
                     f"{config.MUSIC_BOT_NAME} has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
                 )
                 await remove_active_chat(x)
                 await remove_active_video_chat(x)
-            except Exception:
-                pass
         await response.edit(
             f"{nrs.text}\n\nBot was updated successfully! Now, wait for 1 - 2 mins until the bot reboots!"
         )
@@ -327,24 +312,20 @@ async def restart_(_, message):
     response = await message.reply_text("Restarting....")
     served_chats = await get_active_chats()
     for x in served_chats:
-        try:
+        with contextlib.suppress(Exception):
             await app.send_message(
                 x,
                 f"{config.MUSIC_BOT_NAME} has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
             )
             await remove_active_chat(x)
             await remove_active_video_chat(x)
-        except Exception:
-            pass
     A = "downloads"
     B = "raw_files"
     C = "cache"
-    try:
+    with contextlib.suppress(Exception):
         shutil.rmtree(A)
         shutil.rmtree(B)
         shutil.rmtree(C)
-    except:
-        pass
     await response.edit(
         "Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
     )

@@ -13,8 +13,7 @@ from pyrogram.types import Message
 from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import app
-from YukkiMusic.utils.database.memorydatabase import (get_loop,
-                                                      set_loop)
+from YukkiMusic.utils.database.memorydatabase import get_loop, set_loop
 from YukkiMusic.utils.decorators import AdminRightsCheck
 
 # Commands
@@ -35,20 +34,18 @@ async def admins(cli, message: Message, _, chat_id):
     state = message.text.split(None, 1)[1].strip()
     if state.isnumeric():
         state = int(state)
-        if 1 <= state <= 10:
-            got = await get_loop(chat_id)
-            if got != 0:
-                state = got + state
-            if int(state) > 10:
-                state = 10
-            await set_loop(chat_id, state)
-            return await message.reply_text(
-                _["admin_25"].format(
-                    message.from_user.first_name, state
-                )
-            )
-        else:
+        if not 1 <= state <= 10:
             return await message.reply_text(_["admin_26"])
+        got = await get_loop(chat_id)
+        if got != 0:
+            state = got + state
+        state = min(state, 10)
+        await set_loop(chat_id, state)
+        return await message.reply_text(
+            _["admin_25"].format(
+                message.from_user.first_name, state
+            )
+        )
     elif state.lower() == "enable":
         await set_loop(chat_id, 10)
         return await message.reply_text(

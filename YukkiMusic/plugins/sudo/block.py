@@ -91,9 +91,7 @@ async def sudoers_list(client, message: Message, _):
     for users in BANNED_USERS:
         try:
             user = await app.get_users(users)
-            user = (
-                user.first_name if not user.mention else user.mention
-            )
+            user = user.mention or user.first_name
             count += 1
         except Exception:
             continue

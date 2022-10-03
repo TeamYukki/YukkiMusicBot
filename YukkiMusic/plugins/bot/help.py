@@ -7,7 +7,7 @@
 #
 # All rights reserved.
 
-
+import contextlib
 from typing import Union
 
 from pyrogram import filters, types
@@ -19,12 +19,10 @@ from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
 from YukkiMusic.utils import help_pannel
 from YukkiMusic.utils.database import get_lang, is_commanddelete_on
-from YukkiMusic.utils.decorators.language import (LanguageStart,
-                                                  languageCB)
-from YukkiMusic.utils.inline.help import (help_back_markup,
-                                          private_help_panel)
+from YukkiMusic.utils.decorators.language import LanguageStart, languageCB
+from YukkiMusic.utils.inline.help import help_back_markup, private_help_panel
 
-### Command
+# Command
 HELP_COMMAND = get_command("HELP_COMMAND")
 
 
@@ -42,10 +40,8 @@ async def helper_private(
 ):
     is_callback = isinstance(update, types.CallbackQuery)
     if is_callback:
-        try:
+        with contextlib.suppress(Exception):
             await update.answer()
-        except:
-            pass
         chat_id = update.message.chat.id
         language = await get_lang(chat_id)
         _ = get_string(language)
@@ -62,10 +58,8 @@ async def helper_private(
     else:
         chat_id = update.chat.id
         if await is_commanddelete_on(update.chat.id):
-            try:
+            with contextlib.suppress(Exception):
                 await update.delete()
-            except:
-                pass
         language = await get_lang(chat_id)
         _ = get_string(language)
         keyboard = help_pannel(_)
@@ -97,15 +91,12 @@ async def helper_cb(client, CallbackQuery, _):
             return await CallbackQuery.answer(
                 "Only for Sudo Users", show_alert=True
             )
-        else:
-            await CallbackQuery.edit_message_text(
-                helpers.HELP_5, reply_markup=keyboard
-            )
-            return await CallbackQuery.answer()
-    try:
+        await CallbackQuery.edit_message_text(
+            helpers.HELP_5, reply_markup=keyboard
+        )
+        return await CallbackQuery.answer()
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer()
-    except:
-        pass
     if cb == "hb1":
         await CallbackQuery.edit_message_text(
             helpers.HELP_1, reply_markup=keyboard

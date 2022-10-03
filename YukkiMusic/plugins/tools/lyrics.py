@@ -13,15 +13,14 @@ import string
 
 import lyricsgenius as lg
 from pyrogram import filters
-from pyrogram.types import (InlineKeyboardButton,
-                            InlineKeyboardMarkup, Message)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import BANNED_USERS, lyrical
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.utils.decorators.language import language
 
-###Commands
+# Commands
 LYRICS_COMMAND = get_command("LYRICS_COMMAND")
 
 api_key = "Vd9FvPMOKWfsKJNG9RbZnItaTNIRFzVyyXFdrGHONVsGqHcHBoj3AI3sIlNuqzuf0ZNG8uLcF9wAd5DXBBnUzA"

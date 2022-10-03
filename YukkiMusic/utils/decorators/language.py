@@ -8,28 +8,30 @@
 # All rights reserved.
 
 
+import contextlib
+
 from strings import get_string
 from YukkiMusic.misc import SUDOERS
-from YukkiMusic.utils.database import (get_lang, is_commanddelete_on,
-                                       is_maintenance)
+from YukkiMusic.utils.database import (
+    get_lang,
+    is_commanddelete_on,
+    is_maintenance,
+)
 
 
 def language(mystic):
     async def wrapper(_, message, **kwargs):
-        if await is_maintenance() is False:
-            if message.from_user.id not in SUDOERS:
-                return await message.reply_text(
-                    "Bot is under maintenance. Please wait for some time..."
-                )
+        if await is_maintenance() is False and message.from_user.id not in SUDOERS:
+            return await message.reply_text(
+                "Bot is under maintenance. Please wait for some time..."
+            )
         if await is_commanddelete_on(message.chat.id):
-            try:
+            with contextlib.suppress(Exception):
                 await message.delete()
-            except:
-                pass
         try:
             language = await get_lang(message.chat.id)
             language = get_string(language)
-        except:
+        except Exception:
             language = get_string("en")
         return await mystic(_, message, language)
 
@@ -38,16 +40,15 @@ def language(mystic):
 
 def languageCB(mystic):
     async def wrapper(_, CallbackQuery, **kwargs):
-        if await is_maintenance() is False:
-            if CallbackQuery.from_user.id not in SUDOERS:
-                return await CallbackQuery.answer(
-                    "Bot is under maintenance. Please wait for some time...",
-                    show_alert=True,
-                )
+        if await is_maintenance() is False and CallbackQuery.from_user.id not in SUDOERS:
+            return await CallbackQuery.answer(
+                "Bot is under maintenance. Please wait for some time...",
+                show_alert=True,
+            )
         try:
             language = await get_lang(CallbackQuery.message.chat.id)
             language = get_string(language)
-        except:
+        except Exception:
             language = get_string("en")
         return await mystic(_, CallbackQuery, language)
 
@@ -59,7 +60,7 @@ def LanguageStart(mystic):
         try:
             language = await get_lang(message.chat.id)
             language = get_string(language)
-        except:
+        except Exception:
             language = get_string("en")
         return await mystic(_, message, language)
 

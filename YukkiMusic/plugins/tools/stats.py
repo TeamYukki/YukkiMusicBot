@@ -8,6 +8,7 @@
 # All rights reserved.
 
 import asyncio
+import contextlib
 import platform
 from sys import version as pyver
 
@@ -22,21 +23,27 @@ import config
 from config import BANNED_USERS, MUSIC_BOT_NAME
 from strings import get_command
 from YukkiMusic import YouTube, app
-from YukkiMusic.core.userbot import assistants
 from YukkiMusic.misc import SUDOERS, pymongodb
 from YukkiMusic.plugins import ALL_MODULES
-from YukkiMusic.utils.database import (get_global_tops,
-                                       get_particulars, get_queries,
-                                       get_served_chats,
-                                       get_served_users, get_sudoers,
-                                       get_top_chats, get_topp_users)
+from YukkiMusic.utils.database import (
+    get_global_tops,
+    get_particulars,
+    get_queries,
+    get_served_chats,
+    get_served_users,
+    get_sudoers,
+    get_top_chats,
+    get_topp_users,
+)
 from YukkiMusic.utils.decorators.language import language, languageCB
-from YukkiMusic.utils.inline.stats import (back_stats_buttons,
-                                           back_stats_markup,
-                                           get_stats_markup,
-                                           overallback_stats_markup,
-                                           stats_buttons,
-                                           top_ten_stats_markup)
+from YukkiMusic.utils.inline.stats import (
+    back_stats_buttons,
+    back_stats_markup,
+    get_stats_markup,
+    overallback_stats_markup,
+    stats_buttons,
+    top_ten_stats_markup,
+)
 
 loop = asyncio.get_running_loop()
 
@@ -53,9 +60,7 @@ STATS_COMMAND = get_command("STATS_COMMAND")
 )
 @language
 async def stats_global(client, message: Message, _):
-    upl = stats_buttons(
-        _, True if message.from_user.id in SUDOERS else False
-    )
+    upl = stats_buttons(_, message.from_user.id in SUDOERS)
     await message.reply_photo(
         photo=config.STATS_IMG_URL,
         caption=_["gstats_11"].format(config.MUSIC_BOT_NAME),
@@ -96,9 +101,8 @@ async def gstats_global(client, message: Message, _):
         for vidid, count in list_arranged.items():
             if vidid == "telegram":
                 continue
-            else:
-                videoid = vidid
-                co = count
+            videoid = vidid
+            co = count
             break
         return videoid, co
 
@@ -116,9 +120,7 @@ async def gstats_global(client, message: Message, _):
     ) = await YouTube.details(videoid, True)
     title = title.title()
     final = f"Top Most Played Track on {MUSIC_BOT_NAME}\n\n**Title:** {title}\n\nPlayed** {co} **times"
-    upl = get_stats_markup(
-        _, True if message.from_user.id in SUDOERS else False
-    )
+    upl = get_stats_markup(_, message.from_user.id in SUDOERS)
     await app.send_photo(
         message.chat.id,
         photo=thumbnail,
@@ -135,10 +137,8 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     what = callback_data.split(None, 1)[1]
     upl = back_stats_markup(_)
-    try:
+    with contextlib.suppress(Exception):
         await CallbackQuery.answer()
-    except:
-        pass
     mystic = await CallbackQuery.edit_message_text(
         _["gstats_3"].format(
             f"of {CallbackQuery.message.chat.title}"
@@ -230,7 +230,7 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
                 if extract is None:
                     continue
                 await asyncio.sleep(0.5)
-            except:
+            except Exception:
                 continue
             limit += 1
             msg += f"🔗`{extract}` played {count} times on bot.\n\n"
@@ -251,64 +251,6 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
         )
 
 
-@app.on_callback_query(filters.regex("TopOverall") & ~BANNED_USERS)
-@languageCB
-async def overall_stats(client, CallbackQuery, _):
-    callback_data = CallbackQuery.data.strip()
-    what = callback_data.split(None, 1)[1]
-    if what != "s":
-        upl = overallback_stats_markup(_)
-    else:
-        upl = back_stats_buttons(_)
-    try:
-        await CallbackQuery.answer()
-    except:
-        pass
-    await CallbackQuery.edit_message_text(_["gstats_8"])
-    served_chats = len(await get_served_chats())
-    served_users = len(await get_served_users())
-    total_queries = await get_queries()
-    blocked = len(BANNED_USERS)
-    sudoers = len(SUDOERS)
-    mod = len(ALL_MODULES)
-    assistant = len(assistants)
-    playlist_limit = config.SERVER_PLAYLIST_LIMIT
-    fetch_playlist = config.PLAYLIST_FETCH_LIMIT
-    song = config.SONG_DOWNLOAD_DURATION
-    play_duration = config.DURATION_LIMIT_MIN
-    if config.AUTO_LEAVING_ASSISTANT == str(True):
-        ass = "Yes"
-    else:
-        ass = "No"
-    cm = config.CLEANMODE_DELETE_MINS
-    text = f"""**Bot's Stats and Information:**
-
-**Imported Modules:** {mod}
-**Served Chats:** {served_chats} 
-**Served Users:** {served_users} 
-**Blocked Users:** {blocked} 
-**Sudo Users:** {sudoers} 
-    
-**Total Queries:** {total_queries} 
-**Total Assistants:** {assistant}
-**Auto Leaving Assistant:** {ass}
-**Cleanmode duration:** {cm} Mins
-
-**Play Duration Limit:** {play_duration} Mins
-**Song Download Limit:** {song} Mins
-**Bot's Server Playlist Limit:** {playlist_limit}
-**Playlist Play Limit:** {fetch_playlist}"""
-    med = InputMediaPhoto(media=config.STATS_IMG_URL, caption=text)
-    try:
-        await CallbackQuery.edit_message_media(
-            media=med, reply_markup=upl
-        )
-    except MessageIdInvalid:
-        await CallbackQuery.message.reply_photo(
-            photo=config.STATS_IMG_URL, caption=text, reply_markup=upl
-        )
-
-
 @app.on_callback_query(filters.regex("bot_stats_sudo"))
 @languageCB
 async def overall_stats(client, CallbackQuery, _):
@@ -318,13 +260,10 @@ async def overall_stats(client, CallbackQuery, _):
         )
     callback_data = CallbackQuery.data.strip()
     what = callback_data.split(None, 1)[1]
-    if what != "s":
-        upl = overallback_stats_markup(_)
-    else:
-        upl = back_stats_buttons(_)
+    upl = overallback_stats_markup(_) if what != "s" else back_stats_buttons(_)
     try:
         await CallbackQuery.answer()
-    except:
+    except Exception:
         pass
     await CallbackQuery.edit_message_text(_["gstats_8"])
     sc = platform.system()
@@ -340,7 +279,7 @@ async def overall_stats(client, CallbackQuery, _):
             cpu_freq = f"{round(cpu_freq / 1000, 2)}GHz"
         else:
             cpu_freq = f"{round(cpu_freq, 2)}MHz"
-    except:
+    except Exception:
         cpu_freq = "Unable to Fetch"
     hdd = psutil.disk_usage("/")
     total = hdd.total / (1024.0**3)
@@ -383,10 +322,10 @@ async def overall_stats(client, CallbackQuery, _):
 **Storage Used:** {used[:4]} GiB
 **Storage Left:** {free[:4]} GiB
 
-**Served Chats:** {served_chats} 
-**Served Users:** {served_users} 
-**Blocked Users:** {blocked} 
-**Sudo Users:** {sudoers} 
+**Served Chats:** {served_chats}
+**Served Users:** {served_users}
+**Blocked Users:** {blocked}
+**Sudo Users:** {sudoers}
 
 **Mongo Uptime:** {mongouptime[:4]} Days
 **Total DB Size:** {datasize[:6]} Mb
@@ -415,7 +354,7 @@ async def overall_stats(client, CallbackQuery, _):
 async def back_buttons(client, CallbackQuery, _):
     try:
         await CallbackQuery.answer()
-    except:
+    except Exception:
         pass
     command = CallbackQuery.matches[0].group(1)
     if command == "TOPMARKUPGET":

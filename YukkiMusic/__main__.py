@@ -8,6 +8,7 @@
 # All rights reserved.
 
 import asyncio
+import contextlib
 import importlib
 import sys
 
@@ -43,18 +44,16 @@ async def init():
         LOGGER("YukkiMusic").warning(
             "No Spotify Vars defined. Your bot won't be able to play spotify queries."
         )
-    try:
+    with contextlib.suppress(Exception):
         users = await get_gbanned()
         for user_id in users:
             BANNED_USERS.add(user_id)
         users = await get_banned_users()
         for user_id in users:
             BANNED_USERS.add(user_id)
-    except:
-        pass
     await app.start()
     for all_module in ALL_MODULES:
-        importlib.import_module("YukkiMusic.plugins" + all_module)
+        importlib.import_module(f"YukkiMusic.plugins{all_module}")
     LOGGER("Yukkimusic.plugins").info(
         "Successfully Imported Modules "
     )
@@ -69,7 +68,7 @@ async def init():
             "[ERROR] - \n\nPlease turn on your Logger Group's Voice Call. Make sure you never close/end voice call in your log group"
         )
         sys.exit()
-    except:
+    except Exception:
         pass
     await Yukki.decorators()
     LOGGER("YukkiMusic").info("Yukki Music Bot Started Successfully")

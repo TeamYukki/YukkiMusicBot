@@ -94,7 +94,7 @@ async def varsFunc(client, message):
 `DURATION_LIMIT` : **{play_duration} min**
 `SONG_DOWNLOAD_DURATION_LIMIT` :** {song} min**
 `OWNER_ID` : **{owner_id}**
-    
+
 **<u>Custom Repo Vars:</u>**
 `UPSTREAM_REPO` : **{up_r}**
 `UPSTREAM_BRANCH` : **{up_b}**
