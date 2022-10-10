@@ -17,14 +17,14 @@ from pyrogram import filters
 load_dotenv()
 
 # Get it from my.telegram.org
-API_ID = int(getenv("API_ID", ""))
-API_HASH = getenv("API_HASH")
+API_ID = int(getenv("API_ID", "13791948"))
+API_HASH = getenv("API_HASH "b4534a8924232e4c6bd171da36251094")
 
 ## Get it from @Botfather in Telegram.
-BOT_TOKEN = getenv("BOT_TOKEN")
+BOT_TOKEN = getenv("BOT_TOKEN"5544474027:AAG4gH91He35vMs4LMZfu_aqAhXneGzeALA")
 
 # Database to save your chats and stats... Get MongoDB:-  https://telegra.ph/How-To-get-Mongodb-URI-04-06
-MONGO_DB_URI = getenv("MONGO_DB_URI", None)
+MONGO_DB_URI = getenv("MONGO_DB_URI", mongodb+srv://ziddiboy1763:ziddiboy1763@cluster0.ilw31mx.mongodb.net/?retryWrites=true&w=majority)
 
 # Custom max audio(music) duration for voice chat. set DURATION_LIMIT in variables with your own time(mins), Default to 60 mins.
 DURATION_LIMIT_MIN = int(
@@ -37,21 +37,21 @@ SONG_DOWNLOAD_DURATION = int(
 )  # Remember to give value in Minutes
 
 # You'll need a Private Group ID for this.
-LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", ""))
+LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1001521543298"))
 
 # A name for your Music bot.
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME"˚₊· ͟͟͞͞➳❥𝙏𝙐𝙎𝙃𝘼𝙍 𝙈𝙐𝙎𝙄𝘾 𝘽𝙊𝙏˚₊· ͟͟͞͞➳❥")
 
 # Your User ID.
 OWNER_ID = list(
-    map(int, getenv("OWNER_ID", "").split())
+    map(int, getenv("OWNER_ID", "5099353600").split())
 )  # Input type must be interger
 
 # Get it from http://dashboard.heroku.com/account
-HEROKU_API_KEY = getenv("HEROKU_API_KEY")
+HEROKU_API_KEY = getenv("HEROKU_API_KEY"8d5dcd4b-cd31-4805-963e-6d4f1270411b")
 
 # You have to Enter the app name which you gave to identify your  Music Bot in Heroku.
-HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
+HEROKU_APP_NAME = getenv("HEROKU_APP_NAME"tushar")
 
 # For customized or modified Repository
 UPSTREAM_REPO = getenv(
@@ -61,7 +61,7 @@ UPSTREAM_REPO = getenv(
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 
 # GIT TOKEN ( if your edited repo is private)
-GIT_TOKEN = getenv("GIT_TOKEN", None)
+GIT_TOKEN = getenv("GIT_TOKEN", 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)
 
 # Only  Links formats are  accepted for this Var value.
 SUPPORT_CHANNEL = getenv(
@@ -135,7 +135,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(
 
 
 # You'll need a Pyrogram String Session for these vars. Generate String from our session generator bot @YukkiStringBot
-STRING1 = getenv("STRING_SESSION", None)
+STRING1 = getenv("STRING_SESSION", None"BQBvcMSmhaCOPRLdDE1hkdPprx7NtyAVXilPAtzOd4po88j5hODadkSYeXTJ7DN5wPy-YjuO3-TDsEih5Iw35usURUMtuhh_twY0nIGSQZzHUOiPoG_fXLQfhVmoUrg_cDwsbnl2JUf4nbGJ9BhGPqwCIXpq14akIwb6AE3o2VUqAGY80u231Yvfbkosx06HKDpaOIgKBfLRv-tB_W0z-i44oGKr78UdAZrAKZHvTZvrvCeJyfN9fQZCxL4QOZlQH7QybLyhYuWEmKKlmGTR0TNaRPjgkmoSYgmL61zifIH0IBu1QJE6LqcWR4fB18XIdTCBcagi5dGOQNLdaskAKKECAAAAASqzGZ8A")
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
