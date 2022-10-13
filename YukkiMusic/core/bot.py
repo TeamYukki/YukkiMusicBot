@@ -8,8 +8,9 @@
 # All rights reserved.
 
 import sys
-
 from pyrogram import Client, enums
+from pyrogram import Client
+from pyrogram.types import BotCommand
 
 import config
 
@@ -40,6 +41,19 @@ class YukkiBot(Client):
                 "Bot has failed to access the log Group. Make sure that you have added your bot to your log channel and promoted as admin!"
             )
             sys.exit()
+        try:
+            await self.set_bot_commands([
+    BotCommand("ping", "Check that bot is alive or dead"),
+    BotCommand("play", "Starts playing the requested song"),
+    BotCommand("skip", "Moves to the next track in queue"),
+    BotCommand("pause", "Pause the current playing song"),
+    BotCommand("resume", "Resume the paused song"),
+    BotCommand("end", "Clear the queue and leave voice chat"),
+    BotCommand("shuffle", "Randomly shuffles the queued playlist."),
+    BotCommand("playmode", "Allows you to change the default playmode for your chat"),
+    BotCommand("settings", "Open the settings of the music bot for your chat.")])
+        except:
+            pass
         a = await self.get_chat_member(config.LOG_GROUP_ID, self.id)
         if a.status != enums.ChatMemberStatus.ADMINISTRATOR:
             LOGGER(__name__).error(
