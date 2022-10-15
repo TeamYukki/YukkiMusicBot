@@ -44,14 +44,15 @@ Config vars are basically the variables which configure or modify bot to functio
 
 - These all vars are used for setting up bot. You can edit these vars if you want , else leave all of them as it is.
 
-1. `PRIVATE_BOT_MODE` : Set it true if you want your bot to be private only or False for all groups. Default to False
+1. `PRIVATE_BOT_MODE` : Set it `True` if you want your bot to be private only or False for all groups. Default to False
 2. `YOUTUBE_EDIT_SLEEP` : Time sleep duration For Youtube Downloader. Default to 3 seconds
 3. `TELEGRAM_EDIT_SLEEP` : Time sleep duration For Telegram Downloader. Default to 5 seconds
-4. `AUTO_LEAVING_ASSISTANT` : Set it in True if you want to leave your assistant after a certain amount of time.
+4. `AUTO_LEAVING_ASSISTANT` : Set it in `True` if you want to leave your assistant after a certain amount of time.
 5. `ASSISTANT_LEAVE_TIME` : Time after which your assistant account will leave served chats automatically. Default to 5400 seconds, i.e 90 Mins
-6. `AUTO_DOWNLOADS_CLEAR` : Set it True if you want to delete downloads after the music playout ends. 
-7. `AUTO_SUGGESTION_MODE` : Set it True if you want to bot to suggest about bot commands to random chats of your bots. 
+6. `AUTO_DOWNLOADS_CLEAR` : Set it `True` if you want to delete downloads after the music playout ends. 
+7. `AUTO_SUGGESTION_MODE` : Set it `True` if you want to bot to suggest about bot commands to random chats of your bots. 
 9. `AUTO_SUGGESTION_TIME` : Time after which your bot will suggest random 1/10 chats of your served chats about bot commands. Default to 5400 seconds, i.e 90 Mins
+10. `SET_CMDS` : Set it to `True` if you want your bot to set the commands for chat menu automatically. [Reference](https://i.postimg.cc/Bbg3LQTG/image.png)
 
 ## Spotify Vars
 

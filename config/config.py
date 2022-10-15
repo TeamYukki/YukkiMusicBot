@@ -133,6 +133,9 @@ TG_VIDEO_FILESIZE_LIMIT = int(
 
 # Chceckout https://www.gbmb.org/mb-to-bytes  for converting mb to bytes
 
+# If you want your bot to setup the commands automatically in the bot's menu set it to true.
+# Refer to https://i.postimg.cc/Bbg3LQTG/image.png
+SET_CMDS = getenv("SET_CMDS", False)
 
 # You'll need a Pyrogram String Session for these vars. Generate String from our session generator bot @YukkiStringBot
 STRING1 = getenv("STRING_SESSION", None)
