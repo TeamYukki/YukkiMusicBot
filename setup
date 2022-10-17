@@ -66,7 +66,7 @@ packages(){
 node(){
 	command -v npm &>/dev/null && return
 	pprint "Installing Nodejs and Npm..  "
-	curl -fssL https://deb.nodesource.com/setup_17.x | sudo -E bash - &>nodelog.txt &&
+	curl -fssL https://deb.nodesource.com/setup_18.x | sudo -E bash - &>nodelog.txt &&
 	sudo apt install nodejs -y &>>nodelog.txt &&
 	sudo npm i -g npm &>>nodelog.txt &&
 	pprint "SUCCESS!\n" "cgreen" || (pprint "FAIL.\n" "cred"; exit 1)
@@ -115,7 +115,7 @@ pprint "\nMONGO DB URI: "; color_reset; read mongo_db
 pprint "\nLOG GROUP ID: "; color_reset; read logger
 pprint "\nPYROGRAM STRING SESSION OF ASSISTANT ACCOUNT: "; color_reset; read string_session
 pprint "\nMUSIC BOT NAME: "; color_reset; read mbt
-pprint "\nOwner Id:"; color_reset; read ownid
+pprint "\nOWNER ID:"; color_reset; read ownid
 
 pprint "\n\nProcessing your vars, Wait a while!" "cgreen"
 
