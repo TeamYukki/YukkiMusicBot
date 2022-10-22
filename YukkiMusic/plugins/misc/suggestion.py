@@ -72,7 +72,7 @@ async def dont_do_this():
                             clean[x] = []
                         time_now = datetime.now()
                         put = {
-                            "msg_id": sent.message_id,
+                            "msg_id": sent.id,
                             "timer_after": time_now
                             + timedelta(
                                 minutes=config.CLEANMODE_DELETE_MINS

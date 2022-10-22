@@ -13,6 +13,7 @@ import re
 import yt_dlp
 from pykeyboard import InlineKeyboard
 from pyrogram import filters
+from pyrogram.enums import ChatAction
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup, InputMediaAudio,
                             InputMediaVideo, Message)
@@ -32,7 +33,6 @@ SONG_COMMAND = get_command("SONG_COMMAND")
 @app.on_message(
     filters.command(SONG_COMMAND)
     & filters.group
-    & ~filters.edited
     & ~BANNED_USERS
 )
 @language
@@ -56,7 +56,6 @@ async def song_commad_group(client, message: Message, _):
 @app.on_message(
     filters.command(SONG_COMMAND)
     & filters.private
-    & ~filters.edited
     & ~BANNED_USERS
 )
 @language
@@ -273,7 +272,7 @@ async def song_download_cb(client, CallbackQuery, _):
         await mystic.edit_text(_["song_11"])
         await app.send_chat_action(
             chat_id=CallbackQuery.message.chat.id,
-            action="upload_video",
+            action=ChatAction.UPLOAD_VIDEO,
         )
         try:
             await CallbackQuery.edit_message_media(media=med)
@@ -302,7 +301,7 @@ async def song_download_cb(client, CallbackQuery, _):
         await mystic.edit_text(_["song_11"])
         await app.send_chat_action(
             chat_id=CallbackQuery.message.chat.id,
-            action="upload_audio",
+            action=ChatAction.UPLOAD_AUDIO,
         )
         try:
             await CallbackQuery.edit_message_media(media=med)

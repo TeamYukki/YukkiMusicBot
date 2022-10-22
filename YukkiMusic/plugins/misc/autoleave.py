@@ -11,6 +11,7 @@ import asyncio
 from datetime import datetime
 
 import config
+from pyrogram.enums import ChatType
 from YukkiMusic import app
 from YukkiMusic.core.call import Yukki, autoend
 from YukkiMusic.utils.database import (get_client, is_active_chat,
@@ -28,12 +29,12 @@ async def auto_leave():
                 client = await get_client(num)
                 left = 0
                 try:
-                    async for i in client.iter_dialogs():
+                    async for i in client.get_dialogs():
                         chat_type = i.chat.type
                         if chat_type in [
-                            "supergroup",
-                            "group",
-                            "channel",
+                            ChatType.SUPERGROUP,
+                            ChatType.GROUP,
+                            ChatType.CHANNEL,
                         ]:
                             chat_id = i.chat.id
                             if (
