@@ -76,7 +76,7 @@ node(){
 repo(){
 	# Get git repo if the installer is runned standalone
 	[[ ! "YukkiMusicBot" == $(basename -s .git `git config --get remote.origin.url`) ]] &&
-	git clone https://github.com/notreallyshikhar/YukkiMusicBot &&  cd YukkiMusicBot
+	git clone https://github.com/TeamYukki/YukkiMusicBot &&  cd YukkiMusicBot
 }
 
 
@@ -134,4 +134,4 @@ OWNER_ID = $ownid""" > .env
 clear
 pprint "\n\n\nYour Vars have been saved Successfully!, Thanks for using Yukki Installer, now you can proceed by starting the bot with bash start!"
 pprint "\n\n\nWant more vars?"
-pprint "\nCheckout config.py and readme.md inside config folder for addtional vars. You can change all images , Thumbs, mode and everything from vars. Have a look towards them\n\n"
+pprint "\nCheckout config.py and README.md inside config folder for addtional vars. You can change all images , thumbnails, mode and everything from vars. Have a look towards them\n\n"
