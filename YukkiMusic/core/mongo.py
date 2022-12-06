@@ -29,7 +29,7 @@ if config.MONGO_DB_URI is None:
         api_hash=config.API_HASH,
     )
     temp_client.start()
-    info = temp_client.get_me()
+    info = temp_client.me
     username = info.username
     temp_client.stop()
     _mongo_async_ = _mongo_client_(TEMP_MONGODB)
