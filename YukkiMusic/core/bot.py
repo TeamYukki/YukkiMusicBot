@@ -29,7 +29,7 @@ class YukkiBot(Client):
 
     async def start(self):
         await super().start()
-        get_me = await self.get_me()
+        get_me = self.me
         self.username = get_me.username
         self.id = get_me.id
         try:
