@@ -1,0 +1,472 @@
+name : 🇧🇷 Português 
+
+# General Strings
+general_1 : "Responda à mensagem de um usuário ou forneça o nome de usuário/user_id."
+general_2 : "Erro! Uso incorreto do comando."
+general_3 : "Ocorreu alguma exceção durante o processamento de seu pedido.\n\nTipo de Exceção:- {0}"
+general_4 : "Você é um administrador anônimo neste grupo!\nReverta para conta de usuário com direitos de administrador."
+general_5 : "Você precisa ser administrador com direitos de gerenciamento de chat de  voz para executar esta ação."
+general_6 : "Bot não está transmitindo no chat de voz."
+
+# Classes - Telegram.py
+tg_1 : "Bot está sobrecarregado com downloads agora.\n\n**Tente depois:** {0} (__tempo esperado__)"
+tg_2 : "Falha ao baixar a mídia do Telegram."
+
+# Core - Call.py
+call_1 : "O bot requer permissão de administrador para convidar a conta do assistente para o seu canal."
+call_2 : "O assistente foi banido do seu grupo ou canal, cancele o banimento.\n\n** Nome de usuário:** @{0}\n**ID do assistente:** {1}"
+call_3 : "Ocorreu uma exceção ao convidar o assistente para o seu chat.\n\n**Razão**: {0}"
+call_4 : "Bot requer permissão de convidar via link para convidar a conta do assistente para o seu grupo."
+call_5 : "O assistente entrará em 5 segundos. Aguarde!"
+call_6 : "Conta do Assistente[{0}] entrou com sucesso.\n\nComeçando a música agora"
+call_7 : "**Direito de administração prejudicial concedido \n\nRemova os direitos de BAN USERS** do bot."
+call_8 : "**Direito de administração prejudicial concedido \n\nPor favor, remova os direitos adicionar novos administradores** do bot."
+call_9 : "**Falha ao alternar o fluxo**\nPor favor, use /skip para mudar de faixa novamente."
+call_10 : "Baixando a próxima faixa da lista de reprodução"
+call_11 : "Por favor adicione @{0} no seu canal[ ID: {1}].\n\nO bot não consegue obter detalhes do canal."
+
+# PLUGINS - Auth.py
+auth_1 : "Você só pode ter 20 usuários na lista de usuários autorizados do seu grupo (AUL)"
+auth_2 : "Adicionado à lista de usuários autorizados do seu grupo."
+auth_3 : "Já na Lista de Usuários Autorizados."
+auth_4 : "Removido da lista de usuários autorizados deste grupo."
+auth_5 : "O usuário alvo não é um usuário autorizado."
+auth_6 : "Buscando usuários autorizados... Aguarde"
+auth_7 : "**Lista de usuários autorizados[AUL]:**\n\n"
+auth_8 : "┗ Adicionado por:-"
+
+# PLUGINS - Admins
+admin_1 : "A música já está pausada."
+admin_2 : "🎧 Chat de voz pausado por {}!"
+admin_3 : "A música já foi retomada."
+admin_4 : "🎧 Chat de voz retomado por {}!"
+admin_5 : "A música já está sem som."
+admin_6 : "🎧 Chat de voz mutado por {}!"
+admin_7 : "A música já está com som."
+admin_8 : "🎧 Chat de voz desmutado por {}!"
+admin_9 : "🎧 Chat de voz finalizado/interrompido por {}!"
+admin_10 : "🎧 Chat de voz ignorado por {}!. Não há mais música na fila."
+admin_11 : "Erro ao alterar o fluxo para {0}\n\n por favor  use /skip novamente."
+admin_12 : "Não é possível pular para uma faixa específica devido à reprodução em loop habilitada. Por favor, desabilite a reprodução em loop via /loop disable para usar este recurso."
+admin_13 : "Use números numéricos para faixas específicas, como 1, 2 ou 4 etc"
+admin_14 : "Pelo menos 2 faixas necessárias na fila para pular para um número específico. verificar fila em /queue"
+admin_15 : "Não há faixas suficientes na fila para o valor fornecido por você. Por favor, escolha números entre 1 e {0}"
+admin_16 : "Falha ao pular para uma faixa específica.\n\nVerifique a fila em /queue"
+admin_17 : "{0}.. Por favor, aguarde"
+admin_18 : "Lista de administradores não encontrada\n\nPor favor, recarregue a lista de administradores via /admincache ou /reload"
+admin_19 : "Você precisa ser administrador com direitos de gerenciamento de chat de  voz para fazer isso.\nSe você já é administrador, recarregue admincache via /admincache "
+admin_20 : "O cache do administrador foi recarregado com sucesso."
+admin_21 : "Nada dentro da fila para embaralhar"
+admin_22 : "Falha ao embaralhar.\n\nverificar fila : /queue"
+admin_23 : "**Fila embaralhada por {0}**\n\nVerifique a fila embaralhada : /queue"
+admin_24 : "**Uso:**\n/loop [enable/disable] ou [Número entre 1-10]\n\n**Examplo:** /loop 5"
+admin_25 : "Loop ativado por {0} por {1} vezes. O bot agora repetirá a música que está tocando no chat de voz por {1} vezes"
+admin_26 : "Por favor, use números entre 1-10 para reprodução em loop"
+admin_27 : "O Loop Play foi desativado"
+admin_28 : "**Uso:**\n/seek or /seekback [Duração em segundos]"
+admin_29 : "Use segundos de duração numérica como 10-20-30 segundos para buscar"
+admin_30 : "Desculpe, mas você não pode buscar o stream que está sendo reproduzido. Ele só pode ser ignorado ou interrompido."
+admin_31 : "Bot não é capaz de buscar devido à alta duração dada. Você precisa procurar uma duração menor e lembrar que resta um tempo de 10 segundos após a busca.\n\nTocando atualmente** {0}** mins  de {1} mins"
+admin_32 : "Aguarde... Buscando transmissão em andamento."
+admin_33 : "Transmissão marcada com sucesso para {0} Mins"
+admin_34 : "Falha ao marcar o fluxo atual."
+
+# Bot 
+
+# Start
+start_1 : "Agradeço por me receber {0}.\n{1} Está vivo.\n\nPara qualquer assistência ou ajuda, confira nosso grupo de suporte e canal."
+start_2 : "Olá meu nome é {0}.\n\nSou um bot de streaming no Telegram com alguns recursos úteis. Suporto plataformas como Youtube, Spotify, Resso, AppleMusic, Soundcloud etc.\n\nFique a vontade para me adicionar em seus grupos."
+start_3 : "Bem-vindo ao {0}\n\nNão preciso de nenhuma permissão de administrador para trabalhar (até que seja solicitado ).\n\nUsername do assistente:- @{1}\nID do assistente:- {2}"
+start_4 : "{0}'s Proprietário[{1}] acabou de entrar no seu chat."
+start_5 : "Um membro de {0}'s Usuário Sudo[{1}] acabou de entrar no seu chat."
+start_6 : "❗️ Supergrupo necessário ❗️\n\nPor favor, converta seu grupo em supergrupo e depois me adicione de volta.\n\n**Como fazer um supergrupo?**\n✅ Torne o histórico de bate-papo do seu grupo visível uma vez."
+start_7 : "**Bate-papo na lista negra**\n\nSeu chat foi colocado na lista negra pelo Bot. Por favor, peça a qualquer SudoUser para colocar o chat na lista de permissões primeiro. Verifique [Sudolist daqui]({0})"
+
+# Help
+help_1 : "Clique nos botões abaixo para mais informações. Se você estiver enfrentando algum problema no comando, entre em contato com o proprietário do bot ou pergunte no chat de suporte.\n\nTodos os comandos podem ser usados ​​com: /"
+help_2 : "me chame no privado para receber ajuda"
+
+# Settings
+setting_1 : "⚙️ Configurações de música do bot\n\n🖇**Grupo:** {0}\n🔖** ID do Grupo:** {1}\n\n💡**Escolha os botões de função abaixo que você deseja editar ou alterar.**"
+setting_3 : "⁉️ O que é isso?\n\n1) Direto: Reproduz consultas de pesquisa diretamente. Use -v para reproduzir vídeos no modo direto.\n\n2) Inline: Retorna os botões de marcação inline para escolher entre vídeo e áudio."
+setting_4 : "⁉️ O que é isso?\n\n👥 Todos: Qualquer pessoa pode usar os comandos administrativos (pular, pausar, retomar, etc.) presentes neste grupo.\n\n🙍 Somente administrador: Somente administradores e usuários autorizados podem usar comandos administrativos."
+setting_5 : "Nenhum usuário autorizado encontrado\n\nVocê pode permitir que qualquer não administrador use meus comandos de administrador com /auth e exclua usando /unauth"
+setting_9 : "⁉️ O que é isso?\n\nQuando ativado, o Bot excluirá sua mensagem após {0} para tornar seu bate-papo limpo e claro."
+setting_10 : "⁉️ O que é isso?\n\n1) Grupo: Toca música no grupo onde o comando é dado .\n\n2) Canal: Reproduz música no canal que você deseja. Definir ID do canal via /channelplay"
+setting_11 : "⁉️ O que é isso?\n\n1) Todos: Qualquer pessoa presente neste grupo pode tocar música aqui.\n\n2) somente administradores : Somente administradores podem reproduzir músicas neste grupo."
+setting_12 : "❌ Você não tem ID de canal definido para o modo de canal. Por favor, defina com /channelplay."
+setting_13 : "Não é possível alterar o modo de reprodução na chamada em grupo ativa. Por favor, pare o chat de voz primeiro com /stop."
+setting_14 : "⁉️ O que é isso?\n\nQuando ativado, o Bot irá deletar seus comandos executados (/play, /pause, /shuffle, /stop etc) imediatamente.\n\nO bot exigirá o direito de excluir mensagens do administrador para que isso funcione corretamente."
+setting_15 : "Falha ao resolver o par, certifique-se de ter adicionado o bot em seu canal e promovido como administrador.\n\nTente configurar /channelplay novamente.."
+setting_16 : "⁉️ O que é isso?\n\nQuando ativado, o Bot irá sugerir no chat a cada 1-2 horas sobre os comandos do bot (como usá-los, quais são os comandos e muitas outras coisas) aleatoriamente."
+
+
+set_cb_1 : "Obtendo painel de qualidade de áudio..."
+set_cb_2 : "Obtendo painel de qualidade de vídeo..."
+set_cb_3 : "Obtendo o painel de usuários autorizados..."
+set_cb_4 : "Obtendo o painel do modo de reprodução..."
+set_cb_5 : "Obtendo o painel do modo limpo..."
+set_cb_6 : "Configurando mudanças."
+set_cb_7 : "Obtendo a lista de usuários autorizados.. AGUARDE."
+set_cb_8 : "Voltando.."
+
+# Misc
+ustats_1 : "Nenhuma estatística de usuário encontrada."
+ustats_2 : "Saudações!, Você tocou {0} faixas até agora com uma contagem  de {1} vezes.\n\nTop {2} tocadas por você:\n\n"
+
+gstats_1 : "Obtendo estatísticas globais, isso pode levar algum tempo..."
+gstats_2 : "Nenhuma estatística encontrada."
+gstats_3 : "Obtendo o Top 10 Global {0} no bot, isso pode levar algum tempo.."
+gstats_4 : "**Total de consultas no bot:** {0}\n\n{1}  tocou{2} faixas até agora com uma contagem enorme de {3} vezes.\n\n**Top {4} Faixas:**\n"
+gstats_5 : "**Top {0} Chats de {1}:**\n\n"
+gstats_6 : "**Top {0} Usuários de {1}:**\n\n"
+gstats_7 : "Este grupo reproduziu {0} faixas até agora com uma contagem  de {1} vezes.\n\nTop {2} tocadas nesse grupo:\n\n"
+gstats_8 : "Obtendo as estatísticas e informações gerais do Bot.. Isso pode levar algum tempo..."
+gstats_9 : "**TOP 10 ESTATÍSTICAS GLOBAIS DO BOT**\n\nSelecione os botões abaixo para os quais você deseja verificar as estatísticas globais dos servidores do bot."
+gstats_10 : "**Estatísticas globais de {0}**\n\nSelecione os botões abaixo para os quais você deseja verificar as estatísticas globais dos servidores do bot."
+gstats_11 : "**Estatísticas Gerais de {0}**\nSelecione os botões abaixo para os quais você deseja verificar as estatísticas globais dos servidores do bot.\n\nPara verificar as principais faixas, chats, usuários e outras coisas, por favor use /gstats"
+
+
+# Play 
+
+#Play Callback 
+playcb_1 : "This is not for you! Search You Own Song."
+playcb_2 : "Getting Next Result"
+
+# Channel Play
+cplay_1 : "You can play music in channels from this chat[{0}] to any channel or your chat's linked channel.\n\n**For linked channel:**\n/{1} linked\n\n**For any other channel:**\n/{1} [Channel ID]"
+cplay_2 : "This chat has no linked channel."
+cplay_3 : "Channel Defined to {0}\n\n__Channel ID__: {1}"
+cplay_4 : "Failed to get channel.\n\nMake sure you have added bot in your channel and promoted it as admin.\nEdit or Change channel via /channelplay"
+cplay_5 : "Only Channels are supported."
+cplay_6 : "You need to be the Owner of the channel[{0}] to connect it with this group.\n**Channel's Owner:** @{1}\n\nAlternatively you can link your group to that channel and then try connnecting with /channelplay linked"
+
+#Play
+play_1 : "🔄 Processando Pedido... Aguarde!"
+play_2 : "**🏷Modo de Reprodução de Canal**\n\n🔄 Processando Pedido... Aguarde!\n**canal vinculado:** {0}"
+play_3 : "Falha ao processar o pedido!"
+play_4 : "🖇 Só Administradores Tocam\nSomente administradores e usuários autorizados podem tocar música neste grupo.\n\nMudar modo via /playmode e se você já é administrador, recarregue admincache via /admincache"
+play_5 : "Falha ao processar arquivo de áudio.\n\nO tamanho do arquivo de áudio deve ser menor que 100 mb"
+play_6 : "**Limite de duração excedido**\n\n**Duração permitida: {0} minuto(s)\nDuração recebida:** {1} hora(s)"
+play_7 : "Desculpe! O bot permite apenas um número limitado de chamadas de vídeo devido a problemas de sobrecarga da CPU. Muitos outros chats estão usando videochamadas no momento. Tente mudar para áudio ou tente novamente mais tarde"
+play_8 : "Não é uma extensão de arquivo de vídeo válida!\n\n**Formatos Suportados:** {0}"
+play_9 : "O tamanho do arquivo de vídeo deve ser menor que 1 GB"
+play_10 : "**Lista de reprodução do Youtube**\n\nSelecione o modo no qual deseja reproduzir toda a lista de reprodução do Youtube"
+play_11 : "📎 Título: {0}\n\n⏳ Duração: {1} Mins"
+play_12 : "**Modo de reprodução do Spotify**\n\n pedido por:- {0}"
+play_13 : "**Listas de reprodução da Apple**\n\nPedido por:- {0}"
+play_14 : "**Não foi possível verificar o URL.**\nO bot se pergunta se esta url pertence a alguma das seguintes plataformas: Youtube, AppleMusic, Spotify, Resso e Soundcloud.\n\nVocê pode usar /stream para M3u8 ou links remotos."
+play_15 : "**Transmissão ao vivo detectada**\n\nO sistema detectou o link da sua faixa como transmissão ao vivo. Quer reproduzir essa transmissão?"
+play_16 : "Falha ao buscar os detalhes da faixa. Tente jogar qualquer outro."
+play_17 : "Não é possível reproduzir este tipo de pedido do  Spotify!\n\nSó consigo reproduzir faixas, álbuns, artistas e listas de reprodução do spotify"
+play_18 : "**Nenhum chat de voz ativo encontrado**\n\nPara usar o reprodução imediata, deve haver um chat de voz ativo em seu grupo. O Force Play interrompe a reprodução da faixa no chat de  voz e começa a reproduzir a faixa pesquisada instantaneamente sem perturbar/limpar."
+
+
+#Playlist
+playlist_1 : "**Uso:** /play [Nome da música ou link do Youtube ou responder ao áudio]\n\nSe você quiser tocar a lista de reprodução do servidor do Bot! Pressione o botão abaixo."
+playlist_2 : "Obtendo sua lista de reprodução. por favor aguarde"
+playlist_3 : "Você não tem lista de reprodução no servidor do Bot."
+playlist_4 : "lista de reprodução buscada:\n\n"
+playlist_5 :  "    Duração- {0} Mins"
+playlist_6 : "Entre em contato comigo no privado para exclusão de listas de reprodução."
+playlist_7 : "Faixas dentro da lista de reprodução: {0}\n\nPressione os botões para excluir uma faixa específica da sua lista de reprodução.\n\nPara excluir toda a lista de reprodução: Pressione o botão Del Whole Playlist."
+playlist_8 : "Já existe\n\nEsta faixa existe na sua lista de reprodução."
+playlist_9 : "Desculpe! Você só pode ter {0} músicas em uma lista de reprodução."
+playlist_10 : "Adição à lista de reprodução\n\n{0}\nadicionado à sua lista de reprodução."
+playlist_11 : "Sua faixa foi excluída com sucesso."
+playlist_12 : "Falha ao excluir sua faixa."
+playlist_13 : "Excluiu todas as suas listas de reprodução do servidor. "
+playlist_14 : "**Tem certeza de que deseja excluir toda a sua lista de reprodução?**\n\nVocê perderá sua lista de reprodução e ela não poderá ser recuperada posteriormente."
+playlist_15 : "[Confira toda a lista de reprodução]({0})"
+playlist_16 : "lista de reprodução na fila:"
+playlist_17 : "Posição na Fila-"
+playlist_18 : "[Confira toda a lista de reprodução na fila]({0})\n\nÚltima posição na fila : {1}"
+
+#Playmode
+playmode_1 : "Selecione o modo em que deseja tocar as consultas dentro do seu grupo[{0}]."
+playmode_2 : "Configurações alteradas e salvas com sucesso por {0}"
+
+#Stream 
+str_1 : "Forneça links M3u8 ou links de índice."
+str_2 : "✅ Transmissão válida verificada\n\nAguarde o processamento do link.."
+str_3 : "Não é possível transmitir transmissões ao vivo do YouTube. Nenhum formato ao vivo encontrado"
+
+#TopPlay
+tracks_1 : "**Processando {0} Top 10 Playlist**\nIsso pode levar alguns minutos (cerca de 3-4 minutos).. Por favor, aguarde...\n\n**👤 pedido por:** {1}\n\nConfira as 10 melhores faixas em /gstats"
+tracks_2 : "**Erro**\n\nNão há {0} Top 10 Lista de reprodução nos servidores do bot. Tente qualquer outra lista de reprodução"
+
+# TOOLS
+
+#Lyrics
+lyrics_1 : "**Uso:**\n\n/lyrics [ nome da música]"
+lyrics_2 : "procurando letras"
+lyrics_3 : "❌ Falha ao buscar letras😭.\n\n💡**Tentei pesquisar por:** {0}"
+lyrics_4 : "Clique no botão abaixo e obtenha as letras pesquisadas para evitar longas pesquisas de letras de tipos diversos ."
+
+#Ping
+ping_1 : "Pong!!!!"
+ping_2 : "{0} está funcionando bem com um ping de {1} ms.\n\nO tempo de atividade do bot é {2} e usou um total de {3} armazenamento do servidor. A carga da CPU é de aproximadamente {4} com um consumo de {5} Ram. O cliente Py-Tgcalls também está tendo um bom ping de {6} ms."
+
+
+# Song
+song_1 : "Você pode baixar músicas ou vídeos do YouTube apenas em chat privado. Por favor, me chame no privado."
+song_2 : "**Uso:**\n\n/song [nome da música ou link do YouTube]"
+song_3 : "Link de transmissão ao vivo detectado. Não consigo baixar vídeos ao vivo do youtube. "
+song_4 : "**🔗 Título:**- {0}\n\nSelecione o tipo no qual deseja fazer o download."
+song_5 : "Não é um link válido do Youtube"
+song_6 : "Obtendo Formatos.. \n\nPor favor, aguarde.."
+song_7 : "Falha ao obter os formatos disponíveis para o vídeo. Tente qualquer outra faixa."
+song_8 : "Download iniciado\n\nA velocidade de download pode ser lenta. Por favor, aguarde.."
+song_9 : "Falha ao baixar a música do Youtube-DL\n\n**Razão:** {0}"
+song_10 : "Falha ao carregar no telegram dos servidores."
+song_11 : "Carregamento iniciado\n\nA velocidade de upload pode ser lenta. Por favor, aguarde.."
+
+# Tools - Queue
+queue_1 : "Aguarde..Buscando Fila.."
+queue_2 : "A fila está vazia. Nenhuma faixa encontrada"
+queue_3 : "<u>**Faixas na fila:</u>**  [Confira mais faixas na fila a partir daqui]({0})"
+queue_4 : "⏳ Adicionado à fila em #{0}\n\n💡 Título: {1}\n**⏱ Duração:** {2}\n👤**adicionado por:** {3}"
+queue_5 : "Apenas uma faixa dentro da fila, adicione mais algumas à lista para verificação"
+
+# All Streaming Lines
+stream_1 : "📡 transmissão iniciada 💡\n\n👤**pedido por:** {0}\n🔦**informações [aqui]({1})"
+stream_2 : "📡 transmissão iniciada via URL  💡\n\n👤 pedido por:** {0}"
+stream_3 : "📡 transmissão iniciada 💡\n\n**🏷 Título:** {0}\n⌛️**Duração**: {1}\n👤**pedido por:** {2}"
+stream_4 : "📡 transmissão iniciada 💡\n\n**🏷 Título:** [{0}]({1})\n⌛️**Duração**: {2}\n👤**pedido por:** {3}"
+
+# Inline Buttons
+
+#General Buttons
+CLOSE_BUTTON  : "🗑 Fechar"
+CLOSEMENU_BUTTON  : "🗑 Fechar Menu"
+BACK_BUTTON : "⬅ Voltar"
+UNBAN_BUTTON : "🗑 Unban Assistant"
+
+#Lyrics
+L_B_1 : "🚀 Confira as letras agora"
+
+# Start
+S_B_1 : "🗒 Comandos"
+S_B_2 : "🔧 Configurações"
+S_B_3 : "📨 Suporte"
+S_B_4 : "📨 Canal"
+S_B_5 : "✚ me adicione no seu grupo"
+S_B_6 : "💡 Repositório Git"
+S_B_7 : "👤 Proprietário do Bot"
+S_B_8 : "🔎 Como usar? Menu de comandos."
+
+#Help 
+H_B_1 : "Comandos de admin"
+H_B_2 : "comandos para tocar"
+H_B_3 : "comandos do bot"
+H_B_4 : "Comandos Extras"
+H_B_5 : "Fechar Menu"
+H_B_6 : "Comandos SudoUser"
+
+#PlayMode
+PM_B_1 : "DirectPlay"
+PM_B_2 : "InlineMarkup"
+PM_B_3 : "ChannelPlay"
+
+#Play
+P_B_1 : "🎵 Tocar Áudio"
+P_B_2 : "🎥 Exibir Vídeo"
+P_B_3 : "🏮 Iniciar transmissão ao vivo"
+P_B_4 : "🎵 Reproduzir Playlist"
+
+#Playlist
+PL_B_1 : "🚀 Reproduzir Playlist"
+PL_B_2 : "✚ Playlists"
+PL_B_3 : "✚ CPanel"
+PL_B_4 : "📡 Play Mode"
+PL_B_5 : "🔄 Excluir toda a playlist "
+PL_B_6 : "↗️ Excluir Playlist"
+PL_B_7 : "❗️ Sim  tenho certeza. Excluir"
+PL_B_8 : "🔢 Top 10 de mais tocadas"
+PL_B_9 : "🤖 Tocar as 10 melhores faixas globais"
+PL_B_10 : "🏘 As 10 melhores faixas tocadas em grupos "
+PL_B_11 : "👤 Tocar as 10 melhores faixas pessoais"
+
+#Settings
+ST_B_1 : "🔊 qualidade de áudio"
+ST_B_2 : "🎥 qualidade de vídeo "
+ST_B_3 : "🎩 usuários autorizados"
+ST_B_4 : "📱 Painel"
+ST_B_5 : "▶️ modo de reprodução"
+ST_B_6 : "🏳️‍🌈 Idioma"
+ST_B_7 : "🔄 Modo limpo"
+ST_B_8 : "{0} Áudio de baixa qualidade"
+ST_B_9 : "{0} áudio de qualidade média"
+ST_B_10 : "{0} áudio de alta qualidade"
+ST_B_11 : "{0} vídeo de baixa qualidade"
+ST_B_12 : "{0} vídeo de qualidade média"
+ST_B_13 : "{0} vídeo de alta qualidade"
+ST_B_14 : "✅ Habilitado"
+ST_B_15 : "❌ Desabilitado"
+ST_B_16 : "👤 Admins"
+ST_B_17 : "👥 Todos"
+ST_B_18 : "📋 Lista de usuários autorizados"
+ST_B_19 : "🔎 Modo de busca"
+ST_B_20 : "✅ Direto"
+ST_B_21 : "✅ Inline"
+ST_B_22 : "👨‍⚖️ Comandos de administrador"
+ST_B_23 : "🏘 Grupo"
+ST_B_24 : "🏷 Canal"
+ST_B_25 : "🫂 Tipo de reprodução"
+ST_B_26 : "🗑 Limpar comandos"
+ST_B_27 : "🧑‍🚀 Modo de sugestão"
+
+#Song
+SG_B_1 : "↗️ abrir chat privado"
+SG_B_2 : "🔊 Áudio"
+SG_B_3 : "🎥 Vídeo"
+
+#Stats
+SA_B_1 : "📢 Top 10 do Chat"
+SA_B_2 : "🔢 Top 10 Faixas"
+SA_B_3 : "🧛 Top 10 Usuários"
+SA_B_4 : "🏷 Top 10 Aqui"
+SA_B_5 : "💡 Estatísticas gerais"
+SA_B_6 : "👤 Estatísticas do usuário"
+SA_B_7 : "🔢 As 10 principais estatísticas globais"
+SA_B_8 : "🤖 Estatísticas do bot"
+
+#Queue
+QU_B_1 : "📑 lista em fila"
+QU_B_2 : "Reproduziu {0}  de {1} Mins"
+
+# Sudo Users [ If you are translating this to some other language .. you can leave all these strings in english language]
+
+#Sudo
+sudo_1 : "{0} is already a sudo user."
+sudo_2 : "Added {0} to Sudo Users." 
+sudo_3 : "Not a part of Bot's Sudo."
+sudo_4 : "Removed from Bot's Sudo User"
+sudo_5 : "⭐️<u> Owners:</u>\n"
+sudo_6 : "\n⭐️<u> Sudo Users:</u>\n"
+sudo_7 : "No Sudo Users"
+
+#Block
+block_1 : "{0} já está bloqueado no bot."
+block_2 : "Adicionado {0} na lista de usuários bloqueados. O usuário não poderá usar o bot agora sob nenhuma condição.\n\nVerificar usuários bloqueados: /blockedusers"
+block_3 : "O usuário já está livre e não bloqueado."
+block_4 : "Usuário removido da lista de bloqueio. O usuário poderá usar o bot agora."
+block_5 : "Nenhum usuário bloqueado encontrado"
+block_6 : "Obtendo a lista de usuários bloqueados.. Aguarde"
+block_7 : "**Usuários bloqueados:**\n\n"
+
+#Blacklist Chats
+black_1 : "**Uso:**\n/blacklistchat [CHAT_ID]"
+black_2 : "O bate-papo já está na lista negra."
+black_3 : "O bate-papo foi colocado na lista negra com sucesso"
+black_4 : "**Uso:**\n/whitelistchat [CHAT_ID]"
+black_5 : "O bate-papo já está na lista de permissões."
+black_6 : "o bate-papo  foi colocado na lista de permissões com sucesso"
+black_7 : "**Bate-papos na lista negra:**\n\n"
+black_8 : "Nenhum bate-papo na lista negra"
+
+#videolimit
+vid_1 : "**Uso:**\n/set_video_limit [Número de chats allowed] ou [Disable]"
+vid_2 : "Use números numéricos para definir o limite."
+vid_3 : "Limite máximo de chamadas de vídeo definido para {0} Chats."
+vid_4 : "Chamadas de vídeo desativadas"
+
+#maintenance
+maint_1 : "**Uso:**\n/maintenance [enable|disable]"
+maint_2 : "Ativado para manutenção"
+maint_3 : "Modo de manutenção desativado"
+
+#log
+log_1 : "**Uso:**\n/logger [enable|disable]"
+log_2 : "Log ativado"
+log_3 : "Log desativado"
+
+#videomode
+vidmode_1 : "**Uso:**\n/videomode [download|m3u8]"
+vidmode_2 : "Modo de reprodução de vídeo definido como downloader. Bot estará baixando faixas agora."
+vidmode_3 : "Modo de reprodução de vídeo definido como m3u8. Bot tocará faixas ao vivo agora."
+
+
+#broadcast
+broad_1 : "**Transmitir mensagem em {0}  Chats com {1} Pins do bot.**"
+broad_2 : "Transmissão assistente iniciada..."
+broad_3 : "**Assistente de Transmissão:**\n\n"
+broad_4 : "Assistente {0} Transmite em {1} chats\n"
+broad_5 : "**Uso**:\n/broadcast [MESSAGE] ou [Responder a uma mensagem]"
+broad_6 : "Forneça algum texto para transmissão."
+broad_7 : "**Transmitir mensagem para {0} Usuários.**"
+
+#Heroku
+heroku_1 : "Please make sure your Heroku API Key, Your App name are configured correctly in the heroku"
+heroku_2 : "You can only get logs of Heroku Apps"
+heroku_3 : "**Usage:**\n/get_var [Var Name]"
+heroku_4 : "Unable to find any such var."
+heroku_5 : ".env file not found."
+heroku_6 : "**Usage:**\n/del_var [Var Name]"
+heroku_7 : "{0} Deleted."
+heroku_8 : "**Usage:**\n/set_var [Var Name] [Var Value]"
+heroku_9 : "{0} has been updated successfully"
+heroku_10 : "{0} has been added successfully"
+heroku_11 : "Only for Heroku Apps"
+heroku_12 : "Checking Heroku Usage. Please Wait"
+heroku_13 : "Checking for available updates..."
+heroku_14 : "Git Command Error"
+heroku_15 : "Invalid Git Repsitory"
+
+#Private bot mode
+pbot_1 : "**Uso:**\n/authorize [CHAT_ID]"
+pbot_2 :  "**Uso:**\n/unauthorize [CHAT_ID]"
+pbot_3 : "Adicionado determinado chat à lista autorizada"
+pbot_4 : "Chat fornecido removido da lista de autorizados"
+pbot_5 : "O chat já está na lista de autorizados"
+pbot_6 : "Esse chat não existe na lista autorizada"
+pbot_7 : "Falha ao verificar chat_id.\n\nCertifique-se de que seja numérico e esteja no formato correto. Não use o nome de usuário ou links de bate-papo."
+pbot_8 : "Por favor, aguarde.... Buscando bate-papos autorizados."
+pbot_9 : "**<b>Chats obtidos:</b>**\n\n"
+pbot_10 : "Conversa privada"
+pbot_11 : "Nenhum bate-papo autorizado encontrado"
+pbot_12 : "O modo de bot privado está desativado.\n\nPara usar seu bot como bot privado, certifique-se de definir PRIVATE_BOT_MODE = True"
+pbot_13 : "\n**<b>Chats não buscados:</b>**\n\n"
+
+#Gbanned
+gban_1 : "Você quer  gban em você? Que tolice!"
+gban_2 : "Devo me bloquear? Lol"
+gban_3 : "Você deseja bloquear um usuário sudo?"
+gban_4 : "{0} já foi banido do bot."
+gban_5 : "**Inicializando Banimento Global em {0}**\n\nTempo esperado : {1}."
+gban_6 : "**Gbanido com sucesso**\n\nBanido {0} a partir de {1} chats."
+gban_7 : "{0} ainda não foi banido do bot."
+gban_8 : "**Cancelar banimento {0}**\n\nTempo esperado : {1}."
+gban_9 : "**desbanimento feito com sucesso**\n\nDesbanido {0} em {1} chats."
+gban_10 : "Nenhum usuário banido foi encontrado."
+gban_11 : "Aguarde um pouco.. Obtendo lista de usuários banidos do Gban"
+
+#Suggestions
+sug_0 : "❓**Você sabia?**\n\n✅ "
+sug_1 : "Você pode reproduzir música em dois modos de pesquisa, ou seja, modo direto e modo Inline.\n\nAltere o modo via /playmode"
+sug_2 : "Você pode reproduzir música em dois tipos de reprodução, ou seja, Modo Todos e Modo Admins.\n\nAltere o modo via /playmode"
+sug_3 : "Você pode tocar música em canais também.\n\nDefina o  channel_id via /channelplay e reproduza via /cplay "
+sug_4 : "Os não administradores também podem usar comandos de administrador, adicionando-os à  lista de usuários autorizados. \nAdicione qualquer usuário à lista de autenticação por /auth , remova com /unauth e verifique os usuários de autenticação via /authusers"
+sug_5 : "O bot tem um recurso chamado Modo Limpo.\nEle exclui as mensagens do bot após 5 minutos e garante que seu chat permaneça limpo.\n\nAtivar ou desativar o modo limpo em /settings [__Ativado por padrão__]"
+sug_6 : "Você também pode reproduzir faixas e listas de reprodução do Spotify.\n\nComece a tocar agora com /play [Link do Spotify]"
+sug_7 : "Você também pode reproduzir faixas e listas de reprodução do Apple Music.\n\nComece a tocar agora com /play [Link da Apple]"
+sug_8 : "Você também pode reproduzir faixas e listas de reprodução do Resso Music.\n\nComece a tocar agora com /play [Link do Resso]"
+sug_9 : "Você também pode reproduzir faixas e listas de reprodução do Soundcloud.\n\nComece a tocar agora com /play [Link do SoundCloud ]"
+sug_10 : "Você pode reproduzir vídeos no chat de voz via /vplay [nome do vídeo] ou /play -v [nome do vídeo]"
+sug_11 : "Você pode definir a qualidade de áudio do chat de  voz como Baixa, Média ou Alta.\n\n defina a qualidade via /settings"
+sug_12 : "Você pode definir a qualidade do vídeo do chat de voz como Baixa, Média ou Alta.\n\n defina a qualidade via /settings"
+sug_13 : "Você pode verificar suas estatísticas no bot como Top 10 Faixas Tocadas.\n\nObter estatísticas: /gstats "
+sug_14 : "Você pode verificar as estatísticas do grupo no bot, como as 10 melhores faixas tocadas.\n\nObter estatísticas: /gstats "
+sug_15 : "Você pode verificar as estatísticas globais do bot, como os 10 principais usuários, os 10 principais bate-papos, as 10 principais faixas, etc.\n\nVerificar estatísticas: /gstats "
+sug_16 : "Agora você pode silenciar a música que está tocando no chat de voz.\n\nComando: /mute"
+sug_17 : "Agora você pode ativar e desativar o som da música que está tocando no chat de voz.\n\nComando: /mute e /unmute"
+sug_18 : "Você também pode pesquisar as letras das músicas comigo..\n\nComando: /lyrics [nome da música]"
+sug_19 : "Você pode baixar a música ou vídeo do YouTube através do bot.\n\nComando: /song [Nome da música]"
+sug_20 : "Você pode obter uma lista completa dos meus comandos.\n\nComando: /help"
+sug_21 : "O bot tem opção de lista de reprodução  no lado do servidor.\in\Você pode adicionar música em sua lista de reprodução e reproduzi-los todos juntos via /play"
+sug_22 : "Agora você pode embaralhar as músicas  no bot.\n\nComando: /shuffle"
+sug_23 : "Você pode ver as músicas na fila.\n\nComando: /queue"
+sug_24 : "Você pode conhecer meu proprietário e os usuários sudo que me gerenciam.\n\nComando: /sudolist"
+sug_25 : "Bot tem um recurso chamado Modo de Exclusão de Comandos. Ele exclui seus comandos executados automaticamente.\n\nAtivar ou desativar o modo de exclusão em /settings [__Ativado por padrão__]"
+sug_26 : "Você pode alterar o idioma do bot para os idiomas disponíveis para facilitar o entendimento.\n\nComando: /language"
+sug_27 : "O bot tem um recurso chamado Force Play.\n\n**Force Play** interrompe a reprodução da faixa no chat de  voz e começa a reproduzir a faixa pesquisada instantaneamente sem perturbar/limpar a fila.\n\nComando: /playforce"
