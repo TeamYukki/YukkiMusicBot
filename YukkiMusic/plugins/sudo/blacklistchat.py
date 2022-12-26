@@ -10,7 +10,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.misc import SUDOERS
@@ -60,7 +59,7 @@ async def white_funciton(client, message: Message, _):
 
 
 @app.on_message(
-    filters.command(BLACKLISTEDCHAT_COMMAND) & ~BANNED_USERS
+    filters.command(BLACKLISTEDCHAT_COMMAND) & SUDOERS
 )
 @language
 async def all_chats(client, message: Message, _):
