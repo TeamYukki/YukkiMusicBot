@@ -205,11 +205,11 @@ lyrics_4 : "Click on the button below and get searched lyrics to avoid long spam
 
 #Ping
 ping_1 : "Pong!!!!"
-ping_2 : "{0} is working good with a ping of `{1}` ms.\n\nBot's uptime is {2} and has used a total of {3} server's storage. Cpu load is about {4} with a consumption of {5} Ram. Py-Tgcalls client is also having a good ping of `{6}` ms."
+ping_2 : "🏓 `PONG!`\n⚡ `{resp}` ms\n\n🖥 System Stats:\n{uptime}"
 
 
 # Song
-song_1 : "You can download Music or Video from YouTube only in private chat. Please start me in private chat."
+song_1 : "🔍 Searching For a Song..."
 song_2 : "**Usage:**\n\n/song [Music Name] or [Youtube Link]"
 song_3 : "Live Link Detected. I am not able to download live youtube videos. "
 song_4 : "**🔗Title:**- {0}\n\nSelect the type in which you want to download."
