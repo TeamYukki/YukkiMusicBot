@@ -42,7 +42,7 @@ async def song_commad_group(client, message: Message, _):
             [
                 InlineKeyboardButton(
                     text=_["SG_B_1"],
-                    url=f"https://t.me/{app.username}?start=song",
+                    url=f"https://t.me/{app.username}?chat_id=song",
                 ),
             ]
         ]
