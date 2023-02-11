@@ -17,6 +17,7 @@ python-dotenv
 pyyaml==5.3.1
 requests
 speedtest-cli
+sqlite3
 spotipy
 tgcrypto
 youtube-search
