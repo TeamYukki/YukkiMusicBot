@@ -45,3 +45,7 @@ Apple = AppleAPI()
 Resso = RessoAPI()
 SoundCloud = SoundAPI()
 Telegram = TeleAPI()
+
+
+
+print ("Hello buddy")
