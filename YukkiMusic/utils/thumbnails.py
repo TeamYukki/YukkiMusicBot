@@ -90,8 +90,10 @@ async def gen_thumb(videoid):
         para = textwrap.wrap(title, width=32)
         j = 0
         draw.text(
-            (5, 5), f"{MUSIC_BOT_NAME}", fill="white", font=name_font
+            (50, 40), f"{MUSIC_BOT_NAME}", fill="white", font=name_font
         )
+
+	
         draw.text(
             (600, 150),
             "NOW PLAYING",
@@ -140,6 +142,7 @@ async def gen_thumb(videoid):
             (255, 255, 255),
             font=arial,
         )
+	
         try:
             os.remove(f"cache/thumb{videoid}.png")
         except:
