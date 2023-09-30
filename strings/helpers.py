@@ -46,10 +46,10 @@ Available Commands = play , vplay , cplay
 ForcePlay Commands = playforce , vplayforce , cplayforce
 
 **c** stands for channel play.
-**v** stands for video play.
+**p** stands for video play.
 **force** stands for force play.
 
-/play or /vplay or /cplay  - Bot will start playing your given query on voice chat or Stream live links on voice chats.
+/play or /p or /cplay  - Bot will start playing your given query on voice chat or Stream live links on voice chats.
 
 /playforce or /vplayforce or /cplayforce -  **Force Play** stops the current playing track on voice chat and starts playing the searched track instantly without disturbing/clearing queue.
 
@@ -66,7 +66,7 @@ HELP_3 = """✅<u>**Bot Commands:**</u>
 
 /stats - Get Top 10 Tracks Global Stats, Top 10 Users of bot, Top 10 Chats on bot, Top 10 Played in a chat etc etc.
 
-/sudolist - Check Sudo Users of Yukki Music Bot
+/sudo - Check Sudo Users of Yukki Music Bot
 
 /lyrics [Music Name] - Searches Lyrics for the particular Music on web.
 
@@ -111,8 +111,8 @@ HELP_4 = """✅<u>**Extra  Commands:**</u>
 3️⃣ **Play Type** [Everyone or Admins] - If admins, only admins present in group can play music on voice chat."""
 
 HELP_5 = """🔰**<u>ADD & REMOVE SUDO USERS :</u>**
-/addsudo [Username or Reply to a user]
-/delsudo [Username or Reply to a user]
+/add [Username or Reply to a user]
+/del [Username or Reply to a user]
 
 🛃**<u>HEROKU:</u>**
 /usage - Dyno Usage.
@@ -125,15 +125,15 @@ HELP_5 = """🔰**<u>ADD & REMOVE SUDO USERS :</u>**
 🤖**<u>BOT COMMANDS:</u>**
 /reboot - Reboot your Bot. 
 /update - Update Bot.
-/speedtest - Check server speeds
+/test - Check server speeds
 /maintenance [enable / disable] 
 /logger [enable / disable] - Bot logs the searched queries in logger group.
 /get_log [Number of Lines] - Get log of your bot from heroku or vps. Works for both.
 /autoend [enable|disable] - Enable Auto stream end after 3 mins if no one is listening.
 
 📈**<u>STATS COMMANDS:</u>**
-/activevoice - Check active voice chats on bot.
-/activevideo - Check active video calls on bot.
+/av - Check active voice chats on bot.
+/vcs - Check active video calls on bot.
 /stats - Check Bots Stats
 
 ⚠️**<u>BLACKLIST CHAT FUNCTION:</u>**
@@ -161,7 +161,7 @@ HELP_5 = """🔰**<u>ADD & REMOVE SUDO USERS :</u>**
 /authorized - Check all allowed chats of your bot.
 
 🌐**<u>BROADCAST FUNCTION:</u>**
-/broadcast [Message or Reply to a Message] - Broadcast any message to Bot's Served Chats.
+/gcast [Message or Reply to a Message] - Broadcast any message to Bot's Served Chats.
 
 <u>options for broadcast:</u>
 **-pin** : This will pin your message 
