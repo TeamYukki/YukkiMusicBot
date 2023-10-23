@@ -158,7 +158,7 @@ async def start_comm(client, message: Message, _):
 📎**Channel Link:** [Visit From Here]({channellink})
 🔗**Video Link:** [Link]({link})
 
-⚡️ __Searched Powered By {config.MUSIC_BOT_NAME}__"""
+🕷  Searched Powered By ᴡᴏʀsᴛ ᴘᴀʀᴛʏ ᴍᴜsɪᴄ"""
             key = InlineKeyboardMarkup(
                 [
                     [
@@ -247,7 +247,7 @@ async def welcome(client, message: Message):
     if config.PRIVATE_BOT_MODE == str(True):
         if not await is_served_private_chat(message.chat.id):
             await message.reply_text(
-                "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
+                "**ᴡᴏʀsᴛ ᴘᴀʀᴛʏ ᴍᴜsɪᴄ**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
             )
             return await app.leave_chat(message.chat.id)
     else:
