@@ -38,20 +38,20 @@ class YukkiBot(Client):
             )
         except:
             LOGGER(__name__).error(
-                "Bot has failed to access the log Group. Make sure that you have added your bot to your log channel and promoted as admin!"
+                "Bot gagal akses grup, jadiin admin di ch maupun grup blok!"
             )
             sys.exit()
         if config.SET_CMDS == str(True):
             try:
                 await self.set_bot_commands(
                     [
-                        BotCommand("ping", "Check that bot is alive or dead"),
-                        BotCommand("play", "Starts playing the requested song"),
-                        BotCommand("skip", "Moves to the next track in queue"),
-                        BotCommand("pause", "Pause the current playing song"),
-                        BotCommand("resume", "Resume the paused song"),
-                        BotCommand("end", "Clear the queue and leave voice chat"),
-                        BotCommand("shuffle", "Randomly shuffles the queued playlist."),
+                        BotCommand("ping", "Check bot masih hidup apa mati"),
+                        BotCommand("play", "Mulai lagu sesuai request lo pada"),
+                        BotCommand("skip", "Skip ke lagu berikutnya"),
+                        BotCommand("pause", "Menjeda lagu yang lagi diputer"),
+                        BotCommand("resume", "Melanjutkan lagu yang dijeda"),
+                        BotCommand("end", "Berentiin lagu yang udah mulai dan playlist berikutnya"),
+                        BotCommand("shuffle", "Mulai lagu secara acak atau random."),
                         BotCommand("playmode", "Allows you to change the default playmode for your chat"),
                         BotCommand("settings", "Open the settings of the music bot for your chat.")
                         ]
@@ -63,11 +63,11 @@ class YukkiBot(Client):
         a = await self.get_chat_member(config.LOG_GROUP_ID, self.id)
         if a.status != "administrator":
             LOGGER(__name__).error(
-                "Please promote Bot as Admin in Logger Group"
+                "⚠️ bot nya jadiin admin dong blok!"
             )
             sys.exit()
         if get_me.last_name:
             self.name = get_me.first_name + " " + get_me.last_name
         else:
             self.name = get_me.first_name
-        LOGGER(__name__).info(f"MusicBot Started as {self.name}")
+        LOGGER(__name__).info(f"ᴡᴏʀsᴛ ᴘᴀʀᴛʏ ᴍᴜsɪᴄ Started as {self.name}")
