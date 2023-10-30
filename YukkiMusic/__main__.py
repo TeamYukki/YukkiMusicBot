@@ -33,7 +33,7 @@ async def init():
         and not config.STRING5
     ):
         LOGGER("YukkiMusic").error(
-            "No Assistant Clients Vars Defined!.. Exiting Process."
+            "Tidak ada asisten!.. Exiting Process."
         )
         return
     if (
