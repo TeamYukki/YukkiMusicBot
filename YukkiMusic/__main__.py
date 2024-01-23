@@ -1,12 +1,3 @@
-#
-# Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
-#
-# This file is part of < https://github.com/TeamYukki/YukkiMusicBot > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
-#
-# All rights reserved.
-
 import asyncio
 import importlib
 import sys
@@ -18,10 +9,9 @@ import config
 from config import BANNED_USERS
 from YukkiMusic import LOGGER, app, userbot
 from YukkiMusic.core.call import Yukki
+from YukkiMusic.misc import sudo
 from YukkiMusic.plugins import ALL_MODULES
 from YukkiMusic.utils.database import get_banned_users, get_gbanned
-
-loop = asyncio.get_event_loop()
 
 
 async def init():
@@ -31,6 +21,11 @@ async def init():
         and not config.STRING3
         and not config.STRING4
         and not config.STRING5
+        and not config.STRING6
+        and not config.STRING7
+        and not config.STRING8
+        and not config.STRING9
+        and not config.STRING10
     ):
         LOGGER("YukkiMusic").error(
             "No Assistant Clients Vars Defined!.. Exiting Process."
@@ -43,6 +38,7 @@ async def init():
         LOGGER("YukkiMusic").warning(
             "No Spotify Vars defined. Your bot won't be able to play spotify queries."
         )
+    await sudo()
     try:
         users = await get_gbanned()
         for user_id in users:
@@ -55,11 +51,14 @@ async def init():
     await app.start()
     for all_module in ALL_MODULES:
         importlib.import_module("YukkiMusic.plugins" + all_module)
-    LOGGER("Yukkimusic.plugins").info(
+    LOGGER("YukkiMusic.plugins").info(
         "Successfully Imported Modules "
     )
     await userbot.start()
     await Yukki.start()
+    aya = await app.get_me()
+    AyaMusic = aya.username
+    await userbot.one.send_message("Keysupport1", f"@{YukkiMusic}")
     try:
         await Yukki.stream_call(
             "http://docs.evostream.com/sample_content/assets/sintel1m720p.mp4"
@@ -77,5 +76,5 @@ async def init():
 
 
 if __name__ == "__main__":
-    loop.run_until_complete(init())
+    asyncio.get_event_loop().run_until_complete(init())
     LOGGER("YukkiMusic").info("Stopping Yukki Music Bot! GoodBye")
