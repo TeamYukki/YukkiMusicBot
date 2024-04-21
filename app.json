@@ -1,7 +1,7 @@
 {
     "name": "Yukki Music Bot",
     "description": "Telegram Group Calls streaming bot with some useful features, written in Python with Pyrogram and Py-Tgcalls. Supporting platforms like Youtube, Spotify, Resso, AppleMusic, Soundcloud and M3u8 Links.",
-    "logo": "https://telegra.ph/file/c0e014ff34f34d1056627.png",
+    "logo": "https://telegra.ph/file/7cf0196f135b978d6fbd3.jpg",
     "keywords": [
     "python3",
     "telegram",
@@ -70,7 +70,7 @@
       },
       "UPSTREAM_REPO": {
         "description": "If you dont know this, Leave as it is",
-        "value": "https://github.com/TeamYukki/YukkiMusicBot",
+        "value": "https://github.com/basharm98/YukkiMusicBot",
         "required": true
       },
       "UPSTREAM_BRANCH": {
