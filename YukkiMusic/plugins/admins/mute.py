@@ -24,7 +24,7 @@ MUTE_COMMAND = get_command("MUTE_COMMAND")
 @app.on_message(
     filters.command(MUTE_COMMAND)
     & filters.group
-    & ~filters.edited
+    
     & ~BANNED_USERS
 )
 @AdminRightsCheck
