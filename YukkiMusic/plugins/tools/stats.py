@@ -58,7 +58,7 @@ async def stats_global(client, message: Message, _):
     )
     await message.reply_photo(
         photo=config.STATS_IMG_URL,
-        caption=_["gstats_11"].format(config.app.mention),
+        caption=_["gstats_11"].format(app.mention),
         reply_markup=upl,
     )
 
@@ -196,7 +196,7 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
             temp = (
                 _["gstats_4"].format(
                     queries,
-                    config.app.mention,
+                    app.mention,
                     len(stats),
                     total_count,
                     limit,
@@ -441,7 +441,7 @@ async def back_buttons(client, CallbackQuery, _):
         )
         med = InputMediaPhoto(
             media=config.GLOBAL_IMG_URL,
-            caption=_["gstats_10"].format(config.app.mention),
+            caption=_["gstats_10"].format(app.mention),
         )
         try:
             await CallbackQuery.edit_message_media(
@@ -450,7 +450,7 @@ async def back_buttons(client, CallbackQuery, _):
         except MessageIdInvalid:
             await CallbackQuery.message.reply_photo(
                 photo=config.GLOBAL_IMG_URL,
-                caption=_["gstats_10"].format(config.app.mention),
+                caption=_["gstats_10"].format(app.mention),
                 reply_markup=upl,
             )
     if command == "GETSTATS":
@@ -460,7 +460,7 @@ async def back_buttons(client, CallbackQuery, _):
         )
         med = InputMediaPhoto(
             media=config.STATS_IMG_URL,
-            caption=_["gstats_11"].format(config.app.mention),
+            caption=_["gstats_11"].format(app.mention),
         )
         try:
             await CallbackQuery.edit_message_media(
@@ -469,6 +469,6 @@ async def back_buttons(client, CallbackQuery, _):
         except MessageIdInvalid:
             await CallbackQuery.message.reply_photo(
                 photo=config.STATS_IMG_URL,
-                caption=_["gstats_11"].format(config.app.mention),
+                caption=_["gstats_11"].format(app.mention),
                 reply_markup=upl,
             )

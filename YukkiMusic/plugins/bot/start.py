@@ -158,7 +158,7 @@ async def start_comm(client, message: Message, _):
 📎**Channel Link:** [Visit From Here]({channellink})
 🔗**Video Link:** [Link]({link})
 
-⚡️ __Searched Powered By {config.app.mention}__"""
+⚡️ __Searched Powered By {app.mention}__"""
             key = InlineKeyboardMarkup(
                 [
                     [
@@ -198,18 +198,18 @@ async def start_comm(client, message: Message, _):
                 await message.reply_photo(
                     photo=config.START_IMG_URL,
                     caption=_["start_2"].format(
-                        config.app.mention
+                        app.mention
                     ),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
             except:
                 await message.reply_text(
-                    _["start_2"].format(config.app.mention),
+                    _["start_2"].format(app.mention),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
         else:
             await message.reply_text(
-                _["start_2"].format(config.app.mention),
+                _["start_2"].format(app.mention),
                 reply_markup=InlineKeyboardMarkup(out),
             )
         if await is_on_off(config.LOG):
@@ -232,7 +232,7 @@ async def testbot(client, message: Message, _):
     out = start_pannel(_)
     return await message.reply_text(
         _["start_1"].format(
-            message.chat.title, config.app.mention
+            message.chat.title, app.mention
         ),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -272,7 +272,7 @@ async def welcome(client, message: Message):
                 out = start_pannel(_)
                 await message.reply_text(
                     _["start_3"].format(
-                        config.app.mention,
+                        app.mention,
                         userbot.username,
                         userbot.id,
                     ),
@@ -281,13 +281,13 @@ async def welcome(client, message: Message):
             if member.id in config.OWNER_ID:
                 return await message.reply_text(
                     _["start_4"].format(
-                        config.app.mention, member.mention
+                        app.mention, member.mention
                     )
                 )
             if member.id in SUDOERS:
                 return await message.reply_text(
                     _["start_5"].format(
-                        config.app.mention, member.mention
+                        app.mention, member.mention
                     )
                 )
             return

@@ -101,7 +101,7 @@ async def ping_com(client, message: Message, _):
         if DUR == "Unknown"
         else "\nClick on button below to get whole queued list."
     )
-    cap = f"""**{config.app.mention} Player**
+    cap = f"""**{app.mention} Player**
 
 🎥**Playing:** {title}
 
@@ -281,7 +281,7 @@ async def queue_back(client, CallbackQuery: CallbackQuery, _):
         if DUR == "Unknown"
         else "\nClick on button below to get whole queued list."
     )
-    cap = f"""**{config.app.mention} Player**
+    cap = f"""**{app.mention} Player**
 
 🎥**Playing:** {title}
 
