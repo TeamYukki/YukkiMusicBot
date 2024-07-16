@@ -21,7 +21,7 @@ assistantids = []
 
 class Userbot(Client):
     def __init__(self):
-        self.one = Client
+        self.one = Client(
             name="YukkiMusic1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
