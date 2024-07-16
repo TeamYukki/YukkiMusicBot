@@ -19,6 +19,7 @@ from pyrogram.errors import (
     UserNotParticipant,
     FloodWait,
 )
+from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls
 from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall
@@ -141,15 +142,7 @@ class Call(PyTgCalls):
             await assistant.leave_group_call(chat_id)
         except:
             pass
-
-    async def set_volume(self, chat_id: int, volume: int):
-        assistant = await group_assistant(self, chat_id)
-        await assistant.change_volume_call(chat_id, volume)
-
-    async def get_participant(self, chat_id: int):
-        assistant = await group_assistant(self, chat_id)
-        await assistant.get_participants(chat_id)
-
+            
     async def force_stop_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
         try:
@@ -234,16 +227,15 @@ class Call(PyTgCalls):
                 get = await app.get_chat_member(chat_id, userbot.id)
             except ChatAdminRequired:
                 raise AssistantErr(_["call_1"])
-            if get.status == "banned" or get.status == "kicked":
+            if get.status == ChatMemberStatus.BANNED or get.status == ChatMemberStatus.RESTRICTED:
                 try:
                     await app.unban_chat_member(chat_id, userbot.id)
                 except:
                     raise AssistantErr(
                         _["call_2"].format(
-                            app.mention,
-                            userbot.id,
-                            userbot.mention,
                             userbot.username,
+                            userbot.id,
+
                         ),
                     )
         except UserNotParticipant:
@@ -269,7 +261,7 @@ class Call(PyTgCalls):
                     except Exception as e:
                         raise AssistantErr(e)
                     m = await app.send_message(
-                        original_chat_id, _["call_5"].format(userbot.name, chat.title)
+                        original_chat_id, _["call_5"]
                     )
                     if invitelink.startswith("https://t.me/+"):
                         invitelink = invitelink.replace(
@@ -335,7 +327,7 @@ class Call(PyTgCalls):
                 )
             except Exception as e:
                 raise AssistantErr(
-                    "**ɴᴏ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏ ᴄʜᴀᴛ ғᴏᴜɴᴅ**\n\nᴩʟᴇᴀsᴇ ᴍᴀᴋᴇ sᴜʀᴇ ʏᴏᴜ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ."
+                    "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
                 )
         except Exception as e:
             if "phone.CreateGroupCall" in str(e):
@@ -350,16 +342,16 @@ class Call(PyTgCalls):
                     )
                 except Exception:
                     raise AssistantErr(
-                        f"**» ɴᴏ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ғᴏᴜɴᴅ.**\n\nᴩʟᴇᴀsᴇ ᴍᴀᴋᴇ sᴜʀᴇ ʏᴏᴜ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ."
+                        f"**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
                     )
 
         except AlreadyJoinedError:
             raise AssistantErr(
-                "**ᴀssɪsᴛᴀɴᴛ ᴀʟʀᴇᴀᴅʏ ɪɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ**\n\nᴍᴜsɪᴄ ʙᴏᴛ sʏsᴛᴇᴍs ᴅᴇᴛᴇᴄᴛᴇᴅ ᴛʜᴀᴛ ᴀssɪᴛᴀɴᴛ ɪs ᴀʟʀᴇᴀᴅʏ ɪɴ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ, ɪғ ᴛʜɪs ᴩʀᴏʙʟᴇᴍ ᴄᴏɴᴛɪɴᴜᴇs ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
+                "**Assistant Already in Voice Chat**\n\nSystems have detected that assistant is already there in the voice chat, this issue generally comes when you play 2 queries together.\n\nIf assistant is not present in voice chat, please end voice chat and start fresh voice chat again and if the  problem continues, try /restart"
             )
         except TelegramServerError:
             raise AssistantErr(
-                "**ᴛᴇʟᴇɢʀᴀᴍ sᴇʀᴠᴇʀ ᴇʀʀᴏʀ**\n\nᴩʟᴇᴀsᴇ ᴛᴜʀɴ ᴏғғ ᴀɴᴅ ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɢᴀɪɴ."
+                "**Telegram Server Error**\n\nTelegram is having some internal server problems, Please try playing again.\n\n If this problem keeps coming everytime, please end your voice chat and start fresh voice chat again."
             )
         await add_active_chat(chat_id)
         await music_on(chat_id)
@@ -382,7 +374,8 @@ class Call(PyTgCalls):
                 loop = loop - 1
                 await set_loop(chat_id, loop)
             if popped:
-                await auto_clean(popped)
+                if config.AUTO_DOWNLOADS_CLEAR == str(True):
+                    await auto_clean(popped)
             if not check:
                 await _clear_(chat_id)
                 return await client.leave_group_call(chat_id)
@@ -411,7 +404,7 @@ class Call(PyTgCalls):
                 if n == 0:
                     return await app.send_message(
                         original_chat_id,
-                        text=_["call_7"],
+                        text=_["call_9"],
                     )
                 if video:
                     stream = MediaStream(
@@ -441,7 +434,7 @@ class Call(PyTgCalls):
                 except Exception:
                     return await app.send_message(
                         original_chat_id,
-                        text=_["call_7"],
+                        text=_["call_9"],
                     )
                 img = await gen_thumb(videoid)
                 button = telegram_markup(_, chat_id)
@@ -449,17 +442,15 @@ class Call(PyTgCalls):
                     original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
-                        title[:27],
-                        f"https://t.me/{app.username}?start=info_{videoid}",
-                        check[0]["dur"],
                         user,
+                        f"https://t.me/{app.username}?start=info_{videoid}",
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "tg"
             elif "vid_" in queued:
-                mystic = await app.send_message(original_chat_id, _["call_8"])
+                mystic = await app.send_message(original_chat_id, _["call_10"])
                 try:
                     file_path, direct = await YouTube.download(
                         videoid,
@@ -469,7 +460,7 @@ class Call(PyTgCalls):
                     )
                 except:
                     return await mystic.edit_text(
-                        _["call_7"], disable_web_page_preview=True
+                        _["call_9"], disable_web_page_preview=True
                     )
                 if video:
                     stream = MediaStream(
@@ -499,7 +490,7 @@ class Call(PyTgCalls):
                 except Exception:
                     return await app.send_message(
                         original_chat_id,
-                        text=_["call_7"],
+                        text=_["call_9"],
                     )
                 img = await gen_thumb(videoid)
                 button = stream_markup(_, videoid, chat_id)
@@ -508,10 +499,8 @@ class Call(PyTgCalls):
                     original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
-                        title[:27],
-                        f"https://t.me/{app.username}?start=info_{videoid}",
-                        check[0]["dur"],
                         user,
+                        f"https://t.me/{app.username}?start=info_{videoid}",
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
@@ -532,7 +521,7 @@ class Call(PyTgCalls):
                 except Exception:
                     return await app.send_message(
                         original_chat_id,
-                        text=_["call_7"],
+                        text=_["call_9"],
                     )
                 button = telegram_markup(_, chat_id)
                 run = await app.send_photo(
@@ -577,7 +566,7 @@ class Call(PyTgCalls):
                 except Exception:
                     return await app.send_message(
                         original_chat_id,
-                        text=_["call_7"],
+                        text=_["call_9"],
                     )
                 if videoid == "telegram":
                     button = telegram_markup(_, chat_id)
@@ -588,8 +577,8 @@ class Call(PyTgCalls):
                             if str(streamtype) == "audio"
                             else config.TELEGRAM_VIDEO_URL
                         ),
-                        caption=_["stream_1"].format(
-                            title, config.SUPPORT_GROUP, check[0]["dur"], user
+                        caption=_["stream_3"].format(
+                            title, check[0]["dur"], user
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
@@ -600,8 +589,8 @@ class Call(PyTgCalls):
                     run = await app.send_photo(
                         original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
-                        caption=_["stream_1"].format(
-                            title, config.SUPPORT_GROUP, check[0]["dur"], user
+                        caption=_["stream_3"].format(
+                            title, check[0]["dur"], user
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
@@ -615,10 +604,8 @@ class Call(PyTgCalls):
                             original_chat_id,
                             photo=img,
                             caption=_["stream_1"].format(
-                                title[:27],
-                                f"https://t.me/{app.username}?start=info_{videoid}",
-                                check[0]["dur"],
                                 user,
+                                f"https://t.me/{app.username}?start=info_{videoid}",
                             ),
                             reply_markup=InlineKeyboardMarkup(button),
                         )
