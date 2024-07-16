@@ -12,7 +12,7 @@ from datetime import datetime
 from pyrogram import filters
 from pyrogram.types import Message
 
-from config import BANNED_USERS, MUSIC_BOT_NAME, PING_IMG_URL
+from config import BANNED_USERS, PING_IMG_URL
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
@@ -41,6 +41,6 @@ async def ping_com(client, message: Message, _):
     resp = (datetime.now() - start).microseconds / 1000
     await response.edit_text(
         _["ping_2"].format(
-            MUSIC_BOT_NAME, resp, UP, DISK, CPU, RAM, pytgping
+            app.mention, resp, UP, DISK, CPU, RAM, pytgping
         )
     )

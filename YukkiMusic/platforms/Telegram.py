@@ -17,7 +17,7 @@ from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup, Voice)
 
 import config
-from config import MUSIC_BOT_NAME, lyrical
+from config import, lyrical
 from YukkiMusic import app
 
 from ..utils.formatters import (convert_bytes, get_readable_time,
@@ -147,7 +147,7 @@ class TeleAPI:
                     completed_size = convert_bytes(current)
                     speed = convert_bytes(speed)
                     text = f"""
-**{MUSIC_BOT_NAME} Telegram Media Downloader**
+**{app.mention} Telegram Media Downloader**
 
 **Total FileSize:** {total_size}
 **Completed:** {completed_size} 

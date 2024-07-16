@@ -11,7 +11,7 @@ import asyncio
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, Message
 
-from config import BANNED_USERS, MUSIC_BOT_NAME, adminlist, lyrical
+from config import BANNED_USERS, adminlist, lyrical
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
@@ -63,7 +63,7 @@ async def reload_admin_cache(client, message: Message, _):
 @AdminActual
 async def restartbot(client, message: Message, _):
     mystic = await message.reply_text(
-        f"Please Wait.. Restarting {MUSIC_BOT_NAME} for your chat.."
+        f"Please Wait.. Restarting {app.mention} for your chat.."
     )
     await asyncio.sleep(1)
     try:

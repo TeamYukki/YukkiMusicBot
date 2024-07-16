@@ -13,7 +13,7 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, Message)
 
 from config import (BANNED_USERS, CLEANMODE_DELETE_MINS,
-                    MUSIC_BOT_NAME, OWNER_ID)
+                    app.mention, OWNER_ID)
 from strings import get_command
 from YukkiMusic import app
 from YukkiMusic.utils.database import (add_nonadmin_chat,
@@ -98,7 +98,7 @@ async def settings_back_markup(
             OWNER = None
         buttons = private_panel(_, app.username, OWNER)
         return await CallbackQuery.edit_message_text(
-            _["start_2"].format(MUSIC_BOT_NAME),
+            _["start_2"].format(app.mention),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
