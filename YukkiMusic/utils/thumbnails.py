@@ -86,7 +86,7 @@ async def gen_thumb(videoid):
         name_font = ImageFont.truetype("assets/font.ttf", 30)
         para = textwrap.wrap(title, width=32)
         j = 0
-        draw.text((5, 5), f"{app.mention}", fill="white", font=name_font)
+    #    draw.text((5, 5), f"{app.mention}", fill="white", font=name_font)
         draw.text(
             (600, 150),
             "NOW PLAYING",
