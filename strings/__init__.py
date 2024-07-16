@@ -53,9 +53,7 @@ for filename in os.listdir(r"./strings/langs/"):
             if item not in languages[language_name]:
                 languages[language_name][item] = languages["en"][item]
     try:
-        languages_present[language_name] = languages[language_name][
-            "name"
-        ]
+        languages_present[language_name] = languages[language_name]["name"]
     except:
         print(
             "There is some issue with the language file inside bot. Please report it to the TeamYukki at @YukkiSupport on Telegram"

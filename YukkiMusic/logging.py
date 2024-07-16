@@ -8,9 +8,7 @@ logging.basicConfig(
     format="[%(asctime)s - %(levelname)s] - %(name)s - %(message)s",
     datefmt="%d-%b-%y %H:%M:%S",
     handlers=[
-        RotatingFileHandler(
-            LOG_FILE_NAME, maxBytes=5000000, backupCount=10
-        ),
+        RotatingFileHandler(LOG_FILE_NAME, maxBytes=5000000, backupCount=10),
         logging.StreamHandler(),
     ],
 )

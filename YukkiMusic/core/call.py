@@ -142,7 +142,7 @@ class Call(PyTgCalls):
             await assistant.leave_group_call(chat_id)
         except:
             pass
-            
+
     async def force_stop_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
         try:
@@ -227,7 +227,10 @@ class Call(PyTgCalls):
                 get = await app.get_chat_member(chat_id, userbot.id)
             except ChatAdminRequired:
                 raise AssistantErr(_["call_1"])
-            if get.status == ChatMemberStatus.BANNED or get.status == ChatMemberStatus.RESTRICTED:
+            if (
+                get.status == ChatMemberStatus.BANNED
+                or get.status == ChatMemberStatus.RESTRICTED
+            ):
                 try:
                     await app.unban_chat_member(chat_id, userbot.id)
                 except:
@@ -235,7 +238,6 @@ class Call(PyTgCalls):
                         _["call_2"].format(
                             userbot.username,
                             userbot.id,
-
                         ),
                     )
         except UserNotParticipant:
@@ -260,9 +262,7 @@ class Call(PyTgCalls):
                         raise AssistantErr(_["call_4"])
                     except Exception as e:
                         raise AssistantErr(e)
-                    m = await app.send_message(
-                        original_chat_id, _["call_5"]
-                    )
+                    m = await app.send_message(original_chat_id, _["call_5"])
                     if invitelink.startswith("https://t.me/+"):
                         invitelink = invitelink.replace(
                             "https://t.me/+", "https://t.me/joinchat/"
@@ -577,9 +577,7 @@ class Call(PyTgCalls):
                             if str(streamtype) == "audio"
                             else config.TELEGRAM_VIDEO_URL
                         ),
-                        caption=_["stream_3"].format(
-                            title, check[0]["dur"], user
-                        ),
+                        caption=_["stream_3"].format(title, check[0]["dur"], user),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
                     db[chat_id][0]["mystic"] = run
@@ -589,9 +587,7 @@ class Call(PyTgCalls):
                     run = await app.send_photo(
                         original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
-                        caption=_["stream_3"].format(
-                            title, check[0]["dur"], user
-                        ),
+                        caption=_["stream_3"].format(title, check[0]["dur"], user),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
                     db[chat_id][0]["mystic"] = run

@@ -7,10 +7,6 @@
 #
 # All rights reserved.
 
-from typing import Union
-
-from pyrogram.types import Message
-
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -70,10 +66,7 @@ async def alpha_to_int(user_id_alphabet: str) -> int:
 
 def time_to_seconds(time):
     stringt = str(time)
-    return sum(
-        int(x) * 60**i
-        for i, x in enumerate(reversed(stringt.split(":")))
-    )
+    return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
 def seconds_to_min(seconds):
