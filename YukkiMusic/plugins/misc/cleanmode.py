@@ -56,7 +56,7 @@ async def clean_mode(client, update, users, chats):
         return
     if chats:
         return
-    message_id = update.max_id
+    id = update.max_id
     chat_id = int(f"-100{update.channel_id}")
     if not await is_cleanmode_on(chat_id):
         return
@@ -64,7 +64,7 @@ async def clean_mode(client, update, users, chats):
         clean[chat_id] = []
     time_now = datetime.now()
     put = {
-        "msg_id": message_id,
+        "msg_id": id,
         "timer_after": time_now + timedelta(minutes=AUTO_DELETE),
     }
     clean[chat_id].append(put)
@@ -76,7 +76,7 @@ async def clean_mode(client, update, users, chats):
 async def braodcast_message(client, message, _):
     global IS_BROADCASTING
     if message.reply_to_message:
-        x = message.reply_to_message.message_id
+        x = message.reply_to_message.id
         y = message.chat.id
     else:
         if len(message.command) < 2:
