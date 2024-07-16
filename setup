@@ -14,13 +14,6 @@ pprint (){
 
 color_reset(){ printf '\033[0;37m';}
 
-yesnoprompt(){
-    old_stty_cfg=$(stty -g)
-    stty raw -echo ; answer=$(head -c 1)
-    stty $old_stty_cfg
-    echo "$answer" | grep -iq "^y"
-}
-
 update() {
     pprint "\n\nUpdating package list.. "
     sudo apt update 2>&1 | grep "can be upgraded" &>/dev/null
@@ -125,4 +118,3 @@ clear
 pprint "\n\n\nYour Vars have been saved Successfully!, Thanks for using Yukki Installer, now you can proceed by starting the bot with bash start!"
 pprint "\n\n\nWant more vars?"
 pprint "\nCheckout config.py and README.md inside config folder for addtional vars. You can change all images , thumbnails, mode and everything from vars. Have a look towards them\n\n"
-s them\n\n"
