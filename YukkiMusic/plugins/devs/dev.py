@@ -197,8 +197,8 @@ async def shellrunner(client, message):
             await client.send_document(
                 message.chat.id,
                 "output.txt",
-                reply_to_id=message.id,
-                caption="`Output`",
+                reply_to_message_id=message.id,
+                caption="`Output Ye Aya Dekho !`",
             )
             return os.remove("output.txt")
         await edit_or_reply(message, text=f"**OUTPUT:**\n```{output}```")
