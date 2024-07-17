@@ -35,38 +35,45 @@ def setting_markup(_):
 
 def audio_quality_markup(
     _,
-    low: Union[bool, str] = None,
-    medium: Union[bool, str] = None,
-    high: Union[bool, str] = None,
+    LOW: Union[bool, str] = None,
+    MEDIUM: Union[bool, str] = None,
+    HIGH: Union[bool, str] = None,
+    STUDIO: Union[bool, str] = None,
 ):
     buttons = [
         [
             InlineKeyboardButton(
                 text=(
-                    _["ST_B_8"].format("✅") if low == True else _["ST_B_8"].format("")
+                    _["ST_B_8"].format("✅") if LOW == True else _["ST_B_8"].format("")
                 ),
-                callback_data="LQA",
-            )
-        ],
-        [
+                callback_data="LOW",
+            ),
             InlineKeyboardButton(
                 text=(
                     _["ST_B_9"].format("✅")
-                    if medium == True
+                    if MEDIUM == True
                     else _["ST_B_9"].format("")
                 ),
-                callback_data="MQA",
-            )
+                callback_data="MEDIUM",
+            ),
         ],
         [
             InlineKeyboardButton(
                 text=(
                     _["ST_B_10"].format("✅")
-                    if high == True
+                    if HIGH == True
                     else _["ST_B_10"].format("")
                 ),
-                callback_data="HQA",
-            )
+                callback_data="HIGH",
+            ),
+            InlineKeyboardButton(
+                text=(
+                    _["ST_B_11"].format("✅")
+                    if STUDIO == True
+                    else _["ST_B_11"].format("")
+                ),
+                callback_data="STUDIO",
+            ),
         ],
         [
             InlineKeyboardButton(
@@ -81,40 +88,67 @@ def audio_quality_markup(
 
 def video_quality_markup(
     _,
-    low: Union[bool, str] = None,
-    medium: Union[bool, str] = None,
-    high: Union[bool, str] = None,
+    SD_360p: Union[bool, str] = None,
+    SD_480p: Union[bool, str] = None,
+    HD_720p: Union[bool, str] = None,
+    FHD_1080p: Union[bool, str] = None,
+    QHD_2K: Union[bool, str] = None,
+    UHD_4K: Union[bool, str] = None,
 ):
     buttons = [
         [
             InlineKeyboardButton(
                 text=(
-                    _["ST_B_11"].format("✅")
-                    if low == True
-                    else _["ST_B_11"].format("")
-                ),
-                callback_data="LQV",
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                text=(
                     _["ST_B_12"].format("✅")
-                    if medium == True
+                    if SD_360p == True
                     else _["ST_B_12"].format("")
                 ),
-                callback_data="MQV",
-            )
-        ],
-        [
+                callback_data="SD_360p",
+            ),
             InlineKeyboardButton(
                 text=(
                     _["ST_B_13"].format("✅")
-                    if high == True
+                    if SD_480p == True
                     else _["ST_B_13"].format("")
                 ),
-                callback_data="HQV",
-            )
+                callback_data="SD_480p",
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                text=(
+                    _["ST_B_14"].format("✅")
+                    if HD_720p == True
+                    else _["ST_B_14"].format("")
+                ),
+                callback_data="HD_720p",
+            ),
+            InlineKeyboardButton(
+                text=(
+                    _["ST_B_15"].format("✅")
+                    if FHD_1080p == True
+                    else _["ST_B_15"].format("")
+                ),
+                callback_data="FHD_1080p",
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                text=(
+                    _["ST_B_16"].format("✅")
+                    if QHD_2K == True
+                    else _["ST_B_16"].format("")
+                ),
+                callback_data="QHD_2K",
+            ),
+            InlineKeyboardButton(
+                text=(
+                    _["ST_B_17"].format("✅")
+                    if UHD_4K == True
+                    else _["ST_B_17"].format("")
+                ),
+                callback_data="UHD_4K",
+            ),
         ],
         [
             InlineKeyboardButton(
@@ -125,7 +159,6 @@ def video_quality_markup(
         ],
     ]
     return buttons
-
 
 def cleanmode_settings_markup(
     _,
