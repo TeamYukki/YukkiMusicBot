@@ -101,10 +101,6 @@ async def del_back_playlist(client, CallbackQuery, _):
         return
 
 
-downvote = {}
-downvoters = {}
-
-
 @app.on_callback_query(filters.regex("ADMIN") & ~BANNED_USERS)
 @languageCB
 async def del_back_playlist(client, CallbackQuery, _):
